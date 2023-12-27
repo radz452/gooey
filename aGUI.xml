@@ -1422,85 +1422,55 @@ aGUI.gui = aGUI.gui or {}
 
 --aGUI. [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]
 
-aGUI.gui.top = aGUI.gui.top or Adjustable.Container:new({name = "top", y="0%", height = "10%", 
+aGUI.gui.top = aGUI.gui.top or Adjustable.Container:new({name = "top", y="0%", height = "20%", 
   adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
 aGUI.gui.bottom = aGUI.gui.bottom or Adjustable.Container:new({name = "bottom", height = "20%", y = "-20%",
   adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
 
-aGUI.gui.topright = aGUI.gui.topright or Adjustable.Container:new({name = "topright", y = "0%", height = "100%", x = "-20%", width = "20%",
+aGUI.gui.topright = aGUI.gui.topright or Adjustable.Container:new({name = "topright", y = "0%", height = "50%", x = "-30%", width = "30%",
   adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
-aGUI.gui.bottomright = aGUI.gui.bottomright or Adjustable.Container:new({name = "bottomright", y = "0%", height = "100%", x = "-20%", width = "20%",
-  adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
-
-aGUI.gui.topleft = aGUI.gui.topleft or Adjustable.Container:new({name = "topleft", x = "0%", y = "0%", height = "100%", width = "20%",
-  adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
-aGUI.gui.midleft = aGUI.gui.topleft or Adjustable.Container:new({name = "topleft", x = "0%", y = "0%", height = "100%", width = "20%",
-  adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
-aGUI.gui.bottomleft = aGUI.gui.topleft or Adjustable.Container:new({name = "topleft", x = "0%", y = "0%", height = "100%", width = "20%",
+aGUI.gui.bottomright = aGUI.gui.bottomright or Adjustable.Container:new({name = "bottomright", y = "50%", height = "50%", x = "-30%", width = "30%",
   adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
 
+aGUI.gui.topleft = aGUI.gui.topleft or Adjustable.Container:new({name = "topleft", x = "0%", y = "0%", height = "33%", width = "20%",
+  adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
+aGUI.gui.midleft = aGUI.gui.midleft or Adjustable.Container:new({name = "midleft", x = "0%", y = "33%", height = "33%", width = "20%",
+  adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
+aGUI.gui.bottomleft = aGUI.gui.bottomleft or Adjustable.Container:new({name = "bottomleft", x = "0%", y = "66%", height = "34%", width = "20%",
+  adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
+
+aGUI.gui.denizens = aGUI.gui.denizens or 
+    Adjustable.Container:new({name = "denizens", y = "0%", x = "0%", height = "105%", width = "50%",
+    adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]
+    },aGUI.gui.topleft)
+aGUI.gui.people = aGUI.gui.people or 
+    Adjustable.Container:new({name = "people", y = "0%", x = "50%", height = "105%", width = "50%",
+    adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]
+    },aGUI.gui.topleft)
+
+aGUI.gui.denizens:setTitle("","gray")
+aGUI.gui.people:setTitle("","gray")
+aGUI.gui.topleft:setTitle("","gray")
+aGUI.gui.midleft:setTitle("","gray")
+aGUI.gui.bottomleft:setTitle("","gray")
 
 aGUI.gui.top:attachToBorder("top")
 aGUI.gui.bottom:attachToBorder("bottom")
-aGUI.gui.left:attachToBorder("left")
-aGUI.gui.right:attachToBorder("right")
+
+aGUI.gui.topright:attachToBorder("right")
+aGUI.gui.bottomright:attachToBorder("right")
+
+aGUI.gui.topleft:attachToBorder("left")
+aGUI.gui.midleft:attachToBorder("left")
+aGUI.gui.bottomleft:attachToBorder("left")
 
 aGUI.gui.top:connectToBorder("left")
 aGUI.gui.top:connectToBorder("right")
 aGUI.gui.bottom:connectToBorder("left")
 aGUI.gui.bottom:connectToBorder("right")
 
-aGUI.gui.topleft = aGUI.gui.topleft or
-  Adjustable.TabWindow:new(
-    {
-      name = "topleft",
-      x = 0,
-      y = 0,
-      width = "100%",
-      height = "33%",
-      tabs = {"Inventory", "sadasd"},
-      color2 = "rgb(20,20,20)",
-      color1 = "rgb(1,1,1)",
-    },
-    aGUI.gui.left
-  )
-  
- aGUI.gui.midleft = aGUI.gui.midleft or
-  Adjustable.TabWindow:new(
-    {
-      name = "midleft",
-      x = 0,
-      y = "33%",
-      width = "100%",
-      height = "33%",
-      tabs = {"RageInfo","ShipInfo"},
-      color2 = "rgb(20,20,20)",
-      color1 = "rgb(1,1,1)",
-    },
-    aGUI.gui.left
-  )
-  
-  aGUI.gui.botleft = aGUI.gui.botleft or
-  Adjustable.TabWindow:new(
-    {
-      name = "botleft",
-      x = 0,
-      y = "66%",
-      width = "100%",
-      height = "34%",
-      tabs = {"Map"},
-      color2 = "rgb(20,20,20)",
-      color1 = "rgb(1,1,1)",
-    },
-    aGUI.gui.left
-  )
-aGUI.gui.botleft:setTabHeight(15)
-aGUI.gui.midleft:setTabHeight(15)
-aGUI.gui.topleft:setTabHeight(15)
-
 aGUI.gui.mapper = aGUI.gui.mapper or 
-  Geyser.Mapper:new({x = 0, y = 0, width = "100%", height = "100%", name="mapper"}, aGUI.gui.botleft.Mapcenter)
-
+  Geyser.Mapper:new({x = 0, y = 0, width = "100%", height = "100%", name="mapper"}, aGUI.gui.bottomleft)
 
     sendGMCP([[Core.Supports.Add ["Comm.Channel 1"] ]])
     sendGMCP('Core.Supports.Add ["IRE.Tasks 1"]')
@@ -1520,11 +1490,11 @@ aGUI.gui.mapper = aGUI.gui.mapper or
   aGUI.echo("Target: &lt;LightSteelBlue&gt;"..what:title())
 end
 
-function aGUI.echo(text)
+function aGUI.echo(text) -- echo things in style
   cecho("\n&lt;white&gt;[&lt;firebrick&gt;aGUI&lt;white&gt;]&lt;reset&gt;: "..text.."\n")
 end
 
-function aGUI.alert(text, color1, color2)
+function aGUI.alert(text, color1, color2) --alert about things in a visible way
   color1 = color1 or "firebrick"
   color2 = color2 or "white"
   
@@ -1553,12 +1523,12 @@ function aGUI.alert(text, color1, color2)
   echo("\n")
 end
 
-function aGUI.deletelineP()
+function aGUI.deletelineP() -- delete the line and the prompt following it
   deleteLine()
   tempLineTrigger(1, 1, [[if isPrompt() then deleteLine() end]])
 end
 
-function aGUI.tableConcat(tbl, andor)
+function aGUI.tableConcat(tbl, andor) -- list tables with a nice "or" or "and" (degault) at the end
   local index = 1
   local answer = ""
   andor = andor or "and"
@@ -1602,25 +1572,7 @@ end</script>
 			<Script isActive="yes" isFolder="no">
 				<name>Build Room</name>
 				<packageName></packageName>
-				<script>aGUI.gui.roomInfoContrainer = aGUI.gui.roomInfoContrainer or 
-    Adjustable.Container:new({name = "Room Container", y = "0%", height = "100%", width = "100%"},aGUI.gui.topleft)
-
-aGUI.gui.denizens = aGUI.gui.denizens or 
-    Adjustable.Container:new({name = "denizens", y = "0%", x = "0%", height = "100%", width = "50%",
-    adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]
-    },aGUI.gui.roomInfoContrainer)
-aGUI.gui.people = aGUI.gui.people or 
-    Adjustable.Container:new({name = "people", y = "0%", x = "50%", height = "100%", width = "50%",
-    adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]
-    },aGUI.gui.roomInfoContrainer)
-
-  aGUI.gui.denizens:setTitle("","gray")
-  aGUI.gui.denizens:show()  
-  aGUI.gui.people:setTitle("","gray")
-  aGUI.gui.people:show()
-  aGUI.gui.roomInfoContrainer:setTitle("Room","gray")
-  --aGUI.gui.roomInfoContrainer:show()
-aGUI.gui.topleft:addToTabWindow(aGUI.gui.roomInfoContrainer)
+				<script>
 
 aGUI.gui.denizensConsole = aGUI.gui.denizensConsole or 
     Geyser.MiniConsole:new({name = "denizensConsole", x = "0%", y="0%", height = "100%", width = "100%", color = "black", autoWrap = true},aGUI.gui.denizens )
@@ -1790,7 +1742,7 @@ end
   aGUI.gmcp = aGUI.gmcp or {}
   aGUI.gmcp.old = aGUI.gmcp.old or {}
 
-  if gmcp.Char.Vitals then
+  if gmcp.Char and gmcp.Char.Vitals then
     for k, v in pairs (gmcp.Char.Vitals) do
       if k == "charstats" then
         aGUI.gmcp.bleed = tonumber(string.split(v[1], ":")[2])
@@ -1804,7 +1756,7 @@ end
     end
   end
   
-  if gmcp.Char.Status then
+  if gmcp.Char and gmcp.Char.Status then
     for k, v in pairs(gmcp.Char.Status) do
       if k == "name" then 
         k = "charname"
@@ -1813,7 +1765,7 @@ end
     end
   end
   
-  if gmcp.Room.Info then
+  if gmcp.Room and gmcp.Room.Info then
     for k, v in pairs(gmcp.Room.Info) do
       if table.contains({"area", "name", "num"}, k) then
         if k == "name" then 
