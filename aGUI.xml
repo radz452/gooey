@@ -1420,8 +1420,7 @@ end</script>
 			<script>aGUI = aGUI or {}
 aGUI.gui = aGUI.gui or {}
 
---aGUI. [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]
-
+--main skeleton
 aGUI.gui.top = aGUI.gui.top or Adjustable.Container:new({name = "top", y="0%", height = "20%", 
   adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
 aGUI.gui.bottom = aGUI.gui.bottom or Adjustable.Container:new({name = "bottom", height = "20%", y = "-20%",
@@ -1439,14 +1438,28 @@ aGUI.gui.midleft = aGUI.gui.midleft or Adjustable.Container:new({name = "midleft
 aGUI.gui.bottomleft = aGUI.gui.bottomleft or Adjustable.Container:new({name = "bottomleft", x = "0%", y = "66%", height = "34%", width = "20%",
   adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
 
+--room info 
+aGUI.gui.roomVBox = aGUI.gui.roomVBox or Geyser.VBox:new({
+  name="roomVBox", x = 0, y = 0, width = "100%", height = "100%"}, aGUI.gui.topleft)
+
+aGUI.gui.roomNameLabel = aGUI.gui.roomNameLabel or 
+    Geyser.Label:new({name = "roomNameLabel", x = "0%", y="0%", height = "10%", width = "100%", color = "black", v_policy=Geyser.Fixed }, aGUI.gui.roomVBox )
+    if aGUI.gmcp and aGUI.gmcp.roomname then aGUI.gui.roomNameLabel:echo(aGUI.gmcp.roomname, "ansiYellow", "c") end
+
+aGUI.gui.roomHBox = aGUI.gui.roomHBox or Geyser.HBox:new({
+  name="roomHBox", x = 0, y = 0, width = "100%", height = "90%"}, aGUI.gui.roomVBox)
+
 aGUI.gui.denizens = aGUI.gui.denizens or 
-    Adjustable.Container:new({name = "denizens", y = "0%", x = "0%", height = "105%", width = "50%",
-    adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]
-    },aGUI.gui.topleft)
+    Adjustable.Container:new({name = "denizens", y = "10%", x = "0%", height = "105%", width = "80%", 
+    adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]}, aGUI.gui.roomHBox)
 aGUI.gui.people = aGUI.gui.people or 
-    Adjustable.Container:new({name = "people", y = "0%", x = "50%", height = "105%", width = "50%",
-    adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]
-    },aGUI.gui.topleft)
+    Adjustable.Container:new({name = "people", y = "10%", x = "-20%", height = "105%", width = "20%", 
+    adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]}, aGUI.gui.roomHBox)
+
+aGUI.gui.denizensConsole = aGUI.gui.denizensConsole or 
+    Geyser.MiniConsole:new({name = "denizensConsole", x = "0%", y="0%", height = "100%", width = "100%", color = "black", autoWrap = true},aGUI.gui.denizens )
+aGUI.gui.peopleConsole = aGUI.gui.peopleConsole or 
+    Geyser.MiniConsole:new({name = "peopleConsole", x = "0%", y="0%", height = "100%", width = "100%", color = "black", autoWrap = true},aGUI.gui.people )
 
 aGUI.gui.denizens:setTitle("","gray")
 aGUI.gui.people:setTitle("","gray")
@@ -1472,13 +1485,20 @@ aGUI.gui.bottom:connectToBorder("right")
 aGUI.gui.mapper = aGUI.gui.mapper or 
   Geyser.Mapper:new({x = 0, y = 0, width = "100%", height = "100%", name="mapper"}, aGUI.gui.bottomleft)
 
+function aGUI.startup()
+if not aGUI.started then
+  aGUI.started = true
     sendGMCP([[Core.Supports.Add ["Comm.Channel 1"] ]])
     sendGMCP('Core.Supports.Add ["IRE.Tasks 1"]')
     sendGMCP('Core.Supports.Add ["IRE.Time 1"]')
     sendGMCP('Core.Supports.Add ["IRE.Misc 1"]')
     sendGMCP('Core.Supports.Add ["IRE.Display 1"]')
     sendGMCP('Core.Supports.Add ["IRE.Sound 1"]')
-    sendGMCP('Core.Supports.Add ["IRE.Target 1"]')</script>
+    sendGMCP('Core.Supports.Add ["IRE.Target 1"]')
+end
+end
+
+registerAnonymousEventHandler("gmcp.Char", "aGUI.startup")</script>
 			<eventHandlerList />
 		</Script>
 		<Script isActive="yes" isFolder="no">
@@ -1569,20 +1589,6 @@ end</script>
 			<packageName></packageName>
 			<script></script>
 			<eventHandlerList />
-			<Script isActive="yes" isFolder="no">
-				<name>Build Room</name>
-				<packageName></packageName>
-				<script>
-
-aGUI.gui.denizensConsole = aGUI.gui.denizensConsole or 
-    Geyser.MiniConsole:new({name = "denizensConsole", x = "0%", y="0%", height = "100%", width = "100%", color = "black", autoWrap = true},aGUI.gui.denizens )
-aGUI.gui.peopleConsole = aGUI.gui.peopleConsole or 
-    Geyser.MiniConsole:new({name = "peopleConsole", x = "0%", y="0%", height = "100%", width = "100%", color = "black", autoWrap = true},aGUI.gui.people )
-    
-
-</script>
-				<eventHandlerList />
-			</Script>
 			<Script isActive="yes" isFolder="no">
 				<name>Room info</name>
 				<packageName></packageName>
@@ -1715,7 +1721,7 @@ end
 
   function aGUI.getMobHighlight(value)
 
-    if (target and value == target) or (keneanung and keneanung.bashing.targetList[1] and value == keneanung.bashing.targetList[1].id) or (gmcp.IRE.Target and value == gmcp.IRE.Target.Set) then return "&lt;blaze_orange&gt;" 
+    if (target and value == target) or (keneanung and keneanung.bashing.targetList[1] and value == keneanung.bashing.targetList[1].id) or (gmcp.IRE and gmcp.IRE.Target and value == gmcp.IRE.Target.Set) then return "&lt;blaze_orange&gt;" 
     else return "&lt;green&gt;" 
   end
   
@@ -1770,6 +1776,7 @@ end
       if table.contains({"area", "name", "num"}, k) then
         if k == "name" then 
           k = "roomname"
+          aGUI.gui.roomNameLabel:echo(aGUI.gmcp.roomname, "ansiYellow", "c")
         end
         if aGUI.gmcp[k] and aGUI.gmcp[k] ~= v then
           aGUI.gmcp.old[k] = aGUI.gmcp[k]
