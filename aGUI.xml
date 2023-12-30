@@ -1417,104 +1417,123 @@ end</script>
 		<Script isActive="yes" isFolder="no">
 			<name>Build Main</name>
 			<packageName></packageName>
-			<script>aGUI = aGUI or {}
-aGUI.gui = aGUI.gui or {}
+			<script>gooey = gooey or {}
+gooey.gui = gooey.gui or {}
+
 
 --main skeleton
-aGUI.gui.top = aGUI.gui.top or Adjustable.Container:new({name = "top", y="0%", height = "20%", 
-  adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
-aGUI.gui.bottom = aGUI.gui.bottom or Adjustable.Container:new({name = "bottom", height = "20%", y = "-20%",
-  adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
+gooey.gui.top = gooey.gui.top or Adjustable.Container:new({name = "top", y="0%", height = "15%", buttonFontSize = 7, buttonsize = 10, })
+gooey.gui.bottom = gooey.gui.bottom or Adjustable.Container:new({name = "bottom", height = "15%", y = "-10%", buttonFontSize = 7, buttonsize = 10, })
 
-aGUI.gui.topright = aGUI.gui.topright or Adjustable.Container:new({name = "topright", y = "0%", height = "50%", x = "-30%", width = "30%",
-  adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
-aGUI.gui.bottomright = aGUI.gui.bottomright or Adjustable.Container:new({name = "bottomright", y = "50%", height = "50%", x = "-30%", width = "30%",
-  adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
+gooey.gui.topright = gooey.gui.topright or Adjustable.Container:new({name = "topright", y = "0%", height = "50%", x = "-30%", width = "30%", buttonFontSize = 7, buttonsize = 10, })
+gooey.gui.bottomright = gooey.gui.bottomright or Adjustable.Container:new({name = "bottomright", y = "50%", height = "50%", x = "-30%", width = "30%", buttonFontSize = 7, buttonsize = 10, })
+gooey.gui.topleft = gooey.gui.topleft or Adjustable.Container:new({name = "topleft", x = "0%", y = "0%", height = "33%", width = "20%", buttonFontSize = 7, buttonsize = 10, padding = 6})
+gooey.gui.midleft = gooey.gui.midleft or Adjustable.Container:new({name = "midleft", x = "0%", y = "33%", height = "33%", width = "20%", buttonFontSize = 7, buttonsize = 10, })
+gooey.gui.bottomleft = gooey.gui.bottomleft or Adjustable.Container:new({name = "bottomleft", x = "0%", y = "66%", height = "34%", width = "20%", buttonFontSize = 7, buttonsize = 10, })
 
-aGUI.gui.topleft = aGUI.gui.topleft or Adjustable.Container:new({name = "topleft", x = "0%", y = "0%", height = "33%", width = "20%",
-  adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
-aGUI.gui.midleft = aGUI.gui.midleft or Adjustable.Container:new({name = "midleft", x = "0%", y = "33%", height = "33%", width = "20%",
-  adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
-aGUI.gui.bottomleft = aGUI.gui.bottomleft or Adjustable.Container:new({name = "bottomleft", x = "0%", y = "66%", height = "34%", width = "20%",
-  adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]})
+--room info - VBox to separate the horizontal room name console from the vertical denizens and people consoles
+gooey.gui.roomVBox = gooey.gui.roomVBox or Geyser.VBox:new({
+  name="roomVBox", x = 0, y = 0, width = "100%", height = "100%"}, gooey.gui.topleft)
 
---room info 
-aGUI.gui.roomVBox = aGUI.gui.roomVBox or Geyser.VBox:new({
-  name="roomVBox", x = 0, y = 0, width = "100%", height = "100%"}, aGUI.gui.topleft)
+--room info - 
+gooey.gui.roomNameContainer = gooey.gui.roomNameContainer or 
+    Adjustable.Container:new({name = "roomNameContainer", y = "0%", x = "0%", height = "10%", width = "100%", v_policy=Geyser.Fixed, buttonFontSize = 7, buttonsize = 10, }, gooey.gui.roomVBox)
+    
+gooey.gui.roomNameLabel = gooey.gui.roomNameLabel or 
+    Geyser.Label:new({name = "roomNameLabel", x = "0%", y="0%", height = "10%", width = "100%", color = "black", v_policy=Geyser.Fixed }, gooey.gui.roomNameContainer )
+    if gooey.gmcp and gooey.gmcp.roomname then gooey.gui.roomNameLabel:echo(gooey.gmcp.roomname, "ansiYellow", "c") end
 
-aGUI.gui.roomNameLabel = aGUI.gui.roomNameLabel or 
-    Geyser.Label:new({name = "roomNameLabel", x = "0%", y="0%", height = "10%", width = "100%", color = "black", v_policy=Geyser.Fixed }, aGUI.gui.roomVBox )
-    if aGUI.gmcp and aGUI.gmcp.roomname then aGUI.gui.roomNameLabel:echo(aGUI.gmcp.roomname, "ansiYellow", "c") end
+gooey.gui.roomHBox = gooey.gui.roomHBox or Geyser.HBox:new({
+  name="roomHBox", x = 0, y = 0, width = "100%", height = "90%"}, gooey.gui.roomVBox)
 
-aGUI.gui.roomHBox = aGUI.gui.roomHBox or Geyser.HBox:new({
-  name="roomHBox", x = 0, y = 0, width = "100%", height = "90%"}, aGUI.gui.roomVBox)
+gooey.gui.denizens = gooey.gui.denizens or 
+    Adjustable.Container:new({name = "denizens", y = "10%", x = "0%", height = "105%", width = "80%", buttonFontSize = 7, buttonsize = 10, }, gooey.gui.roomHBox)
+gooey.gui.people = gooey.gui.people or 
+    Adjustable.Container:new({name = "people", y = "10%", x = "-20%", height = "105%", width = "20%", buttonFontSize = 7, buttonsize = 10, }, gooey.gui.roomHBox)
 
-aGUI.gui.denizens = aGUI.gui.denizens or 
-    Adjustable.Container:new({name = "denizens", y = "10%", x = "0%", height = "105%", width = "80%", 
-    adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]}, aGUI.gui.roomHBox)
-aGUI.gui.people = aGUI.gui.people or 
-    Adjustable.Container:new({name = "people", y = "10%", x = "-20%", height = "105%", width = "20%", 
-    adjLabelstyle = [[background-color:rgba(20,20,20,100%); border: 2px inset dimgray;]]}, aGUI.gui.roomHBox)
+gooey.gui.denizensConsole = gooey.gui.denizensConsole or 
+    Geyser.MiniConsole:new({name = "denizensConsole", x = "0%", y="0%", height = "100%", width = "100%", color = "black", autoWrap = true},gooey.gui.denizens )
+gooey.gui.peopleConsole = gooey.gui.peopleConsole or 
+    Geyser.MiniConsole:new({name = "peopleConsole", x = "0%", y="0%", height = "100%", width = "100%", color = "black", autoWrap = true},gooey.gui.people )
+    
 
-aGUI.gui.denizensConsole = aGUI.gui.denizensConsole or 
-    Geyser.MiniConsole:new({name = "denizensConsole", x = "0%", y="0%", height = "100%", width = "100%", color = "black", autoWrap = true},aGUI.gui.denizens )
-aGUI.gui.peopleConsole = aGUI.gui.peopleConsole or 
-    Geyser.MiniConsole:new({name = "peopleConsole", x = "0%", y="0%", height = "100%", width = "100%", color = "black", autoWrap = true},aGUI.gui.people )
 
-aGUI.gui.denizens:setTitle("","gray")
-aGUI.gui.people:setTitle("","gray")
-aGUI.gui.topleft:setTitle("","gray")
-aGUI.gui.midleft:setTitle("","gray")
-aGUI.gui.bottomleft:setTitle("","gray")
+gooey.gui.top:attachToBorder("top")
+gooey.gui.bottom:attachToBorder("bottom")
 
-aGUI.gui.top:attachToBorder("top")
-aGUI.gui.bottom:attachToBorder("bottom")
+gooey.gui.topright:attachToBorder("right")
+gooey.gui.bottomright:attachToBorder("right")
 
-aGUI.gui.topright:attachToBorder("right")
-aGUI.gui.bottomright:attachToBorder("right")
+gooey.gui.topleft:attachToBorder("left")
+gooey.gui.midleft:attachToBorder("left")
+gooey.gui.bottomleft:attachToBorder("left")
 
-aGUI.gui.topleft:attachToBorder("left")
-aGUI.gui.midleft:attachToBorder("left")
-aGUI.gui.bottomleft:attachToBorder("left")
+gooey.gui.top:connectToBorder("left")
+gooey.gui.top:connectToBorder("right")
+gooey.gui.bottom:connectToBorder("left")
+gooey.gui.bottom:connectToBorder("right")
 
-aGUI.gui.top:connectToBorder("left")
-aGUI.gui.top:connectToBorder("right")
-aGUI.gui.bottom:connectToBorder("left")
-aGUI.gui.bottom:connectToBorder("right")
+gooey.gui.topleft:connectToBorder("left")
+gooey.gui.midleft:connectToBorder("left")
+gooey.gui.bottomleft:connectToBorder("left")
+gooey.gui.topright:connectToBorder("right")
+gooey.gui.bottomright:connectToBorder("right")
 
-aGUI.gui.mapper = aGUI.gui.mapper or 
-  Geyser.Mapper:new({x = 0, y = 0, width = "100%", height = "100%", name="mapper"}, aGUI.gui.bottomleft)
 
-function aGUI.startup()
-if not aGUI.started then
-  aGUI.started = true
-    sendGMCP([[Core.Supports.Add ["Comm.Channel 1"] ]])
-    sendGMCP('Core.Supports.Add ["IRE.Tasks 1"]')
-    sendGMCP('Core.Supports.Add ["IRE.Time 1"]')
-    sendGMCP('Core.Supports.Add ["IRE.Misc 1"]')
-    sendGMCP('Core.Supports.Add ["IRE.Display 1"]')
-    sendGMCP('Core.Supports.Add ["IRE.Sound 1"]')
-    sendGMCP('Core.Supports.Add ["IRE.Target 1"]')
+gooey.gui.mapper = gooey.gui.mapper or 
+  Geyser.Mapper:new({x = 0, y = 0, width = "100%", height = "100%", name="mapper"}, gooey.gui.bottomleft)
+
+</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>gooey startup</name>
+			<packageName></packageName>
+			<script>function gooey.formatAllContainers()
+
+  Adjustable.Container:doAll(function(s) 
+    s:lockContainer("border")
+    s:addConnectMenu() 
+    s.adjLabel:setStyleSheet( [[background-color:rgba(20,20,20,100%); border: 2px inset darkslategray;]]) 
+    s:setTitle("", "gray") 
+    
+    s:changeMenuStyle("dark")
+    end)
+  
 end
+
+registerAnonymousEventHandler("sysLoadEvent", "gooey.formatAllContainers")
+
+function gooey.startup()
+  if not gooey.started then
+    gooey.started = true
+      sendGMCP([[Core.Supports.Add ["Comm.Channel 1"] ]])
+      sendGMCP('Core.Supports.Add ["IRE.Tasks 1"]')
+      sendGMCP('Core.Supports.Add ["IRE.Time 1"]')
+      sendGMCP('Core.Supports.Add ["IRE.Misc 1"]')
+      sendGMCP('Core.Supports.Add ["IRE.Display 1"]')
+      sendGMCP('Core.Supports.Add ["IRE.Sound 1"]')
+      sendGMCP('Core.Supports.Add ["IRE.Target 1"]')
+  end
 end
 
-registerAnonymousEventHandler("gmcp.Char", "aGUI.startup")</script>
+registerAnonymousEventHandler("gmcp.Char", "gooey.startup")</script>
 			<eventHandlerList />
 		</Script>
 		<Script isActive="yes" isFolder="no">
 			<name>Misc utils</name>
 			<packageName></packageName>
-			<script>function aGUI.target(what)
+			<script>function gooey.target(what)
   send("st "..what)
-  aGUI.target = what
-  aGUI.echo("Target: &lt;LightSteelBlue&gt;"..what:title())
+  gooey.target = what
+  gooey.echo("Target: &lt;LightSteelBlue&gt;"..what:title())
 end
 
-function aGUI.echo(text) -- echo things in style
-  cecho("\n&lt;white&gt;[&lt;firebrick&gt;aGUI&lt;white&gt;]&lt;reset&gt;: "..text.."\n")
+function gooey.echo(text) -- echo things in style
+  cecho("\n&lt;white&gt;[&lt;firebrick&gt;gooey&lt;white&gt;]&lt;reset&gt;: "..text.."\n")
 end
 
-function aGUI.alert(text, color1, color2) --alert about things in a visible way
+function gooey.alert(text, color1, color2) --alert about things in a visible way
   color1 = color1 or "firebrick"
   color2 = color2 or "white"
   
@@ -1543,12 +1562,12 @@ function aGUI.alert(text, color1, color2) --alert about things in a visible way
   echo("\n")
 end
 
-function aGUI.deletelineP() -- delete the line and the prompt following it
+function gooey.deletelineP() -- delete the line and the prompt following it
   deleteLine()
   tempLineTrigger(1, 1, [[if isPrompt() then deleteLine() end]])
 end
 
-function aGUI.tableConcat(tbl, andor) -- list tables with a nice "or" or "and" (degault) at the end
+function gooey.tableConcat(tbl, andor) -- list tables with a nice "or" or "and" (degault) at the end
   local index = 1
   local answer = ""
   andor = andor or "and"
@@ -1578,10 +1597,12 @@ function aGUI.tableConcat(tbl, andor) -- list tables with a nice "or" or "and" (
   return answer  
 end
 
-function aGUI.round(num, idp)
+function gooey.round(num, idp)
   local mult = 10^(idp or 0)
   return math.floor(num * mult + 0.5) / mult
-end</script>
+end
+
+</script>
 			<eventHandlerList />
 		</Script>
 		<ScriptGroup isActive="yes" isFolder="yes">
@@ -1592,21 +1613,21 @@ end</script>
 			<Script isActive="yes" isFolder="no">
 				<name>Room info</name>
 				<packageName></packageName>
-				<script>function aGUI.updateRoomInv()
+				<script>function gooey.updateRoomInv()
 		local console = "denizensConsole"
     clearUserWindow(console)
 
 		--first list mobs
-    for key,value in pairs(aGUI.roomMtable) do 
-			cechoLink(console, "&lt;red&gt;T", [[aGUI.target("]] .. key .. [[") if keneanung then keneanung.bashing.addPossibleTarget("]]..value..[[") end ]], "Target", true)
+    for key,value in pairs(gooey.roomMtable) do 
+			cechoLink(console, "&lt;red&gt;T", [[gooey.target("]] .. key .. [[") if keneanung then keneanung.bashing.addPossibleTarget("]]..value..[[") end ]], "Target", true)
 		  echo(console, "(")
 		  echoLink(console, "P", [[send("p ]] .. key .. [[")]], "Probe", false)
 		  echo(console, ")")
       echoLink(console, "(G", [[send("greet ]] .. key .. [[")]], "Greet", false)
-      cechoPopup(console, ") " ..(aGUI.getMobHighlight(key) or "").. value .. "\n", {[[aGUI.target("]] .. key .. [[") if keneanung then keneanung.bashing.addPossibleTarget("]]..value..[[") end ]], [[send("p ]] .. key .. [[")]], [[send("greet ]] .. key .. [[")]]}, {"Target", "Probe", "Greet"}, true)
+      cechoPopup(console, ") " ..(gooey.getMobHighlight(key) or "").. value .. "\n", {[[gooey.target("]] .. key .. [[") if keneanung then keneanung.bashing.addPossibleTarget("]]..value..[[") end ]], [[send("p ]] .. key .. [[")]], [[send("greet ]] .. key .. [[")]]}, {"Target", "Probe", "Greet"}, true)
     end
     --then list gold
-    for key,value in pairs(aGUI.roomTtable) do 
+    for key,value in pairs(gooey.roomTtable) do 
       if value:find("sovereign") ~= nil then
 			  echoLink(console, "+", [[send("get ]] .. key .. [[")]], "Get", false)
 		    echo(console, "(")
@@ -1615,14 +1636,14 @@ end</script>
       end
     end
     --then list stuff
-    for key,value in pairs(aGUI.roomInvTable) do 
+    for key,value in pairs(gooey.roomInvTable) do 
 			echoLink(console, "+", [[send("get ]] .. key .. [[")]], "Get", false)
 		  echo(console, "(")
 		  echoLink(console, "P", [[send("p ]] .. key .. [[")]], "Probe", false)
       cechoPopup(console, ") " .. value .. "\n", {[[send("get ]] .. key .. [[")]], [[send("p ]] .. key .. [[")]]}, {"Get", "Probe"}, true)
     end
     --then list "t" stuff that's not gold
-    for key,value in pairs(aGUI.roomTtable) do 
+    for key,value in pairs(gooey.roomTtable) do 
       if not value:find("sovereign") then
 			  echoLink(console, "+", [[send("get ]] .. key .. [[")]], "Get", false)
 		    echo(console, "(")
@@ -1633,14 +1654,14 @@ end</script>
  
 end
 
-  --registerAnonymousEventHandler("gmcp.Room.Info","aGUI.updateRoomInv")
-  --registerAnonymousEventHandler("gmcp.Char.Items","aGUI.updateRoomInv")
-  --registerAnonymousEventHandler("gmcp.IRE.Target","aGUI.updateRoomInv")
+  --registerAnonymousEventHandler("gmcp.Room.Info","gooey.updateRoomInv")
+  --registerAnonymousEventHandler("gmcp.Char.Items","gooey.updateRoomInv")
+  --registerAnonymousEventHandler("gmcp.IRE.Target","gooey.updateRoomInv")
 
 
   
 -- colour name
-	function aGUI.WhatColour(name)
+	function gooey.WhatColour(name)
 		if name == target then
 			return "&lt;blaze_orange&gt;"
 		elseif svo then 
@@ -1650,62 +1671,62 @@ end
 		end
 	end
 
-function aGUI.inventoryeventmanager(event)
+function gooey.inventoryeventmanager(event)
 
-if event == "gmcp.Char.Items.List" and gmcp.Char.Items.List.location == "room" then aGUI.updateRoomItems()
-elseif event == "gmcp.Char.Items.Add" and gmcp.Char.Items.Add.location == "room" then aGUI.addRoomItems()
-elseif event == "gmcp.Char.Items.Remove" and gmcp.Char.Items.Remove.location == "room" then aGUI.removeRoomItems()
+if event == "gmcp.Char.Items.List" and gmcp.Char.Items.List.location == "room" then gooey.updateRoomItems()
+elseif event == "gmcp.Char.Items.Add" and gmcp.Char.Items.Add.location == "room" then gooey.addRoomItems()
+elseif event == "gmcp.Char.Items.Remove" and gmcp.Char.Items.Remove.location == "room" then gooey.removeRoomItems()
 end
 
 end
 
-registerAnonymousEventHandler("gmcp.Char.Items.List","aGUI.inventoryeventmanager")
-registerAnonymousEventHandler("gmcp.Char.Items.Add","aGUI.inventoryeventmanager")
-registerAnonymousEventHandler("gmcp.Char.Items.Remove","aGUI.inventoryeventmanager")
+registerAnonymousEventHandler("gmcp.Char.Items.List","gooey.inventoryeventmanager")
+registerAnonymousEventHandler("gmcp.Char.Items.Add","gooey.inventoryeventmanager")
+registerAnonymousEventHandler("gmcp.Char.Items.Remove","gooey.inventoryeventmanager")
 
 
-function aGUI.updateRoomItems()
+function gooey.updateRoomItems()
 
 	if gmcp.Char.Items.List.location == "room" then
-		aGUI.roomInvTable = {} aGUI.roomMtable = {} aGUI.roomTtable = {}
+		gooey.roomInvTable = {} gooey.roomMtable = {} gooey.roomTtable = {}
 		for key,value in pairs(gmcp.Char.Items.List.items) do 
-		local highlight = aGUI.getItemHighlight(value) or ""
+		local highlight = gooey.getItemHighlight(value) or ""
       if value.attrib == "m" then
-		  aGUI.roomMtable[value.id] = value.name
+		  gooey.roomMtable[value.id] = value.name
       elseif value.attrib == "t" then
-      aGUI.roomTtable[value.id] = highlight .. value.name
-		  else aGUI.roomInvTable[value.id] = highlight .. value.name
+      gooey.roomTtable[value.id] = highlight .. value.name
+		  else gooey.roomInvTable[value.id] = highlight .. value.name
       end
     end
-		aGUI.updateRoomInv()
+		gooey.updateRoomInv()
 	end
 end
 
-function aGUI.addRoomItems()
+function gooey.addRoomItems()
 	if gmcp.Char.Items.Add.location == "room" then
 		local value = gmcp.Char.Items.Add.item
-		local highlight = aGUI.getItemHighlight(value) or ""
+		local highlight = gooey.getItemHighlight(value) or ""
 		  if value.attrib == "m" then
-		  aGUI.roomMtable[value.id] = value.name
+		  gooey.roomMtable[value.id] = value.name
       elseif value.attrib == "t" then
-      aGUI.roomTtable[value.id] = highlight .. value.name
-		  else aGUI.roomInvTable[value.id] = highlight .. value.name
+      gooey.roomTtable[value.id] = highlight .. value.name
+		  else gooey.roomInvTable[value.id] = highlight .. value.name
       end
-		aGUI.updateRoomInv()
+		gooey.updateRoomInv()
 	end
 end
 
-function aGUI.removeRoomItems()
+function gooey.removeRoomItems()
 	if gmcp.Char.Items.Remove.location == "room" then
     itemKey = gmcp.Char.Items.Remove.item.id
-    aGUI.roomInvTable["" .. itemKey] = nil
-    aGUI.roomMtable[itemKey] = nil
-    aGUI.roomTtable["" .. itemKey] = nil
-    aGUI.updateRoomInv()
+    gooey.roomInvTable["" .. itemKey] = nil
+    gooey.roomMtable[itemKey] = nil
+    gooey.roomTtable["" .. itemKey] = nil
+    gooey.updateRoomInv()
 	end
 end
   
-function aGUI.getItemHighlight(value)
+function gooey.getItemHighlight(value)
 	if value.attrib == "m" then 
     if value.id == target then return "&lt;blaze_orange&gt;" 
     else return "&lt;green&gt;" 
@@ -1719,7 +1740,7 @@ function aGUI.getItemHighlight(value)
   end
 end
 
-  function aGUI.getMobHighlight(value)
+  function gooey.getMobHighlight(value)
 
     if (target and value == target) or (keneanung and keneanung.bashing.targetList[1] and value == keneanung.bashing.targetList[1].id) or (gmcp.IRE and gmcp.IRE.Target and value == gmcp.IRE.Target.Set) then return "&lt;blaze_orange&gt;" 
     else return "&lt;green&gt;" 
@@ -1744,20 +1765,20 @@ end
 		<Script isActive="yes" isFolder="no">
 			<name>Track stuff</name>
 			<packageName></packageName>
-			<script>function aGUI.updateInfo()
-  aGUI.gmcp = aGUI.gmcp or {}
-  aGUI.gmcp.old = aGUI.gmcp.old or {}
+			<script>function gooey.updateInfo()
+  gooey.gmcp = gooey.gmcp or {}
+  gooey.gmcp.old = gooey.gmcp.old or {}
 
   if gmcp.Char and gmcp.Char.Vitals then
     for k, v in pairs (gmcp.Char.Vitals) do
       if k == "charstats" then
-        aGUI.gmcp.bleed = tonumber(string.split(v[1], ":")[2])
-        aGUI.gmcp.rage = tonumber(string.split(v[2], ":")[2])
+        gooey.gmcp.bleed = tonumber(string.split(v[1], ":")[2])
+        gooey.gmcp.rage = tonumber(string.split(v[2], ":")[2])
       elseif k ~= "string" then
-        if aGUI.gmcp[k] and aGUI.gmcp[k] ~= tonumber(v) then
-          aGUI.gmcp.old[k] = aGUI.gmcp[k]
+        if gooey.gmcp[k] and gooey.gmcp[k] ~= tonumber(v) then
+          gooey.gmcp.old[k] = gooey.gmcp[k]
         end
-        aGUI.gmcp[k] = tonumber(v)
+        gooey.gmcp[k] = tonumber(v)
       end
     end
   end
@@ -1767,7 +1788,7 @@ end
       if k == "name" then 
         k = "charname"
       end
-      aGUI.gmcp[k] = v
+      gooey.gmcp[k] = v
     end
   end
   
@@ -1776,22 +1797,22 @@ end
       if table.contains({"area", "name", "num"}, k) then
         if k == "name" then 
           k = "roomname"
-          aGUI.gui.roomNameLabel:echo(aGUI.gmcp.roomname, "ansiYellow", "c")
+          gooey.gui.roomNameLabel:echo(gooey.gmcp.roomname, "ansiYellow", "c")
         end
-        if aGUI.gmcp[k] and aGUI.gmcp[k] ~= v then
-          aGUI.gmcp.old[k] = aGUI.gmcp[k]
+        if gooey.gmcp[k] and gooey.gmcp[k] ~= v then
+          gooey.gmcp.old[k] = gooey.gmcp[k]
         end
-        aGUI.gmcp[k] = v
+        gooey.gmcp[k] = v
       end
     end
   end
 end
 
-registerAnonymousEventHandler("gmcp.Char", "aGUI.updateInfo")
-registerAnonymousEventHandler("gmcp.Room", "aGUI.updateInfo")
+registerAnonymousEventHandler("gmcp.Char", "gooey.updateInfo")
+registerAnonymousEventHandler("gmcp.Room", "gooey.updateInfo")
 
 
-function aGUI.updateRoom()
+function gooey.updateRoom()
   
 end</script>
 			<eventHandlerList />
