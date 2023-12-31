@@ -1437,10 +1437,10 @@ gooey.gui.roomVBox = gooey.gui.roomVBox or Geyser.VBox:new({
 
 --room info - 
 gooey.gui.roomNameContainer = gooey.gui.roomNameContainer or 
-    Adjustable.Container:new({name = "roomNameContainer", y = "0%", x = "0%", height = "10%", width = "100%", v_policy=Geyser.Fixed, buttonFontSize = 7, buttonsize = 10, }, gooey.gui.roomVBox)
+    Adjustable.Container:new({name = "roomNameContainer", y = "0%", x = "0%", height = "12%", width = "100%", v_policy=Geyser.Fixed, buttonFontSize = 7, buttonsize = 10, padding = 1 }, gooey.gui.roomVBox)
     
 gooey.gui.roomNameLabel = gooey.gui.roomNameLabel or 
-    Geyser.Label:new({name = "roomNameLabel", x = "0%", y="0%", height = "10%", width = "100%", color = "black", v_policy=Geyser.Fixed }, gooey.gui.roomNameContainer )
+    Geyser.Label:new({name = "roomNameLabel", x = "0%", y="0%", height = "100%", width = "100%", color = "black", }, gooey.gui.roomNameContainer )
     if gooey.gmcp and gooey.gmcp.roomname then gooey.gui.roomNameLabel:echo(gooey.gmcp.roomname, "ansiYellow", "c") end
 
 gooey.gui.roomHBox = gooey.gui.roomHBox or Geyser.HBox:new({
@@ -1530,7 +1530,7 @@ registerAnonymousEventHandler("gmcp.Char", "gooey.startup")</script>
 end
 
 function gooey.echo(text) -- echo things in style
-  cecho("\n&lt;white&gt;[&lt;firebrick&gt;gooey&lt;white&gt;]&lt;reset&gt;: "..text.."\n")
+  cecho("\n&lt;white&gt;(&lt;firebrick&gt;gooey&lt;white&gt;)&lt;reset&gt;: "..text.."\n")
 end
 
 function gooey.alert(text, color1, color2) --alert about things in a visible way
@@ -1602,7 +1602,32 @@ function gooey.round(num, idp)
   return math.floor(num * mult + 0.5) / mult
 end
 
-</script>
+function gooey.pp(state)
+  
+  if Legacy then
+    if not state then
+      state = Legacy.Settings.Curing.status
+    else state = ((state == "on" and true) or false) 
+    end
+      send("curing "..state and "on" or "off")
+  elseif svo then
+    if not state then 
+      state = not svo.conf.paused
+    else state = ("on" and true) or false
+    end
+    svo.app(state)
+  else 
+    if not state then
+      gooey.echo("Need a state for the curing bro")
+      return
+    else
+    state = ((state == "on" and true) or false) 
+    send("curing "..(state and "on" or "off"))
+    end
+      gooey.echo(""..(state and "Unp"  or "P").."aused the system") 
+  end
+
+end</script>
 			<eventHandlerList />
 		</Script>
 		<ScriptGroup isActive="yes" isFolder="yes">
@@ -1707,6 +1732,7 @@ function gooey.addRoomItems()
 		local value = gmcp.Char.Items.Add.item
 		local highlight = gooey.getItemHighlight(value) or ""
 		  if value.attrib == "m" then
+      gooey.roomMtable = gooey.roomMtable or {}
 		  gooey.roomMtable[value.id] = value.name
       elseif value.attrib == "t" then
       gooey.roomTtable[value.id] = highlight .. value.name
@@ -1765,9 +1791,79 @@ end
 		<Script isActive="yes" isFolder="no">
 			<name>Track stuff</name>
 			<packageName></packageName>
-			<script>function gooey.updateInfo()
-  gooey.gmcp = gooey.gmcp or {}
-  gooey.gmcp.old = gooey.gmcp.old or {}
+			<script>gooey = gooey or {}
+gooey.gmcp = gooey.gmcp or {}
+gooey.gmcp.old = gooey.gmcp.old or {}
+gooey.serverSettings = gooey.serverSettings or {}
+
+function gooey.getServerSettings() -- function to pick up the server-side command separator, config pagelength, and curing settings
+  tempTrigger("You can set a separator to be able to send multiple commands to Achaea at once.", [[deleteLine()]], 1)
+  tempRegexTrigger("^Pagelength is the maximum number of lines that will be displayed to you at once.*", [[deleteLine()]], 1)
+  tempTrigger("Usage:", [[deleteLine()]], 1)
+  tempTrigger("   CONFIG PAGELENGTH &lt;# of lines&gt;", [[deleteLine()]], 1)
+  tempLineTrigger(1, 3, [[if isPrompt() then deleteLine() end]])
+  enableTrigger("getcuringinfo")
+  tempRegexTrigger("^Your current separator is: (.*)$", [[gooey.serverSettings.comsep = matches[2] ]])
+  tempRegexTrigger("^Your current pagelength: (.*)$", [[if gooey.serverSettings.pagelength and gooey.serverSettings.pagelength ~= matches[2] then gooey.serverSettings.oldpagelentgh = gooey.serverSettings.pagelength end gooey.serverSettings.pagelength = matches[2] ]])
+  tempTrigger("Usage:", [[deleteLine()]], 1)
+  tempTrigger("   CONFIG PAGELENGTH &lt;# of lines&gt;", [[deleteLine()]], 1)
+  tempLineTrigger(0, 3, [[if isPrompt() then deleteLine() end]])
+  
+  
+  send("config commandseparator", false)
+  send("config pagelength", false)
+  send("curing status", false) 
+end
+
+registerAnonymousEventHandler("sysLoadEvent", "gooey.getServerSettings")
+
+function gooey.fl(dooncefull)
+  if not gooey.serverSettings.siphealth or not gooey.serverSettings.sipmana then
+    gooey.getServerSettings()
+    gooey.echo("Whoops, gotta check your preferences first, standby...")
+    gooey.flwhat = dooncefull
+  end
+  if gooey.gmcp.hp and gooey.gmcp.hp &gt;= gooey.gmcp.maxhp and gooey.gmcp.mp and gooey.gmcp.mp &gt;= gooey.gmcp.maxmp then 
+    if dooncefull == "gooey.good to go" or not dooncefull then
+      if not gooey.flwhat then 
+        gooey.flwhat = "" 
+      end
+    else gooey.flwhat = dooncefull
+    end
+    gooey.echo("We're full stats, yay! Doing &lt;orange&gt;"..(gooey.flwhat == "" and "whatever we want now" or gooey.flwhat).."&lt;reset&gt;.")
+    expandAlias(gooey.flwhat)
+    gooey.flwhat = nil
+  else
+    gooey.flwhat = dooncefull
+    tempTimer(0, [[gooey.getfull()]])
+    gooey.echo("Getting full, hang on.")
+  end
+end
+
+registerAnonymousEventHandler("gooey.good to go", "gooey.fl")
+
+function gooey.getfull()
+  gooey.checkVitals = true
+  send("curing siphealth 99")
+  send("curing sipmana 99") 
+  gooey.goodtogo()
+end
+
+function gooey.goodtogo()
+  if gooey.checkVitals then
+  if gooey.gmcp.hp and gooey.gmcp.hp &gt;= gooey.gmcp.maxhp and gooey.gmcp.mp and gooey.gmcp.mp &gt;= gooey.gmcp.maxmp then
+    raiseEvent("gooey.good to go")
+    gooey.checkVitals = false
+    send("curing siphealth "..gooey.serverSettings.siphealth, false)
+    send("curing sipmana "..gooey.serverSettings.sipmana, false)
+    gooey.echo("I set the curing stats back to what they were before.")
+  end
+  end
+end
+
+registerAnonymousEventHandler("gmcp.Char.Vitals", "gooey.goodtogo")
+
+function gooey.gmcp.char()
 
   if gmcp.Char and gmcp.Char.Vitals then
     for k, v in pairs (gmcp.Char.Vitals) do
@@ -1781,8 +1877,7 @@ end
         gooey.gmcp[k] = tonumber(v)
       end
     end
-  end
-  
+  end 
   if gmcp.Char and gmcp.Char.Status then
     for k, v in pairs(gmcp.Char.Status) do
       if k == "name" then 
@@ -1792,12 +1887,23 @@ end
     end
   end
   
+end
+
+registerAnonymousEventHandler("gmcp.Char", "gooey.gmcp.char")
+
+
+function gooey.gmcp.room()
+  gooey.gmcp = gooey.gmcp or {}
+  gooey.gmcp.old = gooey.gmcp.old or {}
+  
   if gmcp.Room and gmcp.Room.Info then
     for k, v in pairs(gmcp.Room.Info) do
       if table.contains({"area", "name", "num"}, k) then
         if k == "name" then 
           k = "roomname"
-          gooey.gui.roomNameLabel:echo(gooey.gmcp.roomname, "ansiYellow", "c")
+          if gooey.gui then 
+            gooey.gui.roomNameLabel:echo(gooey.gmcp.roomname, "ansiYellow", "c") 
+          end
         end
         if gooey.gmcp[k] and gooey.gmcp[k] ~= v then
           gooey.gmcp.old[k] = gooey.gmcp[k]
@@ -1808,12 +1914,53 @@ end
   end
 end
 
-registerAnonymousEventHandler("gmcp.Char", "gooey.updateInfo")
-registerAnonymousEventHandler("gmcp.Room", "gooey.updateInfo")
+registerAnonymousEventHandler("gmcp.Room", "gooey.gmcp.room")
 
+function gooey.gmcp.itemsList()
+gooey.gmcp.denizens = gooey.gmcp.denizens or {}
+gooey.gmcp.items = gooey.gmcp.items or {}
 
-function gooey.updateRoom()
-  
+if gmcp and gmcp.Char and gmcp.Char.Items and gmcp.Char.Items.List then
+	if gmcp.Char.Items.List.location == "room" then
+		gooey.gmcp.items = {} 
+    gooey.gmcp.denizens = {}
+    for k, v in pairs(gmcp.Char.Items.List.items) do
+      if v.attrib =="m" then
+        gooey.gmcp.denizens[v.id] = v.name
+        if gooey.dendb then gooey.dendb.managedb(v.name) end
+      else
+        gooey.gmcp.items[v.id] = {v.name, v.attrib or ""}
+      end
+    end
+  end
+end
+end
+
+registerAnonymousEventHandler("gmcp.Char", "gooey.gmcp.itemsList")
+
+</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>gooey DenDB</name>
+			<packageName></packageName>
+			<script>gooey = gooey or {}
+gooey.gmcp = gooey.gmcp or {}
+gooey.dendb = gooey.dendb or {}
+gooey.dendb.db = gooey.dendb.db or {}
+
+function gooey.dendb.managedb(thing)
+  if gmcp and gmcp.Room and gmcp.Room.Info then
+  gooey.dendb.db[gmcp.Room.Info.area] = gooey.dendb.db[gmcp.Room.Info.area] or {}
+    if not string.find(thing, "homunculus") and 
+      thing ~= "an aklan servitor"
+    then
+      gooey.dendb.db[gmcp.Room.Info.area][thing] = gooey.dendb.db[gmcp.Room.Info.area][thing] or {}
+      if not table.contains(gooey.dendb.db[gmcp.Room.Info.area][thing], gmcp.Room.Info.num) then
+        table.insert(gooey.dendb.db[gmcp.Room.Info.area][thing], gmcp.Room.Info.num)
+      end
+    end
+  end
 end</script>
 			<eventHandlerList />
 		</Script>
