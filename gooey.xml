@@ -157,6 +157,441 @@ end</script>
 				<integer>7</integer>
 			</regexCodePropertyList>
 		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Touch starbrust</name>
+			<script>send("touch starburst", false)</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^As the starburst tattoo's shape is codified on the \w+ of yourself, the last of the ink leaves the air and you pause for a moment to admire your handiwork.$</string>
+				<string>^As the starburst tattoo's shape is codified on your \w+</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Wilderness Map</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList />
+			<regexCodePropertyList />
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>GMCP Map Catchers</name>
+				<script></script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>return gmcp.Room</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>4</integer>
+				</regexCodePropertyList>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>GMCP Rooms</name>
+					<script>if gooey.gui.map.current ~= "Mapper" then
+  gooey.gui.map[gooey.gui.map.current]:hide()
+end
+gooey.gui.map.current = "Mapper"
+gooey.gui.map["Mapper"]:show()</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>return gmcp.Room.Info.num &lt; 2121028</string>
+						<string>return gmcp.Room.Info.num &gt; 0</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>4</integer>
+						<integer>4</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>GMCP Wilderness</name>
+					<script>if gooey.gui.map.current ~= "Wilderness" then
+  gooey.gui.map[gooey.gui.map.current]:hide()
+end
+gooey.gui.map.current = "Wilderness"
+gooey.gui.map["Wilderness"]:show()
+
+
+--2044146
+--2024249
+--2106249
+--2023249</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>return gmcp.Room.Info.num &gt; 2121028</string>
+						<string>return gmcp.Room.Info.coords==""</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>4</integer>
+						<integer>4</integer>
+					</regexCodePropertyList>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Wilderness Catch All</name>
+						<script>for i=1, 50 do
+	selectString("\^", i) 
+	fg("black")
+	bg("black")
+	resetFormat()
+end
+
+for i=1, 50 do
+	selectString("\?", i) 
+	fg("red")
+	bg("black")
+	resetFormat()
+end
+
+
+selectCurrentLine()
+copy()
+appendBuffer("Wilderness")
+deleteLine()
+
+</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>#ff0000</mFgColor>
+						<mBgColor>#ffff00</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#000000</colorTriggerFgColor>
+						<colorTriggerBgColor>#000000</colorTriggerBgColor>
+						<regexCodeList>
+							<string>^[ wnmjSIMXWYx',;#=@~%!\.\^\|\*\?\+\(]+$</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+				</Trigger>
+				<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>GMCP Oceans</name>
+					<script>if gooey.gui.map.current ~= "Ocean" then
+  gooey.gui.map[gooey.gui.map.current]:hide()
+end
+gooey.gui.map.current = "Ocean"
+gooey.gui.map["Ocean"]:show() </script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>return gmcp.Room.Info.environment=='Vessel'</string>
+						<string>return gmcp.Room.Info.num==-2</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>4</integer>
+						<integer>4</integer>
+					</regexCodePropertyList>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Ocean Catch All</name>
+						<script>selectCurrentLine()
+
+for i=1, 50 do
+	 selectString("#", i) 
+	 fg("ansiCyan")
+	 bg("NavyBlue")
+	 resetFormat()
+  end
+
+for i=1, 50 do
+	selectString("\^", i) 
+	fg("black")
+	bg("black")
+	resetFormat()
+end
+
+for i=1, 50 do
+	selectString("\?", i) 
+	fg("red")
+	bg("black")
+	resetFormat()
+end
+
+for i=1, 50 do
+	selectString("S", i) 
+	fg("red")
+	bg("yellow")
+	resetFormat()
+end
+
+if maplen == 13 then
+  for i=1, 50 do
+	 selectString("w", i) 
+	 fg("ansiCyan")
+	 bg("NavyBlue")
+	 resetFormat()
+  end
+  for i=1, 50 do
+	 selectString("(", i) 
+	 fg("red")
+	 bg("gray")
+	 resetFormat()
+  end
+  for i=1, 50 do
+	 selectString("#", i) 
+	 fg("blue")
+	 bg("gray")
+	 resetFormat()
+  end
+end
+
+selectCurrentLine()
+copy()
+appendBuffer("Ocean")
+deleteLine()
+</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>#ff0000</mFgColor>
+						<mBgColor>#ffff00</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#000000</colorTriggerFgColor>
+						<colorTriggerBgColor>#000000</colorTriggerBgColor>
+						<regexCodeList>
+							<string>^[ wnmjSIMXWYx',;#=@~%!\.\^\|\*\?\+\(]+$</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+				</Trigger>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Ship Room Detected</name>
+				<script>clearWindow("Wilderness") </script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>Quarterdeck</string>
+					<string>Main deck</string>
+					<string>Side deck</string>
+					<string>Stern</string>
+					<string>Ship bow</string>
+					<string>The ship moves</string>
+					<string>The ship drifts</string>
+					<string>Crow's nest.</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>2</integer>
+					<integer>2</integer>
+					<integer>2</integer>
+					<integer>2</integer>
+					<integer>2</integer>
+					<integer>2</integer>
+					<integer>2</integer>
+					<integer>2</integer>
+				</regexCodePropertyList>
+			</Trigger>
+		</TriggerGroup>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>We're blind, fo'</name>
+			<script>send("touch mindseye")</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^You\? As blind as a bat. Doing what\?$</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Sea</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList />
+			<regexCodePropertyList />
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Battle Prompt</name>
+				<script>--selectCurrentLine()
+--copy()
+--appendBuffer("myPrompt")
+--fg("a_onelevel")
+--cinsertText("                             ")
+--deleteLine()
+gooey.vars = gooey.vars or {}
+gooey.vars.seaStats = gooey.vars.seaStats or {}
+gs = gooey.vars.seaStats
+gs.shipSails = matches[2]
+gs.windSpeed = matches[6]
+gs.windDir = matches[5]
+gs.shipSpeed = matches[8]
+gs.shipCourse = matches[7]
+gs.seasTranl = matches[9]
+gs.shipState = matches[10]
+gs.shipAction = matches[11]
+gs.seas = nil
+gs.myhullis = gs.myhullis or 0
+gs.oldhull = gs.oldhull or gs.hull
+
+if string.find(gs.shipState, "Row") then rowing = true
+else rowing = false
+end
+
+if matches[2] == "Full" then gs.shipSails = "Full"
+  elseif matches[2] == "Furl" then gs.shipSails = "Furled"
+  else gs.shipSails = tonumber(matches[3])
+end
+
+if matches[3] == "full" then gs.sails = 100
+elseif matches[3] == "gone" then gs.sails = 0
+else gs.sails = tonumber(matches[3])
+  if gs.gottaclearrigs and gs.sails &gt; 30 then
+    expandAlias("clr")
+    gs.gottaclearrigs = false
+  end
+end
+
+if gs.hull then gs.oldhull = gs.hull end
+
+if matches[4] == "full" then gs.hull = 100
+else gs.hull = tonumber(matches[4])
+end
+
+
+if gs.hull &lt; 98 then 
+  if  not (gs.repairingHull or gs.startedShooting or gs.clearingSomething) then
+    send("ship repair all",true)
+    cecho("\n&lt;DarkSlateGray&gt;Crew: &lt;ansiYellow&gt;Starting repairs, captain!")
+    gs.repairingHull = true
+  end
+elseif gs.hull == 100 then
+  gs.repairingHull = false
+end
+
+if gs.oldhull and gs.hull - gs.oldhull ~= 0 then cecho("\n&lt;DimGrey&gt;Hull: "..(gs.hull - gs.oldhull &gt; 0 and ("&lt;cyan&gt;+"..gs.hull - gs.oldhull) or ("&lt;yellow&gt;"..gs.hull - gs.oldhull))) end
+
+gooey.funcs.showActivity()
+
+if gs.hull &gt; 55 then
+alerted50 = false
+alerted40 = false
+alerted30 = false
+alerted20 = false
+alerted10 = false
+end
+
+
+if not alerted50 and gs.hull &lt; 50 then 
+  playsound("Low hull.wav")
+  alerted50 = true
+end
+if not alerted40 and gs.hull &lt; 40 then 
+  playsound("Low hull.wav")
+  alerted40 = true
+end
+if not alerted30 and gs.hull &lt; 30 then 
+  playsound("Low hull.wav")
+  alerted30 = true
+end
+if not alerted20 and gs.hull &lt; 20 then 
+  playsound("Low hull.wav")
+  alerted20 = true
+end
+if gs.hull &lt; 10 then 
+  playsound("Low hull.wav")
+  alerted10 = true
+end</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^= Sl (\d+|\w+)%? - hp +(\d+|\w+)%?,Hl: +(\d+|\w+)%?,Wd (\w+)@(\d+\w+),Cr\/Sp (\w+)@(\d+),Sea (\w+),?(.*),?(.*)$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+		</TriggerGroup>
 	</TriggerPackage>
 	<TimerPackage>
 		<TimerGroup isActive="yes" isFolder="yes" isTempTimer="no" isOffsetTimer="no">
@@ -168,20 +603,62 @@ end</script>
 		</TimerGroup>
 	</TimerPackage>
 	<AliasPackage>
-		<AliasGroup isActive="yes" isFolder="yes">
-			<name>gooey</name>
-			<script></script>
+		<Alias isActive="yes" isFolder="no">
+			<name>Toggle pause curing</name>
+			<script>
+if matches[2] then 
+  pp = (true and matches[2] == "on") or false
+else 
+  pp = not pp
+end
+
+local answer = (pp == true and "on") or "off"
+gooey.pp(answer) </script>
 			<command></command>
 			<packageName></packageName>
-			<regex></regex>
-		</AliasGroup>
+			<regex>^pp ?(o(n|ff))?</regex>
+		</Alias>
+		<Alias isActive="yes" isFolder="no">
+			<name>firework</name>
+			<script>-- Function to print a colored string
+function printColored(text, color)
+    cecho("&lt;" .. color .. "&gt;" .. text .. "&lt;reset&gt;")
+end
+
+-- Function to create a better approximation of a round burst of color for a firework
+function drawRoundFirework()
+    local colors = {"red", "green", "yellow", "blue", "magenta", "cyan", "white"}
+    
+    local explosion = "*"
+    local radius = 10
+    
+    for i = -radius, radius do
+        local spaces = math.ceil(math.sqrt(radius^2 - i^2))
+        local fireworksLine = string.rep(" ", spaces) .. explosion
+        printColored(fireworksLine, colors[math.random(#colors)])
+        os.execute("sleep 0.1")  -- Adjust the sleep duration if needed
+        cecho("\n")
+    end
+end
+
+-- Call the function to draw the improved round firework burst
+drawRoundFirework()
+</script>
+			<command></command>
+			<packageName></packageName>
+			<regex>^firework</regex>
+		</Alias>
 	</AliasPackage>
 	<ActionPackage />
 	<ScriptPackage>
 		<ScriptGroup isActive="yes" isFolder="yes">
 			<name>Main gooey</name>
 			<packageName></packageName>
-			<script></script>
+			<script>----------------------------------
+--  Heavily inspired by Zulah   --
+--  ...and all the people       --
+--    cause I can't code.       --
+----------------------------------</script>
 			<eventHandlerList />
 			<Script isActive="yes" isFolder="no">
 				<name>AdjustableTabWindow</name>
@@ -1592,49 +2069,105 @@ end</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
-				<name>Build Main</name>
+				<name>Gooey Variables</name>
 				<packageName></packageName>
 				<script>gooey = gooey or {}
-gooey.gui = gooey.gui or {}
 
+gooey.gui = gooey.gui or {} --gui elements, containers and crap
+gooey.vars = gooey.vars or {} --variables
+gooey.funcs = gooey.funcs or {} --functions
+gooey.gmcp = gooey.gmcp or {} --info from GMCP
+gooey.serverSettings = gooey.serverSettings or {} --stores personal server-side settings, command separator, pagelength, curing
+gooey.data = gooey.data or {} --tables
+
+-- Built-in modules:
+---seaStats
+---hunt
+---combat
+
+gooey.gui.styles = gooey.gui.styles or {}
+gooey.gui.fontSize = gooey.gui.fontSize or {}
+gooey.vars.seaStats = gooey.vars.seaStats or {}
+gooey.vars.hunt = gooey.vars.hunt or {}
+gooey.funcs.seaStats = gooey.funcs.seaStats or {}
+gooey.funcs.hunt = gooey.funcs.hunt or {}
+gooey.gmcp.old = gooey.gmcp.old or {}
+gooey.data.hunt = gooey.data.hunt or {}
+
+
+--adjust fonts here
+gooey.gui.fontSize.peopleConsole = 9
+gooey.gui.fontSize.topright = 9
+gooey.gui.fontSize.bottomleft = 9
+gooey.gui.fontSize.people = 9
+gooey.gui.fontSize.midleft = 9
+gooey.gui.fontSize.topleft = 9
+gooey.gui.fontSize.bottom = 9
+gooey.gui.fontSize.top = 9
+gooey.gui.fontSize.bottomright = 9
+gooey.gui.fontSize.denizens = 9
+gooey.gui.fontSize.denizensConsole = 9
+
+--determines if the players and the items consoles are one next to the other or one above the other. Options are "vertical" or "horizontal"
+gooey.gui.preferedRoomLayout = "horizontal" 
+
+
+--define some styles 
+gooey.gui.styles = {
+basic = { adjLabel = "background-color:rgba(20,20,20,100%); border: 2px inset dimgray; border-color: rgba(128, 128, 128, 100%);", 
+          buttonstyle = [[QLabel{ background-color: rgba(20,20,20,100%);}
+                        QLabel::hover{ background-color: rgba(160,160,160,50%); border-color: rgba(102, 102, 102, 1);} ]],
+        },
+basic2 = { adjLabel = "background-color:rgba(51, 51, 51, 1); border: 2px inset dimgray; border-color: rgba(85, 85, 85, 1); color: rgba(204, 204, 204, 1);",
+          buttonstyle = [[QLabel{ background-color: rgba(51, 51, 51, 1);border-color: rgba(85, 85, 85, 1); color:rgba(204, 204, 204, 1) }
+                        QLabel::hover{background-color: rgba(68, 68, 68, 1); border-color: rgba(102, 102, 102, 1);} ]]
+        }
+}
+
+--change this to your prefered style
+gooey.gui.myStyle = "basic"
+
+</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Build Main</name>
+				<packageName></packageName>
+				<script>local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
+local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
+
+gooey.moduleHome = string.split(getModulePath("gooey"), "gooey.*%.xml")[1]
 
 --main skeleton
-gooey.gui.top = gooey.gui.top or Adjustable.Container:new({name = "top", y="0%", height = "15%", buttonFontSize = 7, buttonsize = 10, })
-gooey.gui.bottom = gooey.gui.bottom or Adjustable.Container:new({name = "bottom", height = "15%", y = "-10%", buttonFontSize = 7, buttonsize = 10, })
+gooey.gui.top = gooey.gui.top or Adjustable.Container:new({
+  name = "top", y="0%", height = "15%", 
+  buttonFontSize = 7, buttonsize = 10, padding = 6, 
+  adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, })
+gooey.gui.bottom = gooey.gui.bottom or Adjustable.Container:new({
+  name = "bottom", height = "15%", y = "-10%", 
+  buttonFontSize = 7, buttonsize = 10, padding = 6, 
+  adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,})
 
-gooey.gui.topright = gooey.gui.topright or Adjustable.Container:new({name = "topright", y = "0%", height = "50%", x = "-30%", width = "30%", buttonFontSize = 7, buttonsize = 10, })
-gooey.gui.bottomright = gooey.gui.bottomright or Adjustable.Container:new({name = "bottomright", y = "50%", height = "50%", x = "-30%", width = "30%", buttonFontSize = 7, buttonsize = 10, })
-gooey.gui.topleft = gooey.gui.topleft or Adjustable.Container:new({name = "topleft", x = "0%", y = "0%", height = "33%", width = "20%", buttonFontSize = 7, buttonsize = 10, padding = 6})
-gooey.gui.midleft = gooey.gui.midleft or Adjustable.Container:new({name = "midleft", x = "0%", y = "33%", height = "33%", width = "20%", buttonFontSize = 7, buttonsize = 10, })
-gooey.gui.bottomleft = gooey.gui.bottomleft or Adjustable.Container:new({name = "bottomleft", x = "0%", y = "66%", height = "34%", width = "20%", buttonFontSize = 7, buttonsize = 10, })
-
---room info - VBox to separate the horizontal room name console from the vertical denizens and people consoles
-gooey.gui.roomVBox = gooey.gui.roomVBox or Geyser.VBox:new({
-  name="roomVBox", x = 0, y = 0, width = "100%", height = "100%"}, gooey.gui.topleft)
-
---room info - 
---gooey.gui.roomNameContainer = gooey.gui.roomNameContainer or 
---    Adjustable.Container:new({name = "roomNameContainer", y = "0%", x = "0%", height = "10%", width = "100%", v_policy=Geyser.Fixed, buttonFontSize = 7, buttonsize = 10, }, gooey.gui.roomVBox)
-    
-gooey.gui.roomNameLabel = gooey.gui.roomNameLabel or 
-    Geyser.Label:new({name = "roomNameLabel", x = "0%", y="0%", height = "12%", width = "100%", color = "black", v_policy=Geyser.Fixed }, gooey.gui.roomVBox )
-    if gooey.gmcp and gooey.gmcp.roomname then gooey.gui.roomNameLabel:echo(gooey.gmcp.roomname, "ansiYellow", "c") end
-    
-gooey.gui.roomNameLabel: setStyleSheet( [[background-color:rgba(20,20,20,100%); border: 2px inset; border-color:rgba(128, 128, 128, 100%);]])
-
-gooey.gui.roomHBox = gooey.gui.roomHBox or Geyser.HBox:new({
-  name="roomHBox", x = 0, y = 0, width = "100%", height = "90%"}, gooey.gui.roomVBox)
-
-gooey.gui.denizens = gooey.gui.denizens or 
-    Adjustable.Container:new({name = "denizens", y = "10%", x = "0%", height = "105%", width = "80%", buttonFontSize = 7, buttonsize = 10, }, gooey.gui.roomHBox)
-gooey.gui.people = gooey.gui.people or 
-    Adjustable.Container:new({name = "people", y = "10%", x = "-20%", height = "105%", width = "20%", buttonFontSize = 7, buttonsize = 10, }, gooey.gui.roomHBox)
-
-gooey.gui.denizensConsole = gooey.gui.denizensConsole or 
-    Geyser.MiniConsole:new({name = "denizensConsole", x = "0%", y="0%", height = "100%", width = "100%", color = "black", autoWrap = true, padding = 3},gooey.gui.denizens )
-gooey.gui.peopleConsole = gooey.gui.peopleConsole or 
-    Geyser.MiniConsole:new({name = "peopleConsole", x = "0%", y="0%", height = "100%", width = "100%", color = "black", autoWrap = true, padding = 3},gooey.gui.people )
-    
+gooey.gui.topright = gooey.gui.topright or Adjustable.Container:new({
+  name = "topright", y = "0%", height = "50%", x = "-30%", width = "30%", 
+  buttonFontSize = 7, buttonsize = 10, padding = 6, 
+  adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, })
+gooey.gui.bottomright = gooey.gui.bottomright or Adjustable.Container:new({
+  name = "bottomright", y = "50%", height = "50%", x = "-30%", width = "30%", 
+  buttonFontSize = 7, buttonsize = 10, padding = 6, 
+  adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,})
+gooey.gui.topleft = gooey.gui.topleft or Adjustable.Container:new({
+  name = "topleft", x = "0%", y = "0%", height = "33%", width = "20%", 
+  buttonFontSize = 7, buttonsize = 10, padding = 6, 
+  adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,})
+gooey.gui.midleft = gooey.gui.midleft or Adjustable.Container:new({
+  name = "midleft", x = "0%", y = "33%", eight = "33%", width = "20%", 
+  buttonFontSize = 7, buttonsize = 10, padding = 6,
+  adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, })
+gooey.gui.bottomleft = gooey.gui.bottomleft or Adjustable.Container:new({
+  name = "bottomleft", x = "0%", y = "66%", height = "34%", width = "20%", 
+  buttonFontSize = 7, buttonsize = 10, padding = 6, 
+  adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, })
 
 
 gooey.gui.top:attachToBorder("top")
@@ -1657,33 +2190,490 @@ gooey.gui.midleft:connectToBorder("left")
 gooey.gui.bottomleft:connectToBorder("left")
 gooey.gui.topright:connectToBorder("right")
 gooey.gui.bottomright:connectToBorder("right")
+</script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>Room Build</name>
+					<packageName></packageName>
+					<script>local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
+local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
 
 
-gooey.gui.mapper = gooey.gui.mapper or 
-  Geyser.Mapper:new({x = 0, y = 0, width = "100%", height = "100%", name="mapper"}, gooey.gui.bottomleft)
+--room info - VBox to separate the room name console from the denizens and people consoles
+gooey.gui.roomVBox = gooey.gui.roomVBox or Geyser.VBox:new({
+  name="roomVBox", x = 0, y = 0, width = "100%", height = "100%"}, gooey.gui.topleft)
+
+gooey.gui.roomNameLabel = gooey.gui.roomNameLabel or 
+    Geyser.Label:new({name = "roomNameLabel", x = "0%", y="0%", height = "12%", width = "100%", 
+    color = "black", v_policy=Geyser.Fixed }, 
+      gooey.gui.roomVBox )
+
+gooey.gui.roomNameLabel: setStyleSheet( [[background-color:rgba(20,20,20,100%); border: 2px inset; border-color:rgba(128, 128, 128, 100%);]])
+
+if gooey.gmcp and gooey.gmcp.roomname then gooey.gui.roomNameLabel:echo(gooey.gmcp.roomname, "ansiYellow", "c13") end
+    
+
+if gooey.gui.preferedRoomLayout == "horizontal" then
+  gooey.gui.roomRoomBox = gooey.gui.roomRoomBox or Geyser.HBox:new({
+  name="roomRoomBox", x = 0, y = 0, width = "100%", height = "90%"}, 
+   gooey.gui.roomVBox)
+  
+  gooey.gui.denizens = gooey.gui.denizens or 
+    Adjustable.Container:new({
+      name = "denizens", y = 0, x = "0%", width = "75%", height = "100%",
+      buttonFontSize = 7, buttonsize = 10, h_policy = Geyser.Fixed, 
+      adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
+        gooey.gui.roomRoomBox)
+  gooey.gui.people = gooey.gui.people or 
+    Adjustable.Container:new({
+      name = "people", y = 0, x = "0%", width = "25%", height = "100%",
+      buttonFontSize = 7, buttonsize = 10, h_policy = Geyser.Fixed, 
+      adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
+        gooey.gui.roomRoomBox)
+
+elseif gooey.gui.preferedRoomLayout == "vertical" then
+  gooey.gui.roomRoomBox = gooey.gui.roomRoomBox or Geyser.VBox:new({
+    name="roomRoomBox", x = 0, y = 0, width = "100%", height = "90%"}, 
+      gooey.gui.roomVBox)
+  
+  gooey.gui.denizens = gooey.gui.denizens or 
+    Adjustable.Container:new({name = "denizens", y = "0%", x = 0, height = "65%", width = "100%", 
+    buttonFontSize = 7, buttonsize = 10, v_policy=Geyser.Fixed, 
+    adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
+      gooey.gui.roomRoomBox)
+      
+  gooey.gui.people = gooey.gui.people or 
+    Adjustable.Container:new({name = "people", y = "35%" , x = 0, height = "35%", width = "100%", 
+    buttonFontSize = 7, buttonsize = 10, v_policy=Geyser.Fixed, 
+    adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
+      gooey.gui.roomRoomBox)
+
+
+end
+
+gooey.gui.denizensConsole = gooey.gui.denizensConsole or 
+    Geyser.MiniConsole:new({name = "denizensConsole", x = "0%", y="0%", height = "100%", width = "100%", 
+    color = "black", autoWrap = true, padding = 3}, 
+      gooey.gui.denizens )
+gooey.gui.peopleConsole = gooey.gui.peopleConsole or 
+    Geyser.MiniConsole:new({name = "peopleConsole", x = "0%", y="0%", height = "100%", width = "100%", 
+    color = "black", autoWrap = true, padding = 3}, 
+      gooey.gui.people )
+    </script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>Mid Left Build</name>
+					<packageName></packageName>
+					<script>local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
+local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
+
+
+gooey.gui.activityStatusContainer = gooey.gui.activityStatusContainer or 
+  Adjustable.Container:new({
+    name = "gooey.gui.activityStatusContainer", y = 0, x = "0%", height = "100%", width = "100%", 
+    buttonFontSize = 7, buttonsize = 10, padding = 6, 
+    adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
+      gooey.gui.midleft)
+      
+gooey.gui.activityStatusConsole = gooey.gui.activityStatusConsole or 
+    Geyser.MiniConsole:new({name = "gooey.gui.activityStatusConsole", x = "0%", y="0%", height = "100%", width = "100%", 
+    color = "black", autoWrap = true, padding = 3}, 
+      gooey.gui.activityStatusContainer ) 
+      
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>Map build</name>
+					<packageName></packageName>
+					<script>local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
+local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
+
+gooey.gui.map = gooey.gui.map or {}
+gooey.gui.map.current = "Mapper"
+
+
+gooey.gui.map.container = gooey.gui.map.container or 
+  Adjustable.Container:new({
+    name = "gooey.gui.map.container", y = 0, x = "0%", height = "100%", width = "100%", 
+    buttonFontSize = 7, buttonsize = 10, 
+    adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
+      gooey.gui.bottomleft)
+      
+gooey.gui.map.Mapper = gooey.gui.map.Mapper or 
+  Geyser.Mapper:new({x = 0, y = 0, width = "100%", height = "100%", name="Mapper"}, gooey.gui.map.container)
+showWindow("Mapper")
+
+gooey.gui.map.Ocean = Geyser.MiniConsole:new({
+    name = "Ocean",
+    x = 0, y = 0,
+    width = "100%",
+    height = "100%",
+  },gooey.gui.map.container)  
+setBackgroundColor("Ocean", 0,0,0,255)
+hideWindow("Ocean")
+setConsoleBufferSize("Ocean", 100, 1000) 
+  
+gooey.gui.map.Wilderness = Geyser.MiniConsole:new({
+    name = "Wilderness",
+    x = 0, y = 0,
+    width = "100%",
+    height = "100%",
+  },gooey.gui.map.container)  
+setBackgroundColor("Wilderness", 0,0,0,255)  
+hideWindow("Wilderness")
+  
+</script>
+					<eventHandlerList />
+				</Script>
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Track gmcp stuff core</name>
+				<packageName></packageName>
+				<script>
+
+--Function to pick up the server-side command separator, config pagelength, and curing settings
+function gooey.getServerSettings() 
+
+  if not gooey.serverSettings.comsep then
+    tempTrigger("You can set a separator to be able to send multiple commands to Achaea at once.", [[deleteLine()]], 1)
+    tempRegexTrigger("^Your current separator is: (.*)$", [[gooey.serverSettings.comsep = matches[2] ]])
+  end
+    
+  local ss2 = tempRegexTrigger("^Pagelength is the maximum number of lines that will be displayed to you at once.*", [[deleteLine()]], 1)
+  local ss3 = tempTrigger("Usage:", [[deleteLine()]], 1)
+  local ss4 = tempTrigger("   CONFIG PAGELENGTH &lt;# of lines&gt;", [[deleteLine()]], 1)
+  local ss5 = tempLineTrigger(1, 3, [[if isPrompt() then deleteLine() end]])
+  local ss6 = enableTrigger("getcuringinfo")
+
+  local ss8 = tempRegexTrigger("^Your current pagelength: (.*)$", [[if gooey.serverSettings.pagelength and gooey.serverSettings.pagelength ~= matches[2] then gooey.serverSettings.oldpagelentgh = gooey.serverSettings.pagelength end gooey.serverSettings.pagelength = matches[2] ]])
+  local ss9 = tempTrigger("Usage:", [[deleteLine()]], 1)
+  local ss10 = tempLineTrigger(0, 3, [[if isPrompt() then deleteLine() end]])
+  
+  
+  send("config commandseparator", false)
+  send("config pagelength", false)
+  send("curing status", false) 
+end
+
+registerAnonymousEventHandler("sysLoadEvent", "gooey.getServerSettings")
+
+--Function that gets info about the player from gmcp
+function gooey.gmcp.char()
+  if gmcp.Char and gmcp.Char.Vitals then
+    for k, v in pairs (gmcp.Char.Vitals) do
+      if k == "charstats" then
+        gooey.gmcp.bleed = tonumber(string.split(v[1], ":")[2])
+        gooey.gmcp.rage = tonumber(string.split(v[2], ":")[2])
+      elseif k ~= "string" then
+        if gooey.gmcp[k] and gooey.gmcp[k] ~= tonumber(v) then
+          gooey.gmcp.old[k] = gooey.gmcp[k]
+        end
+        gooey.gmcp[k] = tonumber(v)
+      end
+    end
+  end 
+  if gmcp.Char and gmcp.Char.Status then
+    for k, v in pairs(gmcp.Char.Status) do
+      if k == "name" then 
+        k = "charname"
+      end
+      if gooey.gmcp[k] and gooey.gmcp[k] ~= v then
+        gooey.gmcp.old[k] = gooey.gmcp[k]
+      end
+      gooey.gmcp[k] = v
+    end
+  end 
+end
+
+registerAnonymousEventHandler("gmcp.Char", "gooey.gmcp.char")
+
+--Function that tracks information about the room
+function gooey.gmcp.room()
+  gooey.gmcp = gooey.gmcp or {}
+  gooey.gmcp.old = gooey.gmcp.old or {}
+  
+  if gmcp.Room and gmcp.Room.Info then
+    for k, v in pairs(gmcp.Room.Info) do
+      if table.contains({"area", "name", "num"}, k) then
+        if k == "name" then 
+          k = "roomname"
+          if gooey.gui then 
+            gooey.gui.roomNameLabel:echo(gooey.gmcp.roomname, "ansiYellow", "c13") 
+          end
+        end
+        if gooey.gmcp[k] and gooey.gmcp[k] ~= v then
+          gooey.gmcp.old[k] = gooey.gmcp[k]
+        end
+        gooey.gmcp[k] = v
+      end
+    end
+  end
+end
+
+registerAnonymousEventHandler("gmcp.Room", "gooey.gmcp.room")
+
+--Function to get the suff in the room
+function gooey.gmcp.itemsList()
+  gooey.gmcp.denizens = gooey.gmcp.denizens or {}
+  gooey.gmcp.items = gooey.gmcp.items or {}
+  
+  if gmcp and gmcp.Char and gmcp.Char.Items then
+  	if gmcp.Char.Items.List.location == "room" then
+  		gooey.gmcp.items = {} 
+      gooey.gmcp.denizens = {}
+      for k, v in pairs(gmcp.Char.Items.List.items) do
+        if v.attrib =="m" then
+          gooey.gmcp.denizens[v.id] = v.name
+          if gooey.dendb then gooey.dendb.managedb(v.name) end
+        else
+          gooey.gmcp.items[v.id] = {v.name, v.attrib or ""}
+        end
+      end
+    gooey.gmcp.displayItems()
+    end
+  end
+end
+
+--Funtion to handle item addition
+function gooey.gmcp.addItems()
+  if gmcp.Char.Items.Add.location == "room" then
+		local value = gmcp.Char.Items.Add.item
+	  if value.attrib == "m" then
+	    gooey.gmcp.denizens[gmcp.Char.Items.Add.item.id] = gmcp.Char.Items.Add.item.name
+      if gooey.dendb then 
+        gooey.dendb.managedb(gmcp.Char.Items.Add.item.name) 
+      end
+    else
+      gooey.gmcp.items[gmcp.Char.Items.Add.item.id] = {gmcp.Char.Items.Add.item.name, gmcp.Char.Items.Add.item.attrib or ""}
+    end
+    gooey.gmcp.displayItems()
+	end
+end
+
+--Function to handle item removal
+function gooey.gmcp.removeItems()
+	if gmcp.Char.Items.Remove.location == "room" then
+    if gmcp.Char.Items.Remove.item.attrib and gmcp.Char.Items.Remove.item.attrib == "m" then
+      gooey.gmcp.denizens[gmcp.Char.Items.Remove.item.id] = nil
+      if gooey.dendb then 
+        gooey.dendb.managedb(gmcp.Char.Items.Remove.item.name) 
+      end
+    else
+      gooey.gmcp.items[gmcp.Char.Items.Remove.item.id] = nil
+  	end
+  gooey.gmcp.displayItems()
+  end
+end
+
+--Function to display items in the room 
+function gooey.gmcp.displayItems()
+  local console = "denizensConsole"
+  local sigils = {}
+  --window, text, command, hint, true
+  
+  clearWindow(console)
+  
+  --deal with denizens first
+  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((expandDen and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(gooey.gmcp.denizens).."&lt;DarkSlateGray&gt; denizens\n", [[expandDen = not expandDen gooey.gmcp.displayItems()]], "Expand or collapse this category", true)
+  if expandDen then
+    for id, value in pairs(gooey.gmcp.denizens) do
+      cechoPopup(console, " "..(gooey.getMobHighlight(id) or "").. value .. "\n", {[[gooey.setTarget("]] .. id .. [[") if keneanung then keneanung.bashing.addPossibleTarget("]]..value..[[") end ]], [[send("p ]] .. id .. [[")]], [[send("greet ]] .. id .. [[")]]}, {"Target", "Probe", "Greet"}, true)
+    end
+  end
+  
+  --deal with items - sigils
+  local function getSigils(key, value)
+    if string.find(value[1], "sigil") then
+    return true
+    end
+  end
+  
+  sigils = table.collect(gooey.gmcp.items, getSigils) 
+  
+  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((expandSigils and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(sigils).."&lt;DarkSlateGray&gt; sigils\n", [[expandSigils = not expandSigils gooey.gmcp.displayItems()]], "Expand or collapse this category", true)
+  if expandSigils then
+    for id, value in pairs(sigils) do
+      cechoPopup(console, " "..(gooey.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+    end
+  end
+  
+  --deal with misc items (not sigils or gold or corpses)
+  local function getMiscItems(key, value)
+    if not string.find(value[1], "sigil") and 
+      not string.find(value[1], "sovereign") and
+      not string.starts(value[1], "the corpse of") 
+    then return true
+    end
+  end
+  
+  miscItems = table.collect(gooey.gmcp.items, getMiscItems) 
+  
+  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((expandMiscItems and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(miscItems).."&lt;DarkSlateGray&gt; misc items\n", [[expandMiscItems = not expandMiscItems gooey.gmcp.displayItems()]], "Expand or collapse this category", true)
+  if expandMiscItems then
+    for id, value in pairs(miscItems) do
+      cechoPopup(console, " "..(gooey.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+    end
+  end
+  
+  --deal with corpses
+  local function getCorpses(key, value)
+    if string.starts(value[1], "the corpse of") and 
+    value[2] ~= "t"
+    then return true
+    end
+  end
+  
+  corpses = table.collect(gooey.gmcp.items, getCorpses) 
+    
+  local function getBodies(key, value)
+    if string.starts(value[1], "the corpse of") and 
+    value[2] == "t"
+    then return true
+    end
+  end
+  
+
+  bodies = table.collect(gooey.gmcp.items, getBodies) 
+  
+  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((expandCorpses and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(corpses).."&lt;DarkSlateGray&gt; corpses"..(#bodies ~=0 and (" "..table.size(bodies).." bodies\n") or "\n"), [[expandCorpses = not expandCorpses gooey.gmcp.displayItems()]], "Expand or collapse this category", true)
+  if expandCorpses then
+    for id, value in pairs(bodies) do
+      cechoPopup(console, " "..(gooey.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+    end
+    for id, value in pairs(corpses) do
+      cechoPopup(console, " "..(gooey.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+    end
+  end
+  
+  --deal with golds
+    for id, value in pairs(gooey.gmcp.items) do
+      if value[2]:find("sovereigns") then
+      cechoPopup(console, " "..(gooey.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+      end
+    end
+end
+
+-- Function to display the list of people in the room
+function gooey.gmcp.displayRoomPlayers()
+  clearUserWindow("peopleConsole")
+  for key, value in pairs(gooey.gmcp.people) do
+    cechoPopup("peopleConsole", value.."\n", {[[gooey.setTarget("]]..value..[[")]], [[send("greet ]]..value..[[")]]}, {"Target", "Greet"}, true)
+  end
+end
+
+-- Function to update the players list
+function gooey.gmcp.updatePlayersList()
+	gooey.gmcp.people = {}
+  for k, v in pairs(gmcp.Room.Players) do
+		if gmcp.Room.Players[k].name ~= gmcp.Char.Status.name then
+ 				table.insert(gooey.gmcp.people, gmcp.Room.Players[k].name)
+		end 
+	end 
+end
+
+-- Function to handle player addition
+function gooey.gmcp.handlePlayerAddition()
+  table.insert(gooey.gmcp.people, gmcp.Room.AddPlayer.name)
+  gooey.gmcp.displayRoomPlayers()
+end
+
+-- Function to handle player removal
+function gooey.gmcp.handlePlayerRemoval()
+  for i, playerName in pairs(gooey.gmcp.people) do
+    if playerName == gmcp.Room.RemovePlayer then
+      table.remove(gooey.gmcp.people, i)
+    break
+    end
+  end
+  gooey.gmcp.displayRoomPlayers()
+end
+
+-- Function to manage the event handlers for items and people in the room
+function gooey.gmcp.inventoryeventmanager(event)
+
+  if event == "gmcp.Char.Items.List" and gmcp.Char.Items.List.location == "room" then 
+    gooey.gmcp.itemsList()
+  elseif event == "gmcp.Char.Items.Add" and gmcp.Char.Items.Add.location == "room" then 
+    gooey.gmcp.addItems()
+  elseif event == "gmcp.Char.Items.Remove" and gmcp.Char.Items.Remove.location == "room" then 
+    gooey.gmcp.removeItems()
+  elseif event == "gmcp.Room.Players" then
+    gooey.gmcp.updatePlayersList()
+    gooey.gmcp.displayRoomPlayers()
+  elseif event == "gmcp.Room.AddPlayer" then 
+    gooey.gmcp.handlePlayerAddition()
+  elseif event == "gmcp.Room.RemovePlayer" then 
+    gooey.gmcp.handlePlayerRemoval()
+  end
+
+end
+
+registerAnonymousEventHandler("gmcp.Char.Items.List","gooey.gmcp.inventoryeventmanager")
+registerAnonymousEventHandler("gmcp.Char.Items.Add","gooey.gmcp.inventoryeventmanager")
+registerAnonymousEventHandler("gmcp.Char.Items.Remove","gooey.gmcp.inventoryeventmanager")
+registerAnonymousEventHandler("gmcp.Room.Players", "gooey.gmcp.inventoryeventmanager")
+registerAnonymousEventHandler("gmcp.Room.AddPlayer", "gooey.gmcp.inventoryeventmanager")
+registerAnonymousEventHandler("gmcp.Room.RemovePlayer", "gooey.gmcp.inventoryeventmanager")</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Sea funcs</name>
+				<packageName></packageName>
+				<script>gooey.funcs = gooey.funcs or {}
+
+function gooey.funcs.showSeaInfo()
+
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Activity funcs (mid left)</name>
+				<packageName></packageName>
+				<script>
+function gooey.funcs.showActivity()
+  local console = "gooey.gui.activityStatusConsole"
+  clearUserWindow("console")
+  
+  if gooey.vars.shipon then
+  
+  
+  
+  
+  elseif gooey.vars.hunting then
+  
+  
+  
+  elseif gooey.vars.combat then
+  
+  
+  end
+end
 
 </script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
-				<name>gooey startup</name>
+				<name>Gooey Startup</name>
 				<packageName></packageName>
-				<script>function gooey.formatAllContainers()
+				<script>
+function gooey.formatAllContainers()
+myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
+mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
 
   Adjustable.Container:doAll(function(s) 
     s:lockContainer("border")
-    s.adjLabel:setStyleSheet( [[background-color:rgba(20,20,20,100%); border: 2px inset; border-color: rgba(128, 128, 128, 100%)]]) 
+    s.adjLabel:setStyleSheet(myadjlabel) 
+    s.buttonstyle = mybuttonstyle
     s:setTitle("", "gray") 
-    
     s:changeMenuStyle("dark")
     end)
-  --s.adjLabel:setStyleSheet( [[background-color:rgba(20,20,20,100%); border: 2px inset; border-color: rgba(128, 128, 128, 100%);]]) 
-    gooey.gui.roomNameLabel: setStyleSheet( [[background-color:rgba(20,20,20,100%); border: 2px inset; border-color:rgba(128, 128, 128, 100%);]])
+    gooey.gui.roomNameLabel: setStyleSheet(myadjlabel)
     gooey.gui.roomNameLabel: setFormat("c13")
 end
 
 registerAnonymousEventHandler("sysLoadEvent", "gooey.formatAllContainers")
-registerAnonymousEventHandler("sysWindowResizeEvent", "gooey.formatAllContainers")
 
 
 function gooey.startup()
@@ -1697,10 +2687,18 @@ function gooey.startup()
       sendGMCP('Core.Supports.Add ["IRE.Sound 1"]')
       sendGMCP('Core.Supports.Add ["IRE.Target 1"]')
     Adjustable.Container:doAll(function(s) s:addConnectMenu() end)
+    --set the font sizes
+    for k, v in pairs(gooey.gui) do 
+      if gooey.gui[k].type == "miniConsole" or gooey.gui[k].type == "adjustablecontainer" then 
+      local consoleName = gooey.gui[k].name
+        gooey.gui.fontSize[consoleName] = gooey.gui.fontSize[consoleName] or 9
+      setFontSize(gooey.gui[k].name, gooey.gui.fontSize[consoleName])
+      end
+    end
   end
 end
 
-registerAnonymousEventHandler("gmcp.Char", "gooey.startup")</script>
+registerAnonymousEventHandler("sysLoadEvent", "gooey.startup")</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -1734,17 +2732,20 @@ registerAnonymousEventHandler("gmcp.Char", "gooey.startup")</script>
     color_table.a_sixlevel    = {13, 121, 13}
     color_table.blaze_orange  = {255, 102, 0}
 
-function gooey.target(what)
+--Function that sets the gooey.target variable
+function gooey.setTarget(what)
   send("st "..what)
   gooey.target = what
   gooey.echo("Target: &lt;LightSteelBlue&gt;"..what:title())
 end
 
-function gooey.echo(text) -- echo things in style
+--Echo things in style 
+function gooey.echo(text) 
   cecho("\n&lt;white&gt;(&lt;firebrick&gt;gooey&lt;white&gt;)&lt;reset&gt;: "..text.."\n")
 end
 
-function gooey.alert(text, color1, color2) --alert about things in a visible way
+--Function to alert about things in a more visible way than echoes
+function gooey.alert(text, color1, color2) 
   color1 = color1 or "firebrick"
   color2 = color2 or "white"
   
@@ -1773,12 +2774,14 @@ function gooey.alert(text, color1, color2) --alert about things in a visible way
   echo("\n")
 end
 
-function gooey.deletelineP() -- delete the line and the prompt following it
+--Delete the line and the prompt following it
+function gooey.deletelineP() 
   deleteLine()
   tempLineTrigger(1, 1, [[if isPrompt() then deleteLine() end]])
 end
 
-function gooey.tableConcat(tbl, andor) -- list tables with a nice "or" or "and" (degault) at the end
+--List tables with a nice "or" or "and" (degault) at the end
+function gooey.tableConcat(tbl, andor) 
   local index = 1
   local answer = ""
   andor = andor or "and"
@@ -1808,39 +2811,39 @@ function gooey.tableConcat(tbl, andor) -- list tables with a nice "or" or "and" 
   return answer  
 end
 
+--Function to round numbers to a certain number of decimals
 function gooey.round(num, idp)
   local mult = 10^(idp or 0)
   return math.floor(num * mult + 0.5) / mult
 end
 
-function gooey.pp(state)
-  
+--Function to toggle curing - except if no curing system it needs a state.
+function gooey.pp(state) 
   if Legacy then
     if not state then
       state = Legacy.Settings.Curing.status
     else state = ((state == "on" and true) or false) 
     end
-      send("curing "..state and "on" or "off")
+      send("curing "..(state and "on" or "off"))
   elseif svo then
     if not state then 
       state = not svo.conf.paused
-    else state = ("on" and true) or false
-    end
+    else state = (state == "on" and "off" or "on")
     svo.app(state)
+    end
   else 
     if not state then
-      gooey.echo("Need a state for the curing bro")
+      echo("Need a state for the curing bro")
       return
     else
     state = ((state == "on" and true) or false) 
     send("curing "..(state and "on" or "off"))
     end
-      gooey.echo(""..(state and "Unp"  or "P").."aused the system") 
+      echo(""..(state and "Unp"  or "P").."aused the system") 
   end
-
 end
 
-
+--Function to get the appropriate color for health based on health level
 function gooey.healthColor(somehealththing, somehealththingmax)
 if not somehealththing then
   if tonumber(gmcp.Char.Vitals.hp) &gt;= 2*tonumber(gmcp.Char.Vitals.maxhp)/3 then return "a_onelevel"
@@ -1853,183 +2856,20 @@ else
     else return "firebrick"
   end
 end
-end</script>
-				<eventHandlerList />
-			</Script>
-			<Script isActive="yes" isFolder="no">
-				<name>Room info</name>
-				<packageName></packageName>
-				<script>function gooey.updateRoomInv()
-		local console = "denizensConsole"
-    clearUserWindow(console)
-
-		--first list mobs
-    for key,value in pairs(gooey.roomMtable) do 
-			--cechoLink(console, "&lt;red&gt;T", [[gooey.target("]] .. key .. [[") if keneanung then keneanung.bashing.addPossibleTarget("]]..value..[[") end ]], "Target", true)
-		  --echo(console, "(")
-		  --echoLink(console, "P", [[send("p ]] .. key .. [[")]], "Probe", false)
-		  --echo(console, ")")
-     -- echoLink(console, "(G", [[send("greet ]] .. key .. [[")]], "Greet", false)
-      cechoPopup(console, (gooey.getMobHighlight(key) or "").. value .. "\n", {[[gooey.target("]] .. key .. [[") if keneanung then keneanung.bashing.addPossibleTarget("]]..value..[[") end ]], [[send("p ]] .. key .. [[")]], [[send("greet ]] .. key .. [[")]]}, {"Target", "Probe", "Greet"}, true)
-    end
-    --then list gold
-    for key,value in pairs(gooey.roomTtable) do 
-      if value:find("sovereign") ~= nil then
-			 -- echoLink(console, "+", [[send("get ]] .. key .. [[")]], "Get", false)
-		    --echo(console, "(")
-		   -- echoLink(console, "P", [[send("p ]] .. key .. [[")]], "Probe", false)
-       -- cechoPopup(console, ") " .. value .. "\n", {[[send("get ]] .. key .. [[")]], [[send("p ]] .. key .. [[")]]}, {"Get", "Probe"}, true)
-      end
-    end
-    --then list stuff
-    for key,value in pairs(gooey.roomInvTable) do 
-			--echoLink(console, "+", [[send("get ]] .. key .. [[")]], "Get", false)
-		 -- echo(console, "(")
-		 -- echoLink(console, "P", [[send("p ]] .. key .. [[")]], "Probe", false)
-      cechoPopup(console, value .. "\n", {[[send("get ]] .. key .. [[")]], [[send("p ]] .. key .. [[")]]}, {"Get", "Probe"}, true)
-    end
-    --then list "t" stuff that's not gold
-    for key,value in pairs(gooey.roomTtable) do 
-      if not value:find("sovereign") then
-			 -- echoLink(console, "+", [[send("get ]] .. key .. [[")]], "Get", false)
-		   -- echo(console, "(")
-		   -- echoLink(console, "P", [[send("p ]] .. key .. [[")]], "Probe", false)
-        cechoPopup(console, value .. "\n", {[[send("get ]] .. key .. [[")]], [[send("p ]] .. key .. [[")]]}, {"Get", "Probe"}, true)
-      end
-    end
- 
 end
 
-  --registerAnonymousEventHandler("gmcp.Room.Info","gooey.updateRoomInv")
-  --registerAnonymousEventHandler("gmcp.Char.Items","gooey.updateRoomInv")
-  --registerAnonymousEventHandler("gmcp.IRE.Target","gooey.updateRoomInv")
-
-
-  
--- colour name
-	function gooey.WhatColour(name)
-		if name == target then
-			return "&lt;blaze_orange&gt;"
-		elseif svo then 
-			return ndb.getcolor(name) 
-    elseif Legacy then
-      return Legacy.NDB.color(name)
-		end
-	end
-
-function gooey.inventoryeventmanager(event)
-
-if event == "gmcp.Char.Items.List" and gmcp.Char.Items.List.location == "room" then gooey.updateRoomItems()
-elseif event == "gmcp.Char.Items.Add" and gmcp.Char.Items.Add.location == "room" then gooey.addRoomItems()
-elseif event == "gmcp.Char.Items.Remove" and gmcp.Char.Items.Remove.location == "room" then gooey.removeRoomItems()
-end
-
-end
-
-registerAnonymousEventHandler("gmcp.Char.Items.List","gooey.inventoryeventmanager")
-registerAnonymousEventHandler("gmcp.Char.Items.Add","gooey.inventoryeventmanager")
-registerAnonymousEventHandler("gmcp.Char.Items.Remove","gooey.inventoryeventmanager")
-
-
-function gooey.updateRoomItems()
-
-	if gmcp.Char.Items.List.location == "room" then
-		gooey.roomInvTable = {} gooey.roomMtable = {} gooey.roomTtable = {}
-		for key,value in pairs(gmcp.Char.Items.List.items) do 
-		local highlight = gooey.getItemHighlight(value) or ""
-      if value.attrib == "m" then
-		  gooey.roomMtable[value.id] = value.name
-      elseif value.attrib == "t" then
-      gooey.roomTtable[value.id] = highlight .. value.name
-		  else gooey.roomInvTable[value.id] = highlight .. value.name
-      end
-    end
-		gooey.updateRoomInv()
-	end
-end
-
-function gooey.addRoomItems()
-	if gmcp.Char.Items.Add.location == "room" then
-		local value = gmcp.Char.Items.Add.item
-		local highlight = gooey.getItemHighlight(value) or ""
-		  if value.attrib == "m" then
-		  gooey.roomMtable[value.id] = value.name
-      elseif value.attrib == "t" then
-      gooey.roomTtable[value.id] = highlight .. value.name
-		  else gooey.roomInvTable[value.id] = highlight .. value.name
-      end
-		gooey.updateRoomInv()
-	end
-end
-
-function gooey.removeRoomItems()
-	if gmcp.Char.Items.Remove.location == "room" then
-    itemKey = gmcp.Char.Items.Remove.item.id
-    gooey.roomInvTable["" .. itemKey] = nil
-    gooey.roomMtable[itemKey] = nil
-    gooey.roomTtable["" .. itemKey] = nil
-    gooey.updateRoomInv()
-	end
-end
-  
-function gooey.getItemHighlight(value)
-	if value.attrib == "m" then 
-    if value.id == target then return "&lt;blaze_orange&gt;" 
-    else return "&lt;green&gt;" 
-    end
-  end
-	if value.name and value.name:find("sovereign") ~= nil then return "&lt;gold&gt;" end
-  if value.name and value.name:starts("the corpse of") then 
-    if value.attrib == "t" then return "&lt;a_twolevel&gt;"
-    else return "&lt;SlateGrey&gt;" 
-    end
+--get hex color codes - mostly used for hull/sails health
+function gooey.getHealthColorHex(thing)
+thing = tonumber(thing)
+  if thing &lt; 40 then return "#FF0000"
+  elseif thing &lt; 50 then return "#BD422E"
+  elseif thing &lt; 70 then return "#E7A348"
+  elseif thing &lt; 90 then return "#F3EC77"
+  else return "#808000"
   end
 end
 
-  function gooey.getMobHighlight(value)
-
-    if (target and value == target) or (keneanung and keneanung.bashing.targetList[1] and value == keneanung.bashing.targetList[1].id) or (gmcp.IRE and gmcp.IRE.Target and value == gmcp.IRE.Target.Set) then return "&lt;blaze_orange&gt;" 
-    else return "&lt;green&gt;" 
-  end
-  
-  end</script>
-				<eventHandlerList />
-			</Script>
-			<Script isActive="yes" isFolder="no">
-				<name>Build mapper</name>
-				<packageName></packageName>
-				<script></script>
-				<eventHandlerList />
-			</Script>
-			<Script isActive="yes" isFolder="no">
-				<name>Track stuff core</name>
-				<packageName></packageName>
-				<script>gooey = gooey or {}
-gooey.gmcp = gooey.gmcp or {}
-gooey.gmcp.old = gooey.gmcp.old or {}
-gooey.serverSettings = gooey.serverSettings or {}
-
-function gooey.getServerSettings() -- function to pick up the server-side command separator, config pagelength, and curing settings
-  tempTrigger("You can set a separator to be able to send multiple commands to Achaea at once.", [[deleteLine()]], 1)
-  tempRegexTrigger("^Pagelength is the maximum number of lines that will be displayed to you at once.*", [[deleteLine()]], 1)
-  tempTrigger("Usage:", [[deleteLine()]], 1)
-  tempTrigger("   CONFIG PAGELENGTH &lt;# of lines&gt;", [[deleteLine()]], 1)
-  tempLineTrigger(1, 3, [[if isPrompt() then deleteLine() end]])
-  enableTrigger("getcuringinfo")
-  tempRegexTrigger("^Your current separator is: (.*)$", [[gooey.serverSettings.comsep = matches[2] ]])
-  tempRegexTrigger("^Your current pagelength: (.*)$", [[if gooey.serverSettings.pagelength and gooey.serverSettings.pagelength ~= matches[2] then gooey.serverSettings.oldpagelentgh = gooey.serverSettings.pagelength end gooey.serverSettings.pagelength = matches[2] ]])
-  tempTrigger("Usage:", [[deleteLine()]], 1)
-  tempTrigger("   CONFIG PAGELENGTH &lt;# of lines&gt;", [[deleteLine()]], 1)
-  tempLineTrigger(0, 3, [[if isPrompt() then deleteLine() end]])
-  
-  
-  send("config commandseparator", false)
-  send("config pagelength", false)
-  send("curing status", false) 
-end
-
-registerAnonymousEventHandler("sysLoadEvent", "gooey.getServerSettings")
-
+--Function that gets us to full stats before sending a command (the command is optional)
 function gooey.fl(dooncefull)
   if not gooey.serverSettings.siphealth or not gooey.serverSettings.sipmana then
     gooey.getServerSettings()
@@ -2055,6 +2895,7 @@ end
 
 registerAnonymousEventHandler("gooey.good to go", "gooey.fl")
 
+--Function that sets curing for mana and health to max, so that serverside fills up our bars
 function gooey.getfull()
   gooey.checkVitals = true
   send("curing siphealth 99")
@@ -2062,6 +2903,7 @@ function gooey.getfull()
   gooey.goodtogo()
 end
 
+--Function that raises an event when we're full stats, and sets the curing back to its original state
 function gooey.goodtogo()
   if gooey.checkVitals then
   if gooey.gmcp.hp and gooey.gmcp.hp &gt;= gooey.gmcp.maxhp and gooey.gmcp.mp and gooey.gmcp.mp &gt;= gooey.gmcp.maxmp then
@@ -2076,125 +2918,53 @@ end
 
 registerAnonymousEventHandler("gmcp.Char.Vitals", "gooey.goodtogo")
 
-function gooey.gmcp.char()
-
-  if gmcp.Char and gmcp.Char.Vitals then
-    for k, v in pairs (gmcp.Char.Vitals) do
-      if k == "charstats" then
-        gooey.gmcp.bleed = tonumber(string.split(v[1], ":")[2])
-        gooey.gmcp.rage = tonumber(string.split(v[2], ":")[2])
-      elseif k ~= "string" then
-        if gooey.gmcp[k] and gooey.gmcp[k] ~= tonumber(v) then
-          gooey.gmcp.old[k] = gooey.gmcp[k]
-        end
-        gooey.gmcp[k] = tonumber(v)
-      end
-    end
-  end 
-  if gmcp.Char and gmcp.Char.Status then
-    for k, v in pairs(gmcp.Char.Status) do
-      if k == "name" then 
-        k = "charname"
-      end
-      gooey.gmcp[k] = v
-    end
-  end
-  
-end
-
-function gooey.gmcp.room()
-  gooey.gmcp = gooey.gmcp or {}
-  gooey.gmcp.old = gooey.gmcp.old or {}
-  
-  if gmcp.Room and gmcp.Room.Info then
-    for k, v in pairs(gmcp.Room.Info) do
-      if table.contains({"area", "name", "num"}, k) then
-        if k == "name" then 
-          k = "roomname"
-          if gooey.gui then 
-            gooey.gui.roomNameLabel:echo(gooey.gmcp.roomname, "ansiYellow", "c") 
-          end
-        end
-        if gooey.gmcp[k] and gooey.gmcp[k] ~= v then
-          gooey.gmcp.old[k] = gooey.gmcp[k]
-        end
-        gooey.gmcp[k] = v
-      end
-    end
-  end
-end
-
-registerAnonymousEventHandler("gmcp.Room", "gooey.gmcp.room")
-
-function gooey.gmcp.itemsList()
-gooey.gmcp.denizens = gooey.gmcp.denizens or {}
-gooey.gmcp.items = gooey.gmcp.items or {}
-
-if gmcp and gmcp.Char and gmcp.Char.Items then
-	if gmcp.Char.Items.List.location == "room" then
-		gooey.gmcp.items = {} 
-    gooey.gmcp.denizens = {}
-    for k, v in pairs(gmcp.Char.Items.List.items) do
-      if v.attrib =="m" then
-        gooey.gmcp.denizens[v.id] = v.name
-        if gooey.dendb then gooey.dendb.managedb(v.name) end
-      else
-        gooey.gmcp.items[v.id] = {v.name, v.attrib or ""}
-      end
-    end
-  end
-end
-end
-
---registerAnonymousEventHandler("gmcp.Char", "gooey.gmcp.itemsList")
-
-function gooey.gmcp.addItems()
-  if gmcp.Char.Items.Add.location == "room" then
-		local value = gmcp.Char.Items.Add.item
-	  if value.attrib == "m" then
-	    gooey.gmcp.denizens[gmcp.Char.Items.Add.item.id] = gmcp.Char.Items.Remove.item.name
-      if gooey.dendb then 
-        gooey.dendb.managedb(gmcp.Char.Items.Add.item.name) 
-      end
-    else
-      gooey.gmcp.items[v.id] = {gmcp.Char.Items.Add.item.name, gmcp.Char.Items.Add.item.attrib or ""}
-    end
-    --insert function to update the console
+--Figure out what color to use for a player
+function gooey.getPlayerHighlight(name)
+	if name == target then
+		return "&lt;blaze_orange&gt;"
+	elseif svo then 
+		return ndb.getcolor(name) 
+  elseif Legacy then
+    return Legacy.NDB.color(name)
 	end
 end
 
-function gooey.gmcp.removeItems()
-	if gmcp.Char.Items.Remove.location == "room" then
-    if gmcp.Char.Items.Remove.item.attrib and gmcp.Char.Items.Remove.item == "m" then
-      gooey.gmcp.denizens[gmcp.Char.Items.Remove.item.id] = gmcp.Char.Items.Remove.item.name
-      if gooey.dendb then 
-        gooey.dendb.managedb(gmcp.Char.Items.Remove.item.name) 
-      end
-    else
-      gooey.gmcp.items[gmcp.Char.Items.Remove.item.id] = {gmcp.Char.Items.Remove.item.name, gmcp.Char.Items.Remove.item.attrib or ""}
-  	end
-  --function to update the console
+--Get the color for an item
+function gooey.getItemHighlight(value)
+  if value.attrib == "m" then 
+    if value.id == target then return "&lt;blaze_orange&gt;" 
+    else return "&lt;green&gt;" 
+    end
+  end
+  if value.name and value.name:find("sovereign") ~= nil then return "&lt;gold&gt;" end
+  if value.name and value.name:starts("the corpse of") then 
+    if value.attrib == "t" then return "&lt;a_twolevel&gt;"
+    else return "&lt;SlateGrey&gt;" 
+    end
   end
 end
 
-function gooey.gmcp.inventoryeventmanager(event)
-
-  if event == "gmcp.Char.Items.List" and gmcp.Char.Items.List.location == "room" then 
-    gooey.gmcp.itemsList()
-  elseif event == "gmcp.Char.Items.Add" and gmcp.Char.Items.Add.location == "room" then 
-    gooey.gmcp.addItems()
-  elseif event == "gmcp.Char.Items.Remove" and gmcp.Char.Items.Remove.location == "room" then 
-    gooey.gmcp.removeItems()
+--Get the color for a mob
+function gooey.getMobHighlight(value)
+  if (gooey.target and value == gooey.target) or (keneanung and keneanung.bashing.targetList[1] and value == keneanung.bashing.targetList[1].id) or (gmcp.IRE and gmcp.IRE.Target and value == gmcp.IRE.Target.Set) then 
+    return "&lt;blaze_orange&gt;" 
+    else return "&lt;green&gt;" 
   end
-
 end
-
-registerAnonymousEventHandler("gmcp.Char.Items.List","gooey.gmcp.inventoryeventmanager")
-registerAnonymousEventHandler("gmcp.Char.Items.Add","gooey.gmcp.inventoryeventmanager")
-registerAnonymousEventHandler("gmcp.Char.Items.Remove","gooey.gmcp.inventoryeventmanager")
-
 </script>
 				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>resetmarkx</name>
+				<packageName></packageName>
+				<script>function resetmarkx()
+  markx = 0
+end</script>
+				<eventHandlerList>
+					<string>gmcp.Char</string>
+					<string>gmcp.Room.Info</string>
+					<string>gmcp.IRE</string>
+				</eventHandlerList>
 			</Script>
 		</ScriptGroup>
 		<Script isActive="yes" isFolder="no">
@@ -2204,6 +2974,8 @@ registerAnonymousEventHandler("gmcp.Char.Items.Remove","gooey.gmcp.inventoryeven
 gooey.gmcp = gooey.gmcp or {}
 gooey.dendb = gooey.dendb or {}
 gooey.dendb.db = gooey.dendb.db or {}
+
+gooey.moduleHome = string.split(getModulePath("gooey"), "gooey.*%.xml")[1]
 
 function gooey.dendb.managedb(thing)
   if gmcp and gmcp.Room and gmcp.Room.Info then
