@@ -2,7 +2,7 @@
 <!DOCTYPE MudletPackage>
 <MudletPackage version="1.001">
 	<TriggerPackage>
-		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+		<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 			<name>getcuringinfo</name>
 			<script>deleteLine()</script>
 			<triggerType>0</triggerType>
@@ -22,8 +22,29 @@
 				<integer>1</integer>
 			</regexCodePropertyList>
 			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>enabled</name>
+				<script>gooey.vars.serverSettings.curingEnabled = matches[2]
+</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^Enabled:\s+(Yes|No)</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 				<name>sip health</name>
-				<script>gooey.serverSettings.siphealth = matches[2]</script>
+				<script>gooey.vars.serverSettings.siphealth = matches[2]</script>
 				<triggerType>0</triggerType>
 				<conditonLineDelta>0</conditonLineDelta>
 				<mStayOpen>0</mStayOpen>
@@ -43,7 +64,7 @@
 			</Trigger>
 			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 				<name>sip mana</name>
-				<script>gooey.serverSettings.sipmana = matches[2]</script>
+				<script>gooey.vars.serverSettings.sipmana = matches[2]</script>
 				<triggerType>0</triggerType>
 				<conditonLineDelta>0</conditonLineDelta>
 				<mStayOpen>0</mStayOpen>
@@ -107,8 +128,9 @@ disableTrigger("getcuringinfo")</script>
 			<name>My Prompt</name>
 			<script>if gmcp and gmcp.Char and gmcp.Char.Vitals and gmcp.Char.Status.name == "Killian" then
   deleteLine()
-   oldhp = oldhp or tonumber(gmcp.Char.Vitals.hp)
-
+  if gooey.vars.gmcp.old then
+   oldhp = gooey.vars.gmcp.old.hp or tonumber(gmcp.Char.Vitals.hp)
+  end
   --some bufer
   cecho("\n                                    ")
   
@@ -118,12 +140,12 @@ disableTrigger("getcuringinfo")</script>
   --target info
   if gmcp.IRE and gmcp.IRE.Target then
     if gmcp.IRE.Target.Set ~= "" and gmcp.IRE.Target.Info.id ~= "-1" then
-      cecho("&lt;blaze_orange&gt;"..gmcp.IRE.Target.Info.short_desc.." @ &lt;"..gooey.healthColor(tonumber(gmcp.IRE.Target.Info.hpperc), 100).."&gt;"..gmcp.IRE.Target.Info.hpperc.."&lt;DimGrey&gt; |")
+      cecho("&lt;blaze_orange&gt;"..gmcp.IRE.Target.Info.short_desc.." @ &lt;"..gooey.funcs.healthColor(tonumber(gmcp.IRE.Target.Info.hpperc), 100).."&gt;"..gmcp.IRE.Target.Info.hpperc.."&lt;DimGrey&gt; |")
     end
   end
   
   --health
-  cecho(" &lt;"..gooey.healthColor().."&gt;"..gmcp.Char.Vitals.hp.."/"..gmcp.Char.Vitals.maxhp.."H "..gooey.round(tonumber(gmcp.Char.Vitals.hp)/tonumber(gmcp.Char.Vitals.maxhp)*100).."% ")
+  cecho(" &lt;"..gooey.funcs.healthColor().."&gt;"..gmcp.Char.Vitals.hp.."/"..gmcp.Char.Vitals.maxhp.."H "..gooey.funcs.round(tonumber(gmcp.Char.Vitals.hp)/tonumber(gmcp.Char.Vitals.maxhp)*100).."% ")
   --mana
   cecho("&lt;a_onelevel&gt;"..gmcp.Char.Vitals.mp.."/"..gmcp.Char.Vitals.maxmp.."M ")
   --missing bal or eq?
@@ -136,7 +158,7 @@ disableTrigger("getcuringinfo")</script>
   cecho("&lt;DimGrey&gt;"..((gmcp.Char.Vitals.eq == "1") and "" or "&lt;DimGrey&gt;-eq"))
   --did our health change?
   if oldhp ~= tonumber(gmcp.Char.Vitals.hp) then
-    cecho("&lt;DimGrey&gt; | &lt;DarkSlateGray&gt;("..(oldhp-tonumber(gmcp.Char.Vitals.hp)).."h)")
+    cecho("&lt;DimGrey&gt; | &lt;DarkSlateGray&gt;("..(tonumber(gmcp.Char.Vitals.hp)-oldhp).."h)")
   end
   oldhp = tonumber(gmcp.Char.Vitals.hp)
 end</script>
@@ -311,7 +333,7 @@ deleteLine()
 						</regexCodePropertyList>
 					</Trigger>
 				</Trigger>
-				<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>GMCP Oceans</name>
 					<script>if gooey.gui.map.current ~= "Ocean" then
   gooey.gui.map[gooey.gui.map.current]:hide()
@@ -492,8 +514,8 @@ deleteLine()
 --cinsertText("                             ")
 --deleteLine()
 gooey.vars = gooey.vars or {}
-gooey.vars.seaStats = gooey.vars.seaStats or {}
-gs = gooey.vars.seaStats
+gooey.vars.sea = gooey.vars.sea or {}
+gs = gooey.vars.sea
 gs.shipSails = matches[2]
 gs.windSpeed = matches[6]
 gs.windDir = matches[5]
@@ -592,6 +614,26 @@ end</script>
 				</regexCodePropertyList>
 			</Trigger>
 		</TriggerGroup>
+		<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>curingEnabled</name>
+			<script>gooey.serverSettings.curingEnabled = (matches[2] == "activated" and "Yes" or "No")</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^Curing (disabled|activated)\.$</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
 	</TriggerPackage>
 	<TimerPackage>
 		<TimerGroup isActive="yes" isFolder="yes" isTempTimer="no" isOffsetTimer="no">
@@ -605,15 +647,8 @@ end</script>
 	<AliasPackage>
 		<Alias isActive="yes" isFolder="no">
 			<name>Toggle pause curing</name>
-			<script>
-if matches[2] then 
-  pp = (true and matches[2] == "on") or false
-else 
-  pp = not pp
-end
-
-local answer = (pp == true and "on") or "off"
-gooey.pp(answer) </script>
+			<script>if matches[2] == nil or "" then gooey.funcs.pp() 
+else gooey.funcs.pp(matches[2]) end</script>
 			<command></command>
 			<packageName></packageName>
 			<regex>^pp ?(o(n|ff))?</regex>
@@ -647,6 +682,18 @@ drawRoundFirework()
 			<command></command>
 			<packageName></packageName>
 			<regex>^firework</regex>
+		</Alias>
+		<Alias isActive="yes" isFolder="no">
+			<name>Shipon</name>
+			<script>if matches[2] == "n" then
+  gooey.vars.sea.shipOn = true
+else gooey.vars.sea.shipOn = false 
+end
+
+gooey.funcs.echo((gooey.vars.sea.shipOn and "We're on a ship!" or "We're not on a ship"))</script>
+			<command></command>
+			<packageName></packageName>
+			<regex>^shipo(n|ff)$</regex>
 		</Alias>
 	</AliasPackage>
 	<ActionPackage />
@@ -2076,23 +2123,47 @@ end</script>
 gooey.gui = gooey.gui or {} --gui elements, containers and crap
 gooey.vars = gooey.vars or {} --variables
 gooey.funcs = gooey.funcs or {} --functions
-gooey.gmcp = gooey.gmcp or {} --info from GMCP
-gooey.serverSettings = gooey.serverSettings or {} --stores personal server-side settings, command separator, pagelength, curing
 gooey.data = gooey.data or {} --tables
+gooey.triggers = gooey.triggers or {} --triggers
+gooey.timers = gooey.timers or {} --triggers
 
 -- Built-in modules:
----seaStats
----hunt
----combat
+----sea
+----hunt
+----combat
+----serverSettings --stores personal server-side settings, command separator, pagelength, curing
+----gmcp --info from GMCP
 
 gooey.gui.styles = gooey.gui.styles or {}
 gooey.gui.fontSize = gooey.gui.fontSize or {}
-gooey.vars.seaStats = gooey.vars.seaStats or {}
+gooey.gui.var = gooey.gui.fontSize or {}
+
+gooey.vars.sea = gooey.vars.sea or {}
 gooey.vars.hunt = gooey.vars.hunt or {}
-gooey.funcs.seaStats = gooey.funcs.seaStats or {}
+gooey.vars.combat = gooey.vars.combat or {}
+gooey.vars.serverSettings = gooey.vars.serverSettings or {}
+gooey.vars.gmcp = gooey.vars.gmcp or {}
+  gooey.vars.gmcp.old = gooey.vars.gmcp.old or {}
+gooey.vars.gui = gooey.vars.gui or {}
+
+
+gooey.funcs.sea = gooey.funcs.sea or {}
 gooey.funcs.hunt = gooey.funcs.hunt or {}
-gooey.gmcp.old = gooey.gmcp.old or {}
+gooey.funcs.combat = gooey.funcs.combat or {}
+gooey.funcs.serverSettings = gooey.funcs.serverSettings or {} 
+gooey.funcs.gmcp = gooey.funcs.gmcp or {}
+
+gooey.data.sea = gooey.data.sea or {}
 gooey.data.hunt = gooey.data.hunt or {}
+gooey.data.combat = gooey.data.combat or {}
+gooey.data.serverSettings = gooey.data.serverSettings or {} 
+gooey.data.gmcp = gooey.data.gmcp or {} 
+
+gooey.triggers.sea = gooey.triggers.sea or {}
+gooey.triggers.hunt = gooey.triggers.hunt or {}
+gooey.triggers.combat = gooey.triggers.combat or {}
+gooey.triggers.serverSettings = gooey.triggers.serverSettings or {}
+gooey.triggers.gmcp = gooey.triggers.gmcp or {}
 
 
 --adjust fonts here
@@ -2109,7 +2180,7 @@ gooey.gui.fontSize.denizens = 9
 gooey.gui.fontSize.denizensConsole = 9
 
 --determines if the players and the items consoles are one next to the other or one above the other. Options are "vertical" or "horizontal"
-gooey.gui.preferedRoomLayout = "horizontal" 
+gooey.gui.preferedRoomLayout = gooey.gui.preferedRoomLayout or "horizontal" 
 
 
 --define some styles 
@@ -2210,7 +2281,7 @@ gooey.gui.roomNameLabel = gooey.gui.roomNameLabel or
 
 gooey.gui.roomNameLabel: setStyleSheet( [[background-color:rgba(20,20,20,100%); border: 2px inset; border-color:rgba(128, 128, 128, 100%);]])
 
-if gooey.gmcp and gooey.gmcp.roomname then gooey.gui.roomNameLabel:echo(gooey.gmcp.roomname, "ansiYellow", "c13") end
+if gooey.vars.gmcp and gooey.vars.gmcp.roomname then gooey.gui.roomNameLabel:echo(gooey.vars.gmcp.roomname, "ansiYellow", "c13") end
     
 
 if gooey.gui.preferedRoomLayout == "horizontal" then
@@ -2311,7 +2382,7 @@ gooey.gui.map.Ocean = Geyser.MiniConsole:new({
     width = "100%",
     height = "100%",
   },gooey.gui.map.container)  
-setBackgroundColor("Ocean", 0,0,0,255)
+--setBackgroundColor("Ocean", 0,0,0,255)
 hideWindow("Ocean")
 setConsoleBufferSize("Ocean", 100, 1000) 
   
@@ -2321,7 +2392,7 @@ gooey.gui.map.Wilderness = Geyser.MiniConsole:new({
     width = "100%",
     height = "100%",
   },gooey.gui.map.container)  
-setBackgroundColor("Wilderness", 0,0,0,255)  
+--setBackgroundColor("Wilderness", 0,0,0,255)  
 hideWindow("Wilderness")
   
 </script>
@@ -2329,48 +2400,55 @@ hideWindow("Wilderness")
 				</Script>
 			</Script>
 			<Script isActive="yes" isFolder="no">
-				<name>Track gmcp stuff core</name>
+				<name>Track server stuff core</name>
 				<packageName></packageName>
-				<script>
+				<script>local gfs = gooey.funcs.serverSettings
+local gfg = gooey.funcs.gmcp
 
 --Function to pick up the server-side command separator, config pagelength, and curing settings
-function gooey.getServerSettings() 
-
-  if not gooey.serverSettings.comsep then
-    tempTrigger("You can set a separator to be able to send multiple commands to Achaea at once.", [[deleteLine()]], 1)
-    tempRegexTrigger("^Your current separator is: (.*)$", [[gooey.serverSettings.comsep = matches[2] ]])
+function gfs.getServerSettings(forced) 
+  if forced == "gmcp.Char" then
+    if not gooey.vars.serverSettings.comsep then
+      tempTrigger("You can set a separator to be able to send multiple commands to Achaea at once.", [[deleteLine()]], 1)
+      send("config commandseparator", false)
+    end
+    if not gooey.vars.serverSettings.pagelength then
+      tempRegexTrigger("^Pagelength is the maximum number of lines that will be displayed to you at once.*", [[deleteLine()]], 1)
+      tempTrigger("Usage:", [[deleteLine()]], 1)
+      tempTrigger("   CONFIG PAGELENGTH &lt;# of lines&gt;", [[deleteLine()]], 1)
+      tempLineTrigger(1, 3, [[if isPrompt() then deleteLine() end]])
+      send("config pagelength", false)
+    end
+    if not gooey.vars.serverSettings.siphealth or not gooey.vars.serverSettings.sipmana then
+      enableTrigger("getcuringinfo")
+      send("curing status", false) 
+    end
   end
-    
-  local ss2 = tempRegexTrigger("^Pagelength is the maximum number of lines that will be displayed to you at once.*", [[deleteLine()]], 1)
-  local ss3 = tempTrigger("Usage:", [[deleteLine()]], 1)
-  local ss4 = tempTrigger("   CONFIG PAGELENGTH &lt;# of lines&gt;", [[deleteLine()]], 1)
-  local ss5 = tempLineTrigger(1, 3, [[if isPrompt() then deleteLine() end]])
-  local ss6 = enableTrigger("getcuringinfo")
-
-  local ss8 = tempRegexTrigger("^Your current pagelength: (.*)$", [[if gooey.serverSettings.pagelength and gooey.serverSettings.pagelength ~= matches[2] then gooey.serverSettings.oldpagelentgh = gooey.serverSettings.pagelength end gooey.serverSettings.pagelength = matches[2] ]])
-  local ss9 = tempTrigger("Usage:", [[deleteLine()]], 1)
-  local ss10 = tempLineTrigger(0, 3, [[if isPrompt() then deleteLine() end]])
+  local gts = gooey.triggers.serverSettings
+  local gvs = gooey.vars.serverSettings
+  gts.curingTrigger = gts.curingTrigger or
+  tempRegexTrigger("^Curing (disabled|activated)\.$", [[gooey.vars.serverSettings.curingEnabled = (matches[2] == "activated" and "Yes" or "No")]])
+  gts.comSepTrigger = gts.comSepTrigger or
+  tempRegexTrigger("^Your current separator is: (.*)$", [[gooey.vars.serverSettings.comsep = matches[2] ]])
+  gts.pageLengthTrigger = gts.pageLengthTrigger or
+  tempRegexTrigger("^Your current pagelength: (.*)$", [[if gooey.vars.serverSettings.pagelength and gooey.vars.serverSettings.pagelength ~= matches[2] then gooey.vars.serverSettings.oldpagelentgh = gooey.vars.serverSettings.pagelength end gooey.vars.serverSettings.pagelength = matches[2] ]])
   
-  
-  send("config commandseparator", false)
-  send("config pagelength", false)
-  send("curing status", false) 
 end
 
-registerAnonymousEventHandler("sysLoadEvent", "gooey.getServerSettings")
+registerAnonymousEventHandler("gmcp.Char", "gooey.funcs.serverSettings.getServerSettings")
 
 --Function that gets info about the player from gmcp
-function gooey.gmcp.char()
+function gfg.char()
   if gmcp.Char and gmcp.Char.Vitals then
     for k, v in pairs (gmcp.Char.Vitals) do
       if k == "charstats" then
-        gooey.gmcp.bleed = tonumber(string.split(v[1], ":")[2])
-        gooey.gmcp.rage = tonumber(string.split(v[2], ":")[2])
+        gooey.vars.gmcp.bleed = tonumber(string.split(v[1], ":")[2])
+        gooey.vars.gmcp.rage = tonumber(string.split(v[2], ":")[2])
       elseif k ~= "string" then
-        if gooey.gmcp[k] and gooey.gmcp[k] ~= tonumber(v) then
-          gooey.gmcp.old[k] = gooey.gmcp[k]
+        if gooey.vars.gmcp[k] and gooey.vars.gmcp[k] ~= tonumber(v) then
+          gooey.vars.gmcp.old[k] = gooey.vars.gmcp[k]
         end
-        gooey.gmcp[k] = tonumber(v)
+        gooey.vars.gmcp[k] = tonumber(v)
       end
     end
   end 
@@ -2379,20 +2457,20 @@ function gooey.gmcp.char()
       if k == "name" then 
         k = "charname"
       end
-      if gooey.gmcp[k] and gooey.gmcp[k] ~= v then
-        gooey.gmcp.old[k] = gooey.gmcp[k]
+      if gooey.vars.gmcp[k] and gooey.vars.gmcp[k] ~= v then
+        gooey.vars.gmcp.old[k] = gooey.vars.gmcp[k]
       end
-      gooey.gmcp[k] = v
+      gooey.vars.gmcp[k] = v
     end
   end 
 end
 
-registerAnonymousEventHandler("gmcp.Char", "gooey.gmcp.char")
+registerAnonymousEventHandler("gmcp.Char", "gooey.funcs.gmcp.char")
 
 --Function that tracks information about the room
-function gooey.gmcp.room()
-  gooey.gmcp = gooey.gmcp or {}
-  gooey.gmcp.old = gooey.gmcp.old or {}
+function gfg.room()
+  gooey.vars.gmcp = gooey.vars.gmcp or {}
+  gooey.vars.gmcp.old = gooey.vars.gmcp.old or {}
   
   if gmcp.Room and gmcp.Room.Info then
     for k, v in pairs(gmcp.Room.Info) do
@@ -2400,86 +2478,109 @@ function gooey.gmcp.room()
         if k == "name" then 
           k = "roomname"
           if gooey.gui then 
-            gooey.gui.roomNameLabel:echo(gooey.gmcp.roomname, "ansiYellow", "c13") 
+            gooey.gui.roomNameLabel:echo(gooey.vars.gmcp.roomname, "ansiYellow", "c13") 
           end
         end
-        if gooey.gmcp[k] and gooey.gmcp[k] ~= v then
-          gooey.gmcp.old[k] = gooey.gmcp[k]
+        if gooey.vars.gmcp[k] and gooey.vars.gmcp[k] ~= v then
+          gooey.vars.gmcp.old[k] = gooey.vars.gmcp[k]
         end
-        gooey.gmcp[k] = v
+        gooey.vars.gmcp[k] = v
       end
     end
   end
 end
 
-registerAnonymousEventHandler("gmcp.Room", "gooey.gmcp.room")
+registerAnonymousEventHandler("gmcp.Room", "gooey.funcs.gmcp.room")
 
 --Function to get the suff in the room
-function gooey.gmcp.itemsList()
-  gooey.gmcp.denizens = gooey.gmcp.denizens or {}
-  gooey.gmcp.items = gooey.gmcp.items or {}
+function gfg.itemsList()
+  gooey.vars.gmcp.denizens = gooey.vars.gmcp.denizens or {}
+  gooey.vars.gmcp.items = gooey.vars.gmcp.items or {}
   
   if gmcp and gmcp.Char and gmcp.Char.Items then
   	if gmcp.Char.Items.List.location == "room" then
-  		gooey.gmcp.items = {} 
-      gooey.gmcp.denizens = {}
+  		gooey.data.gmcp.items = {} 
+      gooey.data.gmcp.denizens = {}
       for k, v in pairs(gmcp.Char.Items.List.items) do
         if v.attrib =="m" then
-          gooey.gmcp.denizens[v.id] = v.name
+          gooey.data.gmcp.denizens[v.id] = v.name
           if gooey.dendb then gooey.dendb.managedb(v.name) end
         else
-          gooey.gmcp.items[v.id] = {v.name, v.attrib or ""}
+          gooey.data.gmcp.items[v.id] = {v.name, v.attrib or ""}
         end
       end
-    gooey.gmcp.displayItems()
+    gooey.funcs.gmcp.displayItems()
     end
   end
 end
 
 --Funtion to handle item addition
-function gooey.gmcp.addItems()
+function gfg.addItems()
   if gmcp.Char.Items.Add.location == "room" then
 		local value = gmcp.Char.Items.Add.item
 	  if value.attrib == "m" then
-	    gooey.gmcp.denizens[gmcp.Char.Items.Add.item.id] = gmcp.Char.Items.Add.item.name
+	    gooey.data.gmcp.denizens[gmcp.Char.Items.Add.item.id] = gmcp.Char.Items.Add.item.name
       if gooey.dendb then 
         gooey.dendb.managedb(gmcp.Char.Items.Add.item.name) 
       end
     else
-      gooey.gmcp.items[gmcp.Char.Items.Add.item.id] = {gmcp.Char.Items.Add.item.name, gmcp.Char.Items.Add.item.attrib or ""}
+      gooey.data.gmcp.items[gmcp.Char.Items.Add.item.id] = {gmcp.Char.Items.Add.item.name, gmcp.Char.Items.Add.item.attrib or ""}
     end
-    gooey.gmcp.displayItems()
+    gooey.funcs.gmcp.displayItems()
 	end
 end
 
 --Function to handle item removal
-function gooey.gmcp.removeItems()
+function gfg.removeItems()
 	if gmcp.Char.Items.Remove.location == "room" then
     if gmcp.Char.Items.Remove.item.attrib and gmcp.Char.Items.Remove.item.attrib == "m" then
-      gooey.gmcp.denizens[gmcp.Char.Items.Remove.item.id] = nil
+      gooey.data.gmcp.denizens[gmcp.Char.Items.Remove.item.id] = nil
       if gooey.dendb then 
         gooey.dendb.managedb(gmcp.Char.Items.Remove.item.name) 
       end
     else
-      gooey.gmcp.items[gmcp.Char.Items.Remove.item.id] = nil
+      gooey.data.gmcp.items[gmcp.Char.Items.Remove.item.id] = nil
   	end
-  gooey.gmcp.displayItems()
+  gooey.funcs.gmcp.displayItems()
   end
 end
 
 --Function to display items in the room 
-function gooey.gmcp.displayItems()
+function gfg.displayItems()
   local console = "denizensConsole"
-  local sigils = {}
+  local gv = gooey.vars
   --window, text, command, hint, true
   
   clearWindow(console)
   
-  --deal with denizens first
-  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((expandDen and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(gooey.gmcp.denizens).."&lt;DarkSlateGray&gt; denizens\n", [[expandDen = not expandDen gooey.gmcp.displayItems()]], "Expand or collapse this category", true)
-  if expandDen then
-    for id, value in pairs(gooey.gmcp.denizens) do
-      cechoPopup(console, " "..(gooey.getMobHighlight(id) or "").. value .. "\n", {[[gooey.setTarget("]] .. id .. [[") if keneanung then keneanung.bashing.addPossibleTarget("]]..value..[[") end ]], [[send("p ]] .. id .. [[")]], [[send("greet ]] .. id .. [[")]]}, {"Target", "Probe", "Greet"}, true)
+  --if we're on a ship, we want weapons first
+  local function getWeapons(key, value)
+    if string.find(value[1], "ballista") or 
+       string.find(value[1], "thrower") or
+       string.find(value[1], "onager") 
+    then return true
+    end
+  end
+  
+  local weapons = table.collect(gooey.data.gmcp.items, getWeapons) 
+  
+  if gooey.vars.sea.shipOn then
+    cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((gv.expandWeap and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(weapons).."&lt;DarkSlateGray&gt; weapons\n", [[gooey.vars.expandWeap = not gooey.vars.expandWeap gooey.funcs.gmcp.displayItems()]], "Expand or collapse this category", true)
+    if gv.expandWeap == nil then 
+      gv.expandWeap = true 
+    end
+    if gv.expandWeap then
+      for id, value in pairs(weapons) do
+      cechoPopup(console, " "..(gooey.funcs.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]]}, {"Probe"}, true)
+      end
+    end
+  end
+  
+  --if we're not on a ship, deal with denizens first
+  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((gv.expandDen and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(gooey.data.gmcp.denizens).."&lt;DarkSlateGray&gt; denizens\n", [[gooey.vars.expandDen = not gooey.vars.expandDen gooey.funcs.gmcp.displayItems()]], "Expand or collapse this category", true)
+  if gv.expandDen then
+    for id, value in pairs(gooey.data.gmcp.denizens) do
+      cechoPopup(console, " "..(gooey.funcs.getMobHighlight(id) or "").. value .. "\n", {[[gooey.funcs.setTarget("]] .. id .. [[") if keneanung then keneanung.bashing.addPossibleTarget("]]..value..[[") end ]], [[send("p ]] .. id .. [[")]], [[send("greet ]] .. id .. [[")]]}, {"Target", "Probe", "Greet"}, true)
     end
   end
   
@@ -2490,42 +2591,43 @@ function gooey.gmcp.displayItems()
     end
   end
   
-  sigils = table.collect(gooey.gmcp.items, getSigils) 
+  local sigils = table.collect(gooey.data.gmcp.items, getSigils) 
   
-  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((expandSigils and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(sigils).."&lt;DarkSlateGray&gt; sigils\n", [[expandSigils = not expandSigils gooey.gmcp.displayItems()]], "Expand or collapse this category", true)
-  if expandSigils then
+  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((gv.expandSigils and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(sigils).."&lt;DarkSlateGray&gt; sigils\n", [[gooey.vars.expandSigils = not gooey.vars.expandSigils gooey.funcs.gmcp.displayItems()]], "Expand or collapse this category", true)
+  if gv.expandSigils then
     for id, value in pairs(sigils) do
-      cechoPopup(console, " "..(gooey.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+      cechoPopup(console, " "..(gooey.funcs.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
     end
   end
   
   --deal with misc items (not sigils or gold or corpses)
   local function getMiscItems(key, value)
-    if not string.find(value[1], "sigil") and 
+    if not getSigils(key, value) and 
       not string.find(value[1], "sovereign") and
-      not string.starts(value[1], "the corpse of") 
+      not string.starts(value[1], "the corpse of") and
+      not getWeapons(key, value)
     then return true
     end
   end
   
-  miscItems = table.collect(gooey.gmcp.items, getMiscItems) 
+  local miscItems = table.collect(gooey.data.gmcp.items, getMiscItems) 
   
-  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((expandMiscItems and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(miscItems).."&lt;DarkSlateGray&gt; misc items\n", [[expandMiscItems = not expandMiscItems gooey.gmcp.displayItems()]], "Expand or collapse this category", true)
-  if expandMiscItems then
+  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((gv.expandMiscItems and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(miscItems).."&lt;DarkSlateGray&gt; misc items\n", [[gooey.vars.expandMiscItems = not gooey.vars.expandMiscItems gooey.funcs.gmcp.displayItems()]], "Expand or collapse this category", true)
+  if gv.expandMiscItems then
     for id, value in pairs(miscItems) do
-      cechoPopup(console, " "..(gooey.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+      cechoPopup(console, " "..(gooey.funcs.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
     end
   end
   
   --deal with corpses
   local function getCorpses(key, value)
     if string.starts(value[1], "the corpse of") and 
-    value[2] ~= "t"
+      value[2] ~= "t"
     then return true
     end
   end
   
-  corpses = table.collect(gooey.gmcp.items, getCorpses) 
+  local corpses = table.collect(gooey.data.gmcp.items, getCorpses) 
     
   local function getBodies(key, value)
     if string.starts(value[1], "the corpse of") and 
@@ -2535,95 +2637,101 @@ function gooey.gmcp.displayItems()
   end
   
 
-  bodies = table.collect(gooey.gmcp.items, getBodies) 
+  local bodies = table.collect(gooey.data.gmcp.items, getBodies) 
   
-  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((expandCorpses and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(corpses).."&lt;DarkSlateGray&gt; corpses"..(#bodies ~=0 and (" "..table.size(bodies).." bodies\n") or "\n"), [[expandCorpses = not expandCorpses gooey.gmcp.displayItems()]], "Expand or collapse this category", true)
-  if expandCorpses then
+  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((gv.expandCorpses and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(corpses).."&lt;DarkSlateGray&gt; corpses"..(#bodies ~=0 and (" "..table.size(bodies).." bodies\n") or "\n"), [[gooey.vars.expandCorpses = not gooey.vars.expandCorpses gooey.funcs.gmcp.displayItems()]], "Expand or collapse this category", true)
+  if gv.expandCorpses then
     for id, value in pairs(bodies) do
-      cechoPopup(console, " "..(gooey.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+      cechoPopup(console, " "..(gooey.funcs.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
     end
     for id, value in pairs(corpses) do
-      cechoPopup(console, " "..(gooey.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+      cechoPopup(console, " "..(gooey.funcs.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
     end
   end
   
   --deal with golds
-    for id, value in pairs(gooey.gmcp.items) do
+    for id, value in pairs(gooey.data.gmcp.items) do
       if value[2]:find("sovereigns") then
-      cechoPopup(console, " "..(gooey.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+      cechoPopup(console, " "..(gooey.funcs.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
       end
     end
 end
 
 -- Function to display the list of people in the room
-function gooey.gmcp.displayRoomPlayers()
+function gfg.displayRoomPlayers()
   clearUserWindow("peopleConsole")
-  for key, value in pairs(gooey.gmcp.people) do
-    cechoPopup("peopleConsole", value.."\n", {[[gooey.setTarget("]]..value..[[")]], [[send("greet ]]..value..[[")]]}, {"Target", "Greet"}, true)
+  for key, value in pairs(gooey.data.gmcp.people) do
+    cechoPopup("peopleConsole", value.."\n", {[[gooey.funcs.setTarget("]]..value..[[")]], [[send("greet ]]..value..[[")]]}, {"Target", "Greet"}, true)
   end
 end
 
 -- Function to update the players list
-function gooey.gmcp.updatePlayersList()
-	gooey.gmcp.people = {}
+function gfg.updatePlayersList()
+	gooey.data.gmcp.people = {}
   for k, v in pairs(gmcp.Room.Players) do
 		if gmcp.Room.Players[k].name ~= gmcp.Char.Status.name then
- 				table.insert(gooey.gmcp.people, gmcp.Room.Players[k].name)
+ 				table.insert(gooey.data.gmcp.people, gmcp.Room.Players[k].name)
 		end 
 	end 
 end
 
 -- Function to handle player addition
-function gooey.gmcp.handlePlayerAddition()
-  table.insert(gooey.gmcp.people, gmcp.Room.AddPlayer.name)
-  gooey.gmcp.displayRoomPlayers()
+function gfg.handlePlayerAddition()
+  table.insert(gooey.data.gmcp.people, gmcp.Room.AddPlayer.name)
+  gooey.funcs.gmcp.displayRoomPlayers()
 end
 
 -- Function to handle player removal
-function gooey.gmcp.handlePlayerRemoval()
-  for i, playerName in pairs(gooey.gmcp.people) do
+function gfg.handlePlayerRemoval()
+  for i, playerName in pairs(gooey.data.gmcp.people) do
     if playerName == gmcp.Room.RemovePlayer then
-      table.remove(gooey.gmcp.people, i)
+      table.remove(gooey.data.gmcp.people, i)
     break
     end
   end
-  gooey.gmcp.displayRoomPlayers()
+  gooey.funcs.gmcp.displayRoomPlayers()
 end
 
 -- Function to manage the event handlers for items and people in the room
-function gooey.gmcp.inventoryeventmanager(event)
+function gfg.inventoryeventmanager(event)
 
   if event == "gmcp.Char.Items.List" and gmcp.Char.Items.List.location == "room" then 
-    gooey.gmcp.itemsList()
+    gooey.funcs.gmcp.itemsList()
   elseif event == "gmcp.Char.Items.Add" and gmcp.Char.Items.Add.location == "room" then 
-    gooey.gmcp.addItems()
+    gooey.funcs.gmcp.addItems()
   elseif event == "gmcp.Char.Items.Remove" and gmcp.Char.Items.Remove.location == "room" then 
-    gooey.gmcp.removeItems()
+    gooey.funcs.gmcp.removeItems()
   elseif event == "gmcp.Room.Players" then
-    gooey.gmcp.updatePlayersList()
-    gooey.gmcp.displayRoomPlayers()
+    gooey.funcs.gmcp.updatePlayersList()
+    gooey.funcs.gmcp.displayRoomPlayers()
   elseif event == "gmcp.Room.AddPlayer" then 
-    gooey.gmcp.handlePlayerAddition()
+    gooey.funcs.gmcp.handlePlayerAddition()
   elseif event == "gmcp.Room.RemovePlayer" then 
-    gooey.gmcp.handlePlayerRemoval()
+    gooey.funcs.gmcp.handlePlayerRemoval()
   end
 
 end
 
-registerAnonymousEventHandler("gmcp.Char.Items.List","gooey.gmcp.inventoryeventmanager")
-registerAnonymousEventHandler("gmcp.Char.Items.Add","gooey.gmcp.inventoryeventmanager")
-registerAnonymousEventHandler("gmcp.Char.Items.Remove","gooey.gmcp.inventoryeventmanager")
-registerAnonymousEventHandler("gmcp.Room.Players", "gooey.gmcp.inventoryeventmanager")
-registerAnonymousEventHandler("gmcp.Room.AddPlayer", "gooey.gmcp.inventoryeventmanager")
-registerAnonymousEventHandler("gmcp.Room.RemovePlayer", "gooey.gmcp.inventoryeventmanager")</script>
+registerAnonymousEventHandler("gmcp.Char.Items.List","gooey.funcs.gmcp.inventoryeventmanager")
+registerAnonymousEventHandler("gmcp.Char.Items.Add","gooey.funcs.gmcp.inventoryeventmanager")
+registerAnonymousEventHandler("gmcp.Char.Items.Remove","gooey.funcs.gmcp.inventoryeventmanager")
+registerAnonymousEventHandler("gmcp.Room.Players", "gooey.funcs.gmcp.inventoryeventmanager")
+registerAnonymousEventHandler("gmcp.Room.AddPlayer", "gooey.funcs.gmcp.inventoryeventmanager")
+registerAnonymousEventHandler("gmcp.Room.RemovePlayer", "gooey.funcs.gmcp.inventoryeventmanager")</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
 				<name>Sea funcs</name>
 				<packageName></packageName>
 				<script>gooey.funcs = gooey.funcs or {}
+gooey.funcs.sea = gooey.funcs.sea or {}
+local gv = gooey.vars
 
-function gooey.funcs.showSeaInfo()
+function gooey.funcs.shipo(state)
+
+if gv.ship.shipOn == nil then gv.ship.shipOn = false end
+
+
 
 end</script>
 				<eventHandlerList />
@@ -2636,16 +2744,16 @@ function gooey.funcs.showActivity()
   local console = "gooey.gui.activityStatusConsole"
   clearUserWindow("console")
   
-  if gooey.vars.shipon then
+  if gooey.vars.sea.shipOn then
   
   
   
   
-  elseif gooey.vars.hunting then
+  elseif gooey.vars.hunt.hunting then
   
   
   
-  elseif gooey.vars.combat then
+  elseif gooey.vars.combat.combating then
   
   
   end
@@ -2658,9 +2766,9 @@ end
 				<name>Gooey Startup</name>
 				<packageName></packageName>
 				<script>
-function gooey.formatAllContainers()
-myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
-mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
+function gooey.funcs.formatAllContainers()
+local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
+local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
 
   Adjustable.Container:doAll(function(s) 
     s:lockContainer("border")
@@ -2673,12 +2781,12 @@ mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
     gooey.gui.roomNameLabel: setFormat("c13")
 end
 
-registerAnonymousEventHandler("sysLoadEvent", "gooey.formatAllContainers")
+registerAnonymousEventHandler("sysLoadEvent", "gooey.funcs.formatAllContainers")
 
 
-function gooey.startup()
-  if not gooey.started then
-    gooey.started = true
+function gooey.funcs.startup()
+  if not gooey.vars.gui.started then
+    gooey.vars.gui.started = true
       sendGMCP([[Core.Supports.Add ["Comm.Channel 1"] ]])
       sendGMCP('Core.Supports.Add ["IRE.Tasks 1"]')
       sendGMCP('Core.Supports.Add ["IRE.Time 1"]')
@@ -2698,7 +2806,7 @@ function gooey.startup()
   end
 end
 
-registerAnonymousEventHandler("sysLoadEvent", "gooey.startup")</script>
+registerAnonymousEventHandler("sysLoadEvent", "gooey.funcs.startup")</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -2733,19 +2841,19 @@ registerAnonymousEventHandler("sysLoadEvent", "gooey.startup")</script>
     color_table.blaze_orange  = {255, 102, 0}
 
 --Function that sets the gooey.target variable
-function gooey.setTarget(what)
-  send("st "..what)
-  gooey.target = what
+function gooey.funcs.setTarget(what)
+  send("st "..what, false)
+  gooey.vars.target = what:title()
   gooey.echo("Target: &lt;LightSteelBlue&gt;"..what:title())
 end
 
 --Echo things in style 
-function gooey.echo(text) 
+function gooey.funcs.echo(text) 
   cecho("\n&lt;white&gt;(&lt;firebrick&gt;gooey&lt;white&gt;)&lt;reset&gt;: "..text.."\n")
 end
 
 --Function to alert about things in a more visible way than echoes
-function gooey.alert(text, color1, color2) 
+function gooey.funcs.alert(text, color1, color2) 
   color1 = color1 or "firebrick"
   color2 = color2 or "white"
   
@@ -2758,9 +2866,10 @@ function gooey.alert(text, color1, color2)
   end
 
   text = text or "Got asked to send an alert, but wasn't told what... so... BE ALERTED!"
-
-  --draw the frame of the alert
+  
   local leng = string.len(text)
+    
+  --draw the frame of the alert
   echo("\n")
   cecho(color1..string.rep("-", leng+2).."&lt;reset&gt;")
   echo("\n")
@@ -2775,13 +2884,13 @@ function gooey.alert(text, color1, color2)
 end
 
 --Delete the line and the prompt following it
-function gooey.deletelineP() 
+function gooey.funcs.deletelineP() 
   deleteLine()
   tempLineTrigger(1, 1, [[if isPrompt() then deleteLine() end]])
 end
 
 --List tables with a nice "or" or "and" (degault) at the end
-function gooey.tableConcat(tbl, andor) 
+function gooey.funcs.tableConcat(tbl, andor) 
   local index = 1
   local answer = ""
   andor = andor or "and"
@@ -2812,13 +2921,13 @@ function gooey.tableConcat(tbl, andor)
 end
 
 --Function to round numbers to a certain number of decimals
-function gooey.round(num, idp)
+function gooey.funcs.round(num, idp)
   local mult = 10^(idp or 0)
   return math.floor(num * mult + 0.5) / mult
 end
 
 --Function to toggle curing - except if no curing system it needs a state.
-function gooey.pp(state) 
+function gooey.funcs.pp(state) 
   if Legacy then
     if not state then
       state = Legacy.Settings.Curing.status
@@ -2831,20 +2940,17 @@ function gooey.pp(state)
     else state = (state == "on" and "off" or "on")
     svo.app(state)
     end
-  else 
+  else --no svo and no Legacy
     if not state then
-      echo("Need a state for the curing bro")
-      return
-    else
-    state = ((state == "on" and true) or false) 
-    send("curing "..(state and "on" or "off"))
+      state = (gooey.vars.serverSettings.curingEnabled == "Yes" and "off" or "on")
     end
-      echo(""..(state and "Unp"  or "P").."aused the system") 
+    send("curing "..state)
+    echo(""..(state == "on" and "Unp"  or "P").."aused the system") 
   end
 end
 
 --Function to get the appropriate color for health based on health level
-function gooey.healthColor(somehealththing, somehealththingmax)
+function gooey.funcs.healthColor(somehealththing, somehealththingmax)
 if not somehealththing then
   if tonumber(gmcp.Char.Vitals.hp) &gt;= 2*tonumber(gmcp.Char.Vitals.maxhp)/3 then return "a_onelevel"
     elseif tonumber(gmcp.Char.Vitals.hp) &gt;= tonumber(gmcp.Char.Vitals.maxhp)/3 then return "ansiYellow"
@@ -2859,7 +2965,7 @@ end
 end
 
 --get hex color codes - mostly used for hull/sails health
-function gooey.getHealthColorHex(thing)
+function gooey.funcs.getHealthColorHex(thing)
 thing = tonumber(thing)
   if thing &lt; 40 then return "#FF0000"
   elseif thing &lt; 50 then return "#BD422E"
@@ -2870,56 +2976,61 @@ thing = tonumber(thing)
 end
 
 --Function that gets us to full stats before sending a command (the command is optional)
-function gooey.fl(dooncefull)
-  if not gooey.serverSettings.siphealth or not gooey.serverSettings.sipmana then
-    gooey.getServerSettings()
-    gooey.echo("Whoops, gotta check your preferences first, standby...")
-    gooey.flwhat = dooncefull
+function gooey.funcs.fl(dooncefull)
+  if not gooey.vars.serverSettings.siphealth or not gooey.vars.serverSettings.sipmana then
+    gooey.funcs.serverSettings.getServerSettings()
+    gooey.funcs.echo("Whoops, gotta check your preferences first, standby...")
+    gooey.vars.flwhat = dooncefull
   end
-  if gooey.gmcp.hp and gooey.gmcp.hp &gt;= gooey.gmcp.maxhp and gooey.gmcp.mp and gooey.gmcp.mp &gt;= gooey.gmcp.maxmp then 
-    if dooncefull == "gooey.good to go" or not dooncefull then
-      if not gooey.flwhat then 
-        gooey.flwhat = "" 
+  if gooey.vars.gmcp.hp and gooey.vars.gmcp.hp &gt;= gooey.vars.gmcp.maxhp and gooey.vars.gmcp.mp and gooey.vars.gmcp.mp &gt;= gooey.vars.gmcp.maxmp then 
+    if dooncefull == "gooey good to go" or not dooncefull then
+      if not gooey.vars.flwhat then 
+        gooey.vars.flwhat = "" 
       end
-    else gooey.flwhat = dooncefull
+    else gooey.vars.flwhat = dooncefull
     end
-    gooey.echo("We're full stats, yay! Doing &lt;orange&gt;"..(gooey.flwhat == "" and "whatever we want now" or gooey.flwhat).."&lt;reset&gt;.")
-    expandAlias(gooey.flwhat)
-    gooey.flwhat = nil
+    gooey.funcs.echo("We're full stats, yay! Doing &lt;orange&gt;"..(gooey.vars.flwhat == "" and "whatever we want now" or gooey.vars.flwhat).."&lt;reset&gt;.")
+    expandAlias(gooey.vars.flwhat)
+    gooey.vars.flwhat = nil
   else
-    gooey.flwhat = dooncefull
-    tempTimer(0, [[gooey.getfull()]])
-    gooey.echo("Getting full, hang on.")
+    gooey.vars.flwhat = dooncefull
+    tempTimer(0, [[gooey.funcs.getfull()]])
+    gooey.funcs.echo("Getting full, hang on.")
   end
 end
 
-registerAnonymousEventHandler("gooey.good to go", "gooey.fl")
+registerAnonymousEventHandler("gooey good to go", "gooey.funcs.fl")
+
+function temp()
+echo("gooey good to go was raised")
+end
+registerAnonymousEventHandler("gooey good to go", "temp")
 
 --Function that sets curing for mana and health to max, so that serverside fills up our bars
-function gooey.getfull()
-  gooey.checkVitals = true
+function gooey.funcs.getfull()
+  gooey.vars.checkVitals = true
   send("curing siphealth 99")
   send("curing sipmana 99") 
-  gooey.goodtogo()
+  gooey.funcs.goodtogo()
 end
 
 --Function that raises an event when we're full stats, and sets the curing back to its original state
-function gooey.goodtogo()
-  if gooey.checkVitals then
-  if gooey.gmcp.hp and gooey.gmcp.hp &gt;= gooey.gmcp.maxhp and gooey.gmcp.mp and gooey.gmcp.mp &gt;= gooey.gmcp.maxmp then
-    raiseEvent("gooey.good to go")
-    gooey.checkVitals = false
-    send("curing siphealth "..gooey.serverSettings.siphealth, false)
-    send("curing sipmana "..gooey.serverSettings.sipmana, false)
-    gooey.echo("I set the curing stats back to what they were before.")
+function gooey.funcs.goodtogo()
+  if gooey.vars.checkVitals then
+  if gooey.vars.gmcp.hp and gooey.vars.gmcp.hp &gt;= gooey.vars.gmcp.maxhp and gooey.vars.gmcp.mp and gooey.vars.gmcp.mp &gt;= gooey.vars.gmcp.maxmp then
+    raiseEvent("gooey good to go")
+    gooey.vars.checkVitals = false
+    send("curing siphealth "..gooey.vars.serverSettings.siphealth, false)
+    send("curing sipmana "..gooey.vars.serverSettings.sipmana, false)
+    gooey.funcs.echo("I set the curing stats back to what they were before.")
   end
   end
 end
 
-registerAnonymousEventHandler("gmcp.Char.Vitals", "gooey.goodtogo")
+registerAnonymousEventHandler("gmcp.Char.Vitals", "gooey.funcs.goodtogo")
 
 --Figure out what color to use for a player
-function gooey.getPlayerHighlight(name)
+function gooey.funcs.getPlayerHighlight(name)
 	if name == target then
 		return "&lt;blaze_orange&gt;"
 	elseif svo then 
@@ -2930,7 +3041,7 @@ function gooey.getPlayerHighlight(name)
 end
 
 --Get the color for an item
-function gooey.getItemHighlight(value)
+function gooey.funcs.getItemHighlight(value)
   if value.attrib == "m" then 
     if value.id == target then return "&lt;blaze_orange&gt;" 
     else return "&lt;green&gt;" 
@@ -2945,7 +3056,7 @@ function gooey.getItemHighlight(value)
 end
 
 --Get the color for a mob
-function gooey.getMobHighlight(value)
+function gooey.funcs.getMobHighlight(value)
   if (gooey.target and value == gooey.target) or (keneanung and keneanung.bashing.targetList[1] and value == keneanung.bashing.targetList[1].id) or (gmcp.IRE and gmcp.IRE.Target and value == gmcp.IRE.Target.Set) then 
     return "&lt;blaze_orange&gt;" 
     else return "&lt;green&gt;" 
@@ -2971,7 +3082,6 @@ end</script>
 			<name>gooey DenDB</name>
 			<packageName></packageName>
 			<script>gooey = gooey or {}
-gooey.gmcp = gooey.gmcp or {}
 gooey.dendb = gooey.dendb or {}
 gooey.dendb.db = gooey.dendb.db or {}
 
