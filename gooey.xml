@@ -2407,7 +2407,7 @@ local gfg = gooey.funcs.gmcp
 
 --Function to pick up the server-side command separator, config pagelength, and curing settings
 function gfs.getServerSettings(forced) 
-  if forced == "gmcp.Char" then
+  if not forced then
     if not gooey.vars.serverSettings.comsep then
       tempTrigger("You can set a separator to be able to send multiple commands to Achaea at once.", [[deleteLine()]], 1)
       send("config commandseparator", false)
@@ -2435,7 +2435,15 @@ function gfs.getServerSettings(forced)
   
 end
 
-registerAnonymousEventHandler("gmcp.Char", "gooey.funcs.serverSettings.getServerSettings")
+--gotta delay the getServerSettings cause otherwise it'll spam like a bitch
+function gfs.delayGettingInfo()
+  if not gooey.vars.alreadyGettingInfoCalmDown then
+    gooey.vars.alreadyGettingInfoCalmDown = true
+    tempTimer(5, [[gooey.funcs.serverSettings.getServerSettings()]])
+  end
+end
+
+registerAnonymousEventHandler("gmcp.Char", "gooey.funcs.serverSettings.delayGettingInfo")
 
 --Function that gets info about the player from gmcp
 function gfg.char()
