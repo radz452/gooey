@@ -2,207 +2,8 @@
 <!DOCTYPE MudletPackage>
 <MudletPackage version="1.001">
 	<TriggerPackage>
-		<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-			<name>getcuringinfo</name>
-			<script>deleteLine()</script>
-			<triggerType>0</triggerType>
-			<conditonLineDelta>0</conditonLineDelta>
-			<mStayOpen>999</mStayOpen>
-			<mCommand></mCommand>
-			<packageName></packageName>
-			<mFgColor>#ff0000</mFgColor>
-			<mBgColor>#ffff00</mBgColor>
-			<mSoundFile></mSoundFile>
-			<colorTriggerFgColor>#000000</colorTriggerFgColor>
-			<colorTriggerBgColor>#000000</colorTriggerBgColor>
-			<regexCodeList>
-				<string>^Curing Status:</string>
-			</regexCodeList>
-			<regexCodePropertyList>
-				<integer>1</integer>
-			</regexCodePropertyList>
-			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-				<name>enabled</name>
-				<script>gooey.vars.serverSettings.curingEnabled = matches[2]
-</script>
-				<triggerType>0</triggerType>
-				<conditonLineDelta>0</conditonLineDelta>
-				<mStayOpen>0</mStayOpen>
-				<mCommand></mCommand>
-				<packageName></packageName>
-				<mFgColor>#ff0000</mFgColor>
-				<mBgColor>#ffff00</mBgColor>
-				<mSoundFile></mSoundFile>
-				<colorTriggerFgColor>#000000</colorTriggerFgColor>
-				<colorTriggerBgColor>#000000</colorTriggerBgColor>
-				<regexCodeList>
-					<string>^Enabled:\s+(Yes|No)</string>
-				</regexCodeList>
-				<regexCodePropertyList>
-					<integer>1</integer>
-				</regexCodePropertyList>
-			</Trigger>
-			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-				<name>sip health</name>
-				<script>gooey.vars.serverSettings.siphealth = matches[2]</script>
-				<triggerType>0</triggerType>
-				<conditonLineDelta>0</conditonLineDelta>
-				<mStayOpen>0</mStayOpen>
-				<mCommand></mCommand>
-				<packageName></packageName>
-				<mFgColor>#ff0000</mFgColor>
-				<mBgColor>#ffff00</mBgColor>
-				<mSoundFile></mSoundFile>
-				<colorTriggerFgColor>#000000</colorTriggerFgColor>
-				<colorTriggerBgColor>#000000</colorTriggerBgColor>
-				<regexCodeList>
-					<string>^Sip health at:\s+(\d+)%$</string>
-				</regexCodeList>
-				<regexCodePropertyList>
-					<integer>1</integer>
-				</regexCodePropertyList>
-			</Trigger>
-			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-				<name>sip mana</name>
-				<script>gooey.vars.serverSettings.sipmana = matches[2]</script>
-				<triggerType>0</triggerType>
-				<conditonLineDelta>0</conditonLineDelta>
-				<mStayOpen>0</mStayOpen>
-				<mCommand></mCommand>
-				<packageName></packageName>
-				<mFgColor>#ff0000</mFgColor>
-				<mBgColor>#ffff00</mBgColor>
-				<mSoundFile></mSoundFile>
-				<colorTriggerFgColor>#000000</colorTriggerFgColor>
-				<colorTriggerBgColor>#000000</colorTriggerBgColor>
-				<regexCodeList>
-					<string>^Sip mana at:\s+(\d+)%$</string>
-				</regexCodeList>
-				<regexCodePropertyList>
-					<integer>1</integer>
-				</regexCodePropertyList>
-			</Trigger>
-			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-				<name>everything else</name>
-				<script>deleteLine()</script>
-				<triggerType>0</triggerType>
-				<conditonLineDelta>0</conditonLineDelta>
-				<mStayOpen>0</mStayOpen>
-				<mCommand></mCommand>
-				<packageName></packageName>
-				<mFgColor>#ff0000</mFgColor>
-				<mBgColor>#ffff00</mBgColor>
-				<mSoundFile></mSoundFile>
-				<colorTriggerFgColor>#000000</colorTriggerFgColor>
-				<colorTriggerBgColor>#000000</colorTriggerBgColor>
-				<regexCodeList>
-					<string>^.*$</string>
-				</regexCodeList>
-				<regexCodePropertyList>
-					<integer>1</integer>
-				</regexCodePropertyList>
-			</Trigger>
-			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-				<name>close gate</name>
-				<script>setTriggerStayOpen("getcuringinfo", 0)
-disableTrigger("getcuringinfo")</script>
-				<triggerType>0</triggerType>
-				<conditonLineDelta>0</conditonLineDelta>
-				<mStayOpen>0</mStayOpen>
-				<mCommand></mCommand>
-				<packageName></packageName>
-				<mFgColor>#ff0000</mFgColor>
-				<mBgColor>#ffff00</mBgColor>
-				<mSoundFile></mSoundFile>
-				<colorTriggerFgColor>#000000</colorTriggerFgColor>
-				<colorTriggerBgColor>#000000</colorTriggerBgColor>
-				<regexCodeList>
-					<string></string>
-				</regexCodeList>
-				<regexCodePropertyList>
-					<integer>7</integer>
-				</regexCodePropertyList>
-			</Trigger>
-		</Trigger>
-		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-			<name>My Prompt</name>
-			<script>if gmcp and gmcp.Char and gmcp.Char.Vitals and gmcp.Char.Status.name == "Killian" then
-  deleteLine()
-  if gooey.vars.gmcp.old then
-   oldhp = gooey.vars.gmcp.old.hp or tonumber(gmcp.Char.Vitals.hp)
-  end
-  --some bufer
-  cecho("\n                                    ")
-  
-  --timestamp
-  cecho("&lt;black&gt;"..getTime(true, 'hh:mm:ss'))
-  
-  --target info
-  if gmcp.IRE and gmcp.IRE.Target then
-    if gmcp.IRE.Target.Set ~= "" and gmcp.IRE.Target.Info.id ~= "-1" then
-      cecho("&lt;blaze_orange&gt;"..gmcp.IRE.Target.Info.short_desc.." @ &lt;"..gooey.funcs.healthColor(tonumber(gmcp.IRE.Target.Info.hpperc), 100).."&gt;"..gmcp.IRE.Target.Info.hpperc.."&lt;DimGrey&gt; |")
-    end
-  end
-  
-  --health
-  cecho(" &lt;"..gooey.funcs.healthColor().."&gt;"..gmcp.Char.Vitals.hp.."/"..gmcp.Char.Vitals.maxhp.."H "..gooey.funcs.round(tonumber(gmcp.Char.Vitals.hp)/tonumber(gmcp.Char.Vitals.maxhp)*100).."% ")
-  --mana
-  cecho("&lt;a_onelevel&gt;"..gmcp.Char.Vitals.mp.."/"..gmcp.Char.Vitals.maxmp.."M ")
-  --missing bal or eq?
-  if gmcp.Char.Vitals.bal == "0" or gmcp.Char.Vitals.eq == "0" then 
-    cecho("&lt;DimGrey&gt;|") 
-  end
-  --balance
-  cecho("&lt;DimGrey&gt;"..((gmcp.Char.Vitals.bal == "1") and "" or "&lt;DimGrey&gt; -bal"))
-  --eq
-  cecho("&lt;DimGrey&gt;"..((gmcp.Char.Vitals.eq == "1") and "" or "&lt;DimGrey&gt;-eq"))
-  --did our health change?
-  if oldhp ~= tonumber(gmcp.Char.Vitals.hp) then
-    cecho("&lt;DimGrey&gt; | &lt;DarkSlateGray&gt;("..(tonumber(gmcp.Char.Vitals.hp)-oldhp).."h)")
-  end
-  oldhp = tonumber(gmcp.Char.Vitals.hp)
-end</script>
-			<triggerType>0</triggerType>
-			<conditonLineDelta>0</conditonLineDelta>
-			<mStayOpen>0</mStayOpen>
-			<mCommand></mCommand>
-			<packageName></packageName>
-			<mFgColor>#ff0000</mFgColor>
-			<mBgColor>#ffff00</mBgColor>
-			<mSoundFile></mSoundFile>
-			<colorTriggerFgColor>#000000</colorTriggerFgColor>
-			<colorTriggerBgColor>#000000</colorTriggerBgColor>
-			<regexCodeList>
-				<string></string>
-			</regexCodeList>
-			<regexCodePropertyList>
-				<integer>7</integer>
-			</regexCodePropertyList>
-		</Trigger>
-		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-			<name>Touch starbrust</name>
-			<script>send("touch starburst", false)</script>
-			<triggerType>0</triggerType>
-			<conditonLineDelta>0</conditonLineDelta>
-			<mStayOpen>0</mStayOpen>
-			<mCommand></mCommand>
-			<packageName></packageName>
-			<mFgColor>#ff0000</mFgColor>
-			<mBgColor>#ffff00</mBgColor>
-			<mSoundFile></mSoundFile>
-			<colorTriggerFgColor>#000000</colorTriggerFgColor>
-			<colorTriggerBgColor>#000000</colorTriggerBgColor>
-			<regexCodeList>
-				<string>^As the starburst tattoo's shape is codified on the \w+ of yourself, the last of the ink leaves the air and you pause for a moment to admire your handiwork.$</string>
-				<string>^As the starburst tattoo's shape is codified on your \w+</string>
-			</regexCodeList>
-			<regexCodePropertyList>
-				<integer>1</integer>
-				<integer>1</integer>
-			</regexCodePropertyList>
-		</Trigger>
 		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-			<name>Wilderness Map</name>
+			<name>gooey core</name>
 			<script></script>
 			<triggerType>0</triggerType>
 			<conditonLineDelta>0</conditonLineDelta>
@@ -216,8 +17,130 @@ end</script>
 			<colorTriggerBgColor>#000000</colorTriggerBgColor>
 			<regexCodeList />
 			<regexCodePropertyList />
-			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-				<name>GMCP Map Catchers</name>
+			<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>getcuringinfo</name>
+				<script>deleteLine()</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>999</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^Curing Status:</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>enabled</name>
+					<script>gooey.vars.serverSettings.curingEnabled = matches[2]
+</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^Enabled:\s+(Yes|No)</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>sip health</name>
+					<script>gooey.vars.serverSettings.siphealth = matches[2]</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^Sip health at:\s+(\d+)%$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>sip mana</name>
+					<script>gooey.vars.serverSettings.sipmana = matches[2]</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^Sip mana at:\s+(\d+)%$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>everything else</name>
+					<script>deleteLine()</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^.*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>close gate</name>
+					<script>setTriggerStayOpen("getcuringinfo", 0)
+disableTrigger("getcuringinfo")</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string></string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>7</integer>
+					</regexCodePropertyList>
+				</Trigger>
+			</Trigger>
+			<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Wilderness Map</name>
 				<script></script>
 				<triggerType>0</triggerType>
 				<conditonLineDelta>0</conditonLineDelta>
@@ -229,19 +152,11 @@ end</script>
 				<mSoundFile></mSoundFile>
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
-				<regexCodeList>
-					<string>return gmcp.Room</string>
-				</regexCodeList>
-				<regexCodePropertyList>
-					<integer>4</integer>
-				</regexCodePropertyList>
-				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-					<name>GMCP Rooms</name>
-					<script>if gooey.gui.map.current ~= "Mapper" then
-  gooey.gui.map[gooey.gui.map.current]:hide()
-end
-gooey.gui.map.current = "Mapper"
-gooey.gui.map["Mapper"]:show()</script>
+				<regexCodeList />
+				<regexCodePropertyList />
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>GMCP Map Catchers</name>
+					<script></script>
 					<triggerType>0</triggerType>
 					<conditonLineDelta>0</conditonLineDelta>
 					<mStayOpen>0</mStayOpen>
@@ -253,17 +168,40 @@ gooey.gui.map["Mapper"]:show()</script>
 					<colorTriggerFgColor>#000000</colorTriggerFgColor>
 					<colorTriggerBgColor>#000000</colorTriggerBgColor>
 					<regexCodeList>
-						<string>return gmcp.Room.Info.num &lt; 2121028</string>
-						<string>return gmcp.Room.Info.num &gt; 0</string>
+						<string>return gmcp.Room</string>
 					</regexCodeList>
 					<regexCodePropertyList>
 						<integer>4</integer>
-						<integer>4</integer>
 					</regexCodePropertyList>
-				</Trigger>
-				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-					<name>GMCP Wilderness</name>
-					<script>if gooey.gui.map.current ~= "Wilderness" then
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>GMCP Rooms</name>
+						<script>if gooey.gui.map.current ~= "Mapper" then
+  gooey.gui.map[gooey.gui.map.current]:hide()
+end
+gooey.gui.map.current = "Mapper"
+gooey.gui.map["Mapper"]:show()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>#ff0000</mFgColor>
+						<mBgColor>#ffff00</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#000000</colorTriggerFgColor>
+						<colorTriggerBgColor>#000000</colorTriggerBgColor>
+						<regexCodeList>
+							<string>return gmcp.Room.Info.num &lt; 2121028</string>
+							<string>return gmcp.Room.Info.num &gt; 0</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>4</integer>
+							<integer>4</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>GMCP Wilderness</name>
+						<script>if gooey.gui.map.current ~= "Wilderness" then
   gooey.gui.map[gooey.gui.map.current]:hide()
 end
 gooey.gui.map.current = "Wilderness"
@@ -274,27 +212,27 @@ gooey.gui.map["Wilderness"]:show()
 --2024249
 --2106249
 --2023249</script>
-					<triggerType>0</triggerType>
-					<conditonLineDelta>0</conditonLineDelta>
-					<mStayOpen>0</mStayOpen>
-					<mCommand></mCommand>
-					<packageName></packageName>
-					<mFgColor>#ff0000</mFgColor>
-					<mBgColor>#ffff00</mBgColor>
-					<mSoundFile></mSoundFile>
-					<colorTriggerFgColor>#000000</colorTriggerFgColor>
-					<colorTriggerBgColor>#000000</colorTriggerBgColor>
-					<regexCodeList>
-						<string>return gmcp.Room.Info.num &gt; 2121028</string>
-						<string>return gmcp.Room.Info.coords==""</string>
-					</regexCodeList>
-					<regexCodePropertyList>
-						<integer>4</integer>
-						<integer>4</integer>
-					</regexCodePropertyList>
-					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-						<name>Wilderness Catch All</name>
-						<script>for i=1, 50 do
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>#ff0000</mFgColor>
+						<mBgColor>#ffff00</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#000000</colorTriggerFgColor>
+						<colorTriggerBgColor>#000000</colorTriggerBgColor>
+						<regexCodeList>
+							<string>return gmcp.Room.Info.num &gt; 2121028</string>
+							<string>return gmcp.Room.Info.coords==""</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>4</integer>
+							<integer>4</integer>
+						</regexCodePropertyList>
+						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+							<name>Wilderness Catch All</name>
+							<script>for i=1, 50 do
 	selectString("\^", i) 
 	fg("black")
 	bg("black")
@@ -315,6 +253,31 @@ appendBuffer("Wilderness")
 deleteLine()
 
 </script>
+							<triggerType>0</triggerType>
+							<conditonLineDelta>0</conditonLineDelta>
+							<mStayOpen>0</mStayOpen>
+							<mCommand></mCommand>
+							<packageName></packageName>
+							<mFgColor>#ff0000</mFgColor>
+							<mBgColor>#ffff00</mBgColor>
+							<mSoundFile></mSoundFile>
+							<colorTriggerFgColor>#000000</colorTriggerFgColor>
+							<colorTriggerBgColor>#000000</colorTriggerBgColor>
+							<regexCodeList>
+								<string>^[ wnmjSIMXWYx',;#=@~%!\.\^\|\*\?\+\(]+$</string>
+							</regexCodeList>
+							<regexCodePropertyList>
+								<integer>1</integer>
+							</regexCodePropertyList>
+						</Trigger>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>GMCP Oceans</name>
+						<script>if gooey.gui.map.current ~= "Ocean" then
+  gooey.gui.map[gooey.gui.map.current]:hide()
+end
+gooey.gui.map.current = "Ocean"
+gooey.gui.map["Ocean"]:show() </script>
 						<triggerType>0</triggerType>
 						<conditonLineDelta>0</conditonLineDelta>
 						<mStayOpen>0</mStayOpen>
@@ -326,41 +289,16 @@ deleteLine()
 						<colorTriggerFgColor>#000000</colorTriggerFgColor>
 						<colorTriggerBgColor>#000000</colorTriggerBgColor>
 						<regexCodeList>
-							<string>^[ wnmjSIMXWYx',;#=@~%!\.\^\|\*\?\+\(]+$</string>
+							<string>return gmcp.Room.Info.environment=='Vessel'</string>
+							<string>return gmcp.Room.Info.num==-2</string>
 						</regexCodeList>
 						<regexCodePropertyList>
-							<integer>1</integer>
+							<integer>4</integer>
+							<integer>4</integer>
 						</regexCodePropertyList>
-					</Trigger>
-				</Trigger>
-				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-					<name>GMCP Oceans</name>
-					<script>if gooey.gui.map.current ~= "Ocean" then
-  gooey.gui.map[gooey.gui.map.current]:hide()
-end
-gooey.gui.map.current = "Ocean"
-gooey.gui.map["Ocean"]:show() </script>
-					<triggerType>0</triggerType>
-					<conditonLineDelta>0</conditonLineDelta>
-					<mStayOpen>0</mStayOpen>
-					<mCommand></mCommand>
-					<packageName></packageName>
-					<mFgColor>#ff0000</mFgColor>
-					<mBgColor>#ffff00</mBgColor>
-					<mSoundFile></mSoundFile>
-					<colorTriggerFgColor>#000000</colorTriggerFgColor>
-					<colorTriggerBgColor>#000000</colorTriggerBgColor>
-					<regexCodeList>
-						<string>return gmcp.Room.Info.environment=='Vessel'</string>
-						<string>return gmcp.Room.Info.num==-2</string>
-					</regexCodeList>
-					<regexCodePropertyList>
-						<integer>4</integer>
-						<integer>4</integer>
-					</regexCodePropertyList>
-					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-						<name>Ocean Catch All</name>
-						<script>selectCurrentLine()
+						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+							<name>Ocean Catch All</name>
+							<script>selectCurrentLine()
 
 for i=1, 50 do
 	 selectString("#", i) 
@@ -416,28 +354,63 @@ copy()
 appendBuffer("Ocean")
 deleteLine()
 </script>
-						<triggerType>0</triggerType>
-						<conditonLineDelta>0</conditonLineDelta>
-						<mStayOpen>0</mStayOpen>
-						<mCommand></mCommand>
-						<packageName></packageName>
-						<mFgColor>#ff0000</mFgColor>
-						<mBgColor>#ffff00</mBgColor>
-						<mSoundFile></mSoundFile>
-						<colorTriggerFgColor>#000000</colorTriggerFgColor>
-						<colorTriggerBgColor>#000000</colorTriggerBgColor>
-						<regexCodeList>
-							<string>^[ wnmjSIMXWYx',;#=@~%!\.\^\|\*\?\+\(]+$</string>
-						</regexCodeList>
-						<regexCodePropertyList>
-							<integer>1</integer>
-						</regexCodePropertyList>
+							<triggerType>0</triggerType>
+							<conditonLineDelta>0</conditonLineDelta>
+							<mStayOpen>0</mStayOpen>
+							<mCommand></mCommand>
+							<packageName></packageName>
+							<mFgColor>#ff0000</mFgColor>
+							<mBgColor>#ffff00</mBgColor>
+							<mSoundFile></mSoundFile>
+							<colorTriggerFgColor>#000000</colorTriggerFgColor>
+							<colorTriggerBgColor>#000000</colorTriggerBgColor>
+							<regexCodeList>
+								<string>^[ wnmjSIMXWYx',;#=@~%!\.\^\|\*\?\+\(]+$</string>
+							</regexCodeList>
+							<regexCodePropertyList>
+								<integer>1</integer>
+							</regexCodePropertyList>
+						</Trigger>
 					</Trigger>
 				</Trigger>
-			</Trigger>
-			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-				<name>Ship Room Detected</name>
-				<script>clearWindow("Wilderness") </script>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Ship Room Detected</name>
+					<script>clearWindow("Wilderness") </script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>Quarterdeck</string>
+						<string>Main deck</string>
+						<string>Side deck</string>
+						<string>Stern</string>
+						<string>Ship bow</string>
+						<string>The ship moves</string>
+						<string>The ship drifts</string>
+						<string>Crow's nest.</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>2</integer>
+						<integer>2</integer>
+						<integer>2</integer>
+						<integer>2</integer>
+						<integer>2</integer>
+						<integer>2</integer>
+						<integer>2</integer>
+						<integer>2</integer>
+					</regexCodePropertyList>
+				</Trigger>
+			</TriggerGroup>
+			<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Sea</name>
+				<script></script>
 				<triggerType>0</triggerType>
 				<conditonLineDelta>0</conditonLineDelta>
 				<mStayOpen>0</mStayOpen>
@@ -448,71 +421,17 @@ deleteLine()
 				<mSoundFile></mSoundFile>
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
-				<regexCodeList>
-					<string>Quarterdeck</string>
-					<string>Main deck</string>
-					<string>Side deck</string>
-					<string>Stern</string>
-					<string>Ship bow</string>
-					<string>The ship moves</string>
-					<string>The ship drifts</string>
-					<string>Crow's nest.</string>
-				</regexCodeList>
-				<regexCodePropertyList>
-					<integer>2</integer>
-					<integer>2</integer>
-					<integer>2</integer>
-					<integer>2</integer>
-					<integer>2</integer>
-					<integer>2</integer>
-					<integer>2</integer>
-					<integer>2</integer>
-				</regexCodePropertyList>
-			</Trigger>
-		</TriggerGroup>
-		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-			<name>We're blind, fo'</name>
-			<script>send("touch mindseye")</script>
-			<triggerType>0</triggerType>
-			<conditonLineDelta>0</conditonLineDelta>
-			<mStayOpen>0</mStayOpen>
-			<mCommand></mCommand>
-			<packageName></packageName>
-			<mFgColor>#ff0000</mFgColor>
-			<mBgColor>#ffff00</mBgColor>
-			<mSoundFile></mSoundFile>
-			<colorTriggerFgColor>#000000</colorTriggerFgColor>
-			<colorTriggerBgColor>#000000</colorTriggerBgColor>
-			<regexCodeList>
-				<string>^You\? As blind as a bat. Doing what\?$</string>
-			</regexCodeList>
-			<regexCodePropertyList>
-				<integer>1</integer>
-			</regexCodePropertyList>
-		</Trigger>
-		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-			<name>Sea</name>
-			<script></script>
-			<triggerType>0</triggerType>
-			<conditonLineDelta>0</conditonLineDelta>
-			<mStayOpen>0</mStayOpen>
-			<mCommand></mCommand>
-			<packageName></packageName>
-			<mFgColor>#ff0000</mFgColor>
-			<mBgColor>#ffff00</mBgColor>
-			<mSoundFile></mSoundFile>
-			<colorTriggerFgColor>#000000</colorTriggerFgColor>
-			<colorTriggerBgColor>#000000</colorTriggerBgColor>
-			<regexCodeList />
-			<regexCodePropertyList />
-			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-				<name>Battle Prompt</name>
-				<script>--selectCurrentLine()
---copy()
---appendBuffer("myPrompt")
+				<regexCodeList />
+				<regexCodePropertyList />
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Battle Prompt</name>
+					<script>selectCurrentLine()
+copy()
+appendBuffer("shipPromptConsole")
 --fg("a_onelevel")
 --cinsertText("                             ")
---deleteLine()
+deleteLine()
+deselect()
 gooey.vars = gooey.vars or {}
 gooey.vars.sea = gooey.vars.sea or {}
 gs = gooey.vars.sea
@@ -563,7 +482,9 @@ elseif gs.hull == 100 then
   gs.repairingHull = false
 end
 
-if gs.oldhull and gs.hull - gs.oldhull ~= 0 then cecho("\n&lt;DimGrey&gt;Hull: "..(gs.hull - gs.oldhull &gt; 0 and ("&lt;cyan&gt;+"..gs.hull - gs.oldhull) or ("&lt;yellow&gt;"..gs.hull - gs.oldhull))) end
+if gs.oldhull and type(gs.oldhull) == "number" and gs.hull - gs.oldhull ~= 0 then 
+  cecho("\n&lt;DimGrey&gt;Hull: "..(gs.hull - gs.oldhull &gt; 0 and ("&lt;cyan&gt;+"..gs.hull - gs.oldhull) or ("&lt;yellow&gt;"..gs.hull - gs.oldhull))) 
+  end
 
 gooey.funcs.showActivity()
 
@@ -596,27 +517,196 @@ if gs.hull &lt; 10 then
   playsound("Low hull.wav")
   alerted10 = true
 end</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^= Sl (\d+|\w+)%? - hp +(\d+|\w+)%?,Hl: +(\d+|\w+)%?,Wd (\w+)@(\d+\w+),Cr\/Sp (\w+)@(\d+),Sea (\w+),?(.*),?(.*)$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+			</TriggerGroup>
+			<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>PopOut</name>
+				<script></script>
 				<triggerType>0</triggerType>
 				<conditonLineDelta>0</conditonLineDelta>
 				<mStayOpen>0</mStayOpen>
 				<mCommand></mCommand>
-				<packageName></packageName>
+				<packageName>HelpPopups</packageName>
 				<mFgColor>#ff0000</mFgColor>
 				<mBgColor>#ffff00</mBgColor>
 				<mSoundFile></mSoundFile>
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
-				<regexCodeList>
-					<string>^= Sl (\d+|\w+)%? - hp +(\d+|\w+)%?,Hl: +(\d+|\w+)%?,Wd (\w+)@(\d+\w+),Cr\/Sp (\w+)@(\d+),Sea (\w+),?(.*),?(.*)$</string>
-				</regexCodeList>
-				<regexCodePropertyList>
-					<integer>1</integer>
-				</regexCodePropertyList>
-			</Trigger>
+				<regexCodeList />
+				<regexCodePropertyList />
+				<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="yes" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>poptrig</name>
+					<script>if not gooey.gui.popOutConsole then
+gooey.gui.build.popOut()
+end
+gooey.gui.popOutWindow:show()
+clearWindow("popOutConsole")
+selectCurrentLine()
+copy()
+gooey.gui.popOutConsole:appendBuffer()
+--deleteLine()
+</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>100</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^(.+)</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="yes" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>poptrig2</name>
+						<script>setTriggerStayOpen("help1", 1)
+selectCurrentLine()
+copy()
+gooey.gui.popOutConsole:appendBuffer()
+--deleteLine()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>1</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>#ff0000</mFgColor>
+						<mBgColor>#ffff00</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#000000</colorTriggerFgColor>
+						<colorTriggerBgColor>#000000</colorTriggerBgColor>
+						<regexCodeList>
+							<string>(.*)</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Moar pages</name>
+						<script>send("more", false)
+gooey.funcs.deletelineP() </script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>#ff0000</mFgColor>
+						<mBgColor>#ffff00</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#000000</colorTriggerFgColor>
+						<colorTriggerBgColor>#000000</colorTriggerBgColor>
+						<regexCodeList>
+							<string>[Type MORE if you wish to continue reading. </string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>2</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="yes" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>poptrig3</name>
+						<script>setTriggerStayOpen("poptrig", 0)
+deleteLine()
+</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>#ff0000</mFgColor>
+						<mBgColor>#ffff00</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#000000</colorTriggerFgColor>
+						<colorTriggerBgColor>#000000</colorTriggerBgColor>
+						<regexCodeList>
+							<string></string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>7</integer>
+						</regexCodePropertyList>
+					</Trigger>
+				</Trigger>
+			</TriggerGroup>
 		</TriggerGroup>
-		<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-			<name>curingEnabled</name>
-			<script>gooey.serverSettings.curingEnabled = (matches[2] == "activated" and "Yes" or "No")</script>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>My Prompt</name>
+			<script>   if gmcp and gmcp.Char and gmcp.Char.Vitals and gmcp.Char.Status.name == "Killian" then
+      
+      if gooey.vars.gmcp.old then
+       oldhp = gooey.vars.gmcp.old.hp or tonumber(gmcp.Char.Vitals.hp)
+      end
+      local cprompt = ""
+      local lightcolor = ""
+      local darkcolor = ""
+      --some bufer
+      if not gooey.vars.gui.singleprompt then
+        cprompt = cprompt .."\n                                    "
+        lightcolor = "a_twolevel"
+        darkcolor = "a_onelevel"
+        --timestamp
+        cprompt = cprompt .."&lt;black&gt;"..getTime(true, 'hh:mm:ss')
+        deleteLine()
+      else
+        cprompt = cprompt .."\n"
+        lightcolor = "DarkSeaGreen"
+        darkcolor = "dark_olive_green"
+        selectCurrentLine()
+        replace("")
+      end
+
+      
+      --target info
+      if gmcp.IRE and gmcp.IRE.Target then
+        if gmcp.IRE.Target.Set ~= "" and gmcp.IRE.Target.Info.id ~= "-1" then
+          cprompt = cprompt .."&lt;blaze_orange&gt;"..gooey.vars.target.." @ &lt;"..gooey.funcs.healthColor(tonumber(gmcp.IRE.Target.Info.hpperc), 100).."&gt;"..gmcp.IRE.Target.Info.hpperc.."&lt;DimGrey&gt; |"
+        end
+      end
+      
+      --health
+      cprompt = cprompt .." &lt;"..gooey.funcs.healthColor().."&gt;"..gmcp.Char.Vitals.hp.."/"..gmcp.Char.Vitals.maxhp.."&lt;"..lightcolor.."&gt;H &lt;"..darkcolor.."&gt;[&lt;"..gooey.funcs.healthColor().."&gt;"..gooey.funcs.round(tonumber(gmcp.Char.Vitals.hp)/tonumber(gmcp.Char.Vitals.maxhp)*100).."&lt;"..darkcolor.."&gt;%&lt;"..lightcolor.."&gt;H&lt;"..darkcolor.."&gt;] "
+      --mana
+      cprompt = cprompt .."&lt;"..darkcolor.."&gt;"..gmcp.Char.Vitals.mp.."/"..gmcp.Char.Vitals.maxmp.."&lt;"..lightcolor.."&gt;M "
+      --missing bal or eq?
+      if gmcp.Char.Vitals.bal == "0" or gmcp.Char.Vitals.eq == "0" then 
+        cprompt = cprompt .."&lt;DimGrey&gt;|"
+      end
+      --balance
+      cprompt = cprompt .."&lt;DimGrey&gt;"..((gmcp.Char.Vitals.bal == "1") and "" or "&lt;DimGrey&gt; -bal")
+      --eq
+      cprompt = cprompt .."&lt;DimGrey&gt;"..((gmcp.Char.Vitals.eq == "1") and "" or "&lt;DimGrey&gt;-eq")
+      --did our health change?
+      if oldhp ~= tonumber(gmcp.Char.Vitals.hp) then
+        cprompt = cprompt .."&lt;DimGrey&gt; | &lt;DarkSlateGray&gt;("..(tonumber(gmcp.Char.Vitals.hp)-oldhp).."h)"
+      end
+      oldhp = tonumber(gmcp.Char.Vitals.hp)
+    
+      if gooey.vars.gui.singleprompt then
+        gooey.gui.promptConsole:cecho(cprompt)
+       
+      else 
+        cecho(cprompt)
+      end
+    end</script>
 			<triggerType>0</triggerType>
 			<conditonLineDelta>0</conditonLineDelta>
 			<mStayOpen>0</mStayOpen>
@@ -628,10 +718,138 @@ end</script>
 			<colorTriggerFgColor>#000000</colorTriggerFgColor>
 			<colorTriggerBgColor>#000000</colorTriggerBgColor>
 			<regexCodeList>
-				<string>^Curing (disabled|activated)\.$</string>
+				<string></string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>7</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Timeout Trigger</name>
+			<script>thingstodo = { "ql", "sc" , "look", "cw", "hw", "show gold", "qw" }
+tempTimer(math.random(3, 15), 'send(thingstodo[math.random(1, #thingstodo)], true)')
+cecho ("\n&lt;black&gt;..............&lt;red&gt;*&lt;black&gt;..........&lt;white&gt;*&lt;black&gt;..........&lt;blue&gt;*&lt;black&gt;...............\n")
+cecho ("&lt;black&gt;................&lt;blue&gt;*&lt;black&gt;........&lt;red&gt;*&lt;black&gt;........&lt;white&gt;*&lt;black&gt;.................\n")
+cecho ("&lt;black&gt;..................&lt;white&gt;*&lt;black&gt;......&lt;blue&gt;*&lt;black&gt;......&lt;red&gt;*&lt;black&gt;...................\n")
+cecho ("&lt;black&gt;....................&lt;red&gt;*&lt;black&gt;....&lt;white&gt;*&lt;black&gt;....&lt;blue&gt;*&lt;black&gt;.....................\n")
+cecho ("&lt;black&gt;......................&lt;blue&gt;*&lt;black&gt;..&lt;red&gt;*&lt;black&gt;..&lt;red&gt;*&lt;black&gt;.......................\n")
+cecho ("&lt;black&gt;..............&lt;white&gt;*&lt;black&gt; &lt;red&gt;*&lt;black&gt; &lt;blue&gt;*&lt;black&gt; &lt;white&gt;*&lt;black&gt; &lt;red&gt;*&lt;black&gt; &lt;blue&gt;*&lt;black&gt; &lt;white&gt;*&lt;black&gt; &lt;red&gt;*&lt;black&gt; &lt;blue&gt;*&lt;black&gt; &lt;white&gt;*&lt;black&gt; &lt;red&gt;*&lt;black&gt; &lt;blue&gt;*&lt;black&gt; &lt;white&gt;*&lt;black&gt;............\n")
+cecho ("&lt;black&gt;......................&lt;red&gt;*&lt;black&gt;..&lt;red&gt;*&lt;black&gt;..&lt;blue&gt;*&lt;black&gt;.......................\n")
+cecho ("&lt;black&gt;....................&lt;blue&gt;*&lt;black&gt;....&lt;white&gt;*&lt;black&gt;....&lt;blue&gt;*&lt;black&gt;.....................\n")
+cecho ("&lt;black&gt;..................&lt;white&gt;*&lt;black&gt;......&lt;blue&gt;*&lt;black&gt;......&lt;white&gt;*&lt;black&gt;...................\n")
+cecho ("&lt;black&gt;................&lt;red&gt;*&lt;black&gt;........&lt;red&gt;*&lt;black&gt;........&lt;red&gt;*&lt;black&gt;.................\n")
+cecho ("&lt;black&gt;..............&lt;blue&gt;*&lt;black&gt;..........&lt;white&gt;*&lt;black&gt;..........&lt;blue&gt;*&lt;black&gt;...............\n")
+
+
+-- Function to draw a colorful firework burst
+local function drawFireworkBurst(maxSpaces)
+    local colors = {"red", "green", "yellow", "blue", "magenta", "cyan", "white"}
+    local burst = string.rep(" ", maxSpaces)
+    local characters = {"*", ".", "`", "~", "'", " ", "   ", "  ", "  ", "'", ":", "\""}
+    for i = 1, 10 do
+        local randomColor = colors[math.random(1, #colors)]
+
+        burst = burst.."&lt;" .. randomColor .. "&gt;"
+
+        burst = burst .. characters[math.random(1, #characters)]
+    end
+
+    cecho(burst.."\n")
+
+end
+
+-- Function to draw a complete firework display
+local function drawFireworkDisplay(lines)
+    local maxSpaces = 15  -- Set the initial number of spaces
+
+    for i = 1, lines do
+        drawFireworkBurst(maxSpaces)
+        maxSpaces = math.max(0, maxSpaces - 2)  -- Decrease the number of spaces for the next burst
+    end
+end
+
+-- Call the function to draw the firework display with 5 lines
+drawFireworkDisplay(10)
+
+
+</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>You will TIMEOUT in 1 minute unless you do something.</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>0</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>We're blind, fo'</name>
+			<script>send("touch mindseye")</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^You\? As blind as a bat. Doing what\?$</string>
 			</regexCodeList>
 			<regexCodePropertyList>
 				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Touch starbrust</name>
+			<script>send("touch starburst", false)</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^As the starburst tattoo's shape is codified on the \w+ of yourself, the last of the ink leaves the air and you pause for a moment to admire your handiwork.$</string>
+				<string>^As the starburst tattoo's shape is codified on your \w+</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Not on a ship</name>
+			<script>send("CURING PRIORITY DEF Shipwarning RESET")</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>You must be on a ship to issue that command</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>0</integer>
 			</regexCodePropertyList>
 		</Trigger>
 	</TriggerPackage>
@@ -642,17 +860,128 @@ end</script>
 			<command></command>
 			<packageName></packageName>
 			<time>00:00:00.000</time>
+			<Timer isActive="no" isFolder="no" isTempTimer="no" isOffsetTimer="no">
+				<name>ragetimer</name>
+				<script>for i = 1, 6, 1 do
+  local name = "rageGauge"..i
+  local watch = "rageWatch"..i
+  if getStopWatchTime("rageWatch"..i) &gt;= tonumber(gooey.data.hunt.myRageTable[i][2]) then
+    gooey.gui[name]:setValue(0, tonumber(gooey.data.hunt.myRageTable[i][2]))
+    resetStopWatch(watch)
+    stopStopWatch(watch)
+    gooey.data.hunt.myRageTable[i][5] = 1
+    gooey.funcs.hunt.updateRageGauges()
+    else
+    gooey.gui[name]:setValue(getStopWatchTime(watch), tonumber(gooey.data.hunt.myRageTable[i][2]))
+  end
+end
+</script>
+				<command></command>
+				<packageName></packageName>
+				<time>00:00:00.100</time>
+			</Timer>
 		</TimerGroup>
 	</TimerPackage>
 	<AliasPackage>
-		<Alias isActive="yes" isFolder="no">
-			<name>Toggle pause curing</name>
-			<script>if matches[2] == nil or "" then gooey.funcs.pp() 
-else gooey.funcs.pp(matches[2]) end</script>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>gooey core</name>
+			<script></script>
 			<command></command>
 			<packageName></packageName>
-			<regex>^pp ?(o(n|ff))?</regex>
-		</Alias>
+			<regex></regex>
+			<Alias isActive="yes" isFolder="no">
+				<name>goo</name>
+				<script>function gooey.funcs.showHelp(what)
+local pre = "\n&lt;white&gt;(&lt;firebrick&gt;gooey&lt;white&gt;)&lt;reset&gt;: "
+  if what == "install" then
+    gooey.funcs.startup()
+  elseif what == "help" or what == "" or not what then
+    cechoLink(pre.."Single prompt "..(gooey.vars.gui.singleprompt and "&lt;green&gt;enabled" or "&lt;red&gt;disabled"), [[gooey.funcs.toggleSinglePrompt() gooey.funcs.showHelp()]], "Click to change", true)
+    cechoLink(pre.."Preferred room layout &lt;yellow&gt;"..gooey.gui.preferredRoomLayout, [[ gooey.funcs.swapRoomLayout() gooey.funcs.showHelp()]], "Click to change", true)
+    for k, v in pairs(gooey.vars.mode) do  
+      if v then
+        cechoLink(pre.."Mode &lt;yellow&gt;"..k, [[gooey.funcs.toggleGUIMode() gooey.funcs.showHelp()]], "Click to cycle to another mode", true)
+      end
+    end
+    cecho(pre.."      Available modes are ")
+    cechoLink("&lt;yellow&gt;sea&lt;reset&gt;,", [[gooey.funcs.toggleGUIMode("sea") gooey.funcs.showHelp()]], "Click to change to sea", true)
+    cechoLink("&lt;yellow&gt; hunt&lt;reset&gt;,", [[gooey.funcs.toggleGUIMode("hunt") gooey.funcs.showHelp()]], "Click to change to hunt", true)
+    cechoLink("&lt;yellow&gt; combat&lt;reset&gt;. ", [[gooey.funcs.toggleGUIMode("combat") gooey.funcs.showHelp()]], "Click to change to combat", true)
+    echo("You can use:")
+    cecho(pre.."        - &lt;yellow&gt;goo \&lt;mode\&gt; &lt;reset&gt;to switched to a saved layout")
+    cecho(pre.."        - &lt;yellow&gt;goo reset \&lt;mode\&gt; &lt;reset&gt;to go to the default specified mode")
+  elseif what:find("reset") or table.contains({"sea", "hunt", "combat"}, what) then
+    gooey.funcs.toggleGUIMode(what)
+    gooey.funcs.showHelp()
+  end  
+
+end
+gooey.funcs.showHelp(matches[2])
+
+
+
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^goo ?(.*)?$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Toggle pause curing</name>
+				<script>if matches[2] == nil or "" then gooey.funcs.pp() 
+else gooey.funcs.pp(matches[2]) end</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^pp ?(o(n|ff))?</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Shipon</name>
+				<script>
+gooey.funcs.sea.shipo(matches[2])
+gooey.funcs.echo(matches[2] == "on" and "We're on a ship!" or "We're not on a ship")</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ship(on|off)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Fill up</name>
+				<script>if matches[2] then 
+  gooey.funcs.fl(matches[2])
+else
+  gooey.funcs.fl()
+end</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^fl ?( .*)?$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Target</name>
+				<script>gooey.funcs.setTarget(matches[2])</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^t (.+)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>popOut</name>
+				<script>if not gooey.gui.popOutWindow then 
+gooey.gui.build.popOut()
+end
+gooey.gui.popOutWindow:show()
+gooey.gui.popOutConsole:show()
+gooey.gui.popOutWindow:add(gooey.gui.popOutConsole)
+enableTrigger("trigpop")
+send(matches[1])</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^(help|artsearch|talisman info|talisman set|ldsearch|chelp|hhelp|ahelp|clhelp) (.+)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Change gmode</name>
+				<script>gooey.funcs.toggleGUIMode(matches[2])</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^goo ?(hunt|sea|combat)$</regex>
+			</Alias>
+		</AliasGroup>
 		<Alias isActive="yes" isFolder="no">
 			<name>firework</name>
 			<script>-- Function to print a colored string
@@ -684,16 +1013,19 @@ drawRoundFirework()
 			<regex>^firework</regex>
 		</Alias>
 		<Alias isActive="yes" isFolder="no">
-			<name>Shipon</name>
-			<script>if matches[2] == "n" then
-  gooey.vars.sea.shipOn = true
-else gooey.vars.sea.shipOn = false 
-end
-
-gooey.funcs.echo((gooey.vars.sea.shipOn and "We're on a ship!" or "We're not on a ship"))</script>
+			<name>see gooey</name>
+			<script>clearCmdLine()
+appendCmdLine("lua for k, v in pairs("..matches[1]..") do echo(\"\\n\"..k) end")</script>
 			<command></command>
 			<packageName></packageName>
-			<regex>^shipo(n|ff)$</regex>
+			<regex>^gooey(.*)?$</regex>
+		</Alias>
+		<Alias isActive="yes" isFolder="no">
+			<name>Format all containers</name>
+			<script>gooey.funcs.formatAllContainers()</script>
+			<command></command>
+			<packageName></packageName>
+			<regex>^fac$</regex>
 		</Alias>
 	</AliasPackage>
 	<ActionPackage />
@@ -707,10 +1039,15 @@ gooey.funcs.echo((gooey.vars.sea.shipOn and "We're on a ship!" or "We're not on 
 --    cause I can't code.       --
 ----------------------------------</script>
 			<eventHandlerList />
-			<Script isActive="yes" isFolder="no">
-				<name>AdjustableTabWindow</name>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Extra</name>
 				<packageName></packageName>
-				<script>-- Adjustable TabWindow
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>AdjustableTabWindow</name>
+					<packageName></packageName>
+					<script>-- Adjustable TabWindow
 -- TabWindow code by Mudlet Wiki
 -- other functions
 -- by Edru 10th October 2020
@@ -2113,8 +2450,9 @@ function Adjustable.TabWindow:new(cons, container)
     
     return me
 end</script>
-				<eventHandlerList />
-			</Script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
 			<Script isActive="yes" isFolder="no">
 				<name>Gooey Variables</name>
 				<packageName></packageName>
@@ -2136,16 +2474,17 @@ gooey.timers = gooey.timers or {} --triggers
 
 gooey.gui.styles = gooey.gui.styles or {}
 gooey.gui.fontSize = gooey.gui.fontSize or {}
-gooey.gui.var = gooey.gui.fontSize or {}
+gooey.gui.var = gooey.gui.var or {}
+gooey.gui.build = gooey.gui.build or {} --exception that houses the functions to build the gui
 
 gooey.vars.sea = gooey.vars.sea or {}
 gooey.vars.hunt = gooey.vars.hunt or {}
 gooey.vars.combat = gooey.vars.combat or {}
+gooey.vars.mode = { ["sea"] = false, ["hunt"] = true, ["combat"] = false, }
 gooey.vars.serverSettings = gooey.vars.serverSettings or {}
 gooey.vars.gmcp = gooey.vars.gmcp or {}
   gooey.vars.gmcp.old = gooey.vars.gmcp.old or {}
 gooey.vars.gui = gooey.vars.gui or {}
-
 
 gooey.funcs.sea = gooey.funcs.sea or {}
 gooey.funcs.hunt = gooey.funcs.hunt or {}
@@ -2165,22 +2504,38 @@ gooey.triggers.combat = gooey.triggers.combat or {}
 gooey.triggers.serverSettings = gooey.triggers.serverSettings or {}
 gooey.triggers.gmcp = gooey.triggers.gmcp or {}
 
-
 --adjust fonts here
-gooey.gui.fontSize.peopleConsole = 9
-gooey.gui.fontSize.topright = 9
-gooey.gui.fontSize.bottomleft = 9
-gooey.gui.fontSize.people = 9
-gooey.gui.fontSize.midleft = 9
-gooey.gui.fontSize.topleft = 9
-gooey.gui.fontSize.bottom = 9
-gooey.gui.fontSize.top = 9
-gooey.gui.fontSize.bottomright = 9
-gooey.gui.fontSize.denizens = 9
-gooey.gui.fontSize.denizensConsole = 9
+gooey.gui.fontSize.topright = 10
+gooey.gui.fontSize.midleft = 10
+gooey.gui.fontSize.topleft = 10
+gooey.gui.fontSize.shipPromptConsole = 10
+gooey.gui.fontSize.bottomright = 10
+gooey.gui.fontSize.activityStatusContainer = 10
+gooey.gui.fontSize.denizens = 10
+gooey.gui.fontSize.peopleConsole = 10
+gooey.gui.fontSize.top = 10
+gooey.gui.fontSize.promptContainer = 10
+gooey.gui.fontSize.bottomleft = 10
+gooey.gui.fontSize.people = 10
+gooey.gui.fontSize.activityStatusConsole = 10
+gooey.gui.fontSize.denizensConsole = 10
+gooey.gui.fontSize.promptConsole = 10
+gooey.gui.fontSize.bottom = 10
+gooey.gui.fontSize.popOutConsole = 10
+gooey.gui.fontSize.popOutWindow = 10
+gooey.gui.fontSize.roomContainer = 10
+gooey.gui.fontSize.rageContainer = 10
+gooey.gui.fontSize.gaugeContainer = 10
+--to update
+--lua for k, v in pairs(gooey.gui) do if gooey.gui[k].type == "miniConsole" or gooey.gui[k].type == "adjustablecontainer" then echo("\ngooey.gui.fontSize."..gooey.gui[k].name.." = 9") end end
+
+
+
+--change this if you want to have a single prompt, instead of one every line
+gooey.vars.gui.singleprompt = gooey.vars.gui.singleprompt or true
 
 --determines if the players and the items consoles are one next to the other or one above the other. Options are "vertical" or "horizontal"
-gooey.gui.preferedRoomLayout = gooey.gui.preferedRoomLayout or "horizontal" 
+gooey.gui.preferredRoomLayout = gooey.gui.preferredRoomLayout or "vertical" 
 
 
 --define some styles 
@@ -2209,35 +2564,36 @@ local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
 
 gooey.moduleHome = string.split(getModulePath("gooey"), "gooey.*%.xml")[1]
 
+function gooey.gui.build.frame()
 --main skeleton
 gooey.gui.top = gooey.gui.top or Adjustable.Container:new({
-  name = "top", y="0%", height = "15%", 
-  buttonFontSize = 7, buttonsize = 10, padding = 6, 
+  name = "top", y="0%", height = "10%", 
+  buttonFontSize = 7, buttonsize = 10, padding = 2, 
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, })
 gooey.gui.bottom = gooey.gui.bottom or Adjustable.Container:new({
-  name = "bottom", height = "15%", y = "-10%", 
-  buttonFontSize = 7, buttonsize = 10, padding = 6, 
+  name = "bottom", height = "10%", y = "-10%", 
+  buttonFontSize = 7, buttonsize = 10, padding = 2, 
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,})
-
+  
 gooey.gui.topright = gooey.gui.topright or Adjustable.Container:new({
-  name = "topright", y = "0%", height = "50%", x = "-30%", width = "30%", 
-  buttonFontSize = 7, buttonsize = 10, padding = 6, 
+  name = "topright", y = "0%", height = "50%", x = "-20%", width = "30%", 
+  buttonFontSize = 7, buttonsize = 10, padding = 2, 
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, })
 gooey.gui.bottomright = gooey.gui.bottomright or Adjustable.Container:new({
-  name = "bottomright", y = "50%", height = "50%", x = "-30%", width = "30%", 
-  buttonFontSize = 7, buttonsize = 10, padding = 6, 
+  name = "bottomright", y = "50%", height = "50%", x = "-20%", width = "30%", 
+  buttonFontSize = 7, buttonsize = 10, padding = 2, 
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,})
 gooey.gui.topleft = gooey.gui.topleft or Adjustable.Container:new({
   name = "topleft", x = "0%", y = "0%", height = "33%", width = "20%", 
-  buttonFontSize = 7, buttonsize = 10, padding = 6, 
+  buttonFontSize = 7, buttonsize = 10, padding = 2, 
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,})
 gooey.gui.midleft = gooey.gui.midleft or Adjustable.Container:new({
-  name = "midleft", x = "0%", y = "33%", eight = "33%", width = "20%", 
-  buttonFontSize = 7, buttonsize = 10, padding = 6,
+  name = "midleft", x = "0%", y = "33%", height = "33%", width = "20%", 
+  buttonFontSize = 7, buttonsize = 10, padding = 2,
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, })
 gooey.gui.bottomleft = gooey.gui.bottomleft or Adjustable.Container:new({
   name = "bottomleft", x = "0%", y = "66%", height = "34%", width = "20%", 
-  buttonFontSize = 7, buttonsize = 10, padding = 6, 
+  buttonFontSize = 7, buttonsize = 10, padding = 2, 
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, })
 
 
@@ -2261,18 +2617,25 @@ gooey.gui.midleft:connectToBorder("left")
 gooey.gui.bottomleft:connectToBorder("left")
 gooey.gui.topright:connectToBorder("right")
 gooey.gui.bottomright:connectToBorder("right")
+
+end
+
+registerAnonymousEventHandler("sysLoadEvent", "gooey.gui.build.frame")
+
+
 </script>
 				<eventHandlerList />
 				<Script isActive="yes" isFolder="no">
-					<name>Room Build</name>
+					<name>Room build</name>
 					<packageName></packageName>
 					<script>local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
 local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
 
 
+function gooey.gui.build.room()
 --room info - VBox to separate the room name console from the denizens and people consoles
 gooey.gui.roomVBox = gooey.gui.roomVBox or Geyser.VBox:new({
-  name="roomVBox", x = 0, y = 0, width = "100%", height = "100%"}, gooey.gui.topleft)
+  name="roomVBox", x = 0, y = "0%", width = "100%", height = "100%"}, gooey.gui.topleft)
 
 gooey.gui.roomNameLabel = gooey.gui.roomNameLabel or 
     Geyser.Label:new({name = "roomNameLabel", x = "0%", y="0%", height = "12%", width = "100%", 
@@ -2282,77 +2645,63 @@ gooey.gui.roomNameLabel = gooey.gui.roomNameLabel or
 gooey.gui.roomNameLabel: setStyleSheet( [[background-color:rgba(20,20,20,100%); border: 2px inset; border-color:rgba(128, 128, 128, 100%);]])
 
 if gooey.vars.gmcp and gooey.vars.gmcp.roomname then gooey.gui.roomNameLabel:echo(gooey.vars.gmcp.roomname, "ansiYellow", "c13") end
-    
 
-if gooey.gui.preferedRoomLayout == "horizontal" then
-  gooey.gui.roomRoomBox = gooey.gui.roomRoomBox or Geyser.HBox:new({
-  name="roomRoomBox", x = 0, y = 0, width = "100%", height = "90%"}, 
-   gooey.gui.roomVBox)
-  
-  gooey.gui.denizens = gooey.gui.denizens or 
-    Adjustable.Container:new({
-      name = "denizens", y = 0, x = "0%", width = "75%", height = "100%",
-      buttonFontSize = 7, buttonsize = 10, h_policy = Geyser.Fixed, 
-      adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
-        gooey.gui.roomRoomBox)
-  gooey.gui.people = gooey.gui.people or 
-    Adjustable.Container:new({
-      name = "people", y = 0, x = "0%", width = "25%", height = "100%",
-      buttonFontSize = 7, buttonsize = 10, h_policy = Geyser.Fixed, 
-      adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
-        gooey.gui.roomRoomBox)
-
-elseif gooey.gui.preferedRoomLayout == "vertical" then
-  gooey.gui.roomRoomBox = gooey.gui.roomRoomBox or Geyser.VBox:new({
-    name="roomRoomBox", x = 0, y = 0, width = "100%", height = "90%"}, 
+gooey.gui.roomContainer = gooey.gui.denizens or 
+  Adjustable.Container:new({
+    name = "roomContainer", y = "0%", x = "0%", width = "75%", height = "100%",
+    buttonFontSize = 7, buttonsize = 10, padding = 6, 
+    adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
       gooey.gui.roomVBox)
-  
-  gooey.gui.denizens = gooey.gui.denizens or 
-    Adjustable.Container:new({name = "denizens", y = "0%", x = 0, height = "65%", width = "100%", 
-    buttonFontSize = 7, buttonsize = 10, v_policy=Geyser.Fixed, 
+
+gooey.gui.denizens = gooey.gui.denizens or 
+  Adjustable.Container:new({
+    name = "denizens", y = "0%", x = "0%", width = "75%", height = "100%",
+    buttonFontSize = 7, buttonsize = 10, padding = 6, 
     adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
-      gooey.gui.roomRoomBox)
+      gooey.gui.roomContainer)
       
-  gooey.gui.people = gooey.gui.people or 
-    Adjustable.Container:new({name = "people", y = "35%" , x = 0, height = "35%", width = "100%", 
-    buttonFontSize = 7, buttonsize = 10, v_policy=Geyser.Fixed, 
+gooey.gui.people = gooey.gui.people or 
+  Adjustable.Container:new({
+    name = "people", y = "0%", x = "0%", width = "25%", height = "100%",
+    buttonFontSize = 7, buttonsize = 10, padding = 6, 
     adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
-      gooey.gui.roomRoomBox)
-
-
-end
+      gooey.gui.roomContainer)
 
 gooey.gui.denizensConsole = gooey.gui.denizensConsole or 
-    Geyser.MiniConsole:new({name = "denizensConsole", x = "0%", y="0%", height = "100%", width = "100%", 
+    Geyser.MiniConsole:new({name = "denizensConsole", x = "0%", y="1%", height = "100%", width = "100%", 
     color = "black", autoWrap = true, padding = 3}, 
       gooey.gui.denizens )
+      
 gooey.gui.peopleConsole = gooey.gui.peopleConsole or 
-    Geyser.MiniConsole:new({name = "peopleConsole", x = "0%", y="0%", height = "100%", width = "100%", 
+    Geyser.MiniConsole:new({name = "peopleConsole", x = "0%", y="1%", height = "100%", width = "100%", 
     color = "black", autoWrap = true, padding = 3}, 
       gooey.gui.people )
-    </script>
+end   
+
+</script>
 					<eventHandlerList />
 				</Script>
 				<Script isActive="yes" isFolder="no">
-					<name>Mid Left Build</name>
+					<name>Mid Left build</name>
 					<packageName></packageName>
 					<script>local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
 local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
 
+function gooey.gui.build.midleft()
 
 gooey.gui.activityStatusContainer = gooey.gui.activityStatusContainer or 
   Adjustable.Container:new({
-    name = "gooey.gui.activityStatusContainer", y = 0, x = "0%", height = "100%", width = "100%", 
+    name = "activityStatusContainer", y = 0, x = "0%", height = "100%", width = "100%", 
     buttonFontSize = 7, buttonsize = 10, padding = 6, 
     adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
       gooey.gui.midleft)
       
 gooey.gui.activityStatusConsole = gooey.gui.activityStatusConsole or 
-    Geyser.MiniConsole:new({name = "gooey.gui.activityStatusConsole", x = "0%", y="0%", height = "100%", width = "100%", 
+    Geyser.MiniConsole:new({name = "activityStatusConsole", x = "0%", y="0%", height = "100%", width = "100%", 
     color = "black", autoWrap = true, padding = 3}, 
       gooey.gui.activityStatusContainer ) 
       
-</script>
+end</script>
 					<eventHandlerList />
 				</Script>
 				<Script isActive="yes" isFolder="no">
@@ -2361,6 +2710,8 @@ gooey.gui.activityStatusConsole = gooey.gui.activityStatusConsole or
 					<script>local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
 local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
 
+function gooey.gui.build.map()
+
 gooey.gui.map = gooey.gui.map or {}
 gooey.gui.map.current = "Mapper"
 
@@ -2368,7 +2719,7 @@ gooey.gui.map.current = "Mapper"
 gooey.gui.map.container = gooey.gui.map.container or 
   Adjustable.Container:new({
     name = "gooey.gui.map.container", y = 0, x = "0%", height = "100%", width = "100%", 
-    buttonFontSize = 7, buttonsize = 10, 
+    buttonFontSize = 7, buttonsize = 10, padding = 6, 
     adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
       gooey.gui.bottomleft)
       
@@ -2380,7 +2731,7 @@ gooey.gui.map.Ocean = Geyser.MiniConsole:new({
     name = "Ocean",
     x = 0, y = 0,
     width = "100%",
-    height = "100%",
+    height = "100%", padding = 3, color = "black"
   },gooey.gui.map.container)  
 --setBackgroundColor("Ocean", 0,0,0,255)
 hideWindow("Ocean")
@@ -2390,13 +2741,249 @@ gooey.gui.map.Wilderness = Geyser.MiniConsole:new({
     name = "Wilderness",
     x = 0, y = 0,
     width = "100%",
-    height = "100%",
+    height = "100%", padding = 3, color = "black"
   },gooey.gui.map.container)  
 --setBackgroundColor("Wilderness", 0,0,0,255)  
 hideWindow("Wilderness")
   
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>Bottom build</name>
+					<packageName></packageName>
+					<script>local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
+local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
+
+
+-- border-radius: 15px
+
+function gooey.gui.build.bottom()
+
+  gooey.gui.promptContainer = --gooey.gui.rageContainer or 
+    Adjustable.Container:new({ name = "promptContainer", x = "0%", y="0%", height = "25%", width = "100%", 
+    buttonFontSize = 7, buttonsize = 10, padding = 1, 
+    adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, }, gooey.gui.bottom)
+
+  gooey.gui.promptConsole = --gooey.gui.promptConsole or 
+      Geyser.MiniConsole:new({name = "promptConsole", x = "0%", y="0%", height = "100%", width = "100%", 
+      color = "black", padding = 2, margin = 2 }, gooey.gui.promptContainer )
+
+  if not gooey.vars.gui.singleprompt then 
+    gooey.gui.promptContainer:hide()
+  end
+   
+  gooey.gui.shipPromptConsole = --gooey.gui.shipPromptConsole or 
+      Geyser.MiniConsole:new({name = "shipPromptConsole", x = "0%", y="0%", height = "25%", width = "100%", 
+      color = "black", padding = 0, },
+        gooey.gui.bottom)
+        
+  gooey.gui.rageContainer = --gooey.gui.rageContainer or 
+    Adjustable.Container:new({ name = "rageContainer", x = "0%", y="25%", height = "45%", width = "100%", 
+    buttonFontSize = 7, buttonsize = 10, padding = 0, 
+    adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, }, gooey.gui.bottom)
+      
+  gooey.gui.gaugeContainer = --gooey.gui.gaugeContainer or 
+      Adjustable.Container:new({ name = "gaugeContainer", x = "0%", y="-30%", height = "30%", width = "100%", 
+      color = "red", padding = 0, margin = 0,
+      adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, }, 
+        gooey.gui.bottom)
+  
+end
+
 </script>
 					<eventHandlerList />
+					<Script isActive="yes" isFolder="no">
+						<name>rage</name>
+						<packageName></packageName>
+						<script>local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
+local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
+
+
+--on cooldown
+onCooldown = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #444444, stop: 0.1 #444444, stop: 0.49 #333333, stop: 0.5 #333333, stop: 1 #444444);"
+
+--ok to use
+Rage = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #40453B, stop: 0.1 #373B32, stop: 0.49 #2E322A, stop: 0.5 #2E322A, stop: 1 #40453B);"
+
+--no cooldown no rage
+NopeSkill = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #1E1E23, stop: 0.1 #18181C, stop: 0.49 #121215, stop: 0.5 #121215, stop: 1 #1E1E23);"
+
+ragefrontCSS = Geyser.StyleSheet:new([[
+  background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #3C3B45, stop: 0.1 #242329, stop: 0.49 #1E1E23, stop: 0.5 #1E1E23, stop: 1 #3C3B45);
+  border-style: solid;
+  border-color: "grey";
+  border-width: 1px;
+  margin: 0px;
+  font-weight: 400;
+  text-align: center;
+  padding: 1px;
+]])
+
+ragebackCSS = Geyser.StyleSheet:new([[
+  background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #555555, stop: 0.1 #555555, stop: 0.49 #333333, stop: 0.5 #333333, stop: 1 #555555);
+  border-style: solid;
+  border-color: "grey";
+  border-width: 1px;
+  margin: 0px;
+  font-weight: 400;
+  text-align: center;
+  padding: 1px;
+]])
+
+rageAmtCSS = Geyser.StyleSheet:new([[
+  background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #1A1A17, stop: 0.49 #20201D, stop: 0.5 #20201D, stop: 1 #1A1A17);
+  border-style: solid;
+  border-color: "gray";
+  border-width: 1px;
+  margin: 0px;
+  font-weight: bold;
+  padding = 1px;
+]])
+
+function gooey.gui.build.rage()
+
+  gooey.gui.rageHBox = gooey.gui.rageHBox or
+    Geyser.HBox:new({  name = "rageHBox", x = "0%", y = "0%", height = "100%", width = "100%", padding = 0,
+    },gooey.gui.rageContainer )
+  
+  gooey.gui.rageAmt = Geyser.Label:new({name = "rageAmt", width = 40 , h_policy=Geyser.Fixed, }, gooey.gui.rageHBox)
+  gooey.gui.rageAmt:setFontSize(9)
+  gooey.gui.rageAmt:setStyleSheet(rageAmtCSS:getCSS())
+  gooey.gui.rageAmt:setFormat("cb")
+  gooey.gui.rageAmt:echo(gooey.vars.gmcp.rage or "100")
+
+  for i = 1, 6, 1 do
+    local gname = "rageGauge"..i
+    local lname = "rageLabel"..i
+    local sname = "rageWatch"..i
+    local fkey
+    gooey.gui[gname] = --gooey.gui[lname] or
+      Geyser.Gauge:new({name = gname}, gooey.gui.rageHBox)
+    gooey.gui[gname]:setFormat("cb")
+    gooey.gui[gname]:setFgColor("grey")
+    gooey.gui[gname].back:setStyleSheet(ragebackCSS:getCSS())
+    gooey.gui[gname].front:setStyleSheet(ragefrontCSS:getCSS())
+
+    gooey.gui[gname]:echo("&lt;pre style='font-size:16px; color:white; text-align:center; padding:1px; margin:1px;'&gt; Rage skill name&lt;span style='font-size:13px; color:grey; text-align: right;'&gt;  fkey&lt;/span&gt;&lt;/pre&gt;&lt;pre style='font-size:14px; color:grey; text-align:center; padding:1px; margin:1px;'&gt; Details &lt;\pre&gt;")
+
+    gooey.gui[lname] = 
+      Geyser.Label:new({name = lname, x = "0%", y = "0%", height = "100%", width = "100%" }, gooey.gui[gname])
+    gooey.gui[lname]:setStyleSheet([[background-color:rgba(0,0,0,0%); qproperty-wordWrap: true;]]) 
+    gooey.gui[lname]:setClickCallback(function() local attstr = string.gsub(gooey.data.hunt.myRageTable[i][6], "myTarget", gooey.vars.target) send(attstr) end)
+    
+    createStopWatch(sname)
+    stopStopWatch(sname)
+    resetStopWatch(sname)
+  
+  end
+gooey.funcs.hunt.updateRageGauges()
+end
+
+--lua gooey.gui.rageLabel1:echo("&lt;pre style='font-size:20px; color:red; text-align:center; padding:1px; margin:1px;'&gt;something&lt;/pre&gt;&lt;pre style='font-size:15px; color:grey; text-align:center; padding:1px; margin:1px;'&gt;something else&lt;\pre&gt;")</script>
+						<eventHandlerList />
+					</Script>
+					<Script isActive="yes" isFolder="no">
+						<name>gauges</name>
+						<packageName></packageName>
+						<script>local gaugeBorder = a_onelevel
+local gaugeText = a_onelevel
+
+local gaugeColors = {
+healthBarBgCol =    "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #812422, stop: 0.1 #812422, stop: 0.49 #A12D2B, stop: 0.5 #A12D2B, stop: 1 #812422);",
+--healthBarBgCol =    "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #691A1F, stop: 0.1 #555555, stop: 0.49 #555555, stop: 0.5 #555555, stop: 1 #691A1F);",
+manaBarBgCol =      "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #0A4742, stop: 0.1 #0A4742, stop: 0.49 #0D5953, stop: 0.5 #0D5953, stop: 1 #0A4742);",
+enduranceBarBgCol = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #56520C, stop: 0.1 #56520C, stop: 0.49 #6C660F, stop: 0.5 #6C660F, stop: 1 #56520C);",
+willpowerBarBgCol = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #7C2742, stop: 0.1 #7C2742, stop: 0.49 #9B3153, stop: 0.5 #9B3153, stop: 1 #7C2742);",
+expBarBgCol =       "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #5A6156, stop: 0.1 #5A6156, stop: 0.49 #71796B, stop: 0.5 #71796B, stop: 1 #5A6156);",
+}
+
+gaugeBackCSS = Geyser.StyleSheet:new([[
+  background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #1A1A17, stop: 0.49 #20201D, stop: 0.5 #20201D, stop: 1 #1A1A17);
+  border-style: solid;
+  border-color: "grey";
+  border-width: 1px;
+  margin: 0px;
+  font-size: 13px; 
+  font-weight: bold;
+  padding = 1px;
+  text-align: center;
+]])
+
+gaugeFrontCSS = Geyser.StyleSheet:new([[
+  border-style: solid;
+  border-color: "grey";
+  border-width: 1px;
+  margin: 0px;
+  font-size: 13px; 
+  font-weight: bold;
+  padding = 1px;
+  text-align: center;
+]])
+
+epbalonCSS = Geyser.StyleSheet:new([[
+  background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #1A1A17, stop: 0.49 #20201D, stop: 0.5 #20201D, stop: 1 #1A1A17);
+  border-style: solid;
+  border-color: "grey";
+  border-width: 1px;
+  margin: 0px;
+  font-weight: bold;
+]])
+
+epbaloffCSS = Geyser.StyleSheet:new([[
+  background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #323232, stop: 0.49 #1F1F1F, stop: 0.5 #1F1F1F, stop: 1 #323232);
+  border-style: solid;
+  border-color: "grey";
+  border-width: 1px;
+  margin: 0px;
+  font-weight: bold;
+]])
+
+--  background-color: #4C4C4C;
+gooey.vars.target = gooey.vars.target or "Glory&amp;Riches"
+
+function gooey.gui.build.gauges()
+
+gooey.gui.botomGaugeHbox = gooey.gui.botomGaugeHbox or Geyser.HBox:new({
+  name = "botomGaugeHbox", x = "0%", y = "0%", width = "100%", height = "100%", padding = 0, margin = 0}, 
+  gooey.gui.gaugeContainer)
+  
+gooey.gui.botomGaugeVbox = gooey.gui.botomGaugeVbox or Geyser.VBox:new({
+  name = "botomGaugeVbox", x = "0%", y = "0%", width = "3%", height = "100%", h_policy=Geyser.Fixed, padding = 0, margin = 0}, 
+  gooey.gui.botomGaugeHbox)
+
+gooey.gui.eqBar = Geyser.Label:new({name = "eq", width = 20, w_policy=Geyser.Fixed, margin = 0, }, gooey.gui.botomGaugeVbox)
+gooey.gui.eqBar:setFontSize(7)
+gooey.gui.balBar = Geyser.Label:new({name = "balBar", width = 20, w_policy=Geyser.Fixed, margin = 0, }, gooey.gui.botomGaugeVbox)
+gooey.gui.balBar:setFontSize(7)
+
+gooey.gui.eqBar:setStyleSheet(epbalonCSS:getCSS())
+gooey.gui.balBar:setStyleSheet(epbalonCSS:getCSS())
+
+gooey.gui.eqBar:echo("EQ")
+gooey.gui.balBar:echo("BAL")
+
+local gaugeList = { "healthBar", "manaBar", "enduranceBar", "willpowerBar", "expBar"}
+
+for i = 1, #gaugeList, 1 do
+
+  gooey.gui[gaugeList[i]] = Geyser.Gauge:new({ name = gaugeList[i], }, gooey.gui.botomGaugeHbox)
+  gooey.gui[gaugeList[i]].back:setStyleSheet(gaugeBackCSS:getCSS())
+  local myCSS = gaugeList[i].."BgCol"
+  gaugeFrontCSS:setCSS(gaugeColors[myCSS])
+  gooey.gui[gaugeList[i]].front:setStyleSheet(gaugeFrontCSS:getCSS())
+
+  gooey.gui[gaugeList[i]]:setFontSize(10.5)
+  --gooey.gui[gaugeList[i]]:setAlignment("center")
+  gooey.gui[gaugeList[i]]:setFormat("cb")
+  
+  gooey.gui[gaugeList[i]]:echo(gaugeList[i])
+
+end
+
+end</script>
+						<eventHandlerList />
+					</Script>
 				</Script>
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -2451,7 +3038,11 @@ function gfg.char()
     for k, v in pairs (gmcp.Char.Vitals) do
       if k == "charstats" then
         gooey.vars.gmcp.bleed = tonumber(string.split(v[1], ":")[2])
+        if gooey.vars.gmcp.rage ~= tonumber(string.split(v[2], ":")[2]) then
         gooey.vars.gmcp.rage = tonumber(string.split(v[2], ":")[2])
+        gooey.gui.rageAmt:echo(gooey.vars.gmcp.rage)
+        gooey.funcs.hunt.updateRageGauges()
+        end
       elseif k ~= "string" then
         if gooey.vars.gmcp[k] and gooey.vars.gmcp[k] ~= tonumber(v) then
           gooey.vars.gmcp.old[k] = gooey.vars.gmcp[k]
@@ -2541,12 +3132,9 @@ end
 --Function to handle item removal
 function gfg.removeItems()
 	if gmcp.Char.Items.Remove.location == "room" then
-    if gmcp.Char.Items.Remove.item.attrib and gmcp.Char.Items.Remove.item.attrib == "m" then
+    if gooey.data.gmcp.denizens[gmcp.Char.Items.Remove.item.id] then
       gooey.data.gmcp.denizens[gmcp.Char.Items.Remove.item.id] = nil
-      if gooey.dendb then 
-        gooey.dendb.managedb(gmcp.Char.Items.Remove.item.name) 
-      end
-    else
+    elseif gooey.data.gmcp.items[gmcp.Char.Items.Remove.item.id] then
       gooey.data.gmcp.items[gmcp.Char.Items.Remove.item.id] = nil
   	end
   gooey.funcs.gmcp.displayItems()
@@ -2557,8 +3145,7 @@ end
 function gfg.displayItems()
   local console = "denizensConsole"
   local gv = gooey.vars
-  --window, text, command, hint, true
-  
+    
   clearWindow(console)
   
   --if we're on a ship, we want weapons first
@@ -2572,23 +3159,25 @@ function gfg.displayItems()
   
   local weapons = table.collect(gooey.data.gmcp.items, getWeapons) 
   
-  if gooey.vars.sea.shipOn then
+  if gooey.vars.mode.sea then
     cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((gv.expandWeap and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(weapons).."&lt;DarkSlateGray&gt; weapons\n", [[gooey.vars.expandWeap = not gooey.vars.expandWeap gooey.funcs.gmcp.displayItems()]], "Expand or collapse this category", true)
     if gv.expandWeap == nil then 
       gv.expandWeap = true 
     end
     if gv.expandWeap then
       for id, value in pairs(weapons) do
-      cechoPopup(console, " "..(gooey.funcs.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]]}, {"Probe"}, true)
+      cechoPopup(console, " ".. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]]}, {"Probe"}, true)
       end
     end
   end
   
-  --if we're not on a ship, deal with denizens first
+  --if we're not on a ship, deal with denizens first, if there are any
+  if table.size(gooey.data.gmcp.denizens) ~= 0 then
   cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((gv.expandDen and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(gooey.data.gmcp.denizens).."&lt;DarkSlateGray&gt; denizens\n", [[gooey.vars.expandDen = not gooey.vars.expandDen gooey.funcs.gmcp.displayItems()]], "Expand or collapse this category", true)
-  if gv.expandDen then
-    for id, value in pairs(gooey.data.gmcp.denizens) do
-      cechoPopup(console, " "..(gooey.funcs.getMobHighlight(id) or "").. value .. "\n", {[[gooey.funcs.setTarget("]] .. id .. [[") if keneanung then keneanung.bashing.addPossibleTarget("]]..value..[[") end ]], [[send("p ]] .. id .. [[")]], [[send("greet ]] .. id .. [[")]]}, {"Target", "Probe", "Greet"}, true)
+    if gv.expandDen then
+      for id, value in pairs(gooey.data.gmcp.denizens) do
+        cechoPopup(console, " "..(gooey.funcs.getMobHighlight(id) or "").. value .. "\n", {[[gooey.funcs.setTarget("]] .. id .. [[", "]] ..value..[[")]], [[send("p ]] .. id .. [[")]], [[send("greet ]] .. id .. [[")]]}, {"Target", "Probe", "Greet"}, true)
+      end
     end
   end
   
@@ -2601,10 +3190,12 @@ function gfg.displayItems()
   
   local sigils = table.collect(gooey.data.gmcp.items, getSigils) 
   
-  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((gv.expandSigils and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(sigils).."&lt;DarkSlateGray&gt; sigils\n", [[gooey.vars.expandSigils = not gooey.vars.expandSigils gooey.funcs.gmcp.displayItems()]], "Expand or collapse this category", true)
-  if gv.expandSigils then
-    for id, value in pairs(sigils) do
-      cechoPopup(console, " "..(gooey.funcs.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+  if table.size(sigils) ~= 0 then
+    cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((gv.expandSigils and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(sigils).."&lt;DarkSlateGray&gt; sigils\n", [[gooey.vars.expandSigils = not gooey.vars.expandSigils gooey.funcs.gmcp.displayItems()]], "Expand or collapse this category", true)
+    if gv.expandSigils then
+      for id, value in pairs(sigils) do
+        cechoPopup(console, " &lt;light_blue&gt;".. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+      end
     end
   end
   
@@ -2612,6 +3203,9 @@ function gfg.displayItems()
   local function getMiscItems(key, value)
     if not getSigils(key, value) and 
       not string.find(value[1], "sovereign") and
+      not string.find(value[1], "sign") and
+      not string.find(value[1], "journal") and
+      not string.find(value[1], "poster") and
       not string.starts(value[1], "the corpse of") and
       not getWeapons(key, value)
     then return true
@@ -2620,10 +3214,33 @@ function gfg.displayItems()
   
   local miscItems = table.collect(gooey.data.gmcp.items, getMiscItems) 
   
+  if table.size(miscItems) ~= 0 then
   cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((gv.expandMiscItems and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(miscItems).."&lt;DarkSlateGray&gt; misc items\n", [[gooey.vars.expandMiscItems = not gooey.vars.expandMiscItems gooey.funcs.gmcp.displayItems()]], "Expand or collapse this category", true)
-  if gv.expandMiscItems then
-    for id, value in pairs(miscItems) do
-      cechoPopup(console, " "..(gooey.funcs.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+    if gv.expandMiscItems then
+      for id, value in pairs(miscItems) do
+        cechoPopup(console, " ".. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+      end
+    end
+  end
+  
+  --readables
+  local function getReadableItems(key, value)
+    if string.find(value[1], "sign") or
+      string.find(value[1], "journal") or
+      string.find(value[1], "poster") or
+      string.find(value[1], "letter") 
+    then return true
+    end
+  end
+  
+  local readableItems = table.collect(gooey.data.gmcp.items, getReadableItems) 
+  
+  if table.size(readableItems) ~= 0 then
+  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((gv.expandReadableItems and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(readableItems).."&lt;DarkSlateGray&gt; misc items\n", [[gooey.vars.expandreadableItems = not gooey.vars.expandreadableItems gooey.funcs.gmcp.displayItems()]], "Expand or collapse this category", true)
+    if gv.expandReadableItems then
+      for id, value in pairs(readableItems) do
+        cechoPopup(console, " ".. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]], [[send("read ]] .. id .. [[")]]}, {"Probe", "Get", "Read"}, true)
+      end
     end
   end
   
@@ -2644,23 +3261,24 @@ function gfg.displayItems()
     end
   end
   
-
   local bodies = table.collect(gooey.data.gmcp.items, getBodies) 
   
-  cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((gv.expandCorpses and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(corpses).."&lt;DarkSlateGray&gt; corpses"..(#bodies ~=0 and (" "..table.size(bodies).." bodies\n") or "\n"), [[gooey.vars.expandCorpses = not gooey.vars.expandCorpses gooey.funcs.gmcp.displayItems()]], "Expand or collapse this category", true)
-  if gv.expandCorpses then
-    for id, value in pairs(bodies) do
-      cechoPopup(console, " "..(gooey.funcs.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
-    end
-    for id, value in pairs(corpses) do
-      cechoPopup(console, " "..(gooey.funcs.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+  if table.size(corpses) ~= 0 or table.size(bodies) ~= 0 then
+    cechoLink(console,"&lt;DarkSlateGray&gt;[&lt;SteelBlue&gt;"..((gv.expandCorpses and "-") or "+").."&lt;DarkSlateGray&gt;] &lt;SteelBlue&gt;"..table.size(corpses).."&lt;DarkSlateGray&gt; corpses"..(#bodies ~=0 and (" "..table.size(bodies).." bodies\n") or "\n"), [[gooey.vars.expandCorpses = not gooey.vars.expandCorpses gooey.funcs.gmcp.displayItems()]], "Expand or collapse this category", true)
+    if gv.expandCorpses then
+      for id, value in pairs(bodies) do
+        cechoPopup(console, " &lt;a_twolevel&gt;".. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+      end
+      for id, value in pairs(corpses) do
+        cechoPopup(console, " &lt;SlateGrey&gt;".. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+      end
     end
   end
   
   --deal with golds
     for id, value in pairs(gooey.data.gmcp.items) do
-      if value[2]:find("sovereigns") then
-      cechoPopup(console, " "..(gooey.funcs.getItemHighlight(id) or "").. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
+      if value[1]:find("sovereign") then
+      cechoPopup(console, " &lt;gold&gt;".. value[1] .. "\n", {[[send("probe ]] .. id .. [[")]], [[send("get ]] .. id .. [[")]]}, {"Probe", "Get"}, true)
       end
     end
 end
@@ -2668,8 +3286,21 @@ end
 -- Function to display the list of people in the room
 function gfg.displayRoomPlayers()
   clearUserWindow("peopleConsole")
+  local sep 
+  
+  if gooey.gui.preferredRoomLayout == "horizontal" then
+    sep = ", "
+  elseif gooey.gui.preferredRoomLayout == "vertical" then
+    sep = "\n"
+  end
+  
+  local k = 1
   for key, value in pairs(gooey.data.gmcp.people) do
-    cechoPopup("peopleConsole", value.."\n", {[[gooey.funcs.setTarget("]]..value..[[")]], [[send("greet ]]..value..[[")]]}, {"Target", "Greet"}, true)
+    if k == #gooey.data.gmcp.people then 
+      sep = "" 
+    end
+    cechoPopup("peopleConsole", value..sep, {[[gooey.funcs.setTarget("]]..value..[[")]], [[send("greet ]]..value..[[")]]}, {"Target", "Greet"}, true)
+    k = k+1
   end
 end
 
@@ -2725,49 +3356,295 @@ registerAnonymousEventHandler("gmcp.Char.Items.Add","gooey.funcs.gmcp.inventorye
 registerAnonymousEventHandler("gmcp.Char.Items.Remove","gooey.funcs.gmcp.inventoryeventmanager")
 registerAnonymousEventHandler("gmcp.Room.Players", "gooey.funcs.gmcp.inventoryeventmanager")
 registerAnonymousEventHandler("gmcp.Room.AddPlayer", "gooey.funcs.gmcp.inventoryeventmanager")
-registerAnonymousEventHandler("gmcp.Room.RemovePlayer", "gooey.funcs.gmcp.inventoryeventmanager")</script>
+registerAnonymousEventHandler("gmcp.Room.RemovePlayer", "gooey.funcs.gmcp.inventoryeventmanager")
+
+--Let us populate the damed gauges
+function gooey.funcs.showGauges()
+if not gooey.gui.healthBar then gooey.gui.build.gauges() end
+
+gooey.gui.healthBar:setValue(tonumber(gmcp.Char.Vitals.hp), tonumber(gmcp.Char.Vitals.maxhp))
+gooey.gui.healthBar:echo("&lt;span style = 'font-weight: bold'&gt;HP "..tonumber(gmcp.Char.Vitals.hp).."/"..tonumber(gmcp.Char.Vitals.maxhp).."    \n"..gooey.funcs.round(tonumber(gmcp.Char.Vitals.hp)*100/tonumber(gmcp.Char.Vitals.maxhp), 2).."%")
+
+if tonumber(gmcp.Char.Vitals.hp) &lt; tonumber(gmcp.Char.Vitals.maxhp)/4 and not gooey.vars.alertedlowhealth and tonumber(gmcp.Char.Vitals.hp) ~= 0 then
+  gooey.vars.alertedlowhealth = true
+  playsound("Low hull.wav")
+  tempTimer(10, [[gooey.vars.alertedlowhealth = false]])
+end
+
+gooey.gui.manaBar:setValue(tonumber(gmcp.Char.Vitals.mp), tonumber(gmcp.Char.Vitals.maxmp))--, "&lt;span style = 'font-weight: bold'&gt;&lt;b&gt;&lt;black&gt; MP ".. tonumber(gmcp.Char.Vitals.mp).."/".. tonumber(gmcp.Char.Vitals.maxmp).."    "..gooey.funcs.round(tonumber(gmcp.Char.Vitals.mp)*100/tonumber(gmcp.Char.Vitals.maxmp), 2).."%&lt;/b&gt;")
+gooey.gui.manaBar:echo("&lt;span style = 'font-weight: bold'&gt;MP ".. tonumber(gmcp.Char.Vitals.mp).."/".. tonumber(gmcp.Char.Vitals.maxmp).."    "..gooey.funcs.round(tonumber(gmcp.Char.Vitals.mp)*100/tonumber(gmcp.Char.Vitals.maxmp), 2).."%")
+
+gooey.gui.enduranceBar:setValue(tonumber(gmcp.Char.Vitals.ep), tonumber(gmcp.Char.Vitals.maxep))
+gooey.gui.enduranceBar:echo("&lt;span style = 'font-weight: bold'&gt;EP "..tonumber(gmcp.Char.Vitals.ep).."/"..tonumber(gmcp.Char.Vitals.maxep).."    "..gooey.funcs.round(tonumber(gmcp.Char.Vitals.ep)*100/tonumber(gmcp.Char.Vitals.maxep), 2).."%")
+
+gooey.gui.willpowerBar:setValue(tonumber(gmcp.Char.Vitals.wp), tonumber(gmcp.Char.Vitals.maxwp))
+gooey.gui.willpowerBar:echo("&lt;span style = 'font-weight: bold'&gt;WP "..tonumber(gmcp.Char.Vitals.wp).."/"..tonumber(gmcp.Char.Vitals.maxwp).."    "..gooey.funcs.round(tonumber(gmcp.Char.Vitals.wp)*100/tonumber(gmcp.Char.Vitals.maxwp), 2).."%")
+
+gooey.gui.expBar:setValue(tonumber(gmcp.Char.Vitals.nl), 100)
+gooey.gui.expBar:echo("&lt;span style = 'font-weight: bold'&gt;LVL "..gmcp.Char.Status.level.."  "..gooey.vars.target or "GloryAndRiches")
+
+if gmcp.Char.Vitals.eq == "1" then gooey.gui.eqBar:setStyleSheet(epbalonCSS:getCSS()) else gooey.gui.eqBar:setStyleSheet(epbaloffCSS:getCSS()) end
+if gmcp.Char.Vitals.bal == "1" then gooey.gui.balBar:setStyleSheet(epbalonCSS:getCSS()) else gooey.gui.balBar:setStyleSheet(epbaloffCSS:getCSS()) end
+
+
+end
+registerAnonymousEventHandler("gmcp.Char.Vitals", "gooey.funcs.showGauges")</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
 				<name>Sea funcs</name>
 				<packageName></packageName>
-				<script>gooey.funcs = gooey.funcs or {}
-gooey.funcs.sea = gooey.funcs.sea or {}
-local gv = gooey.vars
+				<script>local gs = gooey.vars.sea
 
-function gooey.funcs.shipo(state)
+function gooey.funcs.sea.shipo(state)
 
-if gv.ship.shipOn == nil then gv.ship.shipOn = false end
+if gooey.vars.mode.sea == nil then gooey.vars.mode.sea = false end
 
+if state == "on" then
+    enableKey("seafaringkeys")
+    disableKey("normalkeys")
+    send("nightsight")
+    send("get shipaxe from pack")
+    if svo then 
+      svo.defs.keepup("insomnia", "off", false) 
+      else send("curing priority defense insomnia reset")
+    end
+    send("queue add eqbal relax insomnia")
+    send("shipwarning on")
+    gooey.funcs.toggleGUIMode("sea")
+    --still gotta deal with shipwarning window and monster hit gauge/cape gauge
+    cecho("\n&lt;white&gt;[&lt;ansiCyan&gt;Ship stuff ON&lt;white&gt;]")
+    sq.balance = true
 
+--elseif not string.match(gmcp.Room.Info.environment, "Vessel") and shipon == true -- or string.match(gmcp.Room.Info.area, "Margam") 
+else 
+  enableKey("normalkeys")
+  disableKey("seafaringkeys")
+  gs.swarn = false
+  gs.wbon = false
+  if svo then
+    svo.defs.keepup("insomnia", "on", false)
+  else send("curing priority defense insomnia 25")
+  end
+  send("put shipaxe in pack")
+  gooey.funcs.toggleGUIMode("hunt")
+  --still gotta deal with shipwarning window and monster hit gauge/cape gauge
+  cecho("\n&lt;white&gt;[&lt;ansiCyan&gt;Ship stuff OFF&lt;white&gt;]")
+  sq.balance = true
+end
+gooey.funcs.gmcp.displayItems()
+end
 
-end</script>
+function gooey.funcs.sea.shipcheck()
+  if not gmcp or not gmcp.Room or not gmcp.Room.Info or not gmcp.Room.Info.environment then 
+    gooey.funcs.echo("Don't have environment, registering event handler to catch it.")
+    oneTimeShipCheck = registerAnonymousEventHandler("gmcp.Room.Info", "gooey.funcs.sea.shipcheck")
+  else
+    if string.match(gmcp.Room.Info.environment, "Vessel") then
+      gooey.funcs.sea.shipo("on")
+    else
+      gooey.funcs.sea.shipo("off")
+    end
+    gooey.funcs.echo("Got the environment, checking for oneTimeShipCheck event handler.")
+    if oneTimeShipCheck then
+      killAnonymousEventHandler(oneTimeShipCheck)
+      oneTimeShipCheck = nil
+      gooey.funcs.echo("Killed oneTimeShipCheck event handler.")
+    else
+      gooey.funcs.echo("No oneTimeShipCheck event handler found.")
+    end
+  end
+end
+</script>
 				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>shipQueue</name>
+					<packageName></packageName>
+					<script>--by Mishgul
+sq = sq or {
+  balance = true,
+  createdTriggers = false,
+  actions = {},
+  sendingAction = false,
+ 
+}
+
+function sq.shipBalLost()
+  sq.balance = false
+end
+
+function sq.shipBalGained() --The crew of your ship is now ready to execute another order.
+  --echo("\nBalance back!")
+  sq.sendingAction = false
+  sq.balance = true
+  sq.checkQueue()
+end
+
+function sq.checkQueue()
+  if sq.actions[1] ~= nil then
+    sq.sendAction(sq.actions[1])
+  end
+end
+
+function sq.AddAction(action)
+  --cecho("\n&lt;DarkSlateGrey&gt;-&gt;&lt;ansiCyan&gt;[&lt;grey&gt;ShipQueue&lt;ansiCyan&gt;]: Adding &lt;grey&gt;"..action.."&lt;ansiCyan&gt; to ship queue.")
+  cecho("\n&lt;DarkSlateGrey&gt;---&gt; Adding "..action.." to the ship queue")
+  table.insert(sq.actions, action)
+  sq.checkQueue()
+end
+
+
+function sq.sendAction(action)
+  if not sq.sendingAction and sq.balance then
+    --cecho("\n&lt;DarkSlateGrey&gt;-&gt;&lt;ansiCyan&gt;[&lt;grey&gt;ShipQueue&lt;ansiCyan&gt;]: Ship queue &lt;grey&gt;"..action)
+    cecho("\n&lt;DarkSlateGrey&gt;---&gt; Sending "..action)
+    sq.sendingAction = true
+    send(action)
+    oldaction = action
+    table.remove(sq.actions, 1)
+    tempTimer(1, [[sq.sendingAction = false sq.checkQueue()]])
+  end
+end
+
+function sq.ClearQueue()
+  sq.actions = {}
+end
+
+if not sq.createdTriggers then
+  tempBeginOfLineTrigger("You order the", [[sq.shipBalLost()]])
+  tempBeginOfLineTrigger("You bark out an", [[sq.shipBalLost()]])
+  tempExactMatchTrigger("You must wait before issuing another order to the crew.", [[sq.shipBalLost()]])
+  tempExactMatchTrigger("The crew of your ship is now ready to execute another order.",[[sq.shipBalGained()]])
+  tempExactMatchTrigger("You must wait a short while to use a say-like command again.", [[send(oldaction) deleteLine() tempTimer(2, 'oldaction = nil')]])
+  tempBeginOfLineTrigger("The crew scurry to take their place at the large wheel mounted on the side of the crane.", [[sq.shipBalLost()]])
+  
+  sq.createdTriggers = true
+end</script>
+					<eventHandlerList />
+				</Script>
 			</Script>
 			<Script isActive="yes" isFolder="no">
 				<name>Activity funcs (mid left)</name>
 				<packageName></packageName>
-				<script>
+				<script>local darkcolor = "#303030"
+
 function gooey.funcs.showActivity()
-  local console = "gooey.gui.activityStatusConsole"
-  clearUserWindow("console")
+
+  local gs = gooey.vars.sea
+  local gh = gooey.vars.hunt
+
+  gs.shipSails = gs.shipSails or "no info"
+  gs.sails = gs.sails or "no info"
+  gs.hull = gs.hull or "no info"
+  gs.windSpeed = gs.windSpeed or "no info"
+  gs.windDir = gs.windDir or "no info"
+  gs.shipSpeed = gs.shipSpeed or "no info"
+  gs.shipCourse = gs.shipCourse or "no info"
+  gs.seasTranl = gs.seasTranl or "no info"
+  gs.shipState = gs.shipState or "no info"
+  gs.shipAction = gs.shipAction or "no info"
+  gs.anchor = gs.anchor or "no info"
+  gs.shipshield = gs.shipshield or false
+  gs.swarn = gs.swarn or false
+  gs.wbon = gs.wbon or false
+  gs.ffon = gs.ffon or true
+  gs.fires = gs.fires or "No Info"
+  gs.fhpower = gs.fhpower or 0
+  if gs.figureheadclear == nil then gs.figureheadclear = true end
+  if gs.riggingclear == nil then gs.riggingclear = true end
+  gs.hooked = gs.hooked or false
+
+  local console = "activityStatusConsole"
+  clearUserWindow(console)
   
-  if gooey.vars.sea.shipOn then
+  if gooey.vars.mode.sea then
+    echo(console, "\n")
+    local shipwarningstrg = ""..darkcolor.." ShipWarning:"..(gs.swarn and "#00FF00 ON" or "#FF0000 OFF")
+    shipwarningstrg = shipwarningstrg..string.rep(" ", 33 - string.len(shipwarningstrg))
+    hecho(console, shipwarningstrg) -- green 008000
+    if gs.fires == "No" or gs.fires == "No Info" then firecolor = "#00FF00" else firecolor = "#FF0000" end
+    hecho(console, darkcolor.."Fires: "..firecolor..""..gs.fires) -- green 008000
+    
+    local windbooststr = darkcolor.." Windboost:"..(gs.wbon and "#00FF00 ON" or "#FF0000 OFF")
+    windbooststr = windbooststr..string.rep(" ", 33 - string.len(windbooststr))
+    hecho(console, "\n"..windbooststr)
+    hechoLink(console, darkcolor.."Tethered:"..(gs.hooked and "#FF0000 TETHERED" or "#00FF00 Clear"), [[gs.hooked = false gooey.funcs.showActivity()]], "Click to change", true)
+    
+    local anchorstr = darkcolor.." Anchor: #808000"..gs.anchor
+    anchorstr = anchorstr..string.rep(" ", 33 - string.len(anchorstr))
+    hecho(console, "\n"..anchorstr)
+    hechoLink(console, darkcolor.."Figurehead:"..(gs.figureheadclear and "#00FF00 Clear" or "#FF0000 Bound"), [[gs.figureheadclear = not gs.figureheadclear send("clear figurehead") gooey.funcs.showActivity()]], "Click to clear", true)
+    
+    gs.shipSails = gs.shipSails or "?"
+    local sailsstr = darkcolor.." Sails: #808000"..gs.shipSails
+    sailsstr = sailsstr..string.rep(" ", 33 - string.len(sailsstr))
+    hecho(console, "\n"..sailsstr)  
+    hechoLink(console, darkcolor.."Rigging:"..(gs.riggingclear and "#00FF00 Clear" or "#FF0000 Bound"), [[gs.riggingclear = not gs.riggingclear gooey.funcs.showActivity()]], "Click to change", true)
+    
+    local sailshstr = darkcolor.." Sails @ "..gooey.funcs.getHealthColorHex(gs.sails)..gs.sails..""..darkcolor.."%"
+    sailshstr = sailshstr..string.rep(" ", 40 - string.len(sailshstr))
+    hecho(console, "\n"..sailshstr)
+    
+    hechoLink(console, darkcolor.."Shield:"..(gs.shipshield and "#FF0000 Up" or "#00FF00 Down" ), [[if gs.shipshield == true then gs.shipshield = false else gs.shipshield = true end gooey.funcs.showActivity()]], "click to toggle", true)
+    
+    local hullstr = darkcolor.." Hull @#808000"..gooey.funcs.getHealthColorHex(gs.hull)..gs.hull..""..darkcolor.."%"
+    hullstr = hullstr..string.rep(" ", 46 - string.len(hullstr))
+    hecho(console, "\n"..hullstr)
+    --hecho(console, "\n"..darkcolor.." Hull @#808000 "..gooey.funcs.getHealthColorHex(gs.hull)..gs.hull..""..darkcolor.."%")
+    
+    hecho(console, darkcolor.. " Man: ")
+    cechoLink(console, "&lt;ansiYellow&gt;"..(shipmanoeuvres or "SI to update"), [[expandAlias("si")]], "Click to update", true)
+    
+    
+    local winddirstr = darkcolor.." Wind:#808000 "..gs.windDir..""..darkcolor.." @#808000"..gs.windSpeed
+    winddirstr = winddirstr..string.rep(" ", 46 - string.len(winddirstr))
+    hecho(console, "\n"..winddirstr) --darkcolor.." Wind:#808000 "..gs.windDir..""..darkcolor.." @#808000"..gs.windSpeed)
+    hechoLink(console, darkcolor.." Figurehead: #8B8B8B"..gs.fhpower, [[send("touch figurehead")]], "Click to check", true)
+    
+    hecho(console, "\n"..darkcolor.." Course:#808000 "..gs.shipCourse..""..darkcolor.." @#808000"..gs.shipSpeed)
+  
+    
+    hecho(console, "\n"..darkcolor.." Seas:#808000 "..(seas and (seas..".") or "").."".."#808000"..gs.seasTranl)
+    hecho(console, "\n"..darkcolor.." "..gs.shipState)
+    hecho(console, "\n#8B8B8B"..gs.shipAction)
+    
+  
+    if gs.melded then 
+      cecho(console, " &lt;red&gt;[&lt;ansiGreen&gt;M&lt;red&gt;]")
+    else 
+      cecho(console, " &lt;red&gt;[&lt;firebrick&gt;M&lt;red&gt;]")
+    end
+      cecho(console, " &lt;red&gt;["..(gs.startedShooting and "&lt;ansiGreen&gt;F" or "&lt;firebrick&gt;F").."&lt;red&gt;]")
+    if gs.anchor == "Down" then 
+      cecho(console, " &lt;red&gt;[&lt;ansiGreen&gt;A&lt;red&gt;]")
+    else 
+      cecho(console, " &lt;red&gt;[&lt;firebrick&gt;A&lt;red&gt;]")
+    end
+      cecho(console, " &lt;red&gt;["..(gs.rowing and "&lt;ansiGreen&gt;R" or "&lt;firebrick&gt;R").."&lt;red&gt;]")
+    if gs.shipSails == "Furled" then 
+      cecho(console, " &lt;red&gt;[&lt;firebrick&gt;S&lt;red&gt;]")
+    else 
+      cecho(console, " &lt;red&gt;[&lt;ansiGreen&gt;S"..gs.shipSails.."&lt;red&gt;]")
+    end
+    if gs.repairingHull then 
+      cecho(console, " &lt;red&gt;[&lt;ansiGreen&gt;Repairing&lt;red&gt;]")
+    else 
+      cecho(console, " &lt;red&gt;[&lt;firebrick&gt;Repairing&lt;red&gt;]")
+    end
   
   
   
-  
-  elseif gooey.vars.hunt.hunting then
-  
+  elseif gooey.vars.mode.hunt then
   
   
-  elseif gooey.vars.combat.combating then
+  
+  elseif gooey.vars.mode.combat then
   
   
   end
 end
 
-</script>
+registerAnonymousEventHandler("gmcp.Char", "gooey.funcs.showActivity")</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -2787,10 +3664,16 @@ local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
     end)
     gooey.gui.roomNameLabel: setStyleSheet(myadjlabel)
     gooey.gui.roomNameLabel: setFormat("c13")
+    
+            --set the font sizes
+    for k, v in pairs(gooey.gui) do 
+      if gooey.gui[k].type == "miniConsole" or gooey.gui[k].type == "adjustablecontainer" then 
+      local consoleName = gooey.gui[k].name
+        gooey.gui.fontSize[consoleName] = gooey.gui.fontSize[consoleName] or 10
+        setFontSize(gooey.gui[k].name, gooey.gui.fontSize[consoleName])
+      end
+    end
 end
-
-registerAnonymousEventHandler("sysLoadEvent", "gooey.funcs.formatAllContainers")
-
 
 function gooey.funcs.startup()
   if not gooey.vars.gui.started then
@@ -2802,19 +3685,416 @@ function gooey.funcs.startup()
       sendGMCP('Core.Supports.Add ["IRE.Display 1"]')
       sendGMCP('Core.Supports.Add ["IRE.Sound 1"]')
       sendGMCP('Core.Supports.Add ["IRE.Target 1"]')
-    Adjustable.Container:doAll(function(s) s:addConnectMenu() end)
-    --set the font sizes
-    for k, v in pairs(gooey.gui) do 
-      if gooey.gui[k].type == "miniConsole" or gooey.gui[k].type == "adjustablecontainer" then 
-      local consoleName = gooey.gui[k].name
-        gooey.gui.fontSize[consoleName] = gooey.gui.fontSize[consoleName] or 9
-      setFontSize(gooey.gui[k].name, gooey.gui.fontSize[consoleName])
+    
+    disableTimer("ragetimer")
+    end
+    gooey.gui.build.frame()
+    gooey.gui.build.bottom()
+    for k, v in pairs(gooey.gui.build) do
+      if k~= "frame" and k ~= "bottom" then
+        gooey.gui.build[k]()
+        cecho("\n&lt;red&gt;gooey.gui.build.&lt;firebrick&gt;"..k)
       end
     end
+
+    Adjustable.Container:doAll(function(s) s:addConnectMenu() end)
+    gooey.funcs.formatAllContainers()
+    gooey.funcs.sea.shipcheck()
+  
+end
+
+registerAnonymousEventHandler("sysLoadEvent", "gooey.funcs.startup")
+
+function gooey.funcs.install()
+
+if enableModuleSync then enableModuleSync('gooey') end
+gooey.funcs.startup()
+setModuleInfo("gooey", "version", "0.0001")
+end
+
+registerAnonymousEventHandler("sysInstallModule", "gooey.funcs.install")
+registerAnonymousEventHandler("sysLuaInstallModule", "gooey.funcs.install")
+
+function gooey.funcs.checkUpdates()
+
+if updatesexist then --which I have no idea how to check yet, but have high hopes on the setModuleInfo thing
+local downloadFolder = getModulePath("gooey")
+downloadFile(downloadFolder, "url")
+end
+end
+</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Hunting</name>
+				<packageName></packageName>
+				<script>
+function gooey.funcs.hunt.getClass()
+  local cls
+  local classChanged
+  
+  if gooey.vars.hunt.class ~= string.gsub(gmcp.Char.Status.class:lower(), "lady", "lord") then
+    cls = gooey.vars.hunt.class
+  end
+  if cls ~= string.gsub(gmcp.Char.Status.class:lower(), "lady", "lord") then
+    classChanged = true
+    cls = string.gsub(gmcp.Char.Status.class:lower(), "lady", "lord")
+    gooey.vars.hunt.class = string.gsub(gmcp.Char.Status.class:lower(), "lady", "lord")
+    gooey.data.hunt.myRageTable = {}
+    sensiskill = nil
+    inhibitskill = nil
+  end
+    
+  if classChanged == true then
+      gooey.funcs.hunt.rageTable()
+      for i = 1, #gooey.data.hunt.RageTable, 1 do
+        if cls == gooey.data.hunt.RageTable[i][1].Class:lower() then
+          table.remove(gooey.data.hunt.RageTable[i], 1)
+          gooey.data.hunt.myRageTable = table.deepcopy(gooey.data.hunt.RageTable[i])
+        end
+      end
+   
+    gooey.data.hunt.rageKeys = {}
+    local ragekeys = gooey.data.hunt.rageKeys
+    local ab = 1
+    for ab = 1, #gooey.data.hunt.myRageTable do
+      ragekeys[ab] = gooey.data.hunt.myRageTable[ab][6]
+    end
+  gooey.funcs.hunt.updateRageGauges() 
+  end
+end
+  registerAnonymousEventHandler("gmcp.Char.Status", "gooey.funcs.hunt.getClass")
+
+--function to deal with using a battlerage ability
+function gooey.funcs.hunt.useAbility(ability, atwhat)
+
+gooey.vars.hunt.announcechan = gooey.vars.hunt.announcechan or "pt"
+local announcechan = gooey.vars.hunt.announcechan
+
+local skillused
+  for k, v in ipairs(gooey.data.hunt.myRageTable) do
+    if v[1] == ability then
+      skillused = k
+      break
+    end
+  end
+
+local watch = "rageWatch"..skillused
+resetStopWatch(watch)
+startStopWatch(watch)
+enableTimer("ragetimer")
+gooey.data.hunt.myRageTable[skillused][5] = 0
+
+local gname = "rageGauge"..skillused
+ragebackCSS:setCSS(onCooldown)
+gooey.gui[gname].back:setStyleSheet(ragebackCSS:getCSS())
+
+if not string.find(gooey.data.hunt.myRageTable[skillused][7]:lower(), "shieldbreak") and 
+  string.find(gooey.data.hunt.myRageTable[skillused][7]:lower(), "aff")
+then
+  local aff = string.gsub(gooey.data.hunt.myRageTable[skillused][7]:lower(), "aff:","")
+  if not atwhat then atwhat = "target" end
+  if gooey.vars.hunt.pta == true then 
+    send(announcechan.." "..aff.." on "..atwhat) 
+  end
+  cecho("&lt;yellow&gt; [ &lt;green&gt;"..aff:upper().."&lt;yellow&gt; ]")
+end
+selectString(line, 1)
+fg("a_darkyellow")
+gooey.funcs.hunt.updateRageGauges()
+end
+
+function gooey.funcs.hunt.updateRageGauges()
+
+local rage = gooey.vars.gmcp.rage
+local gname 
+local usable 
+
+  if rage then
+    for i =1, #gooey.data.hunt.myRageTable, 1 do
+      gname = "rageGauge"..i
+      if rage &gt;= gooey.data.hunt.myRageTable[i][3] and gooey.data.hunt.myRageTable[i][5] == 1 then -- we have rage
+          ragebackCSS:setCSS(Rage)
+          gooey.gui[gname].back:setStyleSheet(ragebackCSS:getCSS())
+          
+      elseif rage &lt; gooey.data.hunt.myRageTable[i][3] and gooey.data.hunt.myRageTable[i][5] == 0 then
+          ragebackCSS:setCSS(NopeSkill)
+          gooey.gui[gname].back:setStyleSheet(ragebackCSS:getCSS())
+      elseif rage &lt; gooey.data.hunt.myRageTable[i][3] then -- we don't have rage
+          ragebackCSS:setCSS(onCooldown)
+          gooey.gui[gname].back:setStyleSheet(ragebackCSS:getCSS())
+      end
+      for k, v in ipairs(gooey.data.hunt.rageKeys) do 
+        if v == gooey.data.hunt.myRageTable[i][6] then 
+          fkey = "F"..k
+        end 
+      end
+      gooey.gui[gname]:echo("&lt;pre style='font-size:15px; color:white; text-align:center; padding:1px; margin:1px; font-family:Bitstream Vera Sans Mono;'&gt;"..gooey.data.hunt.myRageTable[i][1]:title().."&lt;span style='font-size:13px; color:grey; text-align: right;'&gt;  "..fkey.."&lt;/span&gt;&lt;/pre&gt;&lt;pre style='font-size:14px; color:grey; text-align:center; padding:1px; margin:1px;'&gt;"..gooey.data.hunt.myRageTable[i][7].."&lt;\pre&gt;")
+    end
+    gooey.gui.rageAmt:echo(rage)
   end
 end
 
-registerAnonymousEventHandler("sysLoadEvent", "gooey.funcs.startup")</script>
+
+
+--Zulah's rage table
+
+function gooey.funcs.hunt.rageTable()
+  gooey.data.hunt.RageTable = {	-- [1]name, [2]cooldown, [3]cost, [4]duration, [5]usable, [6]command, [7]tooltip
+    [1] = {
+      {["Class"] = "Black Dragon",},
+      {"dragonspit",      16, 14,  0, 1, "dragonspit myTarget",								"Dmg over time"},
+      {"dragonsting",     27, 25,  8, 1, "dragonsting myTarget",							"Aff:sensi"},
+      {"dissolve",         1, 17, 10, 1, "dissolve myTarget",								  "Aff:Shieldbreak"},
+      {"override",        23, 36,  0, 1, "override myTarget",								  "Big Dmg"},
+      {"corrode",         23, 25,  0, 1, "corrode myTarget",									"Needs: clumsy/aeon"},
+      {"dragonfear",      34, 29,  8, 1, "dragonfear myTarget",								"Aff:Fear"},
+    },
+    [2] = {
+      {["Class"] = "Blue Dragon",},
+      {"dragonchill",			16, 14,  0, 1, "dragonchill myTarget",							"Small Dmg"},
+      {"glaciate",				33, 26,  4, 1, "glaciate myTarget",								  "Aff:Stun"},
+      {"frostrive",	 		   1, 17, 10, 1, "frostrive myTarget",								"Aff:Shieldbreak"},
+      {"override",				23, 36,  0, 1, "override myTarget",								  "Big Dmg"},
+      {"frostwave",			  23, 25,  0, 1, "frostwave myTarget",								"Needs: amnesia/reckless"},
+      {"ague",					  23, 14,  7, 1, "ague myTarget",										  "Aff:clumsy"},
+    },
+    [3] = {
+      {["Class"] = "Golden Dragon",},
+      {"overwhelm",		   16, 14,  0, 1, "overwhelm myTarget",								  "Small Dmg"},
+      {"deaden",			   35, 24,  6, 1, "deaden myTarget",									  "Aff:Aeon"},
+      {"psishatter",		  1, 17, 10, 1, "psishatter myTarget",							  "Aff:Shieldbreak"},
+      {"psiblast",			 23, 36,  0, 1, "psiblast myTarget",								  "Big Dmg"},
+      {"psistorm",			 23, 25,  0, 1, "psistorm myTarget",								  "Needs: weakness/stun"},
+      {"psidaze",			   41, 28,  6, 1, "psidaze myTarget",									  "Aff:Amnesia"},
+    },
+    [4] = {
+      {["Class"] = "Green Dragon",},
+      {"dragonspit",			16, 14,  0, 1, "dragonspit myTarget",							  "Small Dmg over time"},
+      {"scour",					  25, 18,  9, 1, "scour myTarget",									  "Aff:Inhibit"},
+      {"deteriorate",			 1, 17, 10, 1, "deteriorate myTarget",						  "Aff:Shieldbreak"},
+      {"override",				23, 36,  0, 1, "override myTarget",								  "Big Dmg"},
+      {"slaver",				  23, 25,  0, 1, "slaver on myTarget",						    "Needs: sensi/clumsy"},
+      {"dragonsap", 			31, 22,  7, 1, "dragonsap myTarget",							  "Aff:Weakness"},
+    },
+    [5] = {
+      {["Class"] = "Red Dragon",},
+      {"overwhelm",			16, 14,  0, 1, "overwhelm myTarget",								  "Small Dmg"},
+      {"dragontaunt",		19, 18,  8, 1, "dragontaunt myTarget",							  "Aff:reckless"},
+      {"melt",					 1, 17, 10, 1, "melt myTarget",										    "Aff:Shieldbreak"},
+      {"dragonblaze",		23, 36,  0, 1, "dragonblaze myTarget",							  "Dmg over time"},
+      {"flamebath",			23, 25,  0, 1, "flamebath myTarget",								  "Needs: sensi/clumsy"},
+      {"scorch",				25, 18,  9, 1, "scorch myTarget",									    "Aff:Inhibit"},
+    },
+    [6] = {
+      {["Class"] = "Silver Dragon",},
+      {"overwhelm",			16, 14,  0, 1, "overwhelm myTarget",								  "Small Dmg"},
+      {"sizzle",				27, 25,  8, 1, "sizzle myTarget",								    	"Aff:sensi"},
+      {"splinter",				 1, 17, 10, 1, "splinter myTarget",								  "Aff:Shieldbreak"},
+      {"dragonspark",			23, 36,  0, 1, "dragonspark myTarget",							"Big Dmg"},
+      {"stormflare",			23, 25,  0, 1, "stormflare myTarget",								"Needs: fear/amnesia"},
+      {"galvanize",			19, 18, 15, 1, "galvanize myTarget",								  "Aff:reckless"},
+    },
+    [7] = {
+      {["Class"] = "Alchemist",},
+      {"miasma",				16, 14,  0, 1, "throw miasma at myTarget",						"Small Dmg"},
+      {"cadmium",				31, 22,  7, 1, "educe cadmium myTarget",							"Aff:Weakness"},
+      {"caustic",				 1, 17, 10, 1, "throw caustic at myTarget",						"Aff:Shieldbreak"},
+      {"magnesium",			23, 36,  0, 1, "educe magnesium myTarget",						"Big Dmg"},
+      {"pathogen",				23, 25,  0, 1, "throw pathogen at myTarget",				"Needs: reckless/fear"},
+      {"hypnotic",				41, 28,  4, 1, "throw hypnotic at myTarget",				"Aff:Amnesia"},
+    },
+    [8] = {
+      {["Class"] = "Apostate",},
+      {"convulsions",			16, 14,  0, 1, "stare myTarget convulsions",				"Small Dmg"},
+      {"horrify",				34, 29,  8, 1, "stare myTarget horrify",							"Aff:Fear"},
+      {"shieldbreak",			 1, 17, 10, 1, "shieldbreak myTarget",							"Aff:Shieldbreak"},
+      {"burrow",				23, 36,  0, 1, "daegger burrow myTarget",						  "Big Dmg"},
+      {"bloodlet",				23, 25,  8, 1, "bloodlet myTarget",								  "Needs: sensi/stun"},
+      {"possess",				43, 32,  4, 1, "possess myTarget",									  "Aff:Charm"},
+    },
+    [9] = {
+      {["Class"] = "Bard",},
+      {"moulinet",			16, 14,  0, 1, "moulinet myTarget",								    "Small Dmg"},
+      {"trill",					41, 28,  4, 1, "play trill at myTarget",							"Aff:Amnesia"},
+      {"resonance",			 1, 17, 10, 1, "play resonance at myTarget",					"Aff:Shieldbreak"},
+      {"howlslash",			23, 36,  0, 1, "howlslash myTarget",								  "Big Dmg"},
+      {"cyclone",				23, 25,  4, 1, "cyclone myTarget",									  "Needs: clumsy/stun"},
+      {"charm",					43, 32,  4, 1, "play charm at myTarget",							"Aff:Charm"},
+    },
+    [10] = {
+      {["Class"] = "Blademaster",},
+      {"leapstrike",			16, 14,  0, 1, "leapstrike myTarget",								"Small Dmg"},
+      {"daze",					33, 26,  4, 1, "shin daze myTarget",								  "Aff:Stun"},
+      {"shatter",			 	 1, 17, 10, 1, "shin shatter myTarget",							  "Aff:Shieldbreak"},
+      {"spinslash",			23, 36,  0, 1, "spinslash myTarget",								  "Big Dmg"},
+      {"headstrike",			23, 25,  0, 1, "strike myTarget head",							"Needs: reckless/fear"},
+      {"nerveslash",			31, 22,  7, 1, "nerveslash myTarget",								"Aff:Weakness"},
+    },
+    [11] = {
+      {["Class"] = "Druid",},
+      {"strangle",				16, 14,  0, 1, "strangle myTarget",								  "Small Dmg"},
+      {"redeem",				31, 22,  7, 1, "reclamation redeem myTarget",					"Aff:Weakness"},
+      {"vinecrack",			 1, 17, 10, 1, "vinecrack myTarget",								  "Aff:Shieldbreak"},
+      {"ravage",				23, 36,  0, 1, "ravage myTarget",									    "Big Dmg"},
+      {"sear",					23, 25,  0, 1, "sear myTarget",										    "Needs: reckless/stun"},
+      {"glare",					23, 14,  4, 1, "quarterstaff glare myTarget",					"Aff:clumsy"},
+    },
+    [12] = {
+      {["Class"] = "Infernal",},
+      {"ravage",				16, 14,  0, 1, "ravage myTarget",									    "Small Dmg"},
+      {"soulshield",			37, 20,  8, 1, "soulshield",											  "Temporary Dmg shield"},
+      {"shiver",				 1, 17, 10, 1, "shive myTarget",									    "Aff:Shieldbreak"},
+      {"spike",					23, 36,  0, 1, "spike myTarget",									    "Big Dmg"},
+      {"hellstrike",			23, 25,  0, 1, "hellstrike myTarget",								"Needs: reckless/fear"},
+      {"deathlink",			43, 30,  5, 1, "deathlink myAlly",									  "Take 50% of ally's Dmg"},
+    },
+    [13] = {
+      {["Class"] = "Jester",},
+      {"noogie",				16, 14,  0, 1, "noogie myTarget",									    "Small Dmg"},
+      {"dustthrow",			25, 18,  9, 1, "dustthrow myTarget",								  "Aff:Inhibit"},
+      {"jacks",					 1, 17, 10, 1, "throw jacks at myTarget",						  "Aff:Shieldbreak"},
+      {"ensconce",				23, 36,  0, 1, "ensconce firecracker on myTarget",  "Big Dmg"},
+      {"befuddle",				23, 25,  6, 1, "befuddle myTarget",								  "Needs: aeon/amnesia"},
+      {"rap",					33, 26,  4, 1, "rap myTarget",										      "Aff:Stun"},
+    },
+    [14] = {
+      {["Class"] = "Magi",},
+      {"windlash",				16, 14,  0, 1, "cast windlash at myTarget",				  "Small Dmg"},
+      {"dilation",				35, 24,  6, 1, "cast dilation at myTarget",				  "Aff:Aeon"},
+      {"disintegrate",		 1, 17, 10, 1, "cast disintegrate at myTarget",		  "Aff:Shieldbreak"},
+      {"squeeze",				23, 36,  0, 1, "golem squeeze myTarget",							"Big Dmg"},
+      {"firefall",				23, 25,  7, 1, "cast firefall at myTarget",				  "Needs: clumsy/reckless"},
+      {"stormbolt",			27, 25,  8, 1, "cast stormbolt at myTarget",					"Aff:sensi"},
+    },
+    [15] = {
+      {["Class"] = "Monk",},
+      {"spinningbackfist",	16, 14,  0, 1, "sbp myTarget",										"Small Dmg"},
+      {"scramble",			31, 22,  7, 1, "mind scramble myTarget",				      "Aff:clumsy"},
+      {"splinterkick",	 1, 17, 10, 1, "spk myTarget",										    "Aff:Shieldbreak"},
+      {"tornadokick",		23, 36,  0, 1, "tnk myTarget",										    "Big Dmg"},
+      {"mindblast",			23, 25,  0, 1, "mind blast myTarget",								  "Needs: weakness/sensi"},
+      {"ripplestrike",	27, 25,  9, 1, "rpst myTarget",										    "Aff:Inhibit"},
+    },
+    [16] = {
+      {["Class"] = "Occultist",},
+      {"harry",					16, 14,  0, 1, "harry myTarget",									    "Dmg over time"},
+      {"temper",				43, 32,  5, 1, "temper myTarget",									    "Aff:Charm"},
+      {"ruin",					 1, 17, 10, 1, "ruin myTarget",										    "Break shield"},
+      {"chaosgate",			23, 36,  0, 1, "chaosgate myTarget",								  "Big Dmg"},
+      {"fluctuate",			23, 25,  8, 1, "fluctuate myTarget",								  "Needs: fear/amnesia"},
+      {"stagnate",			35, 24,  6, 1, "stagnate myTarget",								    "Aff:Aeon"},
+    },
+    [17] = {
+      {["Class"] = "Paladin",},
+      {"harrow",				16, 14,  0, 1, "harrow myTarget",									         "Small Dmg"},
+      {"regeneration",	53, 33,  8, 1, "perform rite of regeneration",		         "Regenerate health"},
+      {"faithrend",			 1, 17, 10, 1, "faithrend myTarget",								       "Aff:Shieldbreak"},
+      {"shock",					23, 36,  0, 1, "perform rite of shock at myTarget",	       "Dmg over time"},
+      {"punishment",		23, 25,  0, 1, "perform rite of punishment at myTarget",	 "Needs: weakness/clumsy"},
+      {"recovery",			44, 31,  6, 1, "perform rite of recovery at myAlly",       "Heal ally for next 6 seconds"},
+    },
+    [18] = {
+      {["Class"] = "Priest",},
+      {"torment",				16, 14,  0, 1, "angel torment myTarget",							     "Small Dmg"},
+      {"incense",				18, 19, 15, 1, "angel incense myTarget",							     "Aff:reckless"},
+      {"crack",					 1, 17, 10, 1, "crack myTarget",									         "Aff:Shieldbreak"},
+      {"desolation",		23, 36,  4, 1, "perform rite of desolation on myTarget",	 "Dmg over time"},
+      {"hammer",				23, 25,  0, 1, "hammer myTarget",									         "Needs: clumsy/amnesia"},
+      {"horrify",				34, 29,  8, 1, "perform rite of horrify on myTarget",      "Aff:Fear"},
+    },
+    [19] = {
+      {["Class"] = "Runewarden",},
+      {"collide",				16, 14,  0, 1, "collide myTarget",									  "Small Dmg"},
+      {"bulwark",				45, 28, 15, 1, "bulwark",											        "Dmg reduction for self"}, -- 25%
+      {"fragment",			 1, 17, 10, 1, "fragment myTarget",								    "Aff:Shieldbreak"},
+      {"onslaught",			23, 36,  0, 1, "onslaught myTarget",								  "Big Dmg"},
+      {"etch",					23, 25,  0, 1, "etch rune at myTarget",							  "Needs: aeon/stun"},
+      {"safeguard",			57, 35, 10, 1, "safeguard myAlly",									  "Dmg reduction for ally"}, --40%
+    },
+    [20] = {
+      {["Class"] = "Sentinel",},
+      {"pester",				16, 14,  0, 1, "pester myTarget",									    "Small Dmg"},
+      {"tame",					43, 32,  5, 1, "tame myTarget",										    "Aff:Charm"},
+      {"bore"		,			 1, 17, 10, 1, "bore myTarget",										      "Aff:Shieldbreak"},
+      {"skewer",				23, 36,  0, 1, "skewer myTarget",									    "Big Dmg"},
+      {"swarm",					23, 25,  0, 1, "swarm myTarget",									    "Needs: aeon/clumsy"},
+      {"goad",					19, 18, 15, 1, "goad myTarget",										    "Aff:reckless"},
+    },
+    [21] = {
+      {["Class"] = "Serpent",},
+      {"thrash",				16, 14,  0, 1, "thrash myTarget",									    "Small Dmg"},
+      {"flagellate",		27, 25,  6, 1, "flagellate myTarget",								  "Aff:Aeon"},
+      {"excoriate",			 1, 17, 10, 1, "excoriate myTarget",								  "Aff:Shieldbreak"},
+      {"throatrip",			23, 36,  0, 1, "throatrip myTarget",								  "Big Dmg"},
+      {"snare",					23, 25,  5, 1, "snare myTarget",									    "Needs: inhibited/weakness"},
+      {"obliviate",			41, 28,  4, 1, "obliviate myTarget",								  "Aff:Amnesia"},
+    },
+    [22] = {
+      {["Class"] = "Shaman",},
+      {"corruption",			16, 14,  0, 1, "curse myTarget corruption",			    "Small Dmg"},
+      {"korkma",				34, 29,  4, 1, "invoke korkma myTarget",					    "Aff:Fear"},
+      {"vulnerability",		 1, 17, 10, 1, "curse myTarget vulnerability",	    "Aff:Shieldbreak"},
+      {"haemorrhage",			23, 36,  0, 1, "curse myTarget haemorrhage",		    "Big Dmg over time"},
+      {"vurus",					23, 25,  0, 1, "invoke vurus myTarget",							  "Needs: sensi/amnesia"},
+      {"cesaret",				19, 18, 15, 1, "invoke cesaret myTarget",						  "Aff:reckless"},
+    },
+    [23] = {
+      {["Class"] = "Sylvan",},
+      {"torrent",				16, 14,  0, 1, "cast torrent at myTarget",						"Small Dmg"},
+      {"sandstorm",			34, 29,  8, 1, "cast sandstorm at myTarget",					"Aff:Fear"},
+      {"shieldbreak",			 1, 17, 10, 1, "shieldbreak myTarget",							"Aff:Shieldbreak"},
+      {"stonevine",			23, 36,  0, 1, "stonevine myTarget",								  "Big Dmg"},
+      {"leechroot",			23, 25,  0, 1, "leechroot myTarget",								  "Needs: inhibited/weakness"},
+      {"rockshot",				41, 28,  4, 1, "cast rockshot at myTarget",				  "Aff:Amnesia"},
+    },
+    [24] = {
+      {["Class"] = "Depthswalker",},
+      {"drain",				16, 14,  0, 1, "shadow drain myTarget",						      "Dmg over Time"},
+      {"lash",				23, 36,  8, 1, "shadow lash myTarget",						      "Big Dmg"},
+      {"curse",				35, 24, 10, 1, "chrono curse myTarget",						      "Aff:Aeon"},
+      {"nakail",			 1, 17,  0, 1, "intone nakail myTarget",						    "Shieldbreak"},
+      {"erasure",			23, 25,  0, 1, "chrono erasure myTarget",					      "Mid Dmg"},
+      {"boinad",			38, 32,  4, 1, "intone boinad myTarget",						    "Aff:Charm"},
+    },
+    [25] = {
+      {["Class"] = "air Elemental Lord",},
+      {"bolt",				 16, 14,  0, 1, "manifest bolt myTarget",					      "Small Dmg"},
+      {"suffocate",		 23, 36,  8, 1, "aero suffocate myTarget",					    "Aff:Weakness"},
+      {"drill",				 35, 24, 10, 1, "manifest drill myTarget",					    "Aff:Shieldbreak"},
+      {"pressurewave", 23, 36,  0, 1, "manifest pressurewave myTarget",	      "Big Dmg"},
+      {"compress",		 23, 25,  0, 1, "aero compress myTarget",					      "Needs: sensitive/stun"},
+      {"vacuum",			 38, 32,  4, 1, "manifest vacuum myTarget",				      "Aff:Inhibit"},
+    },
+    [26] = {
+      {["Class"] = "earth Elemental Lord",},
+      {"smash",        16, 14,  0, 1, "terran smash myTarget",               "Small Dmg"},
+      {"rockfall",     33, 26,  0, 1, "manifest rockfall myTarget",          "Aff:Stun"},
+      {"charge",        0, 17,  0, 1, "terran charge myTarget",              "Aff:Shieldbreak"},
+      {"flurry",       23, 36,  0, 1, "terran flurry myTarget",              "Big Dmg"},
+      {"magmaburst",   23, 25,  0, 1, "manifest magmaburst myTarget",        "Needs: clumsy/reckless"},
+      {"rampart",      40, 30,  0, 1, "terran rampart myAlly",               "Ally:Defended"},  
+    },
+    [27] = {
+      {["Class"] = "Psion",},
+      {"barbedblade",	 16, 14,  0, 1, "weave barbedblade myTarget",          "Small Dmg"},
+      {"devistate",		 23, 36,  8, 1, "psi devastate myTarget",              "Big Dmg"},
+      {"regrowth",		 35, 24, 10, 1, "enact regrowth myTarget",             "Aff:Inhibit"},
+      {"pulverise",     1, 17,  0, 1, "weave pulverise myTarget",	           "Aff:Shieldbreak"},
+      {"whirlwind",		 23, 25,  0, 1, "weave whirlwind myTarget",            "Mid Dmg"},
+      {"terror",			 38, 32,  4, 1, "psi terror myTarget",                 "Aff:Fear"},
+    },  
+    [28] = {
+      {["Class"] = "Pariah",},
+      {"boil",	       16, 14,  0, 1, "blood boil myTarget",                 "Small Dmg"},
+      {"feast",		     23, 36,  8, 1, "swarm feast myTarget",                "Big Dmg"},
+      {"symphony",		 35, 24, 10, 1, "swarm symphony myTarget",             "Aff:Fear"},
+      {"scour",         1, 17,  0, 1, "accursed scour myTarget",	           "Aff:Shieldbreak"},
+      {"spider",		   23, 25,  0, 1, "trace spider myTarget",               "Needs: inhibited/sensitive"},
+      {"wail",			   38, 32,  4, 1, "accursed wail myTarget",              "Aff:clumsy"},
+    },    
+  }
+  end</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -2848,11 +4128,18 @@ registerAnonymousEventHandler("sysLoadEvent", "gooey.funcs.startup")</script>
     color_table.a_sixlevel    = {13, 121, 13}
     color_table.blaze_orange  = {255, 102, 0}
 
---Function that sets the gooey.target variable
-function gooey.funcs.setTarget(what)
+--Function that sets the gooey.target variable, can take id and value
+function gooey.funcs.setTarget(what, whatname)
+  
   send("st "..what, false)
-  gooey.vars.target = what:title()
-  gooey.echo("Target: &lt;LightSteelBlue&gt;"..what:title())
+  gooey.vars.target = what
+  gooey.funcs.echo("Target: &lt;LightSteelBlue&gt;"..what:title())
+  if not tonumber(what) and keneanung then 
+    keneanung.bashing.addPossibleTarget("what")   
+  end
+  if whatname and not tonumber(whatname) == "string" and keneanung then 
+    keneanung.bashing.addPossibleTarget("whatname") 
+  end
 end
 
 --Echo things in style 
@@ -2942,45 +4229,67 @@ function gooey.funcs.pp(state)
     else state = ((state == "on" and true) or false) 
     end
       send("curing "..(state and "on" or "off"))
+      gooey.vars.curing = (state and "on" or "off")
   elseif svo then
     if not state then 
       state = not svo.conf.paused
     else state = (state == "on" and "off" or "on")
     svo.app(state)
+    gooey.vars.curing = (state and "off" or "on")
     end
   else --no svo and no Legacy
     if not state then
       state = (gooey.vars.serverSettings.curingEnabled == "Yes" and "off" or "on")
     end
     send("curing "..state)
-    echo(""..(state == "on" and "Unp"  or "P").."aused the system") 
+    gooey.funcs.echo(""..(state == "on" and "Unp"  or "P").."aused the system") 
+    gooey.vars.curing = (state and "on" or "off")
   end
 end
 
 --Function to get the appropriate color for health based on health level
 function gooey.funcs.healthColor(somehealththing, somehealththingmax)
-if not somehealththing then
-  if tonumber(gmcp.Char.Vitals.hp) &gt;= 2*tonumber(gmcp.Char.Vitals.maxhp)/3 then return "a_onelevel"
-    elseif tonumber(gmcp.Char.Vitals.hp) &gt;= tonumber(gmcp.Char.Vitals.maxhp)/3 then return "ansiYellow"
-    else return "firebrick"
+if not gooey.vars.gui.singleprompt then
+  if not somehealththing then
+    if tonumber(gmcp.Char.Vitals.hp) &gt;= 2*tonumber(gmcp.Char.Vitals.maxhp)/3 then return "a_onelevel"
+      elseif tonumber(gmcp.Char.Vitals.hp) &gt;= tonumber(gmcp.Char.Vitals.maxhp)/3 then return "ansiYellow"
+      else return "firebrick"
+    end
+  else
+    if tonumber(somehealththing) &gt;= 2*tonumber(somehealththingmax)/3 then return "a_onelevel"
+      elseif tonumber(somehealththing) &gt;= tonumber(somehealththingmax)/3 then return "ansiYellow"
+      else return "firebrick"
+    end
   end
 else
-  if tonumber(somehealththing) &gt;= 2*tonumber(somehealththingmax)/3 then return "a_onelevel"
-    elseif tonumber(somehealththing) &gt;= tonumber(somehealththingmax)/3 then return "ansiYellow"
-    else return "firebrick"
+  if not somehealththing then
+    if tonumber(gmcp.Char.Vitals.hp) &gt;= 2*tonumber(gmcp.Char.Vitals.maxhp)/3 then return "dark_olive_green"
+      elseif tonumber(gmcp.Char.Vitals.hp) &gt;= tonumber(gmcp.Char.Vitals.maxhp)/3 then return "dark_orange"
+      else return "orange_red"
+    end
+  else
+    if tonumber(somehealththing) &gt;= 2*tonumber(somehealththingmax)/3 then return "dark_olive_green"
+      elseif tonumber(somehealththing) &gt;= tonumber(somehealththingmax)/3 then return "dark_orange"
+      else return "orange_red"
+    end
   end
 end
 end
 
+
 --get hex color codes - mostly used for hull/sails health
 function gooey.funcs.getHealthColorHex(thing)
 thing = tonumber(thing)
+if not thing then
+  return
+else
   if thing &lt; 40 then return "#FF0000"
   elseif thing &lt; 50 then return "#BD422E"
   elseif thing &lt; 70 then return "#E7A348"
   elseif thing &lt; 90 then return "#F3EC77"
   else return "#808000"
   end
+end
 end
 
 --Function that gets us to full stats before sending a command (the command is optional)
@@ -3039,7 +4348,7 @@ registerAnonymousEventHandler("gmcp.Char.Vitals", "gooey.funcs.goodtogo")
 
 --Figure out what color to use for a player
 function gooey.funcs.getPlayerHighlight(name)
-	if name == target then
+	if name == gooey.vars.target then
 		return "&lt;blaze_orange&gt;"
 	elseif svo then 
 		return ndb.getcolor(name) 
@@ -3048,42 +4357,224 @@ function gooey.funcs.getPlayerHighlight(name)
 	end
 end
 
---Get the color for an item
-function gooey.funcs.getItemHighlight(value)
-  if value.attrib == "m" then 
-    if value.id == target then return "&lt;blaze_orange&gt;" 
-    else return "&lt;green&gt;" 
-    end
-  end
-  if value.name and value.name:find("sovereign") ~= nil then return "&lt;gold&gt;" end
-  if value.name and value.name:starts("the corpse of") then 
-    if value.attrib == "t" then return "&lt;a_twolevel&gt;"
-    else return "&lt;SlateGrey&gt;" 
-    end
-  end
-end
 
 --Get the color for a mob
 function gooey.funcs.getMobHighlight(value)
-  if (gooey.target and value == gooey.target) or (keneanung and keneanung.bashing.targetList[1] and value == keneanung.bashing.targetList[1].id) or (gmcp.IRE and gmcp.IRE.Target and value == gmcp.IRE.Target.Set) then 
+  if (gooey.vars.target and value == gooey.vars.target) or (keneanung and keneanung.bashing.targetList[1] and value == keneanung.bashing.targetList[1].id) or (gmcp.IRE and gmcp.IRE.Target and value == gmcp.IRE.Target.Set) then 
     return "&lt;blaze_orange&gt;" 
     else return "&lt;green&gt;" 
   end
 end
+
+--function to switch between sea, hunting and combat modes
+--as arguments it will deal with these three modes or resetsea, resetcombat, resethunt
+--the reset modes will load a pre-configured layout, same as if there is no such layout saved with Adjustable.Container:saveAll(mode)
+--if no arguments then it will cycle through the available modes
+function gooey.funcs.toggleGUIMode(mode)
+local modesaved = nil
+local resetting = nil
+
+  if mode and mode:find("reset") then
+    resetting = true
+    for k, v in pairs ({"sea", "combat", "hunt"}) do
+      if mode:find(v) then 
+        mode = v 
+      end
+    end
+  end
+  
+  if not mode then 
+    for k, v in pairs(gooey.vars.mode) do
+      if v == true then 
+        if k == "sea" then mode = "hunt"
+        elseif k == "hunt" then mode = "combat"
+        elseif k == "combat" then mode = "sea"
+        end
+      end
+    end
+  end
+  
+
+    for k, v in pairs(gooey.vars.mode) do
+      if k ~= mode then 
+        gooey.vars.mode[k] = false
+      else
+        gooey.vars.mode[k] = true
+      end
+    end
+    gooey.funcs.echo("Switching to &lt;yellow&gt;"..mode)
+    
+  if not resetting then
+  --check if there's a saved layout by looking at a random container
+    if io.exists(Adjustable.Container.all.bottom.defaultDir.."bottom.lua") then
+      local actable = {}
+      table.load(Adjustable.Container.all.bottom.defaultDir.."bottom.lua", actable)
+      if actable.slot and actable.slot[mode] then
+        modesaved = true
+      else
+        modesaved = false
+      end
+    else
+      modesaved = false
+    end
+  end
+  
+  if modesaved then 
+    Adjustable.Container:loadAll(mode)
+    gooey.funcs.echo("Found saved mode: &lt;yellow&gt;"..mode)
+  else
+    gooey.funcs.echo("Going with default layout for &lt;yellow&gt;"..mode)
+  
+    if mode == "sea" then
+      if gooey.vars.gui.singleprompt then
+        gooey.gui.bottom:resize(nil, "10%")
+        gooey.gui.bottom:move(nil, "90%")
+        gooey.gui.bottom:add(gooey.gui.promptContainer)
+        gooey.gui.shipPromptConsole:show()
+        gooey.gui.shipPromptConsole:resize("100%", "20%")
+        gooey.gui.shipPromptConsole:move("0%", "2%")
+        gooey.gui.promptContainer:show()
+        gooey.gui.promptContainer:resize("100%", "28%")
+        gooey.gui.promptContainer:move("0%", "24%")
+        gooey.gui.gaugeContainer:resize( "100%", "46%")
+        gooey.gui.gaugeContainer:move( "0%", "-46%")
+        gooey.gui.rageContainer:hide()
+        gooey.gui.bottom:attachToBorder("bottom")
+        gooey.gui.promptContainer:add(gooey.gui.promptConsole)
+      else
+        gooey.gui.bottom:resize(nil, "7%")
+        gooey.gui.bottom:move(nil, "93%")
+        gooey.gui.rageContainer:hide()
+        gooey.gui.shipPromptConsole:show()
+        gooey.gui.gaugeContainer:resize( "100%", "67%") 
+        gooey.gui.gaugeContainer:move( "0%", "-67%")
+        gooey.gui.shipPromptConsole:resize("100%", "33%")
+        gooey.gui.shipPromptConsole:move("0%", "0%")
+        gooey.gui.bottom:attachToBorder("bottom")
+      end
+    elseif mode == "hunt"  then
+      if gooey.vars.gui.singleprompt then
+        gooey.gui.bottom:resize(nil, "11%")
+        gooey.gui.bottom:move(nil, "89%")
+        gooey.gui.shipPromptConsole:hide()
+        gooey.gui.promptContainer:show()
+        gooey.gui.promptContainer:resize("100%", "23%")
+        gooey.gui.promptContainer:move("0%", "0%")
+        gooey.gui.rageContainer:show()
+        gooey.gui.rageContainer:resize( "100%", "40%")
+        gooey.gui.rageContainer:move("0%", "24%")
+        gooey.gui.gaugeContainer:resize( "100%", "36%")
+        gooey.gui.gaugeContainer:move( "0%", "-36%")
+        gooey.gui.bottom:add(gooey.gui.promptContainer)
+        gooey.gui.bottom:attachToBorder("bottom")
+      else
+        gooey.gui.shipPromptConsole:hide()
+        gooey.gui.bottom:resize(nil, "8%")
+        gooey.gui.bottom:move(nil, "92%")
+        gooey.gui.gaugeContainer:resize( "100%", "47%")
+        gooey.gui.gaugeContainer:move( "0%", "-47%")
+        gooey.gui.rageContainer:show()
+        gooey.gui.rageContainer:resize( "100%", "51%")
+        gooey.gui.rageContainer:move("0%", "0%")
+        gooey.gui.gaugeContainer:add(gooey.gui.botomGaugeHbox)
+        gooey.gui.rageContainer:add(gooey.gui.rageHBox)
+        gooey.gui.bottom:attachToBorder("bottom")    
+      end
+    elseif mode == "combat" then
+      gooey.gui.rageContainer:hide()
+    end
+  end
+end
+
+function gooey.funcs.swapRoomLayout(how)
+  if not how then
+    if gooey.gui.preferredRoomLayout == "vertical" then 
+      how = "horizontal"
+    elseif gooey.gui.preferredRoomLayout == "horizontal" then
+      how = "vertical"
+    end 
+  end
+  gooey.gui.preferredRoomLayout  = how
+  if how == "vertical" then 
+    gooey.gui.denizens:resize("70%", "100%")
+    gooey.gui.denizens:move("0%", "0%")
+    gooey.gui.roomContainer:add(gooey.gui.denizens)
+    gooey.gui.people:resize("30%", "100%")
+    gooey.gui.people:move("-30%", "0%")
+    gooey.gui.roomContainer:add(gooey.gui.people)
+  elseif how == "horizontal" then
+    gooey.gui.denizens:resize("100%", "70%")
+    gooey.gui.denizens:move("0%", "-70%")
+    gooey.gui.roomContainer:add(gooey.gui.denizens)
+    gooey.gui.people:resize("100%", "30%")
+    gooey.gui.people:move("0%", "0%")
+    gooey.gui.roomContainer:add(gooey.gui.people)
+  end
+end
+
+function gooey.funcs.toggleSinglePrompt()
+  local mode
+  gooey.vars.gui.singleprompt = not gooey.vars.gui.singleprompt
+  gooey.funcs.echo(gooey.vars.gui.singleprompt and "Switched to single prompt" or "Removing the single prompt")
+  
+  if gooey.vars.gui.singleprompt then
+    gooey.gui.promptConsole:show()
+  else 
+    gooey.gui.promptConsole:hide()
+  end
+  
+  for k, v in pairs(gooey.vars.mode) do
+    if v == true then 
+      mode = k
+    end
+  end
+  
+  gooey.funcs.toggleGUIMode(mode)
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Popup window</name>
+				<packageName></packageName>
+				<script>local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
+local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
+
+function gooey.gui.build.popOut()
+gooey.gui.popOutWindow = -- gooey.gui.popOutWindow  or 
+  Adjustable.Container:new(
+    {name = "popOutWindow", titleText = "Tarv's File Analyzer", titleTxtColor = "white",
+      adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,
+      buttonFontSize = 7, buttonsize = 10, padding = 6,})
+      
+gooey.gui.popOutConsole = gooey.gui.popOutConsole or 
+  Geyser.MiniConsole:new({ name = "popOutConsole", x = 0, y = 0, width = "100%", height = "100%",
+  autoWrap = true, color = "black", scrollBar = false,  fontSize = 10, },
+    gooey.gui.popOutWindow)
+
+gooey.gui.popOutConsole:enableCommandLine()
+
+local function getScrolls(text)
+  enableTrigger("poptrig")
+  send(text)
+end
+
+gooey.gui.popOutConsole:setCmdAction(getScrolls)
+gooey.gui.popOutWindow:hide()
+end
+
 </script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
-				<name>resetmarkx</name>
+				<name>Gooey exit</name>
 				<packageName></packageName>
-				<script>function resetmarkx()
-  markx = 0
-end</script>
-				<eventHandlerList>
-					<string>gmcp.Char</string>
-					<string>gmcp.Room.Info</string>
-					<string>gmcp.IRE</string>
-				</eventHandlerList>
+				<script>function gooey.funcs.shutdown()
+disableTimer("ragetimer")
+
+end
+
+registerAnonymousEventHandler("sysExitEvent", "gooey.funcs.shutdown")</script>
+				<eventHandlerList />
 			</Script>
 		</ScriptGroup>
 		<Script isActive="yes" isFolder="no">
@@ -3110,15 +4601,1460 @@ function gooey.dendb.managedb(thing)
 end</script>
 			<eventHandlerList />
 		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>resetmarkx</name>
+			<packageName></packageName>
+			<script>function resetmarkx()
+  markx = 0
+end</script>
+			<eventHandlerList>
+				<string>gmcp.Char</string>
+				<string>gmcp.Room.Info</string>
+				<string>gmcp.IRE</string>
+			</eventHandlerList>
+		</Script>
 	</ScriptPackage>
 	<KeyPackage>
 		<KeyGroup isActive="yes" isFolder="yes">
-			<name>gooey</name>
+			<name>normalkeys</name>
+			<packageName>Movement</packageName>
+			<script></script>
+			<command></command>
+			<keyCode>0</keyCode>
+			<keyModifier>0</keyModifier>
+			<KeyGroup isActive="yes" isFolder="yes">
+				<name>Movement</name>
+				<packageName></packageName>
+				<script></script>
+				<command></command>
+				<keyCode>-1</keyCode>
+				<keyModifier>0</keyModifier>
+				<Key isActive="yes" isFolder="no">
+					<name>north</name>
+					<packageName></packageName>
+					<script></script>
+					<command>n</command>
+					<keyCode>56</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>south</name>
+					<packageName></packageName>
+					<script>	</script>
+					<command>s</command>
+					<keyCode>50</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>east</name>
+					<packageName></packageName>
+					<script></script>
+					<command>e</command>
+					<keyCode>54</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>west</name>
+					<packageName></packageName>
+					<script></script>
+					<command>w</command>
+					<keyCode>52</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>northwest</name>
+					<packageName></packageName>
+					<script></script>
+					<command>nw</command>
+					<keyCode>55</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>northeast</name>
+					<packageName></packageName>
+					<script></script>
+					<command>ne</command>
+					<keyCode>57</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>southeast</name>
+					<packageName></packageName>
+					<script></script>
+					<command>se</command>
+					<keyCode>51</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>southwest</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sw</command>
+					<keyCode>49</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>in</name>
+					<packageName></packageName>
+					<script></script>
+					<command>in</command>
+					<keyCode>47</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>out</name>
+					<packageName></packageName>
+					<script></script>
+					<command>out</command>
+					<keyCode>42</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>up</name>
+					<packageName></packageName>
+					<script></script>
+					<command>up</command>
+					<keyCode>45</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>down</name>
+					<packageName></packageName>
+					<script></script>
+					<command>down</command>
+					<keyCode>43</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>look</name>
+					<packageName></packageName>
+					<script></script>
+					<command>l</command>
+					<keyCode>53</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+			</KeyGroup>
+			<KeyGroup isActive="yes" isFolder="yes">
+				<name>Glide (SHIFT)</name>
+				<packageName></packageName>
+				<script></script>
+				<command></command>
+				<keyCode>-1</keyCode>
+				<keyModifier>0</keyModifier>
+				<Key isActive="yes" isFolder="no">
+					<name>north</name>
+					<packageName></packageName>
+					<script>if cls == "sentinel" then 
+getmorph("sprint")
+end
+
+if not ctrlmode then 
+  ctrlmode = "glide" 
+end
+
+if ctrlmode == "glide" then
+  if cls == "serpent" then 
+  send("evade n")
+  else
+  send("glide n")
+  end
+elseif ctrlmode == "leap" then
+  send("queue addclear eqbal leap n")
+elseif ctrlmode == "sprint" then
+  send("sprint n")
+end
+</script>
+					<command></command>
+					<keyCode>16777235</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>south</name>
+					<packageName></packageName>
+					<script>if cls == "sentinel" then 
+getmorph("sprint")
+end
+
+if not ctrlmode then 
+  ctrlmode = "glide" 
+end
+
+if ctrlmode == "glide" then
+  if cls == "serpent" then 
+  send("evade s")
+  else
+  send("glide s")
+  end
+elseif ctrlmode == "leap" then
+  send("queue addclear eqbal leap s")
+elseif ctrlmode == "sprint" then
+  send("sprint s")
+end
+</script>
+					<command></command>
+					<keyCode>16777237</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>east</name>
+					<packageName></packageName>
+					<script>if cls == "sentinel" then 
+getmorph("sprint")
+end
+
+if not ctrlmode then 
+  ctrlmode = "glide" 
+end
+
+if ctrlmode == "glide" then
+  if cls == "serpent" then 
+  send("evade e")
+  else
+  send("glide e")
+  end
+elseif ctrlmode == "leap" then
+  send("queue addclear eqbal leap e")
+elseif ctrlmode == "sprint" then
+  if gmcp.Room.Info.num ~= 52190 then
+  send("sprint e")
+  else 
+  send("sprint e 2")
+  end
+end
+</script>
+					<command></command>
+					<keyCode>16777236</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>west</name>
+					<packageName></packageName>
+					<script>if cls == "sentinel" then 
+getmorph("sprint")
+end
+
+if not ctrlmode then 
+  ctrlmode = "glide" 
+end
+
+if ctrlmode == "glide" then
+  if cls == "serpent" then 
+  send("evade w")
+  else
+  send("glide w")
+  end
+elseif ctrlmode == "leap" then
+  send("queue addclear eqbal leap w")
+elseif ctrlmode == "sprint" then
+  if gmcp.Room.Info.num ~= 52162 then
+  send("sprint w")
+  else 
+  send("sprint w 2")
+  end
+end
+</script>
+					<command></command>
+					<keyCode>16777234</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>northwest</name>
+					<packageName></packageName>
+					<script>if cls == "sentinel" then 
+getmorph("sprint")
+end
+
+if not ctrlmode then 
+  ctrlmode = "glide" 
+end
+
+if ctrlmode == "glide" then
+  if cls == "serpent" then 
+  send("evade nw")
+  else
+  send("glide nw")
+  end
+elseif ctrlmode == "leap" then
+  send("queue addclear eqbal leap nw")
+elseif ctrlmode == "sprint" then
+  send("sprint nw")
+end
+</script>
+					<command></command>
+					<keyCode>16777232</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>northeast</name>
+					<packageName></packageName>
+					<script>if cls == "sentinel" then 
+getmorph("sprint")
+end
+
+if not ctrlmode then 
+  ctrlmode = "glide" 
+end
+
+if ctrlmode == "glide" then
+  if cls == "serpent" then 
+  send("evade ne")
+  else
+  send("glide ne")
+  end
+elseif ctrlmode == "leap" then
+  send("queue addclear eqbal leap ne")
+elseif ctrlmode == "sprint" then
+  send("sprint ne")
+end
+</script>
+					<command></command>
+					<keyCode>16777238</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>southeast</name>
+					<packageName></packageName>
+					<script>if cls == "sentinel" then 
+getmorph("sprint")
+end
+
+if not ctrlmode then 
+  ctrlmode = "glide" 
+end
+
+if ctrlmode == "glide" then
+  if cls == "serpent" then 
+  send("evade se")
+  else
+  send("glide se")
+  end
+elseif ctrlmode == "leap" then
+  send("queue addclear eqbal leap se")
+elseif ctrlmode == "sprint" then
+  send("sprint se")
+end
+</script>
+					<command></command>
+					<keyCode>16777239</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>southwest</name>
+					<packageName></packageName>
+					<script>if cls == "sentinel" then 
+getmorph("sprint")
+end
+
+if not ctrlmode then 
+  ctrlmode = "glide" 
+end
+
+if ctrlmode == "glide" then
+  if cls == "serpent" then 
+  send("evade sw")
+  else
+  send("glide sw")
+  end
+elseif ctrlmode == "leap" then
+  send("queue addclear eqbal leap sw")
+elseif ctrlmode == "sprint" then
+  send("sprint sw")
+end
+</script>
+					<command></command>
+					<keyCode>16777233</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>up</name>
+					<packageName></packageName>
+					<script>if cls == "sentinel" then 
+getmorph("sprint")
+end
+
+if not ctrlmode then 
+  ctrlmode = "glide" 
+end
+
+if ctrlmode == "glide" then
+  if cls == "serpent" then 
+  send("evade up")
+  else
+  send("glide up")
+  end
+elseif ctrlmode == "leap" then
+  send("queue addclear eqbal leap up")
+elseif ctrlmode == "sprint" then
+  send("sprint up")
+end
+</script>
+					<command>glide up</command>
+					<keyCode>45</keyCode>
+					<keyModifier>570425344</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>down</name>
+					<packageName></packageName>
+					<script>if cls == "sentinel" then 
+getmorph("sprint")
+end
+
+if not ctrlmode then 
+  ctrlmode = "glide" 
+end
+
+if ctrlmode == "glide" then
+  if cls == "serpent" then 
+  send("evade down")
+  else
+  send("glide down")
+  end
+elseif ctrlmode == "leap" then
+  send("queue addclear eqbal leap down")
+elseif ctrlmode == "sprint" then
+  send("sprint down")
+end
+</script>
+					<command></command>
+					<keyCode>43</keyCode>
+					<keyModifier>570425344</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>out</name>
+					<packageName></packageName>
+					<script>if cls == "sentinel" then 
+getmorph("sprint")
+end
+
+if not ctrlmode then 
+  ctrlmode = "glide" 
+end
+
+if ctrlmode == "glide" then
+  if cls == "serpent" then 
+  send("evade out")
+  else
+  send("glide out")
+  end
+elseif ctrlmode == "leap" then
+  send("queue addclear eqbal leap out")
+elseif ctrlmode == "sprint" then
+  send("sprint out")
+end
+</script>
+					<command></command>
+					<keyCode>42</keyCode>
+					<keyModifier>570425344</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>in</name>
+					<packageName></packageName>
+					<script>if cls == "sentinel" then 
+getmorph("sprint")
+end
+
+if not ctrlmode then 
+  ctrlmode = "glide" 
+end
+
+if ctrlmode == "glide" then
+  if cls == "serpent" then 
+  send("evade in")
+  else
+  send("glide in")
+  end
+elseif ctrlmode == "leap" then
+  send("queue addclear eqbal leap in")
+elseif ctrlmode == "sprint" then
+  send("sprint in")
+end
+</script>
+					<command></command>
+					<keyCode>47</keyCode>
+					<keyModifier>570425344</keyModifier>
+				</Key>
+			</KeyGroup>
+			<KeyGroup isActive="yes" isFolder="yes">
+				<name>Squint (CTRL)</name>
+				<packageName></packageName>
+				<script></script>
+				<command></command>
+				<keyCode>-1</keyCode>
+				<keyModifier>0</keyModifier>
+				<Key isActive="yes" isFolder="no">
+					<name>sq down</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq down</command>
+					<keyCode>43</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq up</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq up</command>
+					<keyCode>45</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq out</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq out</command>
+					<keyCode>42</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq in</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq in</command>
+					<keyCode>47</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq sw</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq sw</command>
+					<keyCode>49</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq se</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq se</command>
+					<keyCode>51</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq ne</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq ne</command>
+					<keyCode>57</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq nw</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq nw</command>
+					<keyCode>55</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq west</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq west</command>
+					<keyCode>52</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq east</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq east</command>
+					<keyCode>54</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq south</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq south</command>
+					<keyCode>50</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq north</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq north</command>
+					<keyCode>56</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+			</KeyGroup>
+			<KeyGroup isActive="yes" isFolder="yes">
+				<name>Leap</name>
+				<packageName></packageName>
+				<script></script>
+				<command></command>
+				<keyCode>-1</keyCode>
+				<keyModifier>0</keyModifier>
+				<Key isActive="yes" isFolder="no">
+					<name>leap down</name>
+					<packageName></packageName>
+					<script></script>
+					<command>leap down</command>
+					<keyCode>43</keyCode>
+					<keyModifier>637534208</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>leap up</name>
+					<packageName></packageName>
+					<script></script>
+					<command>leap up</command>
+					<keyCode>45</keyCode>
+					<keyModifier>637534208</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq out</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq out</command>
+					<keyCode>42</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq in</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq in</command>
+					<keyCode>47</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq sw</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq sw</command>
+					<keyCode>49</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq se</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq se</command>
+					<keyCode>51</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq ne</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq ne</command>
+					<keyCode>57</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq nw</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq nw</command>
+					<keyCode>55</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>leap west</name>
+					<packageName></packageName>
+					<script></script>
+					<command>leap west</command>
+					<keyCode>16777236</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>leap east</name>
+					<packageName></packageName>
+					<script></script>
+					<command>leap east</command>
+					<keyCode>16777236</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq south</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq south</command>
+					<keyCode>50</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sq north</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sq north</command>
+					<keyCode>56</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+			</KeyGroup>
+			<KeyGroup isActive="no" isFolder="yes">
+				<name>Tumble</name>
+				<packageName></packageName>
+				<script></script>
+				<command></command>
+				<keyCode>-1</keyCode>
+				<keyModifier>0</keyModifier>
+				<Key isActive="yes" isFolder="no">
+					<name>tumble down</name>
+					<packageName></packageName>
+					<script></script>
+					<command>queue add eb!t tumble down</command>
+					<keyCode>43</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>tumble up</name>
+					<packageName></packageName>
+					<script></script>
+					<command>queue add eb!t tumble up</command>
+					<keyCode>45</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>tumble out</name>
+					<packageName></packageName>
+					<script></script>
+					<command>queue add eb!t tumble out</command>
+					<keyCode>42</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>tumble in</name>
+					<packageName></packageName>
+					<script></script>
+					<command>queue add eb!t tumble in</command>
+					<keyCode>47</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>tumble sw</name>
+					<packageName></packageName>
+					<script></script>
+					<command>queue add eb!t tumble sw</command>
+					<keyCode>49</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>tumble se</name>
+					<packageName></packageName>
+					<script></script>
+					<command>queue add eb!t tumble se</command>
+					<keyCode>51</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>tumble ne</name>
+					<packageName></packageName>
+					<script></script>
+					<command>queue add eb!t tumble ne</command>
+					<keyCode>57</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>tumble nw</name>
+					<packageName></packageName>
+					<script></script>
+					<command>queue add eb!t tumble nw</command>
+					<keyCode>55</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>tumble west</name>
+					<packageName></packageName>
+					<script></script>
+					<command>queue add eb!t tumble west</command>
+					<keyCode>52</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>tumble east</name>
+					<packageName></packageName>
+					<script></script>
+					<command>queue add eb!t tumble east</command>
+					<keyCode>54</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>tumble south</name>
+					<packageName></packageName>
+					<script></script>
+					<command>queue add eb!t tumble south</command>
+					<keyCode>50</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>tumble north</name>
+					<packageName></packageName>
+					<script></script>
+					<command>queue add eb!t tumble north</command>
+					<keyCode>56</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+			</KeyGroup>
+			<KeyGroup isActive="yes" isFolder="yes">
+				<name>Battlerage keys</name>
+				<packageName>BattleRage_GUI</packageName>
+				<script></script>
+				<command></command>
+				<keyCode>0</keyCode>
+				<keyModifier>0</keyModifier>
+				<KeyGroup isActive="yes" isFolder="yes">
+					<name>Battlerage</name>
+					<packageName></packageName>
+					<script></script>
+					<command></command>
+					<keyCode>-1</keyCode>
+					<keyModifier>0</keyModifier>
+					<Key isActive="yes" isFolder="no">
+						<name>Battlerage 1</name>
+						<packageName></packageName>
+						<script>send(gooey.data.hunt.rageKeys[1])</script>
+						<command></command>
+						<keyCode>16777264</keyCode>
+						<keyModifier>0</keyModifier>
+					</Key>
+					<Key isActive="yes" isFolder="no">
+						<name>Battlerage 2</name>
+						<packageName></packageName>
+						<script>send(gooey.data.hunt.rageKeys[2])</script>
+						<command></command>
+						<keyCode>16777265</keyCode>
+						<keyModifier>0</keyModifier>
+					</Key>
+					<Key isActive="yes" isFolder="no">
+						<name>Battlerage 3</name>
+						<packageName></packageName>
+						<script>send(gooey.data.hunt.rageKeys[3])</script>
+						<command></command>
+						<keyCode>16777266</keyCode>
+						<keyModifier>0</keyModifier>
+					</Key>
+					<Key isActive="yes" isFolder="no">
+						<name>Battlerage 4</name>
+						<packageName></packageName>
+						<script>send(gooey.data.hunt.rageKeys[4])</script>
+						<command></command>
+						<keyCode>16777267</keyCode>
+						<keyModifier>0</keyModifier>
+					</Key>
+					<Key isActive="yes" isFolder="no">
+						<name>Battlerage 5</name>
+						<packageName></packageName>
+						<script>send(gooey.data.hunt.rageKeys[5])</script>
+						<command></command>
+						<keyCode>16777268</keyCode>
+						<keyModifier>0</keyModifier>
+					</Key>
+					<Key isActive="yes" isFolder="no">
+						<name>Battlerage 6</name>
+						<packageName></packageName>
+						<script>send(gooey.data.hunt.rageKeys[6])</script>
+						<command></command>
+						<keyCode>16777269</keyCode>
+						<keyModifier>0</keyModifier>
+					</Key>
+				</KeyGroup>
+			</KeyGroup>
+			<Key isActive="yes" isFolder="no">
+				<name>Fly</name>
+				<packageName></packageName>
+				<script>send("queue addclear eqbal fly")</script>
+				<command></command>
+				<keyCode>16777275</keyCode>
+				<keyModifier>0</keyModifier>
+			</Key>
+			<KeyGroup isActive="yes" isFolder="yes">
+				<name>hunting</name>
+				<packageName></packageName>
+				<script></script>
+				<command></command>
+				<keyCode>-1</keyCode>
+				<keyModifier>0</keyModifier>
+				<Key isActive="yes" isFolder="no">
+					<name>Start the killing spree</name>
+					<packageName></packageName>
+					<script>send("kill "..gooey.vars.target)</script>
+					<command></command>
+					<keyCode>48</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>flee</name>
+					<packageName></packageName>
+					<script>keneanung.bashing.flee()</script>
+					<command></command>
+					<keyCode>46</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+			</KeyGroup>
+		</KeyGroup>
+		<KeyGroup isActive="no" isFolder="yes">
+			<name>seafaringkeys</name>
 			<packageName></packageName>
 			<script></script>
 			<command></command>
-			<keyCode>33554431</keyCode>
+			<keyCode>-1</keyCode>
 			<keyModifier>0</keyModifier>
+			<KeyGroup isActive="yes" isFolder="yes">
+				<name>Monsterhunt</name>
+				<packageName></packageName>
+				<script></script>
+				<command></command>
+				<keyCode>-1</keyCode>
+				<keyModifier>0</keyModifier>
+				<Key isActive="yes" isFolder="no">
+					<name>Start shooting</name>
+					<packageName></packageName>
+					<script>shootmonsters()</script>
+					<command></command>
+					<keyCode>16777264</keyCode>
+					<keyModifier>0</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>Sit</name>
+					<packageName></packageName>
+					<script>stopshooting()</script>
+					<command></command>
+					<keyCode>16777265</keyCode>
+					<keyModifier>0</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>To dip or not to dip</name>
+					<packageName></packageName>
+					<script>novat = not novat
+cecho("\n&lt;ansiYellow&gt;"..(novat and "Dipping" or "Not dipping"))</script>
+					<command></command>
+					<keyCode>16777267</keyCode>
+					<keyModifier>0</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>Sleep</name>
+					<packageName></packageName>
+					<script>if sleeping == true then send("wake") 
+else 
+expandAlias("sleep")
+end</script>
+					<command></command>
+					<keyCode>16777274</keyCode>
+					<keyModifier>0</keyModifier>
+				</Key>
+			</KeyGroup>
+			<KeyGroup isActive="yes" isFolder="yes">
+				<name>Walk like you own it</name>
+				<packageName></packageName>
+				<script></script>
+				<command></command>
+				<keyCode>-1</keyCode>
+				<keyModifier>0</keyModifier>
+				<Key isActive="yes" isFolder="no">
+					<name>down</name>
+					<packageName></packageName>
+					<script></script>
+					<command>down</command>
+					<keyCode>43</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>up</name>
+					<packageName></packageName>
+					<script></script>
+					<command>up</command>
+					<keyCode>45</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>out</name>
+					<packageName></packageName>
+					<script></script>
+					<command>out</command>
+					<keyCode>42</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>in</name>
+					<packageName></packageName>
+					<script></script>
+					<command>in</command>
+					<keyCode>47</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>sw</name>
+					<packageName></packageName>
+					<script></script>
+					<command>sw</command>
+					<keyCode>49</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>se</name>
+					<packageName></packageName>
+					<script></script>
+					<command>se</command>
+					<keyCode>51</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>ne</name>
+					<packageName></packageName>
+					<script></script>
+					<command>ne</command>
+					<keyCode>57</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>nw</name>
+					<packageName></packageName>
+					<script></script>
+					<command>nw</command>
+					<keyCode>55</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>west</name>
+					<packageName></packageName>
+					<script></script>
+					<command>west</command>
+					<keyCode>52</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>east</name>
+					<packageName></packageName>
+					<script></script>
+					<command>east</command>
+					<keyCode>54</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>south</name>
+					<packageName></packageName>
+					<script></script>
+					<command>south</command>
+					<keyCode>50</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>north</name>
+					<packageName></packageName>
+					<script></script>
+					<command>north</command>
+					<keyCode>56</keyCode>
+					<keyModifier>603979776</keyModifier>
+				</Key>
+			</KeyGroup>
+			<KeyGroup isActive="yes" isFolder="yes">
+				<name>wavecall</name>
+				<packageName></packageName>
+				<script></script>
+				<command></command>
+				<keyCode>-1</keyCode>
+				<keyModifier>0</keyModifier>
+				<Key isActive="yes" isFolder="no">
+					<name>sw</name>
+					<packageName></packageName>
+					<script>wcdir = "sw"
+wavecalldistance = wavecalldistance or 0
+wavecalldistance = wavecalldistance+1
+dwavecall(wcdir, wavecalldistance)</script>
+					<command></command>
+					<keyCode>16777233</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>se</name>
+					<packageName></packageName>
+					<script>wcdir = "se"
+wavecalldistance = wavecalldistance or 0
+wavecalldistance = wavecalldistance + 1
+dwavecall(wcdir, wavecalldistance)</script>
+					<command></command>
+					<keyCode>16777239</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>ne</name>
+					<packageName></packageName>
+					<script>wcdir = "ne"
+wavecalldistance = wavecalldistance or 0
+wavecalldistance = wavecalldistance+1
+dwavecall(wcdir, wavecalldistance)</script>
+					<command></command>
+					<keyCode>16777238</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>nw</name>
+					<packageName></packageName>
+					<script>wcdir = "nw"
+wavecalldistance = wavecalldistance or 0
+wavecalldistance = wavecalldistance+1
+dwavecall(wcdir, wavecalldistance)</script>
+					<command></command>
+					<keyCode>16777232</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>west</name>
+					<packageName></packageName>
+					<script>wcdir = "w"
+wavecalldistance = wavecalldistance or 0
+wavecalldistance = wavecalldistance+1
+dwavecall(wcdir, wavecalldistance)</script>
+					<command></command>
+					<keyCode>16777234</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>east</name>
+					<packageName></packageName>
+					<script>wcdir = "e"
+wavecalldistance = wavecalldistance or 0
+wavecalldistance = wavecalldistance+1
+dwavecall(wcdir, wavecalldistance)</script>
+					<command></command>
+					<keyCode>16777236</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>south</name>
+					<packageName></packageName>
+					<script>wcdir = "s"
+wavecalldistance = wavecalldistance or 0
+wavecalldistance = wavecalldistance+1
+dwavecall(wcdir, wavecalldistance)</script>
+					<command></command>
+					<keyCode>16777237</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>north</name>
+					<packageName></packageName>
+					<script>wcdir = "n"
+wavecalldistance = wavecalldistance or 0
+wavecalldistance = wavecalldistance+1
+dwavecall(wcdir, wavecalldistance)</script>
+					<command></command>
+					<keyCode>16777235</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>wc</name>
+					<packageName></packageName>
+					<script>send("invoke wavecall "..wcdir.." "..wavecalldistance)
+wavecalldistance = 0
+zone4movementcounter = zone4movementcounter or 0
+if counting then 
+  if string.find(direction, "n") then
+  zone4movementcounter = zone4movementcounter-1
+  elseif string.find(direction, "s") then
+  zone4movementcounter = zone4movementcounter+1
+  end 
+end
+
+
+</script>
+					<command></command>
+					<keyCode>16777227</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+				<Key isActive="yes" isFolder="no">
+					<name>Cancel wavecall</name>
+					<packageName></packageName>
+					<script>wavecalldistance = 0
+cecho(" &lt;olive_drab&gt;-&gt;&gt;&lt;DarkOrange&gt; CANCELLING&lt;dark_green&gt; wavecall\n")
+send("cq ship")
+sq.ClearQueue()</script>
+					<command></command>
+					<keyCode>16777223</keyCode>
+					<keyModifier>536870912</keyModifier>
+				</Key>
+			</KeyGroup>
+			<Key isActive="yes" isFolder="no">
+				<name>north</name>
+				<packageName></packageName>
+				<script>monstering = monstering or false
+steer = { "course", "bring her to the", "turn to"}
+
+if monstering then sq.AddAction("say "..steer[math.random(1, #steer)] .." north")
+else sq.AddAction("ship turn n") end</script>
+				<command></command>
+				<keyCode>56</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>south</name>
+				<packageName></packageName>
+				<script>monstering = monstering or false
+steer = { "course", "bring her to the", "turn to"}
+
+if monstering then sq.AddAction("say "..steer[math.random(1, #steer)] .." south")
+else sq.AddAction("ship turn s") end</script>
+				<command></command>
+				<keyCode>50</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>east</name>
+				<packageName></packageName>
+				<script>monstering = monstering or false
+steer = { "course", "bring her to the", "turn to"}
+
+if monstering then sq.AddAction("say "..steer[math.random(1, #steer)] .." east")
+else sq.AddAction("ship turn e") end</script>
+				<command></command>
+				<keyCode>54</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>west</name>
+				<packageName></packageName>
+				<script>monstering = monstering or false
+steer = { "course", "bring her to the", "turn to"}
+
+if monstering then sq.AddAction("say "..steer[math.random(1, #steer)] .." west")
+else sq.AddAction("ship turn w") end</script>
+				<command></command>
+				<keyCode>52</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>northeast</name>
+				<packageName></packageName>
+				<script>monstering = monstering or false
+steer = { "course", "bring her to the", "turn to"}
+
+if monstering then sq.AddAction("say "..steer[math.random(1, #steer)] .." northeast")
+else sq.AddAction("ship turn ne") end</script>
+				<command></command>
+				<keyCode>57</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>southeast</name>
+				<packageName></packageName>
+				<script>monstering = monstering or false
+steer = { "course", "bring her to the", "turn to"}
+
+if monstering then sq.AddAction("say "..steer[math.random(1, #steer)] .." southeast")
+else sq.AddAction("ship turn se") end</script>
+				<command></command>
+				<keyCode>51</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>southwest</name>
+				<packageName></packageName>
+				<script>monstering = monstering or false
+steer = { "course", "bring her to the", "turn to"}
+
+if monstering then sq.AddAction("say "..steer[math.random(1, #steer)] .." southwest")
+else sq.AddAction("ship turn sw") end</script>
+				<command></command>
+				<keyCode>49</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>northwest</name>
+				<packageName></packageName>
+				<script>monstering = monstering or false
+steer = { "course", "bring her to the", "turn to"}
+
+if monstering then sq.AddAction("say "..steer[math.random(1, #steer)] .." northwest")
+else sq.AddAction("ship turn nw") end</script>
+				<command></command>
+				<keyCode>55</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="no" isFolder="no">
+				<name>north-northwest</name>
+				<packageName></packageName>
+				<script></script>
+				<command>ship turn nnw</command>
+				<keyCode>55</keyCode>
+				<keyModifier>603979776</keyModifier>
+			</Key>
+			<Key isActive="no" isFolder="no">
+				<name>west-northwest</name>
+				<packageName></packageName>
+				<script></script>
+				<command>ship turn wnw</command>
+				<keyCode>16777232</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="no" isFolder="no">
+				<name>west-southwest</name>
+				<packageName></packageName>
+				<script></script>
+				<command>ship turn wsw</command>
+				<keyCode>16777233</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="no" isFolder="no">
+				<name>south-southwest</name>
+				<packageName></packageName>
+				<script></script>
+				<command>ship turn ssw</command>
+				<keyCode>49</keyCode>
+				<keyModifier>603979776</keyModifier>
+			</Key>
+			<Key isActive="no" isFolder="no">
+				<name>south-southeast</name>
+				<packageName></packageName>
+				<script></script>
+				<command>ship turn sse</command>
+				<keyCode>51</keyCode>
+				<keyModifier>603979776</keyModifier>
+			</Key>
+			<Key isActive="no" isFolder="no">
+				<name>east-southeast</name>
+				<packageName></packageName>
+				<script></script>
+				<command>ship turn ese</command>
+				<keyCode>16777239</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="no" isFolder="no">
+				<name>east-northeast</name>
+				<packageName></packageName>
+				<script></script>
+				<command>ship turn ene</command>
+				<keyCode>16777238</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="no" isFolder="no">
+				<name>north-northeast</name>
+				<packageName></packageName>
+				<script></script>
+				<command>ship turn nne</command>
+				<keyCode>57</keyCode>
+				<keyModifier>603979776</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>raise anchor</name>
+				<packageName></packageName>
+				<script>raise = { "weigh", "weigh the", "raise", "raise the"}
+--send("queue add ship say "..raise[math.random(1, #raise)] .." anchor")
+
+sq.AddAction("say "..raise[math.random(1, #raise)] .." anchor")</script>
+				<command></command>
+				<keyCode>48</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>lower anchor</name>
+				<packageName></packageName>
+				<script>lower = { "drop", "drop the", "lower", "lower the"}
+--send("queue add ship say "..lower[math.random(1, #lower)] .." anchor")
+sq.AddAction("say "..lower[math.random(1, #lower)] .." anchor")</script>
+				<command></command>
+				<keyCode>48</keyCode>
+				<keyModifier>603979776</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>row</name>
+				<packageName></packageName>
+				<script>
+if sleeping == true then send("wake") end
+row = {"row", "man the oars"}
+--send("queue add ship say "..row[math.random(1, 2)])
+sq.AddAction("say "..row[math.random(1, 2)])
+</script>
+				<command></command>
+				<keyCode>47</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>raise plank</name>
+				<packageName></packageName>
+				<script>--send("queue add ship ship raise plank")
+sq.AddAction("ship raise plank")</script>
+				<command></command>
+				<keyCode>46</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>lower plank</name>
+				<packageName></packageName>
+				<script>--send("queue add ship ship lower plank")
+sq.AddAction("ship lower plank")</script>
+				<command></command>
+				<keyCode>46</keyCode>
+				<keyModifier>603979776</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>full sails</name>
+				<packageName></packageName>
+				<script>lower = { "set", "full"}
+
+--send("queue add ship say "..lower[math.random(1, #lower)] .." sails")
+sq.AddAction("say "..lower[math.random(1, #lower)] .." sails")</script>
+				<command></command>
+				<keyCode>43</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>strike sails</name>
+				<packageName></packageName>
+				<script>strikesails = { "strike", "strike the"}
+
+sq.AddAction("say "..strikesails[math.random(1, #strikesails)] .." sails")
+
+</script>
+				<command></command>
+				<keyCode>43</keyCode>
+				<keyModifier>570425344</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>full stop</name>
+				<packageName></packageName>
+				<script>send("cq ship")
+
+if sleeping == true then send("wake") end
+-- send("queue add ship say all stop")
+sq.AddAction("say all stop")</script>
+				<command></command>
+				<keyCode>45</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>Look</name>
+				<packageName></packageName>
+				<script></script>
+				<command>ql</command>
+				<keyCode>53</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>repair</name>
+				<packageName></packageName>
+				<script></script>
+				<command>ship repair all</command>
+				<keyCode>16777275</keyCode>
+				<keyModifier>0</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>Stop repairing</name>
+				<packageName></packageName>
+				<script></script>
+				<command>ship repair none</command>
+				<keyCode>16777275</keyCode>
+				<keyModifier>67108864</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>Stop rowig</name>
+				<packageName></packageName>
+				<script>
+--send("say stop rowing")
+sq.AddAction("say stop rowing")</script>
+				<command></command>
+				<keyCode>47</keyCode>
+				<keyModifier>570425344</keyModifier>
+			</Key>
+			<Key isActive="yes" isFolder="no">
+				<name>stop turning</name>
+				<packageName></packageName>
+				<script>--send("ship stop turning")
+sq.AddAction("ship stop turning")</script>
+				<command></command>
+				<keyCode>42</keyCode>
+				<keyModifier>536870912</keyModifier>
+			</Key>
 		</KeyGroup>
 	</KeyPackage>
 	<HelpPackage>
