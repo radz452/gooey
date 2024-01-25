@@ -1,7 +1,8 @@
-gooey is an awesome system made by people who can't code. It's GLORIOUS. Ok. Bai.
+gooey is an awesome system made by people who can't code for a shitty text game. It's GLORIOUS. Ok. Bai.
 
 to do: 
-- check for updates, manager versions
+- check for updates, manage versions
+- chat
 - hunting functionality
 - sailing functionality
 - combat functionality
