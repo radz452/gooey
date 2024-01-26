@@ -3,7 +3,7 @@
 <MudletPackage version="1.001">
 	<TriggerPackage>
 		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-			<name>gooey core</name>
+			<name>Core</name>
 			<script></script>
 			<triggerType>0</triggerType>
 			<conditonLineDelta>0</conditonLineDelta>
@@ -141,7 +141,7 @@ disableTrigger("getcuringinfo")</script>
 			</Trigger>
 			<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 				<name>Wilderness Map</name>
-				<script></script>
+				<script>-- Zulah's</script>
 				<triggerType>0</triggerType>
 				<conditonLineDelta>0</conditonLineDelta>
 				<mStayOpen>0</mStayOpen>
@@ -425,15 +425,15 @@ deleteLine()
 				<regexCodePropertyList />
 				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Battle Prompt</name>
-					<script>selectCurrentLine()
+					<script>if not gooey.vars.sea.gotPrompt then gooey.vars.sea.gotPrompt = true end
+selectCurrentLine()
 copy()
 appendBuffer("shipPromptConsole")
 --fg("a_onelevel")
 --cinsertText("                             ")
 deleteLine()
 deselect()
-gooey.vars = gooey.vars or {}
-gooey.vars.sea = gooey.vars.sea or {}
+
 gs = gooey.vars.sea
 gs.shipSails = matches[2]
 gs.windSpeed = matches[6]
@@ -648,10 +648,92 @@ deleteLine()
 				</Trigger>
 			</TriggerGroup>
 		</TriggerGroup>
+		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Addon - hunt</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList />
+			<regexCodePropertyList />
+			<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Hunting</name>
+				<script></script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList />
+				<regexCodePropertyList />
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Kill</name>
+					<script>if killon == true then
+	expandAlias("dor combination &amp;tar slice smash")
+end --if</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>Your target is now\: (.+) \(a denizen\)</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>stopDOR</name>
+					<script>expandAlias("dor")
+deleteLine()</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>I do not recognise anything called that here.</string>
+						<string>Nothing can be seen here by that name.</string>
+						<string>You cannot see that being here.</string>
+						<string>Ahh, I am truly sorry, but I do not see anyone by that name here.</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>2</integer>
+						<integer>2</integer>
+						<integer>2</integer>
+						<integer>2</integer>
+					</regexCodePropertyList>
+				</Trigger>
+			</TriggerGroup>
+		</TriggerGroup>
 		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 			<name>My Prompt</name>
-			<script>   if gmcp and gmcp.Char and gmcp.Char.Vitals and gmcp.Char.Status.name == "Killian" then
-      
+			<script>
+   if gmcp and gmcp.Char and gmcp.Char.Vitals and gmcp.Char.Status.name == "Killian" then
+      local oldhp
       if gooey.vars.gmcp.old then
        oldhp = gooey.vars.gmcp.old.hp or tonumber(gmcp.Char.Vitals.hp)
       end
@@ -677,9 +759,23 @@ deleteLine()
       
       --target info
       if gmcp.IRE and gmcp.IRE.Target then
-        if gmcp.IRE.Target.Set ~= "" and gmcp.IRE.Target.Info.id ~= "-1" then
-          cprompt = cprompt .."&lt;blaze_orange&gt;"..gooey.vars.target.." @ &lt;"..gooey.funcs.healthColor(tonumber(gmcp.IRE.Target.Info.hpperc), 100).."&gt;"..gmcp.IRE.Target.Info.hpperc.."&lt;DimGrey&gt; |"
+      local sstar
+      local sstarhp
+        if gmcp.IRE.Target.Set and gmcp.IRE.Target.Set ~= "" then
+          sstar = gmcp.IRE.Target.Set
+          if sstar == gooey.vars.target then
+            cprompt = cprompt.."&lt;"..lightcolor.."&gt;"..gooey.vars.target
+          elseif sstar ~= gooey.vars.target then
+            cprompt = cprompt.."&lt;"..lightcolor.."&gt;"..gooey.vars.target..sstar
+          end
+        elseif gmcp.IRE.Target.Set and gmcp.IRE.Target.Set == "" then
+          cprompt = cprompt.."&lt;"..lightcolor.."&gt;[&lt;"..darkcolor.."&gt;"..gooey.vars.target.."&lt;"..lightcolor.."&gt;]"
         end
+        if gmcp.IRE.Target.Info and gmcp.IRE.Target.Info.hpperc.hpperc then
+          sstarhp = tonumber(gmcp.IRE.Target.Info.hpperc)
+          cprompt = cprompt .." @ &lt;"..gooey.funcs.healthColor(sstarhp, 100).."&gt;"..sstarhp.."&lt;DimGrey&gt; |"
+        end
+
       end
       
       --health
@@ -741,35 +837,6 @@ cecho ("&lt;black&gt;................&lt;red&gt;*&lt;black&gt;........&lt;red&gt
 cecho ("&lt;black&gt;..............&lt;blue&gt;*&lt;black&gt;..........&lt;white&gt;*&lt;black&gt;..........&lt;blue&gt;*&lt;black&gt;...............\n")
 
 
--- Function to draw a colorful firework burst
-local function drawFireworkBurst(maxSpaces)
-    local colors = {"red", "green", "yellow", "blue", "magenta", "cyan", "white"}
-    local burst = string.rep(" ", maxSpaces)
-    local characters = {"*", ".", "`", "~", "'", " ", "   ", "  ", "  ", "'", ":", "\""}
-    for i = 1, 10 do
-        local randomColor = colors[math.random(1, #colors)]
-
-        burst = burst.."&lt;" .. randomColor .. "&gt;"
-
-        burst = burst .. characters[math.random(1, #characters)]
-    end
-
-    cecho(burst.."\n")
-
-end
-
--- Function to draw a complete firework display
-local function drawFireworkDisplay(lines)
-    local maxSpaces = 15  -- Set the initial number of spaces
-
-    for i = 1, lines do
-        drawFireworkBurst(maxSpaces)
-        maxSpaces = math.max(0, maxSpaces - 2)  -- Decrease the number of spaces for the next burst
-    end
-end
-
--- Call the function to draw the firework display with 5 lines
-drawFireworkDisplay(10)
 
 
 </script>
@@ -884,7 +951,7 @@ end
 	</TimerPackage>
 	<AliasPackage>
 		<AliasGroup isActive="yes" isFolder="yes">
-			<name>gooey core</name>
+			<name>Core</name>
 			<script></script>
 			<command></command>
 			<packageName></packageName>
@@ -982,6 +1049,159 @@ send(matches[1])</script>
 				<regex>^goo ?(hunt|sea|combat)$</regex>
 			</Alias>
 		</AliasGroup>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>Addon - hunt</name>
+			<script></script>
+			<command></command>
+			<packageName></packageName>
+			<regex></regex>
+			<AliasGroup isActive="yes" isFolder="yes">
+				<name>Hunting</name>
+				<script>-- by Guhem https://forums.achaea.com/discussion/1501/denizen-targeting-script</script>
+				<command></command>
+				<packageName>Huntingv061</packageName>
+				<regex></regex>
+				<Alias isActive="yes" isFolder="no">
+					<name>Install Hunting</name>
+					<script>local sep
+local homeDir = getMudletHomeDir()
+if string.char(homeDir:byte()) == "/" then 
+	sep = "/" else sep = "\\"
+end
+table.save(homeDir.. sep .. huntVar.fileName..".lua", areaList)
+table.save(homeDir.. sep .. huntVar.fileNameFull..".lua", areaList)
+
+cecho("Hunting Table Installed\n")
+table.load(homeDir.. sep .. huntVar.fileName..".lua", huntVar.userAreaList)
+table.load(homeDir.. sep .. huntVar.fileNameFull..".lua", fixedHuntVar.areaList)
+
+huntVar.currentArea = gmcp.Room.Info.area
+fixedHuntVar.areaDenizens = fixedHuntVar.areaList[huntVar.currentArea] or {}
+huntVar.userAreaDenizens = huntVar.userAreaList[huntVar.currentArea] or {}
+huntTracker:List()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^hinstall$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Hunting On/Off</name>
+					<script>local toggle = "on"
+if matches[2] == nil and huntVar.on then
+	toggle = "off"
+end
+if matches[2] == "off" then
+	toggle = "off"
+end
+
+huntToggle(toggle)</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^hunt\s?(on|off)?$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Hunting Echo To</name>
+					<script>if matches[2] == nil then
+	huntVar.echoto = ""
+	cecho("&lt;white&gt;Only echoing locally\n")
+else
+	huntVar.echoto = matches[2]
+	cecho("&lt;white&gt;Echoing to: "..matches[2].."\n")
+end</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^hcc\s?(.+)?$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Hunting Echo Toggle</name>
+					<script>if huntVar.echo then
+	huntVar.echo = false
+	cecho("&lt;white&gt;Hunting Echo turned off.\n")
+else
+	huntVar.echo = true
+	cecho("&lt;white&gt;Hunting Echo turned on.\n")
+end</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^hecho$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Reloading User Table</name>
+					<script>local sep
+local homeDir = getMudletHomeDir()
+if string.char(homeDir:byte()) == "/" then 
+	sep = "/" else sep = "\\"
+end
+table.load(homeDir.. sep .. huntVar.fileName..".lua", huntVar.userAreaList)
+table.load(homeDir.. sep .. huntVar.fileNameFull..".lua", fixedHuntVar.areaList)
+
+huntTableCheck()
+
+huntVar.currentArea = gmcp.Room.Info.area
+fixedHuntVar.areaDenizens = fixedHuntVar.areaList[huntVar.currentArea] or {}
+huntVar.userAreaDenizens = huntVar.userAreaList[huntVar.currentArea] or {}
+huntTracker:List()
+
+cecho("&lt;white&gt;Hunting Table Reloaded\n")</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^hload$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Show Area Targets</name>
+					<script>showHuntTargs()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^hshow$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Save Hunting Table</name>
+					<script>huntTableCheck()
+
+local sep
+local homeDir = getMudletHomeDir()
+if string.char(homeDir:byte()) == "/" then 
+	sep = "/" else sep = "\\"
+end
+
+
+table.save(homeDir.. sep .. huntVar.fileName..".lua", huntVar.userAreaList)
+table.save(homeDir.. sep .. huntVar.fileNameFull..".lua", fixedHuntVar.areaList)
+cecho("&lt;white&gt;Hunting System Saved\n")</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^hsave$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Hunt Add</name>
+					<script>addTargets()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^hadd$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Hunt Remove</name>
+					<script>removeTargets()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^hremove$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Kill the thing</name>
+					<script>send("setalias gooeykilly stand/kill")
+send("queue add eqbal gooeykilly "..gooey.vars.target, false)</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^k$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Auto Kill</name>
+					<script>gooey.funcs.hunt.letUsKill()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^ak$</regex>
+				</Alias>
+			</AliasGroup>
+		</AliasGroup>
 		<Alias isActive="yes" isFolder="no">
 			<name>firework</name>
 			<script>-- Function to print a colored string
@@ -1031,7 +1251,7 @@ appendCmdLine("lua for k, v in pairs("..matches[1]..") do echo(\"\\n\"..k) end")
 	<ActionPackage />
 	<ScriptPackage>
 		<ScriptGroup isActive="yes" isFolder="yes">
-			<name>Main gooey</name>
+			<name>Core</name>
 			<packageName></packageName>
 			<script>----------------------------------
 --  Heavily inspired by Zulah   --
@@ -2532,7 +2752,7 @@ gooey.gui.fontSize.gaugeContainer = 10
 
 
 --change this if you want to have a single prompt, instead of one every line
-gooey.vars.gui.singleprompt = gooey.vars.gui.singleprompt or true
+gooey.vars.gui.singleprompt = gooey.vars.gui.singleprompt or false
 
 --determines if the players and the items consoles are one next to the other or one above the other. Options are "vertical" or "horizontal"
 gooey.gui.preferredRoomLayout = gooey.gui.preferredRoomLayout or "vertical" 
@@ -2646,7 +2866,7 @@ gooey.gui.roomNameLabel: setStyleSheet( [[background-color:rgba(20,20,20,100%); 
 
 if gooey.vars.gmcp and gooey.vars.gmcp.roomname then gooey.gui.roomNameLabel:echo(gooey.vars.gmcp.roomname, "ansiYellow", "c13") end
 
-gooey.gui.roomContainer = gooey.gui.denizens or 
+gooey.gui.roomContainer = gooey.gui.roomContainer or 
   Adjustable.Container:new({
     name = "roomContainer", y = "0%", x = "0%", width = "75%", height = "100%",
     buttonFontSize = 7, buttonsize = 10, padding = 6, 
@@ -2985,6 +3205,46 @@ end</script>
 						<eventHandlerList />
 					</Script>
 				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>chat build</name>
+					<packageName></packageName>
+					<script>local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
+local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
+
+
+function gooey.gui.build.chat()
+
+gooey.gui.chatContainer = --gooey.gui.chatContainer or 
+  Adjustable.Container:new({
+    name = "chatContainer", y = "0%", x = "0%", width = "75%", height = "100%",
+    buttonFontSize = 7, buttonsize = 10, padding = 6, 
+    adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
+      gooey.gui.topright)
+
+gooey.gui.chatTabWindow = --gooey.gui.chatTabWindow or
+  Adjustable.TabWindow:new({name = "chatTabWindow", y = "0%", x = "0%", width = "100%", height = "100%",
+    buttonFontSize = 7, buttonsize = 10, padding = 6, 
+    adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,
+    tabBarHeight = 30,
+    tabs = {"All", "City", "House", "Party", "Clans", "Market", "Tells", "Misc", "Ship"},
+    color1 = "rgb(51, 51, 51)",
+    color2 = "rgb(5, 5, 5)",
+    }, gooey.gui.chatContainer )
+
+for k, v in pairs(gooey.gui.chatTabWindow.tabs) do  
+  local chatname = "chat"..v
+  gooey.gui[chatname] = --gooey.gui[chatname] or
+    Geyser.MiniConsole:new({ name = chatname,  x = "0%", y="0%", height = "100%", width = "100%", 
+      color = "black", padding = 2, margin = 2, autoWrap = true
+    }, gooey.gui.chatTabWindow[v.."center"])
+
+end
+
+
+end
+</script>
+					<eventHandlerList />
+				</Script>
 			</Script>
 			<Script isActive="yes" isFolder="no">
 				<name>Track server stuff core</name>
@@ -3019,7 +3279,7 @@ function gfs.getServerSettings(forced)
   tempRegexTrigger("^Your current separator is: (.*)$", [[gooey.vars.serverSettings.comsep = matches[2] ]])
   gts.pageLengthTrigger = gts.pageLengthTrigger or
   tempRegexTrigger("^Your current pagelength: (.*)$", [[if gooey.vars.serverSettings.pagelength and gooey.vars.serverSettings.pagelength ~= matches[2] then gooey.vars.serverSettings.oldpagelentgh = gooey.vars.serverSettings.pagelength end gooey.vars.serverSettings.pagelength = matches[2] ]])
-  
+  send("ql", false)
 end
 
 --gotta delay the getServerSettings cause otherwise it'll spam like a bitch
@@ -3062,6 +3322,10 @@ function gfg.char()
       gooey.vars.gmcp[k] = v
     end
   end 
+end
+
+function gfg.target()
+
 end
 
 registerAnonymousEventHandler("gmcp.Char", "gooey.funcs.gmcp.char")
@@ -3108,7 +3372,7 @@ function gfg.itemsList()
           gooey.data.gmcp.items[v.id] = {v.name, v.attrib or ""}
         end
       end
-    gooey.funcs.gmcp.displayItems()
+    tempTimer(0, [[gooey.funcs.gmcp.displayItems()]])
     end
   end
 end
@@ -3125,7 +3389,7 @@ function gfg.addItems()
     else
       gooey.data.gmcp.items[gmcp.Char.Items.Add.item.id] = {gmcp.Char.Items.Add.item.name, gmcp.Char.Items.Add.item.attrib or ""}
     end
-    gooey.funcs.gmcp.displayItems()
+    tempTimer(0, [[gooey.funcs.gmcp.displayItems()]])
 	end
 end
 
@@ -3388,7 +3652,96 @@ if gmcp.Char.Vitals.bal == "1" then gooey.gui.balBar:setStyleSheet(epbalonCSS:ge
 
 
 end
-registerAnonymousEventHandler("gmcp.Char.Vitals", "gooey.funcs.showGauges")</script>
+registerAnonymousEventHandler("gmcp.Char.Vitals", "gooey.funcs.showGauges")
+
+function gooey.funcs.showChat()
+--gooey.funcs.echo("Got something on the Comm gmcp")
+  local shortName = ""
+  local chatTab = ""
+  local text = ansi2decho(gmcp.Comm.Channel.Text.text)
+  for k,v in pairs(gmcp.Comm.Channel.List) do
+    shortName = gmcp.Comm.Channel.List[k].command
+  end
+  local talker = gmcp.Comm.Channel.Text.talker:title()
+  local talkercolor = ""
+  local rgbcolor = ""
+  if ndb and ndb.getcolor(talker) then
+  talkercolor = ndb.getcolor(talker)
+  elseif Legacy then
+  talkercolor = Legacy.NDB.color(talker)
+  end
+  talkercolor = talkercolor:gsub("&lt;", "")
+  talkercolor = talkercolor:gsub("&gt;", "")
+  text = text:gsub("&lt;r&gt;", "")
+  text = text:gsub("&lt;.&lt;", "")
+  local basecolor = string.match(text, "&lt;.-&gt;") or "&lt;reset&gt;"
+
+  if color_table[talkercolor] then
+  rgbcolor = "&lt;"..table.concat(color_table[talkercolor], ",").."&gt;"
+  end
+  
+  
+  if string.starts(gmcp.Comm.Channel.Start, "says") then
+    chatTab = "chatAll"
+  elseif string.starts(gmcp.Comm.Channel.Start, "armytell") then
+    chatTab = "chatCity"
+  elseif string.starts(gmcp.Comm.Channel.Start, "yell") then
+    chatTab = "chatMisc"
+  elseif string.starts(gmcp.Comm.Channel.Start, "shout") then
+    chatTab = "chatMisc"    
+  elseif string.starts(gmcp.Comm.Channel.Start, "ct") then
+    chatTab = "chatCity"
+  elseif string.starts(gmcp.Comm.Channel.Start, "ht") then
+    chatTab = "chatHouse"
+  elseif string.starts(gmcp.Comm.Channel.Start, "hnt") then
+    chatTab = "chatHouse"
+  elseif string.starts(gmcp.Comm.Channel.Start, "ot") then
+    chatTab = "chatMisc"
+  elseif string.starts(gmcp.Comm.Channel.Start, "party") then
+    chatTab = "chatParty"
+  elseif string.starts(gmcp.Comm.Channel.Start, "clt") then
+    chatTab = "chatClans"
+  elseif string.starts(gmcp.Comm.Channel.Start, "tell") then
+    chatTab = "chatTells"
+  elseif string.starts(gmcp.Comm.Channel.Start, "market") then
+    chatTab = "chatMarket"    
+  elseif string.starts(gmcp.Comm.Channel.Start, "newbie") then
+    chatTab = "chatMisc"    
+  elseif string.starts(gmcp.Comm.Channel.Start, "intrepid") then
+    chatTab = "chatParty"   
+  elseif string.starts(gmcp.Comm.Channel.Start, "gt") then
+    chatTab = "chatParty"  
+  end    
+
+  if color_table[talkercolor] then
+    if talker:lower() ~= "you" then
+      text = text:gsub(talker, rgbcolor..talker)
+    end
+  end
+  
+  text = string.gsub(text, "(%W)("..talker..")(%W)", "%1"..(rgbcolor or "")..talker..(basecolor or "").."%3")
+
+--BECAUSE TARV WANTS IT!
+  if gmcp.Char.Status.name == "Tarvius" then  
+    for k, v in pairs(gmcp.Comm.Channel.List) do
+      if v.name == gmcp.Comm.Channel.Text.channel then
+        text = string.gsub(text, string.gsub(v.caption, "The Clan of ", ""), v.command)
+      end
+    end
+  end
+  
+  if gmcp.Comm.Channel.Text.channel == "shout" then
+    text = talker.." shouts, \""..text:split("\"")[2].."\""
+  end
+  
+  decho(chatTab, (basecolor or "")..getTime(true, "hh:mm:ss").." "..text.."\n")
+  if chatTab ~= "chatAll" then
+    decho("chatAll", (basecolor or "")..getTime(true, "hh:mm:ss").." "..text.."\n")
+  end
+
+end
+
+registerAnonymousEventHandler("gmcp.Comm.Channel.Start", "gooey.funcs.showChat")</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -3557,7 +3910,7 @@ function gooey.funcs.showActivity()
   local console = "activityStatusConsole"
   clearUserWindow(console)
   
-  if gooey.vars.mode.sea then
+  if gooey.vars.mode.sea and gooey.vars.sea.gotPrompt then
     echo(console, "\n")
     local shipwarningstrg = ""..darkcolor.." ShipWarning:"..(gs.swarn and "#00FF00 ON" or "#FF0000 OFF")
     shipwarningstrg = shipwarningstrg..string.rep(" ", 33 - string.len(shipwarningstrg))
@@ -3632,7 +3985,8 @@ function gooey.funcs.showActivity()
       cecho(console, " &lt;red&gt;[&lt;firebrick&gt;Repairing&lt;red&gt;]")
     end
   
-  
+  elseif gooey.vars.mode.sea and not gooey.vars.sea.gotPrompt then
+    cecho(console, "&lt;red&gt;Don't have a ship prompt :(")
   
   elseif gooey.vars.mode.hunt then
   
@@ -3675,41 +4029,46 @@ local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
     end
 end
 
-function gooey.funcs.startup()
-  if not gooey.vars.gui.started then
-    gooey.vars.gui.started = true
-      sendGMCP([[Core.Supports.Add ["Comm.Channel 1"] ]])
-      sendGMCP('Core.Supports.Add ["IRE.Tasks 1"]')
-      sendGMCP('Core.Supports.Add ["IRE.Time 1"]')
-      sendGMCP('Core.Supports.Add ["IRE.Misc 1"]')
-      sendGMCP('Core.Supports.Add ["IRE.Display 1"]')
-      sendGMCP('Core.Supports.Add ["IRE.Sound 1"]')
-      sendGMCP('Core.Supports.Add ["IRE.Target 1"]')
-    
-    disableTimer("ragetimer")
+function gooey.funcs.coldStartup()
+  disableTimer("ragetimer")
+  gooey.gui.build.frame()
+  gooey.gui.build.bottom()
+  for k, v in pairs(gooey.gui.build) do
+    if k~= "frame" and k ~= "bottom" then
+      gooey.gui.build[k]()
+      cecho("\n&lt;red&gt;gooey.gui.build.&lt;firebrick&gt;"..k)
     end
-    gooey.gui.build.frame()
-    gooey.gui.build.bottom()
-    for k, v in pairs(gooey.gui.build) do
-      if k~= "frame" and k ~= "bottom" then
-        gooey.gui.build[k]()
-        cecho("\n&lt;red&gt;gooey.gui.build.&lt;firebrick&gt;"..k)
-      end
-    end
+  end
 
-    Adjustable.Container:doAll(function(s) s:addConnectMenu() end)
-    gooey.funcs.formatAllContainers()
-    gooey.funcs.sea.shipcheck()
-  
+  Adjustable.Container:doAll(function(s) s:addConnectMenu() end)
+  gooey.funcs.formatAllContainers()
+  gooey.funcs.sea.shipcheck()
+  tempTrigger("Password correct. Welcome to Achaea.", [[gooey.funcs.warmStartup()]], 1)
 end
 
-registerAnonymousEventHandler("sysLoadEvent", "gooey.funcs.startup")
+registerAnonymousEventHandler("sysLoadEvent", "gooey.funcs.coldStartup")
+
+function gooey.funcs.warmStartup()
+  sendGMCP('Core.Supports.Add ["Comm.Channel 1"]')
+  sendGMCP('Core.Supports.Add ["IRE.Tasks 1"]')
+  sendGMCP('Core.Supports.Add ["IRE.Time 1"]')
+  sendGMCP('Core.Supports.Add ["IRE.Misc 1"]')
+  sendGMCP('Core.Supports.Add ["IRE.Target 1"]')
+end
 
 function gooey.funcs.install()
-
-if enableModuleSync then enableModuleSync('gooey') end
-gooey.funcs.startup()
-setModuleInfo("gooey", "version", "0.0001")
+  if enableModuleSync then 
+    enableModuleSync('gooey') 
+  end
+  
+  gooey.funcs.coldStartup()
+  if gmcp then 
+    gooey.funcs.warmStartup()
+  end
+  
+  if getModuleInfo("gooey", "version") == "" then
+    setModuleInfo("gooey", "version", "0.0001")
+  end
 end
 
 registerAnonymousEventHandler("sysInstallModule", "gooey.funcs.install")
@@ -4140,6 +4499,7 @@ function gooey.funcs.setTarget(what, whatname)
   if whatname and not tonumber(whatname) == "string" and keneanung then 
     keneanung.bashing.addPossibleTarget("whatname") 
   end
+  tempTimer(0.2 , [[gooey.funcs.gmcp.displayItems()]])
 end
 
 --Echo things in style 
@@ -4359,8 +4719,8 @@ end
 
 
 --Get the color for a mob
-function gooey.funcs.getMobHighlight(value)
-  if (gooey.vars.target and value == gooey.vars.target) or (keneanung and keneanung.bashing.targetList[1] and value == keneanung.bashing.targetList[1].id) or (gmcp.IRE and gmcp.IRE.Target and value == gmcp.IRE.Target.Set) then 
+function gooey.funcs.getMobHighlight(id)
+  if (gooey.vars.target and id == gooey.vars.target) or (keneanung and keneanung.bashing.targetList[1] and id == keneanung.bashing.targetList[1].id) or (gmcp.IRE and gmcp.IRE.Target and id == gmcp.IRE.Target.Set) then 
     return "&lt;blaze_orange&gt;" 
     else return "&lt;green&gt;" 
   end
@@ -4570,17 +4930,20 @@ end
 				<packageName></packageName>
 				<script>function gooey.funcs.shutdown()
 disableTimer("ragetimer")
-
 end
 
 registerAnonymousEventHandler("sysExitEvent", "gooey.funcs.shutdown")</script>
 				<eventHandlerList />
 			</Script>
-		</ScriptGroup>
-		<Script isActive="yes" isFolder="no">
-			<name>gooey DenDB</name>
-			<packageName></packageName>
-			<script>gooey = gooey or {}
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Addon - dendb</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>gooey DenDB</name>
+					<packageName></packageName>
+					<script>gooey = gooey or {}
 gooey.dendb = gooey.dendb or {}
 gooey.dendb.db = gooey.dendb.db or {}
 
@@ -4599,8 +4962,539 @@ function gooey.dendb.managedb(thing)
     end
   end
 end</script>
-			<eventHandlerList />
-		</Script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Addon - hunt</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>gooey hunt</name>
+					<packageName></packageName>
+					<script>
+
+function gooey.funcs.hunt.letUsKill(mode)
+
+if not mode then
+  gooey.vars.hunt.ak = not gooey.vars.hunt.ak
+else 
+  gooey.vars.hunt.ak = mode == "on" 
+end
+gooey.funcs.echo("Hunting "..(gooey.vars.hunt.ak and "ensuing" or "stopping"))
+if gooey.vars.hunt.ak then 
+  send("setalias gooeykilly stand/kill", false)
+  send("queue add eqbal gooeykilly", false)
+  tempTrigger("[System]: Added GOOEYKILLY ", [[echo("gooey.funcs.deletelineP()")]], 1)
+  gooey.vars.hunt.killtrig = tempTrigger("[System]: Running queued eb command: GOOEYKILLY", [[echo("gooey.funcs.deletelineP()") send("queue add eqbal gooeykilly")]])
+end
+
+end</script>
+					<eventHandlerList />
+				</Script>
+				<ScriptGroup isActive="yes" isFolder="yes">
+					<name>Hunting</name>
+					<packageName>Hunting</packageName>
+					<script></script>
+					<eventHandlerList />
+					<Script isActive="yes" isFolder="no">
+						<name>Hunting Variables</name>
+						<packageName></packageName>
+						<script>huntVar = {
+-- Hunting Variables
+	on = true,
+	targetGone = false,
+	currentTarget = "",
+	currentPriority = 0,
+	previousArea = "",
+	currentArea = "",
+	targetQueue = {},
+	targetPriority = {},
+	userAreaList = {},
+	userAreaDenizens = {},
+	echo = true,
+	echoto = "",
+
+	homeDir = getMudletHomeDir(),
+	fileName = "huntTable",
+	fileNameFull = "fullHuntTable",
+
+-- Geyser Variables
+	width = 150,
+}
+
+fixedHuntVar = {
+	areaList = {},
+	areaDenizens = {},
+}</script>
+						<eventHandlerList />
+					</Script>
+					<ScriptGroup isActive="yes" isFolder="yes">
+						<name>Hunting Functions</name>
+						<packageName></packageName>
+						<script>huntTracker = huntTracker or {}</script>
+						<eventHandlerList />
+						<Script isActive="yes" isFolder="no">
+							<name>roomTrack</name>
+							<packageName></packageName>
+							<script>function roomTrack(event)
+	if huntVar.on then
+		local eventMatch = event:match("%w+$")
+		local funcMatch = loadstring("huntTracker:"..eventMatch.."()")
+		funcMatch()
+	end
+end</script>
+							<eventHandlerList>
+								<string>gmcp.Char.Items.Add</string>
+								<string>gmcp.Char.Items.Remove</string>
+								<string>gmcp.Char.Items.List</string>
+								<string>gmcp.Room.Info</string>
+								<string>sysLoadEvent</string>
+								<string>sysExitEvent</string>
+							</eventHandlerList>
+						</Script>
+						<Script isActive="yes" isFolder="no">
+							<name>Misc Functions</name>
+							<packageName></packageName>
+							<script>-- Tracker functions
+function huntTracker:Add()
+	if gmcp.Char.Items.Add.location == "room" then
+		local tempTable = gmcp.Char.Items.Add.item
+		if tempTable.attrib == "m" and table.contains(huntVar.userAreaDenizens, tempTable.name) then
+			local addID = tempTable.id
+			for k, v in ipairs(huntVar.userAreaDenizens) do
+				if tempTable.name == v then
+					insertID(addID, k)
+					break
+				end
+			end
+			if huntVar.targetGone then
+				targetSet()
+			end
+		end
+	end
+end
+
+function huntTracker:Remove()
+	if gmcp.Char.Items.Remove.location == "room" then
+		local removeID = gmcp.Char.Items.Remove.item.id
+		if huntVar.currentTarget == removeID then
+			huntVar.targetGone = true
+			if table.size(huntVar.targetQueue) &gt;= 1 then
+				targetSet()
+			end -- end if table.size
+		elseif table.contains(huntVar.targetQueue, removeID) then
+			for k,v in pairs(huntVar.targetQueue) do
+				if v == removeID then
+					table.remove(huntVar.targetQueue, k)
+					table.remove(huntVar.targetPriority, k)
+					if target ~= huntVar.currentTarget then
+						huntVar.targetGone = true
+						insertID(huntVar.currentTarget, huntVar.currentPriority)
+						targetSet()
+					end
+					break
+				end -- end if v == removeID
+			end -- end for k,v
+		end -- end if huntVar.currentTarget == removeID
+	end -- end if location == "room"
+end -- end function huntTracker:Remove()
+
+function huntTracker:List()
+	if gmcp.Char.Items.List.location == "room" then	
+		local tempTable = gmcp.Char.Items.List
+		local size = table.size(tempTable.items)
+		local targGot = false
+		local targChange = true
+		huntVar.targetGone = true
+		huntVar.targetQueue = {}
+		huntVar.targetPriority = {}
+		for k,v in ipairs(tempTable.items) do
+			local tempID = v.id
+			if v.attrib == "m" and table.contains(huntVar.userAreaDenizens, v.name) then
+				for ak, av in ipairs(huntVar.userAreaDenizens) do
+					if huntVar.currentTarget == tempID then
+						huntVar.targetGone = false
+						targChange = false
+					end -- end if huntVar.currentTarget
+					if v.name == av and huntVar.currentTarget ~=tempID and not table.contains(huntVar.targetQueue, tempID) then
+						insertID(tempID, ak)
+						break
+					end -- end if v.name
+				end -- end for ak
+			end -- end v.attrib
+		end -- end for k
+		if targChange then
+			targetSet()
+		end
+	end -- end if location
+end -- end function huntTracker:List()
+
+function huntTracker:Info()
+	if huntVar.currentArea ~= gmcp.Room.Info.area then
+		huntVar.currentArea = gmcp.Room.Info.area
+		if not table.contains(huntVar.userAreaList, huntVar.currentArea) and table.contains(fixedHuntVar.areaList, huntVar.currentArea) then
+			table.insert(huntVar.userAreaList, huntVar.currentArea)
+			huntVar.userAreaList[huntVar.currentArea] = huntTableCopy(fixedHuntVar.areaList[huntVar.currentArea])
+		elseif not table.contains(fixedHuntVar.areaList, huntVar.currentArea) then
+			fixedHuntVar.areaList[huntVar.currentArea] = fixedHuntVar.areaList[huntVar.currentArea] or {}
+			huntVar.userAreaList[huntVar.currentArea] = huntVar.userAreaList[huntVar.currentArea] or {}
+		end
+		fixedHuntVar.areaDenizens = fixedHuntVar.areaList[huntVar.currentArea]
+		huntVar.userAreaDenizens = huntVar.userAreaList[huntVar.currentArea] or {}
+		huntTracker:List()
+	end
+end -- end function huntTracker:Info()
+
+function huntTracker:sysLoadEvent()
+	local sep
+	local homeDir = getMudletHomeDir()
+	if string.char(homeDir:byte()) == "/" then 
+		sep = "/" else sep = "\\"
+	end
+	table.load(homeDir.. sep .. huntVar.fileName..".lua", huntVar.userAreaList)
+	table.load(homeDir.. sep .. huntVar.fileNameFull..".lua", fixedHuntVar.areaList)
+	huntTableCheck()
+	cecho("&lt;white&gt;Hunting System Loaded\n")
+end
+
+function huntTracker:sysExitEvent()
+	huntTableCheck()
+	local sep
+	local homeDir = getMudletHomeDir()
+	if string.char(homeDir:byte()) == "/" then 
+		sep = "/" else sep = "\\"
+	end
+	table.save(homeDir.. sep .. huntVar.fileName..".lua", huntVar.userAreaList)
+	table.save(homeDir.. sep .. huntVar.fileNameFull..".lua", fixedHuntVar.areaList)
+	cecho("&lt;white&gt;Hunting System Saved\n")
+end
+
+function insertID(id, priority)
+	local tableSize = table.size(huntVar.targetPriority)
+	local inserted = false
+	if not table.contains(huntVar.targetQueue, id) then
+		if tableSize == 0 then
+			table.insert(huntVar.targetQueue, id)
+			table.insert(huntVar.targetPriority, priority)
+		end
+		if tableSize &gt; 0 then
+			for i = 1, tableSize do
+				if priority &lt; huntVar.targetPriority[i] then
+					table.insert(huntVar.targetQueue, i, id)
+					table.insert(huntVar.targetPriority, i, priority)
+					inserted = true
+					break
+				end -- end if priority
+			end -- end for
+			if not inserted then
+				table.insert(huntVar.targetQueue, id)
+				table.insert(huntVar.targetPriority, priority)
+			end -- end if inserted = false
+		end -- end if not table.contains
+	end -- end if tableSize
+end -- end function
+
+function targetSet()
+  send("cq all")
+  tempTrigger("[System]: All queued commands cleared.", [[gooey.funcs.deletelineP()]], 1)
+	if not table.is_empty(huntVar.targetQueue) then				
+		huntVar.currentTarget = huntVar.targetQueue[1]
+		huntVar.currentPriority = huntVar.targetPriority[1]
+		table.remove(huntVar.targetQueue, 1)
+		table.remove(huntVar.targetPriority, 1)
+		target = huntVar.currentTarget
+		huntVar.targetGone = false
+	if gooey then 
+		gooey.funcs.setTarget(target)
+    if gooey.vars.hunt.ak then
+      gooey.addons.hunt.letUsKill("on")
+    end
+	end
+		if huntVar.echo then
+			if huntVar.echoto == "" then
+				cecho("&lt;blue:green&gt;Target: "..target)
+			else
+				send(huntVar.echoto.." Target: "..target)
+			end
+		end
+	end
+end
+
+function showHuntTargs()
+	if table.contains(fixedHuntVar.areaList, huntVar.currentArea) and table.size(fixedHuntVar.areaList[huntVar.currentArea]) &gt; 0 then
+		for i, j in ipairs(fixedHuntVar.areaDenizens) do
+			local check = "   "
+			local raise = "   "
+			local lower = "   "
+			local checked = false
+			if table.contains(huntVar.userAreaDenizens, j) then
+				check = " X "
+				checked = true
+			end
+			cecho("&lt;dark_slate_gray&gt;[")
+			fg("white")
+			echoLink(check, "toggleTarget(\""..j.."\")", "Click to add or remove "..j.." from the list!", true)
+			cecho("&lt;dark_slate_gray&gt;] [")
+			if i &gt; 1 then
+				raise = " ^ "
+				echoLink(raise, [[swapPriority(]]..i..[[, ]]..i..[[-1, "]]..j..[[")]], "Click to move "..j.." up the priority list!", true)
+			else
+				echo(raise)
+			end
+			cecho("&lt;dark_slate_gray&gt;] [")
+			if i &lt; table.maxn(fixedHuntVar.areaDenizens) then
+				lower = " v "
+				echoLink(lower, [[swapPriority(]]..i..[[, ]]..i..[[+1, "]]..j..[[")]], "Click to move "..j.." down the priority list.", true)
+			else
+				echo(lower)
+			end
+			cecho("&lt;dark_slate_gray&gt;] ")
+			if checked then
+				cecho("&lt;white&gt;"..j.."\n")
+			else
+				cecho("&lt;light_slate_grey&gt;"..j.."\n")
+			end
+		end
+		cecho("&lt;dark_slate_gray&gt;[")
+		fg("green")
+		echoLink(" Check All ", "toggleAll(\"on\")", "Click to check all targets in the area", true)
+		cecho("&lt;dark_slate_gray&gt;] [")
+		fg("red")
+		echoLink(" Uncheck All ", "toggleAll(\"off\")", "Click to check all targets in the area", true)
+		cecho("&lt;dark_slate_gray&gt;]\n")
+		send(" ")
+	else
+		cecho("&lt;white&gt;No hunting list found for this area!\n")
+	end
+end
+
+function toggleTarget(name)
+	if table.contains(huntVar.userAreaDenizens, name) then
+		for k, v in ipairs(huntVar.userAreaDenizens) do
+			if v == name then
+				table.remove(huntVar.userAreaDenizens, k)
+			end
+		end
+	else
+		local position = 0
+		for i, j in ipairs(fixedHuntVar.areaDenizens) do
+			if j == name then
+				table.insert(huntVar.userAreaDenizens, position+1, name)
+			elseif table.contains(huntVar.userAreaDenizens, j) then
+				position = position + 1
+			end
+		end
+	end
+	showHuntTargs()
+end
+
+function swapPriority(numToSwap, num, name)
+	local tempName = ""
+	local index = table.index_of(huntVar.userAreaDenizens, name)
+	local difference = num - numToSwap
+	if fixedHuntVar.areaDenizens[num] == huntVar.userAreaDenizens[index + difference] then
+		tempName = huntVar.userAreaDenizens[index]
+		huntVar.userAreaDenizens[index] = huntVar.userAreaDenizens[index + difference]
+		huntVar.userAreaDenizens[index + difference] = tempName
+	end
+	tempName = fixedHuntVar.areaDenizens[numToSwap]
+	fixedHuntVar.areaDenizens[numToSwap] = fixedHuntVar.areaDenizens[num]
+	fixedHuntVar.areaDenizens[num] = tempName
+	showHuntTargs()
+end
+
+function toggleAll(mode)
+	if mode == "on" then
+		for k, v in ipairs(fixedHuntVar.areaDenizens) do
+			if huntVar.userAreaDenizens[k] ~= v then
+				table.insert(huntVar.userAreaDenizens, k, v)
+			end
+		end
+	else
+		for i = 1, table.maxn(huntVar.userAreaDenizens) do
+			table.remove(huntVar.userAreaDenizens, 1)
+		end
+	end	
+	showHuntTargs()
+end
+
+function huntTableCheck()
+	for k, v in pairs(areaList) do
+		if not table.contains(huntVar.userAreaList, k) then
+			fixedHuntVar.areaList[k] = huntTableCopy(areaList[k])
+			huntVar.userAreaList[k] = huntTableCopy(areaList[k])
+		end
+	end
+end
+
+function huntTableCopy(t)
+  local t2 = {}
+  for k,v in pairs(t) do
+    t2[k] = v
+  end
+  return t2
+end
+
+function huntToggle(mode)
+	if mode == "on" then
+		huntVar.on = true
+		cecho("&lt;white&gt;Hunting Script has been turned on.\n")
+	else
+		huntVar.on = false
+		cecho("&lt;white&gt;Hunting Script has been turned off.\n")
+	end
+end
+
+function addTargets()
+	cecho("&lt;white&gt;Denizens that can be added:")
+	for k, v in ipairs(gmcp.Char.Items.List.items) do
+		if v.attrib == "m" then
+			if not table.contains(fixedHuntVar.areaList[huntVar.currentArea], v.name) then
+				local add = " + "
+				cecho("\n&lt;dark_slate_gray&gt;[")
+				echoLink(add, [[addTarg("]]..v.name..[[")]], "Click to add "..v.name.." to the denizen table!", true)
+				cecho("&lt;dark_slate_gray&gt;] &lt;white&gt;"..v.name)
+			end
+		end
+	end
+	send(" ")
+end
+
+function addTarg(fullName)
+	if not table.contains(fixedHuntVar.areaList[huntVar.currentArea], fullName) then
+		table.insert(fixedHuntVar.areaList[huntVar.currentArea], fullName)
+		table.insert(huntVar.userAreaList[huntVar.currentArea], fullName)
+	end
+	addTargets()
+end
+
+function removeTargets()
+	cecho("&lt;white&gt;Denizens that can be removed:")
+	for k, v in ipairs(fixedHuntVar.areaList[huntVar.currentArea]) do
+		local remove = " - "
+		cecho("\n&lt;dark_slate_gray&gt;[")
+		echoLink(remove, [[removeTarg("]]..v..[[")]], "Click to remove "..v.." from the denizen table!", true)
+		cecho("&lt;dark_slate_gray&gt;] &lt;white&gt;"..v)
+	end
+	send(" ")
+end
+
+function removeTarg(name)
+	local index = table.index_of(fixedHuntVar.areaList[huntVar.currentArea], name)
+	table.remove(fixedHuntVar.areaList[huntVar.currentArea], index)
+	if table.contains(huntVar.userAreaList[huntVar.currentArea], name) then
+		table.remove(huntVar.userAreaList[huntVar.currentArea], index)
+	end
+	removeTargets()
+end</script>
+							<eventHandlerList />
+						</Script>
+					</ScriptGroup>
+					<Script isActive="yes" isFolder="no">
+						<name>areaList</name>
+						<packageName></packageName>
+						<script>areaList = areaList or {
+["Manara Burrow"] = {"a vicious gnoll soldier", "a smirking gnoll slaver", "a flail-wielding gnoll sentry", "a sneering gnoll guard", "an apathetic gnoll sentinel", "an arrogant gnoll woman", "a water-bearing Mingruk woman", "a thin Mingruk woman"},
+["the ruins of Phereklos"] = {"a multi-headed water hydra", "a hideous, writhing squid", "a large bull shark", "a black sea bass", "an enormous gulper eel", "a blue-spotted stingray", "a translucent jellyfish", "a bleeding salt water cod", "a school of clownfish", "a brilliantly coloured sea anemone"},
+["the Caverns of Nuskuwe"] = {"the Wyrm Lord", "a fire wyrm", "an ancient wyrm", "a pregnant wyrm", "a crimson pyrapede", "a wyrm whelp", "a rock leech", "a rock beetle", "a crimson angler", "the Chieftain of Nuskuwe", "the Shaman of Nuskuwe", "a shaman's apprentice", "the stonemason of Nuskuwe", "a Nuskuwen hero", "a Nuskuwen man", "a Nuskuwen woman", "an ailing Nuskuwen elder", "a Nuskuwen child", "a surly Nuskuwen youth"},
+["the Ruins of Morindar"] = {"a hideous nel'dorath", "a cursed revenant", "a hunchbacked feyr", "a feral gangrel", "a corpulent rilma worm", "a fearsome cave hunter", "a greyish-green culuma", "a shimmering gloomwing moth", "an armoured nahar", "a menacing gargoyle", "a jagged quorin"},
+["the Isle of New Hope"] = {"a silver panther", "a colony of fruit bats", "a snow-white mazaran", "a russet mazaran", "an ebony mazaran", "a painted mazaran", "a saltwater crocodile", "a female baboon", "a feral dog"},
+["the Mhojave Desert"] = {"a thoqqua", "an unformed thing of chaos", "a monitor lizard", "a slope-backed hyena", "a desert fox", "a rattlesnake", "a sidewinder", "a gecko lizard", "a hardy jarbo", "a giant red scorpion", "a yellow scorpion", "a large black scorpion"},
+["the Northreach Forest"] = {"a brown wolf", "a white tailed doe", "a grizzly bear", "a large buck", "a speckled fawn", "a shaggy bobcat", "a black wolf", "an incorporeal shadow"},
+["the Darkenwood Forest"] = {"a dark arachnoi man", "a dark arachnoi woman", "a huge pulsating spider", "a ghastly apparition", "an incorporeal shadow", "a midnight stag", "a cave bear"},
+["the Azdun Dungeon"] = {"Lachesis, the Spider Queen", "a guardian spider", "a huge pulsating spider", "a large pulsating spider", "a medium pulsating spider", "a vampire", "Xylthus the Outcast", "a revolting ghoul", "a ghast", "a wraith", "a decaying zombie", "a wight", "a mummy", "a hill giant", "a cave bear", "an ankheg", "a giant bat", "a goblin ghoul", "a goblin zombie", "a hobgoblin warrior", "a goblin sergeant", "a goblin soldier", "a goblin smith", "a goblin foreman", "a goblin miner", "a goblin slave"},
+["the Azdun Catacombs"] = {"Malvoc, the unholy", "Ulgase, the lich crone", "a decaying lich", "a cursed phantasm", "a shambling zombie"},
+["the Vashnar Mountains"] = {"a muscular mountain lion", "a bighorn sheep"},
+["a filthy goblin village"] = {"a goblin chieftain", "the goblin matron", "the goblin shaman", "the goblin lieutenant", "an elderly goblin", "a goblin guard", "a goblin youth", "a goblin girl", "an energetic goblin boy", "a small goblin boy"},
+["the Barony of Dun Valley"] = {"Vukub Ysin'zhu, the Ogre Baron", "an ogre captain", "an orc captain", "Balam Agab, the ogre archmage", "Log'obi, an ogre shaman", "Xulu, an orc witchdoctor", "an ogre sentry", "an ogre knight", "an orc guard", "an orc sergeant", "an ogre cook", "an orc cook", "an orc soldier", "an ogre bowman", "an orc archer", "a drunk orc", "an orc blacksmith", "an ogre firetender", "an ogre weaponsmith", "an ogre huntress", "an ogre warrior", "a female orc", "an adolescent female orc", "a juvenile orc", "a catfish", "an enormous swamp wyvern", "a giant water strider", "a spinorthos", "a warthog", "a mud crab", "a giant mud beetle", "a plague rat", "a mist wraith", "a swamp dryad", "a lost soul", "a cloud of gnats", "a muscular mountain lion", "a bighorn sheep", "a sleek jaguar", "the Great Bull Elephant", "a greyish green crocodile", "a male gorilla", "a large, fat hippo", "a crab", "a dangerous water snake", "a poisonous snake", "a beautiful yellow-eared parrot"},
+["Moghedu"] = {"Sir Temelin, Knight Commander of Moghedu", "a mhun mage", "the Great Mhunna", "Commander Kalesh", "Sir Mertyn, Knight of Moghedu", "an elite mhun keeper", "a mhun knight", "a mhun bodyguard", "the mhun cook", "a mhun architect", "the mhun Captain of the Guard", "a Moghedu blacksmith", "a master mhun demolitionist", "a mhun demolitionist", "a mhun scholar", "a mhun guard", "a mhun warrior", "a mhun labourer", "a master mhun miner", "a mhun miner", "a mhun merchant", "a mhun guard trainee", "a mhun scout", "a mhun woman", "an adolescent mhun", "a lithe mhun child"},
+["the Dakhota Hills"] = {"a massive gour", "a grey wolf"},
+["Tir Murann"] = {"Rakrr, the Vertani swordsmaster", "Daqsool, the Qoul of Tir Murann", "Dynas, the gour trainer", "Iayh, a mage of House Feranki", "Vewig, the Magelord of House Tsez", "Rohase, Captain of the Guard", "Rakwor, the Vertani Barkeep", "Ohmut, the Vertan craftswoman", "a House Tsez air mage", "a Vertani guard", "a drunken Vertani", "Ver'osy, the Vertani priestess", "Ghaser, the Vertani cook", "a massive gour", "Byor, a Vertani youth", "a hulking striped moirah", "a massive xabat"},
+["Quartz Peak"] = {"the wrogroth", "Leesha, the ursu packmother", "Toogar, the ursu shaman", "Burgam, the hunter", "Turga, the ursu midwife", "an ursu man", "Trag, the taryen wise man", "a taryen man", "Gillib, a young ursu", "Gnral, the taryen chieftain", "Kurgo, the Ursu chief"},
+["the village of Qurnok"] = {"Rurnog, the Herpetologist", "Ulvna, the witch of Qurnok", "Ganorg, the Qurnok shaman", "Nel'ga, the wife of Ganorg", "Aldroga, the Dendrologist", "a huge, ferocious crocodile", "a Qurnok warrior", "a Qurnok guard", "a Qurnok woman", "a young troll girl", "a mischievous troll boy", "an enormous anaconda", "a vicious water moccasin", "a large muskrat", "a large toad", "a large swarm of flies"},
+["the Siroccian Mountains"] = {"a foul-smelling orc", "a vicious wolverine", "a large treesnake", "a white-striped skunk"},
+["an Orcish outpost"] = {"Grashna, the tanner", "Thrakma, the butcher", "Gothmog, the orc witch doctor", "an orc bodyguard", "an orc soldier", "a diminutive orc servant", "an orc woman", "a ragged orc child", "a mountain goat"},
+["a Dwarven camp"] = {"a senior miner", "a common mine labourer", "a resting miner", "Velga, the inventory woman", "Grimbold, the dwarf cook", "Olgmir, a local drunkard", "Urthel, a dwarf woman", "a dwarf girl", "a dwarf nurse", "an injured dwarf", "a dwarf miner", "a sifting dwarf", "a dwarf gatekeeper", "a Sirrocian fighting cat", "the mine foreman", "Holgir, the narcissist", "Viggo, a dwarf boy", "Adalgar, chieftain of the Siroccian encampment",},
+["the Sea Lion Cove"] = {"an albino vampire spider", "a giant vampire spider", "a vampire spider", "a vampire spider hatchling", "a man-eating shark", "a scarred sea lion", "a female sea lion", "a barnacle encrusted oyster", "a red king crab", "a sea lion pup", "a baby sea turtle", "a playful sea sprite"},
+["the village of Tasur'ke"] = {"a man-eating shark", "a barnacle encrusted oyster", "a bottlenose dolphin"},
+["Sparrow's Rest"] = {"an ethereal spirit wolf", "a shrieking magpie", "a sleek, vicious red fox", "a large sapphire-winged sparrow"},
+["the Granite Hills"] = {"Hurthorg the hill giant", "Raethon, a female hill giant", "a tremendous hill giant", "a female hill giant", "a hill giant child", "Hoarug, a whimpering giant child"},
+["the Western Ithmia"] = {"a flower maiden"},
+["the Isle of Harae"] = {"a bone golem", "a poharaehe", "a wasp queen", "a wasp soldier", "a wasp drone"},
+["the Eastern shore"] = {"a king barracuda", "a barnacle encrusted oyster", "a striped dolphin"},
+["the Lupine Hunting Grounds"] = {"a fell shewolf", "a fell werewolf", "a sleek black werepanther", "a fierce black panther", "a pregnant panther", "a weretigress", "an irate mountain goat", "a massive vakha", "a large bainligor", "a massive gohlbrorn", "a giant fire eel", "an elder centaur priestess", "a wild centaur", "a giant red scorpion", "a slope-backed hyena", "a massive brown boar", "a fearsome lion", "a slender snake", "a wide-eyed primate", "a centaur colt", "a long, horned snake", "a forest basilisk", "a hardy jarbo", },
+["Green Lake"] = {"a massive bear", "a large fox", "a python", "a huge mosquito", "a mud eel", "a tawny pelican", "a slimy catfish", "a massive freshwater clam", "a spiny toad"},
+["the Mesmerium"] = {"a dream horror"},
+["the Dardanic Grasslands"] = {"a shaggy buffalo", "a savannah grizzly", "a savannah lioness", "a savannah lion", "a green-banded amphisbaena", "a shepherd", "a sheep", "a woolly barmotez", "a tsetse fly",},
+["the Village of Bitterfork"] = {"Melancton, the Mayor", "Belen, the shaman", "Vanac, the leatherworker", "Thaleia", "Lyen, a chubby innkeeper", "a bear hunter", "a wiry fisherman", "a village man", "a village woman", "a grubby child",},
+["the Sangre Plains"] = {"Kuralil, the Light-Footed", "Methats, the Divine Wind", "Selinde, an Arcadian royal guard", "the Flowing Robes Champion", "Atlantia", "a mischievous ward", "an Arcadian royal guard", "an armoured Exemplar", "a mounted Exemplar", "a robed Exemplar", "a bow-wielding Exemplar", "a studious Adept", "an eager Adept", "a young Adept", "a rugged buffalo", "a sleek antelope", "a vulture", "a sheep", "a groundhog",},
+["Forest Watch"] = {"a slugbeast", "the Zombie Lord", "a zombie noble", "a ghoul smith", "a dryad zombie", "the Buckawn Lord", "a young buckawn witchdoctor", "a buckawn apprentice", "a buckawn royal guard", "a buckawn swordsman", "a buckawn youth", },
+["the Valley of Actar"] = {"a snowy owl", "a creamy white goat", "an alert deer", "a large rabbit with one black ear", "a brown floppy-eared rabbit", "a crow", "Merrygold, the village elder", "Tobold, a robust halfling man", "Bodo, a halfling guard", "Biba, a halfling woman", "a harried halfling woman", "a halfling woman", "a halfling fisherman", "a studious, young halfling", "a short halfling", "a cute halfling girl", "a tiny halfling child",},
+["the Lost City of Kasmarkin"] = {"a mummified troll guardian", "a ghostly troll senator", "a marsh ooze",},
+["the Aalen Forest"] = {"Alduril, the head ranger", "Stlerin, the guard", "a Tsol'aa ranger", "Ta'hena, the Tsol'aa sage", "Zeuris, the Tsol'aa baker", "Celaabi, the Tsol'aa Queen Mother", "Jaaran, Tsol'aa guard", "an ancient tsol'aa", "Anaari, the lyricist", "Kassan, the healer", "Tsuane, the fletcher", "Kallion, the adolescent", "Thaa'lis, the elder druid", "Ta'lissu, the tattoo artist", "Tsellias the Tsol'aa alchemist", "Caletar the Collector", "Tsalinas, the weaver", "Keleyn, Tsol'aa guard", "Tu'eras, the Tsol'aa King", },
+["Mount Piraeus"] = {"an ageing mountain lion", "a king salmon", "a small beaver", "a cyclops guard", "Themus, a young cyclops shepherd", "a cyclops woman", "Steropes, the cyclops smith", "Dora, a cyclops cook", "Arges, Chieftain of the Cyclopes", "Hynes, the cyclops mechanic", },
+["a network of caves beneath New Thera"] = {"an elder Qui'sas", "Isiva, the Blood Maiden", "Dakrol, the Swiftblade", "a master assassin", "a Quisalis overseer", "a Qui'sas hunter", "a Qui'sas assassin", "Nevon Talkar", "a minor earth elemental", "Westriv Talkar", "Varenia, the Venomous", "a Quisalis assassin", "a Quisalis sentry", "an Initiate of the Mark", "a filthy rat", },
+["the Den of the Quisalis"] = {"a master assassin", "a Qui'sas assassin", "Westriv Talkar", "Varenia, the Venomous", "a Quisalis assassin", "a Quisalis sentry", "an Initiate of the Mark", "a filthy rat", },
+["Xhaiden Dale"] = {"a wild caribou", "a red-eyed crane", "a star-nosed mole", "a white coyote", "a Jiva monk of the Obele", "Irsich, the Mahjed of the Obele", "Colonius, the Gardener", "Olvic, the Historian", "Escine, the Deacon", "Palusta, the stonemason", "Vetiver van Veen", "Laukemper, Provost of Onorel", "Tooske, the Provost's wife", "Ebnis, the Onorel fisher", "a bulky yak", "Didi Ghengo", "Franz Elestahr", "Pirin, an elderly woman", "a colossal water strider", "a gargantuan ishkynd worm", "a Ganeve warrior", "Thorben Rezesh, Ganeve Man-At-Arms", "Sarat, Mistress of Necromancy", "Nevio Rezesh", },
+["the Caves of Delmarin"] = {"a dyissan warrior",},
+["the Keep of Belladona"] = {"Hecuba, the Witch of Darkness and Chaos", "Mistandraxus, the flame drake", "Quel'zar, the Surgeon", "Glixx, the mutant", "Tigrinya, the Librarian", "Naggamantex, the torturer", "Grollum, the Sentinel", "Gloom, the Occultist", "Glixx, the Mutant", "Smythe, the dwarven trainer", "Geh'shya, the Black Dragon", "a manticore", "a two-headed ogre", "Minoria, handmaiden of Belladona", "Malorea, Handmaiden of Belladona", "Eritrea, Handmaiden of Belladona", "Ephesia, Handmaiden of Belladona", "Derryk, the eunuch", "Cosmina, the Saint", "Belladona, the Demon Whore", "Helf'ga, the ogress cook", "Grothgar, the ogre sergeant", "Tara, the peasant", "Smirnick, the Serpentlord", "Sylvos, the Weak", "a mist-walker", "a dark minotaur", "a courtier", "an imp", "a black hell-hound", "a fearsome crocodile", "a spectral guardian", "a giant leech", "a giant toad"},
+["the Creville Asylum"] = {"Screw-eye, the inmate superior", "a hooded man", "a sullen atavian inmate", "Wlor, the asylum watchman", "a one-eyed, convulsing priest", "a mutated horkvali inmate", "a sneering psychopathic inmate", "a grotesque xorani inmate", "Darien, the shock therapist", "a young shaman inmate", "a shivering dwarf with a dull pick axe", "Suire, a mauled, narcissistic siren", "Ulthor, the coroner", "an axe-wielding dwarven patient", "a burly troll dweller", "a maniacal atavian inmate", "a cannibalistic lunatic", "a restless, drugged druid", "Xzavien, the scientist", "a blood-spattered jester", "a crawling Tsol'aa inmate", "a deranged rajamalan dweller", "a shady dealer", "Villinix, the herbalist", "a doctor with numerous facial wounds", "a grinning imp", "a feral grey lynx", "a fearful surgeon", "a blind, knife-wielding woman", "a great horned owl", "a massive rat snake", "a ragged vulture", "a long-tailed weasel", "a beaten prisoner", "an injured maid", "a restrained nurse", "a terror-stricken nurse", "a delirious receptionist", "an emaciated squirrel", "a swarm of black flies", "an enormous black rat", "a deeply wounded nurse", "a bloated female cockroach", "a fleshy white maggot",},
+["the sewers of Ashtan"] = {"a murderous thug", "a black rat", "a rat", "an old rat", "a young rat", "a baby rat",},
+["the sewers of Cyrene"] = {"a blood leech", "a giant blood leech", "a black rat", "a rat", "an old rat", "a young rat", "a baby rat",},
+["the Dungeon of the Beastlords"] = {"a bestial, two-headed canine", "a mysterious cloaked figure", "a vicious, three-headed cerberus", "Glash, the three-headed cerberus", "a crazed ritualist", "Jarxrit", "a cowled initiate", "a bloodied acolyte", "Inish, the head cultist", "a richly dressed attendant", "a sect ritualist", "Hellitha, the High Priestess", "Grithaxodon, the Beast", "Bearnath, the Beast Cultist", "a warrior ophidian", "the ophidian chieftain, Skt'all", "a juvenile ophidian", "a female ophidian"},
+["the Southern Vashnar Mountains"] = {"a bighorn sheep", "a mountain grizzly", "a mountain drake",},
+
+-- Off Plane
+["deep below the sea"] = {"a malevolent sea dragon", "a gigantic sea spider", "a duskfin tuna", "a redfin tuna", "a pale, four-fin ray", "a coelacanth", "a spotted fangtooth"},
+["Tenwat Prison"] = {"Saunders, the prison warden", "Alsilan, the condemned", "a creaking rust golem", "a crazed prison guard", "a berserk prisoner", "a howling blood mastiff", "a screaming head", "a wall of limbs", "a pair of grasping hands", "a pulsing artery"},
+["Colchis"] = {"a giant sea serpent", "Frewynne, the Warrior Chieftess", "Vendril, Master Assassin", "Vorin, High Shaman", "Thorlis, the Warrior Chieftain", "Vray, a fortress servant", "Siathana, the Healer", "a cloaked assassin", "a weathered fisherman", "a Colchian warrior", "a Colchian warrioress"},
+["the Port of Umbrin"] = {"Freyil Marteila", "High General Boracin", "Colonel Antariz", "Colonel Survane", "Colonel Meliane", "Major Poatril", "Major Avanguird", "Lieutenant Mavlait", "Master Healer Rivtan", "an Umbrinite raider", "an Umbrinite crossbowman", "an Umbrinite marksman", "an Umbrinite combat medic", "an Umbrinite conscript", "an Umbrinite trainee", "Reliar, the Umbrinite Merchant"},
+["the Underworld"] = {"a steel-encased Death Knight", "a deadly obsidian scorpion", "a pale-skinned, humanoid vampire", "a transparent, glowing wight", "a colossal, hulking ghoul", "a ponderous ictheli", "a rotting zombie", "an intensely bright wisp", "a luminescent ghost", "a clattering skeleton"},
+["Zanzibaar"] = {"Djulsan, King of Zanzibaar", "a royal guard of Zanzibaar", "Tiamenjiara, the court conjuror", "Alsimhinda, Queen of Zanzibaar", "Makran, an island trader", "Prince Sindharkan", "Fimsirun, a foreign prince", "Akhadd, a visiting noble", "a bare-chested sailor", "a skulking thief", "a burly dockhand", "a palace servant", "Semmor, the dhow-maker", "an island man", "an island woman", "an islander in a dhow", "an island child", "a Baarian tiger", "a giant tortoise", "a sleek mongoose", "a silvery scombra", "a sea nettle", "a ghost crab", "a spotted porpoise", "Lordan Colse", "a surly smuggler", "a pretty wench",},
+["the Ruins of Morindar"] = {"a hideous nel'dorath", "a cursed revenant", "a feral gangrel", "a hunchbacked feyr", "a corpulent rilma worm", "a fearsome cave hunter", "an armoured nahar", "a shimmering gloomwing moth", "a greyish-green culuma", "a menacing gargoyle", "a jagged quorin", "Ramainen Tarcalion, Outrider Ascendant", "Lavarin Pelendur, the Shah", "Ilucara Pelendur, Advisor to the Shah",},
+["Annwyn"] = {"a fairy Knight of Sidhe", "a Fomori of Unsidhe", "an Unsidhe Banshee", "a fairy Lady of Sidhe", "a crazed kelpie", "a wild kelpie", "a lake fairy", "a cunning black wolf", "a majestic lion", "a moon bear", "a fairy mistress", "a swamp dweller", },
+["the Isle of Polyargos"] = {"Kru'lax, the Harpy Queen", "a filthy harpy", "an old leper", "a pathetic leper", "a leper child", "a barnacle encrusted oyster",},
+["the Caverns of Riagath"] = {"Rurogan, Lord of the Rucktawn", "Farshen", "Xifeni the Wise", "Tylorga, Captain of the Guard", "Lolath", "Aline", "Kisheth", "a gigantic angler fish", "Shial, shaman of the Gyrog", "Leiga, the Gyrog matriarch", "Rinaga", "Ikaride", "a burly troll guard", "a sturdy troll woman", "Munfawa, a hunchbacked troll", "Tannel", "Elder Tilath", "Ninea", "a kalok"},
+["the Artists' Collective Trading Post"] = {"a taciturn merchant", "a travelling merchant", "Kalieth, the perfumier","Tarani, a Tsol'aa artisan","Rotha, a young merchant"},
+["Martei Memorial Tradepost"] = {"Islaban, the tanner", "Seril, a Shastaan merchant", "Deggan, a Jaruvian craftsman", "Brendel, the fishmonger", "Maerlyle, a young housewife", "a travelling merchant", "a taciturn merchant",},
+["Rheodad"] = {"a woolly guanaco","a shaggy rhea","a forest lynx","a rheodine hare","a silver-back hare","a swarm of mosquitoes","a double-crested cormorant","a little sandpiper","a playful sea otter","a sapphire penguin","a nesting sapphire penguin"},
+["Wegava Valley"] = {"Jawara, the razahr strategist", "Fela, Patriarch of the razahr", "Bahati, mate of Fela", "Chisulo, the razahr smith", "a large male razahr", "a hulking female razahr", "a razahr hatchling", "Oeru, a burly young gnoll", "Nukilik, the gnollish tyrant", "Cupun, the gnollish smith", "Chena, the healer", "a fierce gnoll sentinel", "a gnoll woman", "a young gnoll", "Sefu, the slave", "a frowning deniigi", "a fluffy arneck", "Akiak, the outcast", "Jafari", "a gnoll fisherman", "a plump ptarmigan", "the Mahk", "a large grey sturgeon",},
+["the Village of Aran'riod"] = {"A'issem, Chieftess of the Yriluawe", "the Yriluawen warrior, O'sild", "A'roden, the Mistress of Threads", "A'dene, Priestess of the Holy Three", "A'leess, Oracle of the Yriluawe", "O'mem, the shepherd", "the stablehand, O'suiwr", "A'urnir, the beadworker", "O'ising, Yriluawe shaman", "the trader, O'inead", "the cook, O'seru", "a Yriluawen warrior", "an Elder of the Yriluawe", "a man of the Yriluawe", "a woman of the Yriluawe", "a Yriluawen boy", "a Yriluawen girl", "a war steed", "a wild and savage pony", "a sheep"},
+["the Istar Jungle"] = {"an armoured boalisk", "a monstrous gamling spider", "a giant gwaeron", "a brightly feathered olbi", "a foot-pad lizard", "a bearded pig", "an agile kamatlan", "a blue-crowned ifrit"},
+["Istarion"] = {"a whisper spider", "a watch spider", "a sword spider", "a whisper spiderling", "a watch spiderling", "a sword spiderling",},
+["the Ulangi Isles"] = {"the forest lich Melkhiour", "the King Stag", "Balai the Scorned", "a majestic moose", "a large buck", "a feisty badger", "a gorgeous pheasant", "a speckled fawn", "a white tailed doe", "a shaggy bobcat", "Kr'Tachi the General", "a horkval guard", "a horkval worker", "a horkval drone", "the Horkval Queen", "a barnacle encrusted oyster", "Oorangu the Wise", "a grook scholar", "a grook woman", "a grook child"},
+["the Port of Mysia"] = {"Greybeard, an aged pirate", "Trixy, Siren of Mysia", "Anan, Priest of Mysia", "Niran, the first mate", "Delmar, a pirate with a peg-leg", "Favian, a towering bartender", "Steele, the Mysian Cook", "Enys, a denounced cleric", "Captain Kelley, Mayor of Mysia", "Cassian, a blue-robed mage", "Devon, a bow-legged pirate", "a pirate lass", "a pirate with an eye-patch", "a scantily dressed prostitute", "a drunken pirate", "Tai, the spider monkey",},
+["Hriddan Settlement"] = {"a crystalline ice demon", "Kolyartus, the Blizzard", "a Hriddan warrior", "Arn Drubak", "Osta Fretta", "Gar Nodak, Chieftain of the Hriddan", "a minotaur calf", "a female minotaur", "a tundra wolf", "Grutan Sustrae", "Grut Vlugar, the Bone Dancer", "a woolly mammoth", "a snow white hare", "Osta Murtai", "Rak Gorlan, the hunter"},
+["Clockwork Isle"] = {"a wire-frame man", "a large squid", "a suit of guardian armour", "a drudge goon", "an animated porcelain doll"},
+["Suliel Island"] = {"a polar bear", "a gelid hydra", "a malevolent iridwyn", "a slender arctic fox", "a greater yawo", "a silvery normine", "a speckled harp seal", "a docile tundra wolf", "a hulking omatu", "a gentle female reindeer", "a hardy reindeer", "a village woman", "Radhen, the fisherman", "Jadha, the carpenter", "a playful young boy", "a warmly dressed fisherman", "Avhor, the village chieftain", "Eldharen, the healer", "a playful young boy", "Vhilen, the head fisherman", "a mercenary guard", "a Sulien infantryman", "a mercenary captain", "Laniq, the Craftsman", "Garadh, the Hunter", "Dharia, the Sulien cook", "Teroq, the trainer", "Zhingidh, the Keeper", "Miren, the watchman", "a lokela beast", "a sluggish yawo", "a statue of an ice golem", "an ice sculpture", "a mercenary warrior", "Anaman, the warrior", "Crissa, the warrioress", "Emo, the architect", "Kindor, the master trainer", "Oliviar, the overseer", "Velkan, the Dwarven blacksmith", "a playful young girl", "Loridha, the huntress"},
+
+-- Meropis
+["the Northern Vasnari Mountains"] = {"a rabid grizzly bear", "an enormous cave bat", "a disfigured ram", "a bloodthirsty jackdaw", "a savage morsuleus", "a masked ogre", "a disgusting goblin", "a hulking hobgoblin", "an ice hellion", "a water leech", "a scruffy brigand", "a fierce brigand", "a golden gryphon", "a mother gryphon", "a young gryphon", "Tenith'oru"},
+["Sirocco Fortress"] = {"Duke Semiro", "Duchess Alorina", "Daerlain, an elderly noblewoman", "Jadorno, a cloaked nobleman", "Chancellor Ashem", "the Captain of the Guard", "the fortress steward", "Halohan, a humble cleric", "a bearded cook", "a proud ducal guard", "a knight of the Siroccian Order", "a stout footsoldier", "a fortress guardsman", "an alert watchman", "a keen-eyed archer", "Samial, a sleek Rajamala", "a huge, writhing serpent", "a rotund prison guard"},
+["the Mirror Caves"] = {"a massive jade spider", "a malevolent echo", "a giant quartz beetle", "a ghost bat", "a rope lichen", "a plated fernbeast", "a rockhide basilisk", "a bioluminescent ooze", "a lost spirit", "a crystal georith", "an aged Sileg", "an adult Sileg", "a juvenile Sileg"},
+["the Mines of Iskadar"] = {"Bartok Stonefist, Leader of the Blackfire clan", "Glath Ironhammer, Leader of the Bloodstone clan", "High Priest Asdath", "Breana Ironhammer", "Thraken, the Bloodstone shaman", "Brok, the Blackfire shaman", "a dwarven priest", "a priest", "a nervous acolyte", "an alert dwarven guard", "a delirious miner", "Grelda Stonefist", "a blood-soaked dwarven miner", "a dirt-encrusted miner", "a bloodstained miner", "a dishevelled dwarven miner", "a convulsing miner", "a vomiting miner", "a young dwarven miner", "an adolescent miner", "an injured miner"},
+["the Central Vasnari Mountains"] = {"a rabid grizzly bear", "an enormous cave bat", "a disfigured ram", "a bloodthirsty jackdaw"},
+["Judgement Mountain"] = {"Grandmaster Kevadrin", "Marna", "Ciglo, the historian", "Davkas", "Qiland", "a stern monk", "a humble monk", "a diligent monk", "a young monk", "Begath, the Migri mage", "Dakk, leader of the Migri", "a Migri warrior", "an undead minion"},
+["the salt mines of Ulsyndar"] = {"Anwell, commander of the prison guard", "Anttan, the mess cook", "an Ulsyndar guard", "an off-duty prison guard", "a prison miner", "a disgruntled salt miner"},
+["The Gulf of Nilakantha"] = {"a gigantic sea spider", "a redfin tuna", "a hammerhead shark", "a whiptail stingray", "a massive jellyfish"},
+["the Coastal Highway"] = {"a mounted Asteri knight", "a proud ducal guard", "a weathered guard", "a sneaky bandit"},
+["Grukai Swamp"] = {"a sinister glubber", "a giant puffball", "a vicious dulosi majorus", "an aggressive dulosi minorus", "an energetic red turtle", "a putrid green crab", "a giant leech", "an enormous anaconda", "a mud urchin", "a thornback frog", "a crocodile", "a school of vicious piranha", "a vicious swarm of acacidic ants", "a multicoloured boa constrictor", "a reedy green buom", "a transparent cahno", "an azure koparfish", "a bunyip", "a swarm of mosquitoes", "a serpentine tssalo", "a tentacled polyp", "a shark-like junda"},
+["the Battlesite of Mourning Pass"] = {"a heavily armoured warrior sylphid beetle", "a lost knight errant", "a winged worker sylphid beetle", "a queen sylphid beetle", "a larval sylphid queen", "Knight Commander Lord Ethran Rani", "Commander Farista Errikale", "Commander Malrian Kyra", "a sturdy knight", "a proud knight errant", "an injured knight", "a dishevelled young squire", "a battered Ashtani lieutenant", "a bedraggled Ashtani foot soldier"},
+["the Northern Atrousian Jungle"] = {"a disfigured ogre", "Hul'fro, a towering ogre", "a domesticated water buffalo",},
+["the Remains of Dralhu Hryre"] = {"Eraon, the armourer", "Matriarch Trisa", "Overseer Breoln", "Patriarch Deniar", "Winre, the bird keeper", "a brown-haired trainee", "a dirty blond-haired trainee", "Patriarch Grethan", "a Dralhuan guard", "a Dralhuan man", "a Dralhuan woman", "an elderly apothecary", "an energetic young boy", },
+};
+
+
+areaListPrio = {
+["Istarion"] = {"188306",},
+};</script>
+						<eventHandlerList />
+					</Script>
+				</ScriptGroup>
+			</ScriptGroup>
+		</ScriptGroup>
 		<Script isActive="yes" isFolder="no">
 			<name>resetmarkx</name>
 			<packageName></packageName>
