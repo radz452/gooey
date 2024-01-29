@@ -2,10 +2,9 @@ gooey is an awesome system made by people who can't code for a shitty text game.
 
 to do: 
 - check for updates, manage versions
-- chat
-- hunting functionality
+- hunting functionality --Done-ish
 - sailing functionality
 - combat functionality
 - GUI styling options
-- Little Green Man implementation
+- Little Green Man implementation --Done-ish
 - addons
