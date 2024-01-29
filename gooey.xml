@@ -426,9 +426,11 @@ deleteLine()
 				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Battle Prompt</name>
 					<script>if not gooey.vars.sea.gotPrompt then gooey.vars.sea.gotPrompt = true end
-selectCurrentLine()
-copy()
-appendBuffer("shipPromptConsole")
+--selectCurrentLine()
+--gooey.gui.shipPromptConsole:echo(line)
+echo("shipPromptConsole", copy2html())
+--gooey.gui.shipPromptConsole:paste()
+--appendBuffer("shipPromptConsole")
 --fg("a_onelevel")
 --cinsertText("                             ")
 deleteLine()
@@ -749,7 +751,7 @@ deleteLine()</script>
         cprompt = cprompt .."&lt;black&gt;"..getTime(true, 'hh:mm:ss')
         deleteLine()
       else
-        cprompt = cprompt .."\n"
+        cprompt = cprompt.."&amp;nbsp;"
         lightcolor = "DarkSeaGreen"
         darkcolor = "dark_olive_green"
         selectCurrentLine()
@@ -760,20 +762,18 @@ deleteLine()</script>
       --target info
       if gmcp.IRE and gmcp.IRE.Target then
       local sstar
-      local sstarhp
         if gmcp.IRE.Target.Set and gmcp.IRE.Target.Set ~= "" then
           sstar = gmcp.IRE.Target.Set
           if sstar == gooey.vars.target then
-            cprompt = cprompt.."&lt;"..lightcolor.."&gt;"..gooey.vars.target
+            cprompt = cprompt.."&lt;"..lightcolor.."&gt;"..gooey.data.gmcp.denizens[sstar].." "..gooey.vars.target
           elseif sstar ~= gooey.vars.target then
             cprompt = cprompt.."&lt;"..lightcolor.."&gt;"..gooey.vars.target..sstar
           end
         elseif gmcp.IRE.Target.Set and gmcp.IRE.Target.Set == "" then
           cprompt = cprompt.."&lt;"..lightcolor.."&gt;[&lt;"..darkcolor.."&gt;"..gooey.vars.target.."&lt;"..lightcolor.."&gt;]"
         end
-        if gmcp.IRE.Target.Info and gmcp.IRE.Target.Info.hpperc.hpperc then
-          sstarhp = tonumber(gmcp.IRE.Target.Info.hpperc)
-          cprompt = cprompt .." @ &lt;"..gooey.funcs.healthColor(sstarhp, 100).."&gt;"..sstarhp.."&lt;DimGrey&gt; |"
+        if gmcp.IRE.Target.Info and gmcp.IRE.Target.Info.hpperc then
+          cprompt = cprompt .."&lt;"..darkcolor.."&gt; @ &lt;"..gooey.funcs.healthColor(tonumber(gmcp.IRE.Target.Info.hpperc), 100).."&gt;"..gmcp.IRE.Target.Info.hpperc.."&lt;DimGrey&gt; |"
         end
 
       end
@@ -781,7 +781,7 @@ deleteLine()</script>
       --health
       cprompt = cprompt .." &lt;"..gooey.funcs.healthColor().."&gt;"..gmcp.Char.Vitals.hp.."/"..gmcp.Char.Vitals.maxhp.."&lt;"..lightcolor.."&gt;H &lt;"..darkcolor.."&gt;[&lt;"..gooey.funcs.healthColor().."&gt;"..gooey.funcs.round(tonumber(gmcp.Char.Vitals.hp)/tonumber(gmcp.Char.Vitals.maxhp)*100).."&lt;"..darkcolor.."&gt;%&lt;"..lightcolor.."&gt;H&lt;"..darkcolor.."&gt;] "
       --mana
-      cprompt = cprompt .."&lt;"..darkcolor.."&gt;"..gmcp.Char.Vitals.mp.."/"..gmcp.Char.Vitals.maxmp.."&lt;"..lightcolor.."&gt;M "
+      cprompt = cprompt .."&lt;"..darkcolor.."&gt;["..gooey.funcs.round(tonumber(gmcp.Char.Vitals.mp)/tonumber(gmcp.Char.Vitals.maxmp)*100).."&lt;"..darkcolor.."&gt;%&lt;"..lightcolor.."&gt;M&lt;"..darkcolor.."&gt;] "
       --missing bal or eq?
       if gmcp.Char.Vitals.bal == "0" or gmcp.Char.Vitals.eq == "0" then 
         cprompt = cprompt .."&lt;DimGrey&gt;|"
@@ -797,7 +797,8 @@ deleteLine()</script>
       oldhp = tonumber(gmcp.Char.Vitals.hp)
     
       if gooey.vars.gui.singleprompt then
-        gooey.gui.promptConsole:cecho(cprompt)
+      --"&lt;pre style='font-size:16px; color:white; text-align:center; padding:1px; margin:1px;'&gt;"
+        gooey.gui.promptConsole:cecho("&lt;pre style='font-size:15px; font-weight: bold;'&gt;"..cprompt.."&lt;/pre&gt;")
        
       else 
         cecho(cprompt)
@@ -2691,10 +2692,11 @@ gooey.timers = gooey.timers or {} --triggers
 ----combat
 ----serverSettings --stores personal server-side settings, command separator, pagelength, curing
 ----gmcp --info from GMCP
+----localSettings - local settings (module folder, sound etc)
 
 gooey.gui.styles = gooey.gui.styles or {}
 gooey.gui.fontSize = gooey.gui.fontSize or {}
-gooey.gui.var = gooey.gui.var or {}
+gooey.gui.vars = gooey.gui.vars or {}
 gooey.gui.build = gooey.gui.build or {} --exception that houses the functions to build the gui
 
 gooey.vars.sea = gooey.vars.sea or {}
@@ -2705,6 +2707,7 @@ gooey.vars.serverSettings = gooey.vars.serverSettings or {}
 gooey.vars.gmcp = gooey.vars.gmcp or {}
   gooey.vars.gmcp.old = gooey.vars.gmcp.old or {}
 gooey.vars.gui = gooey.vars.gui or {}
+gooey.vars.localSettings = gooey.vars.localSettings or {}
 
 gooey.funcs.sea = gooey.funcs.sea or {}
 gooey.funcs.hunt = gooey.funcs.hunt or {}
@@ -2725,29 +2728,40 @@ gooey.triggers.serverSettings = gooey.triggers.serverSettings or {}
 gooey.triggers.gmcp = gooey.triggers.gmcp or {}
 
 --adjust fonts here
+
+gooey.gui.fontSize.peopleConsole = 10
 gooey.gui.fontSize.topright = 10
+gooey.gui.fontSize.denizensConsole = 10
+gooey.gui.fontSize.people = 10
 gooey.gui.fontSize.midleft = 10
+gooey.gui.fontSize.chatClans = 10
+gooey.gui.fontSize.roomContainer = 10
+gooey.gui.fontSize.popOutWindow = 10
+gooey.gui.fontSize.rageContainer = 10
 gooey.gui.fontSize.topleft = 10
+gooey.gui.fontSize.activityStatusContainer = 10
+gooey.gui.fontSize.chatTells = 10
+gooey.gui.fontSize.chatShip = 10
 gooey.gui.fontSize.shipPromptConsole = 10
 gooey.gui.fontSize.bottomright = 10
-gooey.gui.fontSize.activityStatusContainer = 10
+gooey.gui.fontSize.chatMisc = 10
+gooey.gui.fontSize.chatMarket = 10
 gooey.gui.fontSize.denizens = 10
-gooey.gui.fontSize.peopleConsole = 10
-gooey.gui.fontSize.top = 10
+gooey.gui.fontSize.chatHouse = 10
 gooey.gui.fontSize.promptContainer = 10
+gooey.gui.fontSize.chatAll = 10
 gooey.gui.fontSize.bottomleft = 10
-gooey.gui.fontSize.people = 10
+gooey.gui.fontSize.chatCity = 10
+gooey.gui.fontSize.chatContainer = 10
 gooey.gui.fontSize.activityStatusConsole = 10
-gooey.gui.fontSize.denizensConsole = 10
 gooey.gui.fontSize.promptConsole = 10
 gooey.gui.fontSize.bottom = 10
 gooey.gui.fontSize.popOutConsole = 10
-gooey.gui.fontSize.popOutWindow = 10
-gooey.gui.fontSize.roomContainer = 10
-gooey.gui.fontSize.rageContainer = 10
+gooey.gui.fontSize.chatParty = 10
+gooey.gui.fontSize.top = 10
 gooey.gui.fontSize.gaugeContainer = 10
 --to update
---lua for k, v in pairs(gooey.gui) do if gooey.gui[k].type == "miniConsole" or gooey.gui[k].type == "adjustablecontainer" then echo("\ngooey.gui.fontSize."..gooey.gui[k].name.." = 9") end end
+--lua for k, v in pairs(gooey.gui) do if gooey.gui[k].type == "miniConsole" or gooey.gui[k].type == "adjustablecontainer" or gooey.gui[k].type == "label" then echo("\ngooey.gui.fontSize."..gooey.gui[k].name.." = 10") end end
 
 
 
@@ -2782,37 +2796,42 @@ gooey.gui.myStyle = "basic"
 				<script>local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
 local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
 
-gooey.moduleHome = string.split(getModulePath("gooey"), "gooey.*%.xml")[1]
-
 function gooey.gui.build.frame()
 --main skeleton
-gooey.gui.top = gooey.gui.top or Adjustable.Container:new({
-  name = "top", y="0%", height = "10%", 
+gooey.gui.top = --gooey.gui.top or 
+  Adjustable.Container:new({ name = "top", y="0%", height = "10%", 
   buttonFontSize = 7, buttonsize = 10, padding = 2, 
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, })
-gooey.gui.bottom = gooey.gui.bottom or Adjustable.Container:new({
-  name = "bottom", height = "10%", y = "-10%", 
+  
+  local botheight
+  if gooey.vars.gui.singleprompt then 
+    botheight = "10%"
+  else 
+    botheight = "8%"
+  end
+gooey.gui.bottom = gooey.gui.bottom or 
+  Adjustable.Container:new({ name = "bottom", height = "30%", y = "-10%", 
   buttonFontSize = 7, buttonsize = 10, padding = 2, 
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,})
   
-gooey.gui.topright = gooey.gui.topright or Adjustable.Container:new({
-  name = "topright", y = "0%", height = "50%", x = "-20%", width = "30%", 
+gooey.gui.topright = gooey.gui.topright or 
+  Adjustable.Container:new({ name = "topright", y = "0%", height = "50%", x = "-20%", width = "30%", 
   buttonFontSize = 7, buttonsize = 10, padding = 2, 
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, })
-gooey.gui.bottomright = gooey.gui.bottomright or Adjustable.Container:new({
-  name = "bottomright", y = "50%", height = "50%", x = "-20%", width = "30%", 
+gooey.gui.bottomright = gooey.gui.bottomright or 
+  Adjustable.Container:new({ name = "bottomright", y = "50%", height = "50%", x = "-20%", width = "30%", 
   buttonFontSize = 7, buttonsize = 10, padding = 2, 
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,})
-gooey.gui.topleft = gooey.gui.topleft or Adjustable.Container:new({
-  name = "topleft", x = "0%", y = "0%", height = "33%", width = "20%", 
+gooey.gui.topleft = gooey.gui.topleft or 
+  Adjustable.Container:new({ name = "topleft", x = "0%", y = "0%", height = "33%", width = "20%", 
   buttonFontSize = 7, buttonsize = 10, padding = 2, 
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,})
-gooey.gui.midleft = gooey.gui.midleft or Adjustable.Container:new({
-  name = "midleft", x = "0%", y = "33%", height = "33%", width = "20%", 
+gooey.gui.midleft = gooey.gui.midleft or 
+  Adjustable.Container:new({ name = "midleft", x = "0%", y = "33%", height = "33%", width = "20%", 
   buttonFontSize = 7, buttonsize = 10, padding = 2,
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, })
-gooey.gui.bottomleft = gooey.gui.bottomleft or Adjustable.Container:new({
-  name = "bottomleft", x = "0%", y = "66%", height = "34%", width = "20%", 
+gooey.gui.bottomleft = gooey.gui.bottomleft or 
+  Adjustable.Container:new({ name = "bottomleft", x = "0%", y = "66%", height = "34%", width = "20%", 
   buttonFontSize = 7, buttonsize = 10, padding = 2, 
   adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, })
 
@@ -2854,8 +2873,9 @@ local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
 
 function gooey.gui.build.room()
 --room info - VBox to separate the room name console from the denizens and people consoles
-gooey.gui.roomVBox = gooey.gui.roomVBox or Geyser.VBox:new({
-  name="roomVBox", x = 0, y = "0%", width = "100%", height = "100%"}, gooey.gui.topleft)
+gooey.gui.roomVBox = gooey.gui.roomVBox or 
+  Geyser.VBox:new({ name="roomVBox", x = 0, y = "0%", width = "100%", height = "100%"}, 
+  gooey.gui.topleft)
 
 gooey.gui.roomNameLabel = gooey.gui.roomNameLabel or 
     Geyser.Label:new({name = "roomNameLabel", x = "0%", y="0%", height = "12%", width = "100%", 
@@ -2887,15 +2907,19 @@ gooey.gui.people = gooey.gui.people or
     adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
       gooey.gui.roomContainer)
 
-gooey.gui.denizensConsole = gooey.gui.denizensConsole or 
-    Geyser.MiniConsole:new({name = "denizensConsole", x = "0%", y="1%", height = "100%", width = "100%", 
-    color = "black", autoWrap = true, padding = 3}, 
-      gooey.gui.denizens )
-      
-gooey.gui.peopleConsole = gooey.gui.peopleConsole or 
-    Geyser.MiniConsole:new({name = "peopleConsole", x = "0%", y="1%", height = "100%", width = "100%", 
-    color = "black", autoWrap = true, padding = 3}, 
-      gooey.gui.people )
+  gooey.gui.denizensConsole = gooey.gui.denizensConsole or 
+      Geyser.MiniConsole:new({name = "denizensConsole", x = "0%", y="1%", height = "100%", width = "100%", 
+      color = "black", autoWrap = true, padding = 3}, 
+        gooey.gui.denizens )
+        
+  gooey.gui.peopleConsole = gooey.gui.peopleConsole or 
+      Geyser.MiniConsole:new({name = "peopleConsole", x = "0%", y="1%", height = "100%", width = "100%", 
+      color = "black", autoWrap = true, padding = 3}, 
+        gooey.gui.people )
+        
+  if gooey.gui.preferredRoomLayout then 
+    gooey.funcs.swapRoomLayout(gooey.gui.preferredRoomLayout) 
+  end
 end   
 
 </script>
@@ -2921,8 +2945,35 @@ gooey.gui.activityStatusConsole = gooey.gui.activityStatusConsole or
     color = "black", autoWrap = true, padding = 3}, 
       gooey.gui.activityStatusContainer ) 
       
+gooey.gui.activityKogman = gooey.gui.activityKogman or 
+    Geyser.Label:new({name = "activityKogman", x = "-31%", y="1%", height = "98%", width = "30%", 
+    color = "firebrick", padding = 3}, 
+      gooey.gui.activityStatusConsole )
+
+local image = ""
+
+if gooey.vars.gmcp.gender == "female" or "fae" then
+  image = gooey.vars.localSettings.gooeyFolder.."babygurl2.png"
+else
+  image = gooey.vars.localSettings.gooeyFolder.."babyboi3.png"
+end  
+
+if gooey.vars.mode == "hunt" or gooey.vars.mode == "combat" then
+gooey.gui.activityKogman:setBackgroundImage(image)  
+ 
+gooey.gui.activityKogman:setStyleSheet([[
+    border-image: url("]]..image..[[");
+    background-repeat: no-repeat; background-position: top left; background-origin: margin; 
+  ]])  
+end   
 end</script>
 					<eventHandlerList />
+					<Script isActive="no" isFolder="no">
+						<name>my afflictions</name>
+						<packageName></packageName>
+						<script></script>
+						<eventHandlerList />
+					</Script>
 				</Script>
 				<Script isActive="yes" isFolder="no">
 					<name>Map build</name>
@@ -2976,36 +3027,40 @@ end</script>
 local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
 
 
--- border-radius: 15px
 
 function gooey.gui.build.bottom()
 
-  gooey.gui.promptContainer = --gooey.gui.rageContainer or 
-    Adjustable.Container:new({ name = "promptContainer", x = "0%", y="0%", height = "25%", width = "100%", 
-    buttonFontSize = 7, buttonsize = 10, padding = 1, 
+  gooey.gui.shipPromptContainer = gooey.gui.shipPromptContainer or 
+    Adjustable.Container:new({ name = "promptContainer", x = "0%", y= "0%", width = "100%", height = "25%",
+    buttonFontSize = 7, buttonsize = 10, padding = 0, v_policy = Geyser.Dynamic,
+    adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, }, gooey.gui.bottom)
+  
+    gooey.gui.shipPromptConsole = gooey.gui.shipPromptConsole or 
+        Geyser.Label:new({name = "shipPromptConsole", x = "0%", y= "0%", height = "100%", width = "100%", 
+        color = "black", padding = 0, margin = 0 },
+          gooey.gui.shipPromptContainer)
+  
+  gooey.gui.promptContainer = gooey.gui.rageContainer or 
+    Adjustable.Container:new({ name = "promptContainer", x = "0%", y="0%", width = "100%", height = "25%", 
+    buttonFontSize = 7, buttonsize = 10, padding = 1, v_policy = Geyser.Dynamic,
     adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, }, gooey.gui.bottom)
 
-  gooey.gui.promptConsole = --gooey.gui.promptConsole or 
-      Geyser.MiniConsole:new({name = "promptConsole", x = "0%", y="0%", height = "100%", width = "100%", 
-      color = "black", padding = 2, margin = 2 }, gooey.gui.promptContainer )
+    gooey.gui.promptConsole = gooey.gui.promptConsole or 
+        Geyser.Label:new({name = "promptConsole", x = "0%", y= "0%", height = "100%", width = "100%", 
+        color = "black", padding = 0, margin = 0 }, gooey.gui.promptContainer )
 
   if not gooey.vars.gui.singleprompt then 
     gooey.gui.promptContainer:hide()
   end
-   
-  gooey.gui.shipPromptConsole = --gooey.gui.shipPromptConsole or 
-      Geyser.MiniConsole:new({name = "shipPromptConsole", x = "0%", y="0%", height = "25%", width = "100%", 
-      color = "black", padding = 0, },
-        gooey.gui.bottom)
         
-  gooey.gui.rageContainer = --gooey.gui.rageContainer or 
-    Adjustable.Container:new({ name = "rageContainer", x = "0%", y="25%", height = "45%", width = "100%", 
-    buttonFontSize = 7, buttonsize = 10, padding = 0, 
+  gooey.gui.rageContainer = gooey.gui.rageContainer or 
+    Adjustable.Container:new({ name = "rageContainer", x = "0%", y = -65, height = "27px", width = "100%", 
+    buttonFontSize = 7, buttonsize = 10, padding = 0, v_policy = Geyser.Fixed,
     adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, }, gooey.gui.bottom)
       
-  gooey.gui.gaugeContainer = --gooey.gui.gaugeContainer or 
-      Adjustable.Container:new({ name = "gaugeContainer", x = "0%", y="-30%", height = "30%", width = "100%", 
-      color = "red", padding = 0, margin = 0,
+  gooey.gui.gaugeContainer = gooey.gui.gaugeContainer or 
+      Adjustable.Container:new({ name = "gaugeContainer", x = "0%", y = -30, height = "26px", width = "100%",
+      color = "red", padding = 0, margin = 0, v_policy = Geyser.Fixed,
       adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle, }, 
         gooey.gui.bottom)
   
@@ -3164,12 +3219,12 @@ gooey.vars.target = gooey.vars.target or "Glory&amp;Riches"
 
 function gooey.gui.build.gauges()
 
-gooey.gui.botomGaugeHbox = gooey.gui.botomGaugeHbox or Geyser.HBox:new({
-  name = "botomGaugeHbox", x = "0%", y = "0%", width = "100%", height = "100%", padding = 0, margin = 0}, 
+gooey.gui.botomGaugeHbox = gooey.gui.botomGaugeHbox or 
+  Geyser.HBox:new({ name = "botomGaugeHbox", x = "0%", y = "0%", width = "100%", height = "100%", padding = 0, margin = 0}, 
   gooey.gui.gaugeContainer)
   
-gooey.gui.botomGaugeVbox = gooey.gui.botomGaugeVbox or Geyser.VBox:new({
-  name = "botomGaugeVbox", x = "0%", y = "0%", width = "3%", height = "100%", h_policy=Geyser.Fixed, padding = 0, margin = 0}, 
+gooey.gui.botomGaugeVbox = gooey.gui.botomGaugeVbox or 
+  Geyser.VBox:new({ name = "botomGaugeVbox", x = "0%", y = "0%", width = "3%", height = "100%", h_policy=Geyser.Fixed, padding = 0, margin = 0}, 
   gooey.gui.botomGaugeHbox)
 
 gooey.gui.eqBar = Geyser.Label:new({name = "eq", width = 20, w_policy=Geyser.Fixed, margin = 0, }, gooey.gui.botomGaugeVbox)
@@ -3214,14 +3269,14 @@ local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
 
 function gooey.gui.build.chat()
 
-gooey.gui.chatContainer = --gooey.gui.chatContainer or 
+gooey.gui.chatContainer = gooey.gui.chatContainer or 
   Adjustable.Container:new({
-    name = "chatContainer", y = "0%", x = "0%", width = "75%", height = "100%",
+    name = "chatContainer", y = "0%", x = "0%", width = "100%", height = "100%",
     buttonFontSize = 7, buttonsize = 10, padding = 6, 
     adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,}, 
       gooey.gui.topright)
 
-gooey.gui.chatTabWindow = --gooey.gui.chatTabWindow or
+gooey.gui.chatTabWindow = gooey.gui.chatTabWindow or
   Adjustable.TabWindow:new({name = "chatTabWindow", y = "0%", x = "0%", width = "100%", height = "100%",
     buttonFontSize = 7, buttonsize = 10, padding = 6, 
     adjLabelstyle = myadjlabel, buttonstyle = mybuttonstyle,
@@ -3233,13 +3288,14 @@ gooey.gui.chatTabWindow = --gooey.gui.chatTabWindow or
 
 for k, v in pairs(gooey.gui.chatTabWindow.tabs) do  
   local chatname = "chat"..v
-  gooey.gui[chatname] = --gooey.gui[chatname] or
+  gooey.gui[chatname] = gooey.gui[chatname] or
     Geyser.MiniConsole:new({ name = chatname,  x = "0%", y="0%", height = "100%", width = "100%", 
       color = "black", padding = 2, margin = 2, autoWrap = true
     }, gooey.gui.chatTabWindow[v.."center"])
 
 end
 
+gooey.gui.chatTabWindow:activateTab("All")
 
 end
 </script>
@@ -3357,8 +3413,8 @@ registerAnonymousEventHandler("gmcp.Room", "gooey.funcs.gmcp.room")
 
 --Function to get the suff in the room
 function gfg.itemsList()
-  gooey.vars.gmcp.denizens = gooey.vars.gmcp.denizens or {}
-  gooey.vars.gmcp.items = gooey.vars.gmcp.items or {}
+  gooey.data.gmcp.denizens = gooey.data.gmcp.denizens or {}
+  gooey.data.gmcp.items = gooey.data.gmcp.items or {}
   
   if gmcp and gmcp.Char and gmcp.Char.Items then
   	if gmcp.Char.Items.List.location == "room" then
@@ -3373,6 +3429,7 @@ function gfg.itemsList()
         end
       end
     tempTimer(0, [[gooey.funcs.gmcp.displayItems()]])
+    raiseEvent("updatedDenizens")
     end
   end
 end
@@ -3390,6 +3447,7 @@ function gfg.addItems()
       gooey.data.gmcp.items[gmcp.Char.Items.Add.item.id] = {gmcp.Char.Items.Add.item.name, gmcp.Char.Items.Add.item.attrib or ""}
     end
     tempTimer(0, [[gooey.funcs.gmcp.displayItems()]])
+    raiseEvent("updatedDenizens")
 	end
 end
 
@@ -3402,6 +3460,7 @@ function gfg.removeItems()
       gooey.data.gmcp.items[gmcp.Char.Items.Remove.item.id] = nil
   	end
   gooey.funcs.gmcp.displayItems()
+  raiseEvent("updatedDenizens")
   end
 end
 
@@ -3741,7 +3800,60 @@ function gooey.funcs.showChat()
 
 end
 
-registerAnonymousEventHandler("gmcp.Comm.Channel.Start", "gooey.funcs.showChat")</script>
+registerAnonymousEventHandler("gmcp.Comm.Channel.Start", "gooey.funcs.showChat")
+
+
+function gooey.funcs.gmcp.listAfflictions()
+gooey.data.gmcp.affs = {}
+  for k, v in pairs(gmcp.Char.Afflictions.List) do
+    --if not table.contains({"blindness", "deafness", "insomnia"}, v.name) then
+    table.insert(gooey.data.gmcp.affs, v.name)
+  end
+gooey.funcs.showActivity()
+end
+
+registerAnonymousEventHandler("gmcp.Char.Afflictions.List", "gooey.funcs.gmcp.listAfflictions")
+
+function gfg.lostAff()
+gooey.data.gmcp.affs = gooey.data.gmcp.affs or {}
+local removeAff = gmcp.Char.Afflictions.Remove[1]
+ table.remove(gooey.data.gmcp.affs, table.index_of(gooey.data.gmcp.affs, removeAff))
+end
+
+registerAnonymousEventHandler("gmcp.Char.Afflictions.Remove","gooey.funcs.gmcp.lostAff" )
+
+function gfg.gainAff()
+gooey.data.gmcp.affs = gooey.data.gmcp.affs or {}
+  local addAff = gmcp.Char.Afflictions.Add.name
+  table.insert(gooey.data.gmcp.affs, addAff)
+end
+
+registerAnonymousEventHandler("gmcp.Char.Afflictions.Add", "gooey.funcs.gmcp.gainAff")
+
+function gooey.funcs.gmcp.listDefences()
+gooey.data.gmcp.defs = {}
+  for k, v in pairs(gmcp.Char.Defences.List) do
+    table.insert(gooey.data.gmcp.defs, v.name)
+    end
+end
+
+registerAnonymousEventHandler("gmcp.Char.Defences.List", "gooey.funcs.gmcp.listDefences")
+
+function gfg.lostDef()
+gooey.data.gmcp.defs = gooey.data.gmcp.defs or {}
+local removeDef = gmcp.Char.Defences.Remove[1]
+ table.remove(gooey.data.gmcp.defs, table.index_of(gooey.data.gmcp.defs, removeDef))
+end
+
+registerAnonymousEventHandler("gmcp.Char.Defences.Remove", "gooey.funcs.gmcp.lostDef")
+
+function gfg.gainDef()
+gooey.data.gmcp.defs = gooey.data.gmcp.defs or {}
+  local addDef = gmcp.Char.Defences.Add.name
+  table.insert(gooey.data.gmcp.defs, addDef)
+end
+
+registerAnonymousEventHandler("gmcp.Char.Defences.Add", "gooey.funcs.gmcp.gainDef")</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -3764,7 +3876,7 @@ if state == "on" then
     end
     send("queue add eqbal relax insomnia")
     send("shipwarning on")
-    gooey.funcs.toggleGUIMode("sea")
+    --gooey.funcs.toggleGUIMode("sea")
     --still gotta deal with shipwarning window and monster hit gauge/cape gauge
     cecho("\n&lt;white&gt;[&lt;ansiCyan&gt;Ship stuff ON&lt;white&gt;]")
     sq.balance = true
@@ -3780,7 +3892,7 @@ else
   else send("curing priority defense insomnia 25")
   end
   send("put shipaxe in pack")
-  gooey.funcs.toggleGUIMode("hunt")
+  --gooey.funcs.toggleGUIMode("hunt")
   --still gotta deal with shipwarning window and monster hit gauge/cape gauge
   cecho("\n&lt;white&gt;[&lt;ansiCyan&gt;Ship stuff OFF&lt;white&gt;]")
   sq.balance = true
@@ -3906,6 +4018,7 @@ function gooey.funcs.showActivity()
   if gs.figureheadclear == nil then gs.figureheadclear = true end
   if gs.riggingclear == nil then gs.riggingclear = true end
   gs.hooked = gs.hooked or false
+  gooey.vars.gui.affDef = gooey.vars.gui.affDef or "aff"
 
   local console = "activityStatusConsole"
   clearUserWindow(console)
@@ -3988,100 +4101,35 @@ function gooey.funcs.showActivity()
   elseif gooey.vars.mode.sea and not gooey.vars.sea.gotPrompt then
     cecho(console, "&lt;red&gt;Don't have a ship prompt :(")
   
-  elseif gooey.vars.mode.hunt then
-  
-  
-  
-  elseif gooey.vars.mode.combat then
-  
-  
+  elseif gooey.vars.mode.hunt or gooey.vars.mode.combat then
+    cechoLink(console, gooey.vars.gui.affDef == "aff" and "   &lt;yellow&gt;Afflictions&lt;reset&gt;|&lt;white&gt;Defences" or "   &lt;white&gt;Afflictions&lt;reset&gt;|&lt;yellow&gt;Defences", [[ if gooey.vars.gui.affDef == "aff" then gooey.vars.gui.affDef = "def" else gooey.vars.gui.affDef = "aff" end gooey.funcs.showActivity()]], "Click to switch", true)
+    echo(console, "\n\n")
+    if gooey.vars.gui.affDef == "aff" then
+      local affcol 
+      for k, v in pairs(gooey.data.gmcp.affs) do
+        if table.contains({"blindness", "deafness", "insomnia"}, v) then 
+          affcol = "&lt;a_twolevel&gt;"
+        else 
+          affcol = "&lt;white&gt;"
+        end
+        cecho(console, affcol..v.."\n")
+      end
+    elseif gooey.vars.gui.affDef == "def" then
+      local i = 1
+      for k, v in pairs(gooey.data.gmcp.defs) do
+        if i % 2 == 0 then
+        cecho(console, v..",\n")
+        else
+        cecho(console, v..", ")
+        end
+        i = i + 1
+        
+      end
+    end
   end
 end
 
 registerAnonymousEventHandler("gmcp.Char", "gooey.funcs.showActivity")</script>
-				<eventHandlerList />
-			</Script>
-			<Script isActive="yes" isFolder="no">
-				<name>Gooey Startup</name>
-				<packageName></packageName>
-				<script>
-function gooey.funcs.formatAllContainers()
-local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
-local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
-
-  Adjustable.Container:doAll(function(s) 
-    s:lockContainer("border")
-    s.adjLabel:setStyleSheet(myadjlabel) 
-    s.buttonstyle = mybuttonstyle
-    s:setTitle("", "gray") 
-    s:changeMenuStyle("dark")
-    end)
-    gooey.gui.roomNameLabel: setStyleSheet(myadjlabel)
-    gooey.gui.roomNameLabel: setFormat("c13")
-    
-            --set the font sizes
-    for k, v in pairs(gooey.gui) do 
-      if gooey.gui[k].type == "miniConsole" or gooey.gui[k].type == "adjustablecontainer" then 
-      local consoleName = gooey.gui[k].name
-        gooey.gui.fontSize[consoleName] = gooey.gui.fontSize[consoleName] or 10
-        setFontSize(gooey.gui[k].name, gooey.gui.fontSize[consoleName])
-      end
-    end
-end
-
-function gooey.funcs.coldStartup()
-  disableTimer("ragetimer")
-  gooey.gui.build.frame()
-  gooey.gui.build.bottom()
-  for k, v in pairs(gooey.gui.build) do
-    if k~= "frame" and k ~= "bottom" then
-      gooey.gui.build[k]()
-      cecho("\n&lt;red&gt;gooey.gui.build.&lt;firebrick&gt;"..k)
-    end
-  end
-
-  Adjustable.Container:doAll(function(s) s:addConnectMenu() end)
-  gooey.funcs.formatAllContainers()
-  gooey.funcs.sea.shipcheck()
-  tempTrigger("Password correct. Welcome to Achaea.", [[gooey.funcs.warmStartup()]], 1)
-end
-
-registerAnonymousEventHandler("sysLoadEvent", "gooey.funcs.coldStartup")
-
-function gooey.funcs.warmStartup()
-  sendGMCP('Core.Supports.Add ["Comm.Channel 1"]')
-  sendGMCP('Core.Supports.Add ["IRE.Tasks 1"]')
-  sendGMCP('Core.Supports.Add ["IRE.Time 1"]')
-  sendGMCP('Core.Supports.Add ["IRE.Misc 1"]')
-  sendGMCP('Core.Supports.Add ["IRE.Target 1"]')
-end
-
-function gooey.funcs.install()
-  if enableModuleSync then 
-    enableModuleSync('gooey') 
-  end
-  
-  gooey.funcs.coldStartup()
-  if gmcp then 
-    gooey.funcs.warmStartup()
-  end
-  
-  if getModuleInfo("gooey", "version") == "" then
-    setModuleInfo("gooey", "version", "0.0001")
-  end
-end
-
-registerAnonymousEventHandler("sysInstallModule", "gooey.funcs.install")
-registerAnonymousEventHandler("sysLuaInstallModule", "gooey.funcs.install")
-
-function gooey.funcs.checkUpdates()
-
-if updatesexist then --which I have no idea how to check yet, but have high hopes on the setModuleInfo thing
-local downloadFolder = getModulePath("gooey")
-downloadFile(downloadFolder, "url")
-end
-end
-</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -4492,7 +4540,7 @@ function gooey.funcs.setTarget(what, whatname)
   
   send("st "..what, false)
   gooey.vars.target = what
-  gooey.funcs.echo("Target: &lt;LightSteelBlue&gt;"..what:title())
+  gooey.funcs.echo("Target: &lt;LightSteelBlue&gt;"..what:title()..(whatname and " &lt;reset&gt;(&lt;LightSteelBlue&gt;"..whatname.."&lt;reset&gt;)" or ""))
   if not tonumber(what) and keneanung then 
     keneanung.bashing.addPossibleTarget("what")   
   end
@@ -4600,6 +4648,7 @@ function gooey.funcs.pp(state)
   else --no svo and no Legacy
     if not state then
       state = (gooey.vars.serverSettings.curingEnabled == "Yes" and "off" or "on")
+      echo("\nState is "..state)
     end
     send("curing "..state)
     gooey.funcs.echo(""..(state == "on" and "Unp"  or "P").."aused the system") 
@@ -4787,29 +4836,37 @@ local resetting = nil
   
     if mode == "sea" then
       if gooey.vars.gui.singleprompt then
-        gooey.gui.bottom:resize(nil, "10%")
-        gooey.gui.bottom:move(nil, "90%")
-        gooey.gui.bottom:add(gooey.gui.promptContainer)
-        gooey.gui.shipPromptConsole:show()
-        gooey.gui.shipPromptConsole:resize("100%", "20%")
-        gooey.gui.shipPromptConsole:move("0%", "2%")
-        gooey.gui.promptContainer:show()
-        gooey.gui.promptContainer:resize("100%", "28%")
-        gooey.gui.promptContainer:move("0%", "24%")
-        gooey.gui.gaugeContainer:resize( "100%", "46%")
-        gooey.gui.gaugeContainer:move( "0%", "-46%")
         gooey.gui.rageContainer:hide()
+        gooey.gui.bottom:resize(nil, "9%")
+        gooey.gui.bottom:move(nil, "91%")
+        gooey.gui.shipPromptContainer:show()
+        gooey.gui.bottom:add(gooey.gui.shipPromptContainer)
+        gooey.gui.shipPromptConsole:show()
+        gooey.gui.shipPromptContainer:add(gooey.gui.shipPromptConsole)
+        gooey.gui.shipPromptConsole:resize("100%", "100%")
+        gooey.gui.shipPromptContainer:resize("100%", "20%")
+        gooey.gui.shipPromptContainer:move("0%", "2%")
+        gooey.gui.promptContainer:show()
+        gooey.gui.bottom:add(gooey.gui.promptContainer)
+        gooey.gui.promptContainer:resize("100%", "28%")
+        gooey.gui.promptContainer:move("0%", "28%")
+        gooey.gui.gaugeContainer:resize( "100%", "35")
+        gooey.gui.gaugeContainer:move( "0%", "-35")
         gooey.gui.bottom:attachToBorder("bottom")
         gooey.gui.promptContainer:add(gooey.gui.promptConsole)
       else
         gooey.gui.bottom:resize(nil, "7%")
         gooey.gui.bottom:move(nil, "93%")
         gooey.gui.rageContainer:hide()
+        gooey.gui.shipPromptContainer:show()
+        gooey.gui.bottom:add(gooey.gui.shipPromptContainer)
         gooey.gui.shipPromptConsole:show()
-        gooey.gui.gaugeContainer:resize( "100%", "67%") 
-        gooey.gui.gaugeContainer:move( "0%", "-67%")
-        gooey.gui.shipPromptConsole:resize("100%", "33%")
-        gooey.gui.shipPromptConsole:move("0%", "0%")
+        gooey.gui.shipPromptContainer:add(gooey.gui.shipPromptConsole)
+        gooey.gui.shipPromptConsole:resize("100%", "100%")
+        gooey.gui.shipPromptContainer:resize("100%", "36%")
+        gooey.gui.shipPromptContainer:move("0%", "0%")
+        gooey.gui.gaugeContainer:resize( "100%", "35") 
+        gooey.gui.gaugeContainer:move( "0%", "-35")
         gooey.gui.bottom:attachToBorder("bottom")
       end
     elseif mode == "hunt"  then
@@ -4878,9 +4935,9 @@ function gooey.funcs.toggleSinglePrompt()
   gooey.funcs.echo(gooey.vars.gui.singleprompt and "Switched to single prompt" or "Removing the single prompt")
   
   if gooey.vars.gui.singleprompt then
-    gooey.gui.promptConsole:show()
+    gooey.gui.promptContainer:show()
   else 
-    gooey.gui.promptConsole:hide()
+    gooey.gui.promptContainer:hide()
   end
   
   for k, v in pairs(gooey.vars.mode) do
@@ -4891,6 +4948,172 @@ function gooey.funcs.toggleSinglePrompt()
   
   gooey.funcs.toggleGUIMode(mode)
 end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Gooey Startup</name>
+				<packageName></packageName>
+				<script>
+function gooey.funcs.formatAllContainers()
+local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
+local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
+
+  for k, v in pairs(gooey.gui) do 
+    if gooey.gui[k].type == "miniConsole" or gooey.gui[k].type == "adjustablecontainer" then 
+      local consoleName = gooey.gui[k].name
+      gooey.gui.fontSize[consoleName] = gooey.gui.fontSize[consoleName] or 10
+      setFontSize(gooey.gui[k].name, gooey.gui.fontSize[consoleName])
+    elseif gooey.gui[k].type == "label" then
+      gooey.gui[k]:setFontSize(10)
+    end
+  end
+
+  Adjustable.Container:doAll(function(s) 
+    s:lockContainer("border")
+    s.adjLabel:setStyleSheet(myadjlabel) 
+    s.buttonstyle = mybuttonstyle
+    s:setTitle("", "gray") 
+    s:changeMenuStyle("dark")
+    if gooey.vars.localSettings.gooeyFolder then
+    s.defaultDir = gooey.vars.localSettings.gooeyFolder.."AdjContainerSettings/"
+    end
+    end)
+    gooey.gui.roomNameLabel: setStyleSheet(myadjlabel)
+    gooey.gui.roomNameLabel: setFormat("c13")
+
+    --set the font sizes
+
+end
+
+function gooey.funcs.coldStartup()
+  disableTimer("ragetimer")
+  gooey.funcs.load()
+  gooey.gui.build.frame()
+  gooey.gui.build.bottom()
+  gooey.gui.build.midleft()
+  for k, v in pairs(gooey.gui.build) do
+    if k~= "frame" and k ~= "bottom" and k ~= "midleft" then
+      gooey.gui.build[k]()
+      cecho("\n&lt;red&gt;gooey.gui.build.&lt;firebrick&gt;"..k)
+    end
+  end
+
+  Adjustable.Container:doAll(function(s) s:addConnectMenu() end)
+  gooey.funcs.formatAllContainers()
+  gooey.funcs.sea.shipcheck()
+  tempTrigger("Password correct. Welcome to Achaea.", [[gooey.funcs.warmStartup()]], 1)
+  
+end
+
+registerAnonymousEventHandler("sysLoadEvent", "gooey.funcs.coldStartup")
+
+function gooey.funcs.warmStartup()
+  sendGMCP('Core.Supports.Add ["Comm.Channel 1"]')
+  sendGMCP('Core.Supports.Add ["IRE.Tasks 1"]')
+  sendGMCP('Core.Supports.Add ["IRE.Time 1"]')
+  sendGMCP('Core.Supports.Add ["IRE.Misc 1"]')
+  sendGMCP('Core.Supports.Add ["IRE.Target 1"]')
+  gooey.funcs.serverSettings.getServerSettings()
+end
+
+function gooey.funcs.install()
+  if enableModuleSync then 
+    enableModuleSync('gooey') 
+  end
+  
+  gooey.funcs.coldStartup()
+  if gmcp then 
+    gooey.funcs.warmStartup()
+  end
+  
+  if getModuleInfo("gooey", "version") == "" then
+    setModuleInfo("gooey", "version", "0.0001")
+  end
+  gooey.vars.localSettings.gooeyFolder = getModulePath("gooey"):gsub("%.xml", "/")
+
+end
+
+registerAnonymousEventHandler("sysInstallModule", "gooey.funcs.install")
+registerAnonymousEventHandler("sysLuaInstallModule", "gooey.funcs.install")
+
+function gooey.funcs.checkUpdates()
+
+if updatesexist then --which I have no idea how to check yet, but have high hopes on the setModuleInfo thing
+local downloadFolder = getModulePath("gooey")
+downloadFile(downloadFolder, "url")
+end
+end
+
+function gooey.funcs.save()
+
+  if not lfs.attributes(gooey.vars.localSettings.gooeyFolder) then
+    if lfs and lfs.mkdir then
+      local t, s = lfs.mkdir(gooey.vars.localSettings.gooeyFolder)
+      if not t and s ~= "File exists" then
+        gooey.funcs.echo("Couldn't make the '" .. gooey.vars.localSettings.gooeyFolder .. "' folder; " .. s)
+      return
+      end
+    else
+      gooey.funcs.echo("Sorry, but you need LuaFileSystem (lfs) installed, or have the '" ..gooey.vars.localSettings.gooeyFolder .."' folder exist.")
+    return
+    end
+  end
+
+  for k, v in pairs(gooey) do
+    if table.contains({"data", "dendb", "vars"}, k) then
+      local filename = k..".lua"
+      gooey.funcs.echo("Saving "..gooey.vars.localSettings.gooeyFolder..filename)
+      table.save(gooey.vars.localSettings.gooeyFolder..filename, gooey[k])
+    end
+  end
+gooey.funcs.echo("Saved settings here: "..gooey.vars.localSettings.gooeyFolder) 
+end
+
+function gooey.funcs.load()
+gooey.vars.localSettings.gooeyFolder = getModulePath("gooey"):gsub("%.xml", "/")
+for k, v in pairs(gooey) do
+  if table.contains({"data", "dendb", "vars"}, k) then
+    local filename = k..".lua"
+    if io.exists(gooey.vars.localSettings.gooeyFolder..filename) then
+      table.load(gooey.vars.localSettings.gooeyFolder..filename, gooey[k])
+      gooey.funcs.echo("Loaded settings from: "..gooey.vars.localSettings.gooeyFolder..filename) 
+    else
+      table.save(gooey.vars.localSettings.gooeyFolder..filename, gooey[k])
+      gooey.funcs.echo("Couldn't find a save for "..k.." so made a new one: "..gooey.vars.localSettings.gooeyFolder..filename) 
+    end
+  end
+end
+end
+
+function gooey.funcs.playsound()
+  gooey.vars.localSettings.gooeyFolder = getModulePath("gooey"):gsub("%.xml", "/")
+  local modulepath = gooey.vars.localSettings.gooeyFolder
+  gooey.vars.localSettings.soundfolder = modulepath.."Sounds/"
+  local soundfolder = gooey.vars.localSettings.soundfolder
+  local soundpath
+
+  if not io.exists(soundfolder) then
+    gooey.funcs.echo("\n&lt;red&gt;OOPS! &lt;firebrick&gt;Couldn't find your sound folder.")
+  else
+    soundpath = soundfolder..file
+    if vol then 
+      playSoundFile(soundpath, vol)
+    else
+      playSoundFile(soundpath)
+    end
+  end
+end
+
+function gooey.funcs.rebuild()
+  gooey.gui.build.frame()
+  gooey.gui.build.bottom()
+    for k, v in pairs(gooey.gui.build) do
+      if k~= "frame" and k ~= "bottom" then
+        gooey.gui.build[k]()
+      end
+    end
+end
+</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -4930,50 +5153,66 @@ end
 				<packageName></packageName>
 				<script>function gooey.funcs.shutdown()
 disableTimer("ragetimer")
+gooey.funcs.save()
 end
 
 registerAnonymousEventHandler("sysExitEvent", "gooey.funcs.shutdown")</script>
 				<eventHandlerList />
 			</Script>
-			<ScriptGroup isActive="yes" isFolder="yes">
-				<name>Addon - dendb</name>
+			<Script isActive="yes" isFolder="no">
+				<name>Cycle targets</name>
 				<packageName></packageName>
-				<script></script>
-				<eventHandlerList />
-				<Script isActive="yes" isFolder="no">
-					<name>gooey DenDB</name>
-					<packageName></packageName>
-					<script>gooey = gooey or {}
-gooey.dendb = gooey.dendb or {}
-gooey.dendb.db = gooey.dendb.db or {}
+				<script>function gooey.funcs.hunt.cycleTargets()
+gooey.vars.hunt.cycleTarget = gooey.vars.hunt.cycleTarget or 1
+local ct = gooey.vars.hunt.cycleTarget
+local target = gooey.funcs.setTarget
+gooey.funcs.hunt.getIndexedDenizens()
+local targets = gooey.data.gmcp.denizensIndexed
 
-gooey.moduleHome = string.split(getModulePath("gooey"), "gooey.*%.xml")[1]
-
-function gooey.dendb.managedb(thing)
-  if gmcp and gmcp.Room and gmcp.Room.Info then
-  gooey.dendb.db[gmcp.Room.Info.area] = gooey.dendb.db[gmcp.Room.Info.area] or {}
-    if not string.find(thing, "homunculus") and 
-      thing ~= "an aklan servitor"
-    then
-      gooey.dendb.db[gmcp.Room.Info.area][thing] = gooey.dendb.db[gmcp.Room.Info.area][thing] or {}
-      if not table.contains(gooey.dendb.db[gmcp.Room.Info.area][thing], gmcp.Room.Info.num) then
-        table.insert(gooey.dendb.db[gmcp.Room.Info.area][thing], gmcp.Room.Info.num)
-      end
-    end
+  if gooey.vars.hunt.cycleTarget &gt; table.size(gooey.data.gmcp.denizensIndexed) then
+    gooey.vars.hunt.cycleTarget = 1
+    target(targets[gooey.vars.hunt.cycleTarget][1], targets[gooey.vars.hunt.cycleTarget][2])
+  elseif gooey.vars.hunt.cycleTarget == table.size(gooey.data.gmcp.denizensIndexed) then
+    target(targets[gooey.vars.hunt.cycleTarget][1], targets[gooey.vars.hunt.cycleTarget][2])
+    gooey.vars.hunt.cycleTarget = 1
+  else 
+    target(targets[gooey.vars.hunt.cycleTarget][1], targets[gooey.vars.hunt.cycleTarget][2])
+    gooey.vars.hunt.cycleTarget = gooey.vars.hunt.cycleTarget + 1    
   end
-end</script>
-					<eventHandlerList />
-				</Script>
-			</ScriptGroup>
-			<ScriptGroup isActive="yes" isFolder="yes">
-				<name>Addon - hunt</name>
-				<packageName></packageName>
-				<script></script>
+
+  if keneanung then 
+    keneanung.bashing.manuallyTarget(target)
+  end
+  gooey.funcs.gmcp.displayItems()
+end
+
+function gooey.funcs.hunt.getIndexedDenizens()
+gooey.data.gmcp.denizensIndexed = {} 
+  
+  for k, v in pairs(gooey.data.gmcp.denizens) do 
+    table.insert(gooey.data.gmcp.denizensIndexed, {k, v}) 
+  end
+end
+
+registerAnonymousEventHandler("updatedDenizens", "gooey.funcs.hunt.getIndexedDenizens")
+
+function gooey.funcs.hunt.resetDenizenList()
+gooey.data.gmcp.denizensIndexed = {}
+end
+
+registerAnonymousEventHandler("gmcp.Room", "gooey.funcs.hunt.resetDenizenList")</script>
 				<eventHandlerList />
-				<Script isActive="yes" isFolder="no">
-					<name>gooey hunt</name>
-					<packageName></packageName>
-					<script>
+			</Script>
+		</ScriptGroup>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>Addon - hunt</name>
+			<packageName></packageName>
+			<script></script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>gooey hunt</name>
+				<packageName></packageName>
+				<script>
 
 function gooey.funcs.hunt.letUsKill(mode)
 
@@ -4991,19 +5230,19 @@ if gooey.vars.hunt.ak then
 end
 
 end</script>
-					<eventHandlerList />
-				</Script>
-				<ScriptGroup isActive="yes" isFolder="yes">
-					<name>Hunting</name>
-					<packageName>Hunting</packageName>
-					<script></script>
-					<eventHandlerList />
-					<Script isActive="yes" isFolder="no">
-						<name>Hunting Variables</name>
-						<packageName></packageName>
-						<script>huntVar = {
+				<eventHandlerList />
+			</Script>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Hunting</name>
+				<packageName>Hunting</packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>Hunting Variables</name>
+					<packageName></packageName>
+					<script>huntVar = {
 -- Hunting Variables
-	on = true,
+	on = false,
 	targetGone = false,
 	currentTarget = "",
 	currentPriority = 0,
@@ -5028,36 +5267,36 @@ fixedHuntVar = {
 	areaList = {},
 	areaDenizens = {},
 }</script>
-						<eventHandlerList />
-					</Script>
-					<ScriptGroup isActive="yes" isFolder="yes">
-						<name>Hunting Functions</name>
+					<eventHandlerList />
+				</Script>
+				<ScriptGroup isActive="yes" isFolder="yes">
+					<name>Hunting Functions</name>
+					<packageName></packageName>
+					<script>huntTracker = huntTracker or {}</script>
+					<eventHandlerList />
+					<Script isActive="yes" isFolder="no">
+						<name>roomTrack</name>
 						<packageName></packageName>
-						<script>huntTracker = huntTracker or {}</script>
-						<eventHandlerList />
-						<Script isActive="yes" isFolder="no">
-							<name>roomTrack</name>
-							<packageName></packageName>
-							<script>function roomTrack(event)
+						<script>function roomTrack(event)
 	if huntVar.on then
 		local eventMatch = event:match("%w+$")
 		local funcMatch = loadstring("huntTracker:"..eventMatch.."()")
 		funcMatch()
 	end
 end</script>
-							<eventHandlerList>
-								<string>gmcp.Char.Items.Add</string>
-								<string>gmcp.Char.Items.Remove</string>
-								<string>gmcp.Char.Items.List</string>
-								<string>gmcp.Room.Info</string>
-								<string>sysLoadEvent</string>
-								<string>sysExitEvent</string>
-							</eventHandlerList>
-						</Script>
-						<Script isActive="yes" isFolder="no">
-							<name>Misc Functions</name>
-							<packageName></packageName>
-							<script>-- Tracker functions
+						<eventHandlerList>
+							<string>gmcp.Char.Items.Add</string>
+							<string>gmcp.Char.Items.Remove</string>
+							<string>gmcp.Char.Items.List</string>
+							<string>gmcp.Room.Info</string>
+							<string>sysLoadEvent</string>
+							<string>sysExitEvent</string>
+						</eventHandlerList>
+					</Script>
+					<Script isActive="yes" isFolder="no">
+						<name>Misc Functions</name>
+						<packageName></packageName>
+						<script>-- Tracker functions
 function huntTracker:Add()
 	if gmcp.Char.Items.Add.location == "room" then
 		local tempTable = gmcp.Char.Items.Add.item
@@ -5389,13 +5628,13 @@ function removeTarg(name)
 	end
 	removeTargets()
 end</script>
-							<eventHandlerList />
-						</Script>
-					</ScriptGroup>
-					<Script isActive="yes" isFolder="no">
-						<name>areaList</name>
-						<packageName></packageName>
-						<script>areaList = areaList or {
+						<eventHandlerList />
+					</Script>
+				</ScriptGroup>
+				<Script isActive="yes" isFolder="no">
+					<name>areaList</name>
+					<packageName></packageName>
+					<script>areaList = areaList or {
 ["Manara Burrow"] = {"a vicious gnoll soldier", "a smirking gnoll slaver", "a flail-wielding gnoll sentry", "a sneering gnoll guard", "an apathetic gnoll sentinel", "an arrogant gnoll woman", "a water-bearing Mingruk woman", "a thin Mingruk woman"},
 ["the ruins of Phereklos"] = {"a multi-headed water hydra", "a hideous, writhing squid", "a large bull shark", "a black sea bass", "an enormous gulper eel", "a blue-spotted stingray", "a translucent jellyfish", "a bleeding salt water cod", "a school of clownfish", "a brilliantly coloured sea anemone"},
 ["the Caverns of Nuskuwe"] = {"the Wyrm Lord", "a fire wyrm", "an ancient wyrm", "a pregnant wyrm", "a crimson pyrapede", "a wyrm whelp", "a rock leech", "a rock beetle", "a crimson angler", "the Chieftain of Nuskuwe", "the Shaman of Nuskuwe", "a shaman's apprentice", "the stonemason of Nuskuwe", "a Nuskuwen hero", "a Nuskuwen man", "a Nuskuwen woman", "an ailing Nuskuwen elder", "a Nuskuwen child", "a surly Nuskuwen youth"},
@@ -5490,10 +5729,37 @@ end</script>
 areaListPrio = {
 ["Istarion"] = {"188306",},
 };</script>
-						<eventHandlerList />
-					</Script>
-				</ScriptGroup>
+					<eventHandlerList />
+				</Script>
 			</ScriptGroup>
+		</ScriptGroup>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>Addon - dendb</name>
+			<packageName></packageName>
+			<script></script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>gooey DenDB</name>
+				<packageName></packageName>
+				<script>gooey = gooey or {}
+gooey.dendb = gooey.dendb or {}
+gooey.dendb.db = gooey.dendb.db or {}
+
+function gooey.dendb.managedb(thing)
+  if gmcp and gmcp.Room and gmcp.Room.Info then
+  gooey.dendb.db[gmcp.Room.Info.area] = gooey.dendb.db[gmcp.Room.Info.area] or {}
+    if not string.find(thing, "homunculus") and 
+      thing ~= "an aklan servitor"
+    then
+      gooey.dendb.db[gmcp.Room.Info.area][thing] = gooey.dendb.db[gmcp.Room.Info.area][thing] or {}
+      if not table.contains(gooey.dendb.db[gmcp.Room.Info.area][thing], gmcp.Room.Info.num) then
+        table.insert(gooey.dendb.db[gmcp.Room.Info.area][thing], gmcp.Room.Info.num)
+      end
+    end
+  end
+end</script>
+				<eventHandlerList />
+			</Script>
 		</ScriptGroup>
 		<Script isActive="yes" isFolder="no">
 			<name>resetmarkx</name>
@@ -5509,7 +5775,7 @@ end</script>
 		</Script>
 	</ScriptPackage>
 	<KeyPackage>
-		<KeyGroup isActive="yes" isFolder="yes">
+		<KeyGroup isActive="no" isFolder="yes">
 			<name>normalkeys</name>
 			<packageName>Movement</packageName>
 			<script></script>
@@ -6376,8 +6642,16 @@ end
 					<keyModifier>536870912</keyModifier>
 				</Key>
 			</KeyGroup>
+			<Key isActive="yes" isFolder="no">
+				<name>Cycle target</name>
+				<packageName></packageName>
+				<script>gooey.funcs.hunt.cycleTargets()</script>
+				<command></command>
+				<keyCode>96</keyCode>
+				<keyModifier>0</keyModifier>
+			</Key>
 		</KeyGroup>
-		<KeyGroup isActive="no" isFolder="yes">
+		<KeyGroup isActive="yes" isFolder="yes">
 			<name>seafaringkeys</name>
 			<packageName></packageName>
 			<script></script>
