@@ -2946,26 +2946,31 @@ gooey.gui.activityStatusConsole = gooey.gui.activityStatusConsole or
       gooey.gui.activityStatusContainer ) 
       
 gooey.gui.activityKogman = gooey.gui.activityKogman or 
-    Geyser.Label:new({name = "activityKogman", x = "-31%", y="1%", height = "98%", width = "30%", 
+    Geyser.Label:new({name = "activityKogman", x = "0%", y="1%", height = "98%", width = "30%", 
     color = "firebrick", padding = 3}, 
       gooey.gui.activityStatusConsole )
 
-local image = ""
+if gooey.vars.gmcp.gender then 
+  gooey.gui.getKogman()
+end
+  
+end
 
-if gooey.vars.gmcp.gender == "female" or "fae" then
-  image = gooey.vars.localSettings.gooeyFolder.."babygurl2.png"
-else
-  image = gooey.vars.localSettings.gooeyFolder.."babyboi3.png"
-end  
+function gooey.gui.getKogman()
+  local image = ""
 
-if gooey.vars.mode == "hunt" or gooey.vars.mode == "combat" then
-gooey.gui.activityKogman:setBackgroundImage(image)  
- 
-gooey.gui.activityKogman:setStyleSheet([[
-    border-image: url("]]..image..[[");
-    background-repeat: no-repeat; background-position: top left; background-origin: margin; 
-  ]])  
-end   
+  if gooey.vars.gmcp.gender == "female" or "fae" then
+    image = gooey.vars.localSettings.gooeyFolder.."babygurl2.png"
+  else
+    image = gooey.vars.localSettings.gooeyFolder.."babyboi3.png"
+  end  
+  
+  if gooey.vars.mode.hunt or gooey.vars.mode.combat then
+    gooey.gui.activityKogman:setStyleSheet([[
+      border-image: url("]]..image..[[");
+      background-repeat: no-repeat; background-position: top left; background-origin: margin; 
+    ]])  
+  end 
 end</script>
 					<eventHandlerList />
 					<Script isActive="no" isFolder="no">
@@ -3377,7 +3382,8 @@ function gfg.char()
       end
       gooey.vars.gmcp[k] = v
     end
-  end 
+  end
+ 
 end
 
 function gfg.target()
@@ -3790,7 +3796,9 @@ function gooey.funcs.showChat()
   end
   
   if gmcp.Comm.Channel.Text.channel == "shout" then
+    if text:find("\"") then
     text = talker.." shouts, \""..text:split("\"")[2].."\""
+    end
   end
   
   decho(chatTab, (basecolor or "")..getTime(true, "hh:mm:ss").." "..text.."\n")
@@ -4854,6 +4862,7 @@ local resetting = nil
         gooey.gui.gaugeContainer:move( "0%", "-35")
         gooey.gui.bottom:attachToBorder("bottom")
         gooey.gui.promptContainer:add(gooey.gui.promptConsole)
+        gooey.gui.activityKogman:hide()
       else
         gooey.gui.bottom:resize(nil, "7%")
         gooey.gui.bottom:move(nil, "93%")
@@ -4868,6 +4877,7 @@ local resetting = nil
         gooey.gui.gaugeContainer:resize( "100%", "35") 
         gooey.gui.gaugeContainer:move( "0%", "-35")
         gooey.gui.bottom:attachToBorder("bottom")
+        gooey.gui.activityKogman:hide()
       end
     elseif mode == "hunt"  then
       if gooey.vars.gui.singleprompt then
@@ -4884,6 +4894,8 @@ local resetting = nil
         gooey.gui.gaugeContainer:move( "0%", "-36%")
         gooey.gui.bottom:add(gooey.gui.promptContainer)
         gooey.gui.bottom:attachToBorder("bottom")
+        gooey.gui.getKogman()
+        gooey.gui.activityKogman:show()
       else
         gooey.gui.shipPromptConsole:hide()
         gooey.gui.bottom:resize(nil, "8%")
@@ -4895,10 +4907,19 @@ local resetting = nil
         gooey.gui.rageContainer:move("0%", "0%")
         gooey.gui.gaugeContainer:add(gooey.gui.botomGaugeHbox)
         gooey.gui.rageContainer:add(gooey.gui.rageHBox)
-        gooey.gui.bottom:attachToBorder("bottom")    
+        gooey.gui.bottom:attachToBorder("bottom")
+        gooey.gui.getKogman()   
+        gooey.gui.activityKogman:show() 
       end
     elseif mode == "combat" then
       gooey.gui.rageContainer:hide()
+      if gooey.vars.gui.singleprompt then
+      gooey.gui.getKogman()
+      gooey.gui.activityKogman:show() 
+      else
+      gooey.gui.getKogman()
+      gooey.gui.activityKogman:show() 
+      end
     end
   end
 end
