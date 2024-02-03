@@ -2945,18 +2945,29 @@ gooey.gui.activityStatusConsole = gooey.gui.activityStatusConsole or
     color = "black", autoWrap = true, padding = 3}, 
       gooey.gui.activityStatusContainer ) 
       
+-- gooey.gui.affdeffLabel = gooey.gui.affdeffLabel or 
+    -- Geyser.Label:new({name = "affdeffLabel", x = "28%", y="1%", height = "100%", width = "72%", 
+    -- color = "black" , padding = 3}, 
+      -- gooey.gui.activityStatusConsole )
+-- 
+-- gooey.gui.affdeffLabel:setStyleSheet([[
+  -- background-color: rgba(0,0,0,0%);]])     
+-- gooey.gui.affdeffLabel:setAlignment("r")
+      
 gooey.gui.activityKogman = gooey.gui.activityKogman or 
     Geyser.Label:new({name = "activityKogman", x = "0%", y="1%", height = "98%", width = "30%", 
     color = "firebrick", padding = 3}, 
       gooey.gui.activityStatusConsole )
+      
+
 
 if gooey.vars.gmcp.gender then 
-  gooey.gui.getKogman()
+  gooey.funcs.getKogman()
 end
   
 end
 
-function gooey.gui.getKogman()
+function gooey.funcs.getKogman()
   local image = ""
 
   if gooey.vars.gmcp.gender == "female" or "fae" then
@@ -3132,7 +3143,7 @@ function gooey.gui.build.rage()
   gooey.gui.rageAmt:setStyleSheet(rageAmtCSS:getCSS())
   gooey.gui.rageAmt:setFormat("cb")
   gooey.gui.rageAmt:echo(gooey.vars.gmcp.rage or "100")
-
+  gooey.gui.rageAmt:setFgColor("#9BA191")
   for i = 1, 6, 1 do
     local gname = "rageGauge"..i
     local lname = "rageLabel"..i
@@ -3145,7 +3156,7 @@ function gooey.gui.build.rage()
     gooey.gui[gname].back:setStyleSheet(ragebackCSS:getCSS())
     gooey.gui[gname].front:setStyleSheet(ragefrontCSS:getCSS())
 
-    gooey.gui[gname]:echo("&lt;pre style='font-size:16px; color:white; text-align:center; padding:1px; margin:1px;'&gt; Rage skill name&lt;span style='font-size:13px; color:grey; text-align: right;'&gt;  fkey&lt;/span&gt;&lt;/pre&gt;&lt;pre style='font-size:14px; color:grey; text-align:center; padding:1px; margin:1px;'&gt; Details &lt;\pre&gt;")
+    gooey.gui[gname]:echo("&lt;pre style='font-size:16px; color: #E1E3DE; text-align:center; padding:1px; margin:1px;'&gt; Rage skill name&lt;span style='font-size:13px; color:grey; text-align: right;'&gt;  fkey&lt;/span&gt;&lt;/pre&gt;&lt;pre style='font-size:14px; color:grey; text-align:center; padding:1px; margin:1px;'&gt; Details &lt;\pre&gt;")
 
     gooey.gui[lname] = 
       Geyser.Label:new({name = lname, x = "0%", y = "0%", height = "100%", width = "100%" }, gooey.gui[gname])
@@ -3171,12 +3182,16 @@ local gaugeText = a_onelevel
 
 local gaugeColors = {
 healthBarBgCol =    "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #812422, stop: 0.1 #812422, stop: 0.49 #A12D2B, stop: 0.5 #A12D2B, stop: 1 #812422);",
---healthBarBgCol =    "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #691A1F, stop: 0.1 #555555, stop: 0.49 #555555, stop: 0.5 #555555, stop: 1 #691A1F);",
-manaBarBgCol =      "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #0A4742, stop: 0.1 #0A4742, stop: 0.49 #0D5953, stop: 0.5 #0D5953, stop: 1 #0A4742);",
+--healthBarBgCol =    "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0.2, y2: 2, stop: 0 #652D28, stop: 0.1 #7C1216, stop: 0.49 #9C5C56, stop: 0.5 #7C1216, stop: 1 #652D28);",
+--healthBarBgCol =    "background-color: QLinearGradient( x1: 0.2, y1: 0, x2: 0, y2: 1, stop: 0 #658083, stop: 0.1 #9B5C55, stop: 0.69 #652D28, stop: 0.8 #9B5C55, stop: 1 #658083);", 
+--healthBarCol = "#B8BDB2",
+--manaBarBgCol =      "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #0A4742, stop: 0.1 #0A4742, stop: 0.49 #0D5953, stop: 0.5 #0D5953, stop: 1 #0A4742);",
+manaBarBgCol =      "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #0A364A, stop: 0.1 #1F4E6E, stop: 0.49 #2F576D, stop: 0.5 #1F4E6E, stop: 1 #0A364A);",
 enduranceBarBgCol = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #56520C, stop: 0.1 #56520C, stop: 0.49 #6C660F, stop: 0.5 #6C660F, stop: 1 #56520C);",
 willpowerBarBgCol = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #7C2742, stop: 0.1 #7C2742, stop: 0.49 #9B3153, stop: 0.5 #9B3153, stop: 1 #7C2742);",
 expBarBgCol =       "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #5A6156, stop: 0.1 #5A6156, stop: 0.49 #71796B, stop: 0.5 #71796B, stop: 1 #5A6156);",
 }
+
 
 gaugeBackCSS = Geyser.StyleSheet:new([[
   background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #1A1A17, stop: 0.49 #20201D, stop: 0.5 #20201D, stop: 1 #1A1A17);
@@ -3219,7 +3234,6 @@ epbaloffCSS = Geyser.StyleSheet:new([[
   font-weight: bold;
 ]])
 
---  background-color: #4C4C4C;
 gooey.vars.target = gooey.vars.target or "Glory&amp;Riches"
 
 function gooey.gui.build.gauges()
@@ -3234,8 +3248,10 @@ gooey.gui.botomGaugeVbox = gooey.gui.botomGaugeVbox or
 
 gooey.gui.eqBar = Geyser.Label:new({name = "eq", width = 20, w_policy=Geyser.Fixed, margin = 0, }, gooey.gui.botomGaugeVbox)
 gooey.gui.eqBar:setFontSize(7)
+gooey.gui.eqBar:setFgColor("#9BA191")
 gooey.gui.balBar = Geyser.Label:new({name = "balBar", width = 20, w_policy=Geyser.Fixed, margin = 0, }, gooey.gui.botomGaugeVbox)
 gooey.gui.balBar:setFontSize(7)
+gooey.gui.balBar:setFgColor("#9BA191")
 
 gooey.gui.eqBar:setStyleSheet(epbalonCSS:getCSS())
 gooey.gui.balBar:setStyleSheet(epbalonCSS:getCSS())
@@ -3256,9 +3272,11 @@ for i = 1, #gaugeList, 1 do
   gooey.gui[gaugeList[i]]:setFontSize(10.5)
   --gooey.gui[gaugeList[i]]:setAlignment("center")
   gooey.gui[gaugeList[i]]:setFormat("cb")
-  
+  --local myColor = gaugeList[i].."Col"
+  gooey.gui[gaugeList[i]]:setFgColor("#E1E3DE")
   gooey.gui[gaugeList[i]]:echo(gaugeList[i])
-
+  
+  
 end
 
 end</script>
@@ -3814,7 +3832,6 @@ registerAnonymousEventHandler("gmcp.Comm.Channel.Start", "gooey.funcs.showChat")
 function gooey.funcs.gmcp.listAfflictions()
 gooey.data.gmcp.affs = {}
   for k, v in pairs(gmcp.Char.Afflictions.List) do
-    --if not table.contains({"blindness", "deafness", "insomnia"}, v.name) then
     table.insert(gooey.data.gmcp.affs, v.name)
   end
 gooey.funcs.showActivity()
@@ -4110,7 +4127,12 @@ function gooey.funcs.showActivity()
     cecho(console, "&lt;red&gt;Don't have a ship prompt :(")
   
   elseif gooey.vars.mode.hunt or gooey.vars.mode.combat then
-    cechoLink(console, gooey.vars.gui.affDef == "aff" and "   &lt;yellow&gt;Afflictions&lt;reset&gt;|&lt;white&gt;Defences" or "   &lt;white&gt;Afflictions&lt;reset&gt;|&lt;yellow&gt;Defences", [[ if gooey.vars.gui.affDef == "aff" then gooey.vars.gui.affDef = "def" else gooey.vars.gui.affDef = "aff" end gooey.funcs.showActivity()]], "Click to switch", true)
+    local conslen = gooey.gui.activityStatusConsole:getColumnCount()--3 
+    
+    echo(console, "\n")
+    cechoLink(console, string.rep(" ", conslen - 20)..(gooey.vars.gui.affDef == "aff" and "&lt;yellow&gt;Afflictions&lt;reset&gt;|&lt;white&gt;Defences" or "&lt;white&gt;Afflictions&lt;reset&gt;|&lt;yellow&gt;Defences") , [[ if gooey.vars.gui.affDef == "aff" then gooey.vars.gui.affDef = "def" else gooey.vars.gui.affDef = "aff" end gooey.funcs.showActivity()]], "Click to switch", true)
+    --gooey.gui.affdeffLabel:echo(gooey.vars.gui.affDef == "aff" and "   &lt;yellow&gt;Afflictions&lt;reset&gt;|&lt;white&gt;Defences" or "   &lt;white&gt;Afflictions&lt;reset&gt;|&lt;yellow&gt;Defences") 
+    
     echo(console, "\n\n")
     if gooey.vars.gui.affDef == "aff" then
       local affcol 
@@ -4120,18 +4142,22 @@ function gooey.funcs.showActivity()
         else 
           affcol = "&lt;white&gt;"
         end
-        cecho(console, affcol..v.."\n")
+        cecho(console, string.rep(" ", conslen - v:len() -4)..affcol..v.."\n")
       end
     elseif gooey.vars.gui.affDef == "def" then
       local i = 1
+      local str = ""
       for k, v in pairs(gooey.data.gmcp.defs) do
+        str = str..v..", "
         if i % 2 == 0 then
-        cecho(console, v..",\n")
-        else
-        cecho(console, v..", ")
+        cecho(console, string.rep(" ", conslen - str:len())..str)
+        str = ""
+        --else
+        --cecho(console, v..", ")
         end
         i = i + 1
-        
+       -- gooey.gui.promptConsole:cecho
+       -- gooey.gui.affdeffLabel
       end
     end
   end
@@ -4244,7 +4270,7 @@ local usable
           fkey = "F"..k
         end 
       end
-      gooey.gui[gname]:echo("&lt;pre style='font-size:15px; color:white; text-align:center; padding:1px; margin:1px; font-family:Bitstream Vera Sans Mono;'&gt;"..gooey.data.hunt.myRageTable[i][1]:title().."&lt;span style='font-size:13px; color:grey; text-align: right;'&gt;  "..fkey.."&lt;/span&gt;&lt;/pre&gt;&lt;pre style='font-size:14px; color:grey; text-align:center; padding:1px; margin:1px;'&gt;"..gooey.data.hunt.myRageTable[i][7].."&lt;\pre&gt;")
+      gooey.gui[gname]:echo("&lt;pre style='font-size:15px; color:#9BA191; text-align:center; padding:1px; margin:1px; font-family:Bitstream Vera Sans Mono;'&gt;"..gooey.data.hunt.myRageTable[i][1]:title().."&lt;span style='font-size:13px; color:grey; text-align: right;'&gt;  "..fkey.."&lt;/span&gt;&lt;/pre&gt;&lt;pre style='font-size:14px; color:grey; text-align:center; padding:1px; margin:1px;'&gt;"..gooey.data.hunt.myRageTable[i][7].."&lt;\pre&gt;")
     end
     gooey.gui.rageAmt:echo(rage)
   end
@@ -4877,7 +4903,7 @@ local resetting = nil
         gooey.gui.gaugeContainer:resize( "100%", "35") 
         gooey.gui.gaugeContainer:move( "0%", "-35")
         gooey.gui.bottom:attachToBorder("bottom")
-        gooey.gui.activityKogman:hide()
+        gooey.funcs.activityKogman:hide()
       end
     elseif mode == "hunt"  then
       if gooey.vars.gui.singleprompt then
@@ -4894,7 +4920,7 @@ local resetting = nil
         gooey.gui.gaugeContainer:move( "0%", "-36%")
         gooey.gui.bottom:add(gooey.gui.promptContainer)
         gooey.gui.bottom:attachToBorder("bottom")
-        gooey.gui.getKogman()
+        gooey.funcs.getKogman()
         gooey.gui.activityKogman:show()
       else
         gooey.gui.shipPromptConsole:hide()
@@ -4908,16 +4934,16 @@ local resetting = nil
         gooey.gui.gaugeContainer:add(gooey.gui.botomGaugeHbox)
         gooey.gui.rageContainer:add(gooey.gui.rageHBox)
         gooey.gui.bottom:attachToBorder("bottom")
-        gooey.gui.getKogman()   
+        gooey.funcs.getKogman()   
         gooey.gui.activityKogman:show() 
       end
     elseif mode == "combat" then
       gooey.gui.rageContainer:hide()
       if gooey.vars.gui.singleprompt then
-      gooey.gui.getKogman()
+      gooey.funcs.getKogman()
       gooey.gui.activityKogman:show() 
       else
-      gooey.gui.getKogman()
+      gooey.funcs.getKogman()
       gooey.gui.activityKogman:show() 
       end
     end
@@ -4980,12 +5006,14 @@ local myadjlabel = gooey.gui.styles[gooey.gui.myStyle].adjLabel
 local mybuttonstyle = gooey.gui.styles[gooey.gui.myStyle].buttonstyle
 
   for k, v in pairs(gooey.gui) do 
-    if gooey.gui[k].type == "miniConsole" or gooey.gui[k].type == "adjustablecontainer" then 
-      local consoleName = gooey.gui[k].name
-      gooey.gui.fontSize[consoleName] = gooey.gui.fontSize[consoleName] or 10
-      setFontSize(gooey.gui[k].name, gooey.gui.fontSize[consoleName])
-    elseif gooey.gui[k].type == "label" then
-      gooey.gui[k]:setFontSize(10)
+    if type(gooey.gui[k]) ~= "function" then
+      if gooey.gui[k].type == "miniConsole" or gooey.gui[k].type == "adjustablecontainer" then 
+        local consoleName = gooey.gui[k].name
+        gooey.gui.fontSize[consoleName] = gooey.gui.fontSize[consoleName] or 10
+        setFontSize(gooey.gui[k].name, gooey.gui.fontSize[consoleName])
+      elseif gooey.gui[k].type == "label" then
+        gooey.gui[k]:setFontSize(10)
+      end
     end
   end
 
@@ -5796,7 +5824,7 @@ end</script>
 		</Script>
 	</ScriptPackage>
 	<KeyPackage>
-		<KeyGroup isActive="no" isFolder="yes">
+		<KeyGroup isActive="yes" isFolder="yes">
 			<name>normalkeys</name>
 			<packageName>Movement</packageName>
 			<script></script>
@@ -6672,7 +6700,7 @@ end
 				<keyModifier>0</keyModifier>
 			</Key>
 		</KeyGroup>
-		<KeyGroup isActive="yes" isFolder="yes">
+		<KeyGroup isActive="no" isFolder="yes">
 			<name>seafaringkeys</name>
 			<packageName></packageName>
 			<script></script>
