@@ -5332,7 +5332,7 @@ cecho ("&lt;black&gt;..............&lt;blue&gt;*&lt;black&gt;..........&lt;white
 			<command></command>
 			<packageName></packageName>
 			<time>00:00:00.000</time>
-			<Timer isActive="yes" isFolder="no" isTempTimer="no" isOffsetTimer="no">
+			<Timer isActive="no" isFolder="no" isTempTimer="no" isOffsetTimer="no">
 				<name>ragetimer</name>
 				<script>for i = 1, 6, 1 do
   local name = "rageGauge"..i
@@ -7396,7 +7396,6 @@ local maxHeight = "90%"
 local aspectRatio = 0.3
 
 function gooey.funcs.keepAspectRatioKog()
-if gooey.gui.activityStatusConsole then
     local main_w, main_h = gooey.gui.activityStatusConsole:get_width(), gooey.gui.activityStatusConsole:get_height()
     local width, height = string.match(maxWidth,"%d+")*main_w/100, string.match(maxHeight,"%d+")*main_h/100
     
@@ -7408,7 +7407,7 @@ if gooey.gui.activityStatusConsole then
     end
     
     resizeWindow(labelName,width,height)
-end
+
 end
 
 registerAnonymousEventHandler("sysWindowResizeEvent", "gooey.funcs.keepAspectRatioKog")</script>
@@ -7611,113 +7610,104 @@ end
 local gaugeText = a_onelevel
 
 local gaugeColors = {
-  healthBarBgCol = "background-color: QLinearGradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #3c0008, stop: 0.25 #650713, stop: 0.5 #fc344e, stop: 0.75 #a10d20, stop: 1 #8a0b1c);",
-  manaBarBgCol = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #041d36, stop: 0.25 #092f5b, stop: 0.5 #3392dd, stop: 0.75 #265d9c	, stop: 1 #1c5388);",
-  enduranceBarBgCol = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #201305, stop: 0.25  #714314, stop: 0.5 #d8ac55, stop: 0.75 #cc7722, stop: 1 #614720);",
-  willpowerBarBgCol = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #350049, stop: 0.25 #50005b, stop: 0.5 #d65bd7, stop: 0.75 #8129b8, stop: 1 #601f88);",
-  --expBarBgCol = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #404040, stop: 0.25 #777777, stop: 0.5 #c9cbcd, stop: 0.75 #9f9f9f, stop: 1 #6b6b6b);",
-  expBarBgCol = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #262626, stop: 0.25 #363636, stop: 0.5 #737373, stop: 0.75 #4a4a4a, stop: 1 #3e3e3e);"
+healthBarBgCol =    "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #812422, stop: 0.1 #812422, stop: 0.49 #A12D2B, stop: 0.5 #A12D2B, stop: 1 #812422);",
+--healthBarBgCol =    "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0.2, y2: 2, stop: 0 #652D28, stop: 0.1 #7C1216, stop: 0.49 #9C5C56, stop: 0.5 #7C1216, stop: 1 #652D28);",
+--healthBarBgCol =    "background-color: QLinearGradient( x1: 0.2, y1: 0, x2: 0, y2: 1, stop: 0 #658083, stop: 0.1 #9B5C55, stop: 0.69 #652D28, stop: 0.8 #9B5C55, stop: 1 #658083);", 
+--healthBarCol = "#B8BDB2",
+--manaBarBgCol =      "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #0A4742, stop: 0.1 #0A4742, stop: 0.49 #0D5953, stop: 0.5 #0D5953, stop: 1 #0A4742);",
+manaBarBgCol =      "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #0A364A, stop: 0.1 #1F4E6E, stop: 0.49 #2F576D, stop: 0.5 #1F4E6E, stop: 1 #0A364A);",
+enduranceBarBgCol = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #56520C, stop: 0.1 #56520C, stop: 0.49 #6C660F, stop: 0.5 #6C660F, stop: 1 #56520C);",
+willpowerBarBgCol = "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #7C2742, stop: 0.1 #7C2742, stop: 0.49 #9B3153, stop: 0.5 #9B3153, stop: 1 #7C2742);",
+expBarBgCol =       "background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #5A6156, stop: 0.1 #5A6156, stop: 0.49 #71796B, stop: 0.5 #71796B, stop: 1 #5A6156);",
 }
 
-gaugeBackCSS = [[
+
+gaugeBackCSS = Geyser.StyleSheet:new([[
   background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #1A1A17, stop: 0.49 #20201D, stop: 0.5 #20201D, stop: 1 #1A1A17);
   border-style: solid;
-  border-color: grey;
+  border-color: "grey";
+  border-width: 1px;
+  margin: 0px;
+  font-size: 13px; 
+  font-weight: bold;
+  padding = 1px;
+  text-align: center;
+]])
+
+gaugeFrontCSS = Geyser.StyleSheet:new([[
+  border-style: solid;
+  border-color: "grey";
+  border-width: 1px;
+  margin: 0px;
+  font-size: 13px; 
+  font-weight: bold;
+  padding = 1px;
+  text-align: center;
+]])
+
+epbalonCSS = Geyser.StyleSheet:new([[
+  background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #1A1A17, stop: 0.49 #20201D, stop: 0.5 #20201D, stop: 1 #1A1A17);
+  border-style: solid;
+  border-color: "grey";
   border-width: 1px;
   margin: 0px;
   font-weight: bold;
-  padding: 0px;
-  text-align: center;
-  font-family: Verdana, sans-serif;
-]]
+]])
 
-gaugeFrontCSS = [[
+epbaloffCSS = Geyser.StyleSheet:new([[
+  background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #323232, stop: 0.49 #1F1F1F, stop: 0.5 #1F1F1F, stop: 1 #323232);
   border-style: solid;
-  border-color: grey;
+  border-color: "grey";
   border-width: 1px;
-  margin: 2px;
+  margin: 0px;
   font-weight: bold;
-  padding: 0px;
-  text-align: center;
-  font-family: Verdana, sans-serif;
-]]
+]])
 
+gooey.vars.target = gooey.vars.target or "Glory&amp;Riches"
 
 function gooey.gui.build.gauges()
-  gooey.gui.botomGaugeHbox = gooey.gui.botomGaugeHbox or Geyser.HBox:new({
-    name = "botomGaugeHbox",
-    x = "0%",
-    y = "0%",
-    width = "100%",
-    height = "100%",
-    padding = 0,
-    margin = 0
-  }, gooey.gui.gaugeContainer)
 
-  gooey.gui.botomGaugeVbox = gooey.gui.botomGaugeVbox or Geyser.VBox:new({
-    name = "botomGaugeVbox",
-    x = "0%",
-    y = "0%",
-    width = "3%",
-    height = "100%",
-    h_policy = Geyser.Fixed,
-    padding = 0,
-    margin = 0
-  }, gooey.gui.botomGaugeHbox)
+gooey.gui.botomGaugeHbox = gooey.gui.botomGaugeHbox or 
+  Geyser.HBox:new({ name = "botomGaugeHbox", x = "0%", y = "0%", width = "100%", height = "100%", padding = 0, margin = 0}, 
+  gooey.gui.gaugeContainer)
   
-  epbalonCSS = Geyser.StyleSheet:new([[
-    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #1A1A17, stop: 0.49 #20201D, stop: 0.5 #20201D, stop: 1 #1A1A17);
-    border-style: solid;
-    border-color: grey;
-    border-width: 1px;
-    margin: 0px;
-    font-weight: bold;
-  ]])
+gooey.gui.botomGaugeVbox = gooey.gui.botomGaugeVbox or 
+  Geyser.VBox:new({ name = "botomGaugeVbox", x = "0%", y = "0%", width = "3%", height = "100%", h_policy=Geyser.Fixed, padding = 0, margin = 0}, 
+  gooey.gui.botomGaugeHbox)
 
-  epbaloffCSS = Geyser.StyleSheet:new([[
-    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #323232, stop: 0.49 #1F1F1F, stop: 0.5 #1F1F1F, stop: 1 #323232);
-    border-style: solid;
-    border-color: grey;
-    border-width: 1px;
-    margin: 0px;
-    font-weight: bold;
-  ]])
-  
- gooey.gui.eqBar = Geyser.Label:new({
-    name = "eq",
-    width = 20,
-    w_policy = Geyser.Fixed,
-    margin = 0
-  }, gooey.gui.botomGaugeVbox)
-  gooey.gui.eqBar:setFontSize(7)
-  gooey.gui.eqBar:setFgColor("#9BA191")
-  gooey.gui.eqBar:setStyleSheet(epbalonCSS:getCSS())
-  gooey.gui.eqBar:echo("EQ")
-  
-   gooey.gui.balBar = Geyser.Label:new({
-    name = "balBar",
-    width = 20,
-    w_policy = Geyser.Fixed,
-    margin = 0
-  }, gooey.gui.botomGaugeVbox)
-  gooey.gui.balBar:setFontSize(7)
-  gooey.gui.balBar:setFgColor("#9BA191")
-  gooey.gui.balBar:setStyleSheet(epbalonCSS:getCSS())
-  gooey.gui.balBar:echo("BAL")
-  
-   local gaugeList = { "healthBar", "manaBar", "enduranceBar", "willpowerBar", "expBar" }
+gooey.gui.eqBar = Geyser.Label:new({name = "eq", width = 20, w_policy=Geyser.Fixed, margin = 0, }, gooey.gui.botomGaugeVbox)
+gooey.gui.eqBar:setFontSize(7)
+gooey.gui.eqBar:setFgColor("#9BA191")
+gooey.gui.balBar = Geyser.Label:new({name = "balBar", width = 20, w_policy=Geyser.Fixed, margin = 0, }, gooey.gui.botomGaugeVbox)
+gooey.gui.balBar:setFontSize(7)
+gooey.gui.balBar:setFgColor("#9BA191")
 
-  for _, gauge in ipairs(gaugeList) do
-    gooey.gui[gauge] = Geyser.Gauge:new({ name = gauge }, gooey.gui.botomGaugeHbox)
-    gooey.gui[gauge].back:setStyleSheet(gaugeBackCSS)
-    local gaugeCSS = gaugeColors[gauge.."BgCol"] .. " " .. gaugeFrontCSS
-    gooey.gui[gauge].front:setStyleSheet(gaugeCSS)
+gooey.gui.eqBar:setStyleSheet(epbalonCSS:getCSS())
+gooey.gui.balBar:setStyleSheet(epbalonCSS:getCSS())
 
-    gooey.gui[gauge]:setFontSize(9.5)
-    gooey.gui[gauge]:setFormat("cb")
-    gooey.gui[gauge]:setFgColor("#ffffff")
-    gooey.gui[gauge]:echo(gauge)
-  end
+gooey.gui.eqBar:echo("EQ")
+gooey.gui.balBar:echo("BAL")
+
+local gaugeList = { "healthBar", "manaBar", "enduranceBar", "willpowerBar", "expBar"}
+
+for i = 1, #gaugeList, 1 do
+
+  gooey.gui[gaugeList[i]] = Geyser.Gauge:new({ name = gaugeList[i], }, gooey.gui.botomGaugeHbox)
+  gooey.gui[gaugeList[i]].back:setStyleSheet(gaugeBackCSS:getCSS())
+  local myCSS = gaugeList[i].."BgCol"
+  gaugeFrontCSS:setCSS(gaugeColors[myCSS])
+  gooey.gui[gaugeList[i]].front:setStyleSheet(gaugeFrontCSS:getCSS())
+
+  gooey.gui[gaugeList[i]]:setFontSize(10.5)
+  --gooey.gui[gaugeList[i]]:setAlignment("center")
+  gooey.gui[gaugeList[i]]:setFormat("cb")
+  --local myColor = gaugeList[i].."Col"
+  gooey.gui[gaugeList[i]]:setFgColor("#E1E3DE")
+  gooey.gui[gaugeList[i]]:echo(gaugeList[i])
+  
+  
+end
+
 end</script>
 						<eventHandlerList />
 					</Script>
