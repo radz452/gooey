@@ -7330,7 +7330,7 @@ gooey.gui.people = gooey.gui.people or
         
   gooey.gui.peopleConsole = gooey.gui.peopleConsole or 
       Geyser.MiniConsole:new({name = "peopleConsole", x = "0%", y="1%", height = "100%", width = "100%", 
-      color = "black", autoWrap = true, padding = 3}, 
+      color = "black", autoWrap = false, padding = 3}, 
         gooey.gui.people )
         
   if gooey.gui.preferredRoomLayout then 
